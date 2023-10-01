@@ -7,11 +7,6 @@
     <packaging>jar</packaging>
     
     <description>JEMM is a Jellyfin Easy Metadata Manager. It's a Desktop application to automate and manage all Metadata infos.</description>
-    
-    <organization>
-        <name>Cesar Bianchi</name>
-        <url>cesar_bianchi@hotmail.com</url>
-    </organization>
 
     <inceptionYear>2023</inceptionYear>
 
@@ -25,10 +20,10 @@
         </developer>
     </developers>
     
-
+    <name>JEMM - Jellyfin Easy Metadata Manager</name>
     
     <build>
-        <name>JEMM - Jellyfin Easy Metadata Manager</name>
+        
 	<finalName>jemm_runnable</finalName>
         <plugins>
             <plugin>
