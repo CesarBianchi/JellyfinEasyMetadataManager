@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.lariflix</groupId>
+    <artifactId>jemm</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <description>JEMM is a Jellyfin Easy Metadata Manager. It's a Desktop application to automate and manage all Metadata infos.</description>
+    
+    <organization>
+        <name>Cesar Bianchi</name>
+        <url>cesar_bianchi@hotmail.com</url>
+    </organization>
+
+    <inceptionYear>2023</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>cesar_bianchi</id>
+            <name>Cesar Augusto Bianchi da Silva</name>
+            <email>cesar_bianchi@hotmail.com</email>
+            <organization>MySelf</organization>
+            <organizationUrl>https://www.linkedin.com/in/cesar-bianchi-9b90571b/</organizationUrl>
+        </developer>
+    </developers>
+    
+
+    
+    <build>
+        <name>JEMM - Jellyfin Easy Metadata Manager</name>
+	<finalName>jemm_runnable</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.lariflix.jemm.jemm</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+	</plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>dev.javatools</groupId>
+            <artifactId>json-utils</artifactId>
+            <version>1.0.1</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230618</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode</groupId>
+            <artifactId>google-api-translate-java</artifactId>
+            <version>0.92</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-native-core_3</artifactId>
+            <version>4.1.0-M3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+        </dependency>
+        
+    </dependencies>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <exec.mainClass>com.lariflix.jemm.jemm</exec.mainClass>        
+    </properties>
+    
+</project>
