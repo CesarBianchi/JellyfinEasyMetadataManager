@@ -6,3 +6,13 @@ The main purpose of JEMM is to make it easier to fill in the metadata fields of 
 Recommended for managing the metadata fiels of private content not available on IMDb or TheMovieDb sources.
 
 With JEMM, you can easily replicate the same metadata fields defined in a folder to the child-items.
+
+## To download a runnable file
+If you are not a developer or do not want to download the complete source-code and build it locally, you can directly download the executable file available at: root/target/jemm_runnable-jar-with-dependencies.jar (Java version 11 is required on your machine)
+
+## To build locally
+If you are a developer, you can download the project directly using your preferred git client. JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use your preferred IDE.
+
+## To contribute to this project
+If you are a developer and want to contribute to this project (Bug Fixes, New Features, Translation, Documentation, etc.), please write to cesar_bianchi@hotmail.com.
+
