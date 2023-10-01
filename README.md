@@ -16,3 +16,8 @@ If you are a developer, you can download the project directly using your preferr
 ## To contribute to this project
 If you are a developer and want to contribute to this project (Bug Fixes, New Features, Translation, Documentation, etc.), please write to cesar_bianchi@hotmail.com.
 
+## About Jellyfin Project
+Jellyfin is the volunteer-built media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached. Your media, your server, your way.
+Please, visit the Project website available in: https://jellyfin.org/
+
+Also visit the community forum available at: https://forum.jellyfin.org/
