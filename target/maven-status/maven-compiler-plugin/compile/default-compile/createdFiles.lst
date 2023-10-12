@@ -16,6 +16,7 @@ com/lariflix/jemm/forms/LoginWindow$2.class
 com/lariflix/jemm/dtos/JellyfinUsers.class
 com/lariflix/jemm/forms/AddGenrePanel$3.class
 com/lariflix/jemm/dtos/JellyfinFolder.class
+com/lariflix/jemm/utils/JemmVersion.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItem.class
 com/lariflix/jemm/forms/MainWindow$34.class
 com/lariflix/jemm/forms/MainWindow$14.class
