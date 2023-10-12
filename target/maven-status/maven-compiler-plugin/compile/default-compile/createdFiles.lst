@@ -63,6 +63,7 @@ com/lariflix/jemm/dtos/JellyfinFolders.class
 com/lariflix/jemm/forms/MainWindow$32.class
 com/lariflix/jemm/core/CheckJellyfinConnection.class
 com/lariflix/jemm/dtos/JellyfinCredentials.class
+com/lariflix/jemm/forms/LoginWindow$6.class
 com/lariflix/jemm/dtos/JellyfinConnectionResult.class
 com/lariflix/jemm/forms/AddPeoplePanel$9.class
 com/lariflix/jemm/forms/MainWindow$10.class
