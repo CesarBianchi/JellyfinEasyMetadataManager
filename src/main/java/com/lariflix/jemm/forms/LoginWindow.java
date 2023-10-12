@@ -218,6 +218,8 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        this.addLastChar();
+        
         instanceData.credentials.setBaseURL(jURLField.getText().toLowerCase().trim());
         instanceData.credentials.setTokenAPI(jApiTokenField.getText().trim());
         
@@ -301,4 +303,10 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jURLField;
     // End of variables declaration//GEN-END:variables
+
+    private void addLastChar() {
+        if (!jURLField.getText().substring(jURLField.getText().length()-1, jURLField.getText().length()).equals("/")){
+            jURLField.setText(jURLField.getText().concat("/"));
+        }
+    }
 }

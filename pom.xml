@@ -61,11 +61,6 @@
         </dependency>
         
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20230618</version>
-        </dependency>
-        <dependency>
             <groupId>com.googlecode</groupId>
             <artifactId>google-api-translate-java</artifactId>
             <version>0.92</version>
