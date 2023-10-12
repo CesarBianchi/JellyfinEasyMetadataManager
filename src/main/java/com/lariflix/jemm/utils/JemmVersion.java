@@ -7,7 +7,7 @@ public class JemmVersion {
 
     public String getVersion() {
         
-        this.setVersion("v-1.0");
+        this.setVersion("v1.0.2 - (beta)");
         
         return version;
     }
