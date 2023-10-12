@@ -13,6 +13,9 @@ If you are not a developer or do not want to download the complete source-code a
 ## To build locally
 If you are a developer, you can download the project directly using your preferred git client. JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use your preferred IDE.
 
+## To create an Api Key in your Jellyfin Instance
+Once in Jellyfin, navigate to the Jellyfin Dashboard by clicking the hamburger icon in the top left corner and click on Admin > Dashboard. In the left Navigation menu, scroll down to Advanced and click on Api Keys. Now click on the + button next to API Keys.
+
 ## To contribute to this project
 If you are a developer and want to contribute to this project (Bug Fixes, New Features, Translation, Documentation, etc.), please write to cesar_bianchi@hotmail.com.
 
