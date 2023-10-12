@@ -7,6 +7,7 @@ package com.lariflix.jemm.forms;
 import com.lariflix.jemm.core.CheckJellyfinConnection;
 import com.lariflix.jemm.dtos.JellyfinConnectionResult;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import com.lariflix.jemm.utils.JemmVersion;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        
     }
     
     public LoginWindow(JellyfinInstanceDetails instData) {
@@ -65,6 +67,11 @@ public class LoginWindow extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setLocation(new java.awt.Point(500, 25));
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,7 +83,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome to Jellyfin Easy Metadata Manager - v1.0.0 (beta)");
+        jLabel1.setText("Welcome to Jellyfin Easy Metadata Manager - ");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
@@ -251,6 +258,13 @@ public class LoginWindow extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        JemmVersion jemmVersion = new JemmVersion();
+        
+        jLabel1.setText(jLabel1.getText().concat(jemmVersion.getVersion()));
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
