@@ -21,7 +21,10 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
-
+/**
+ * Represents a window for adding a new studio in the JEMM application.
+ * @author Cesar Bianchi
+ */
 public class AddStudioPanel extends javax.swing.JPanel {
 
     static int existingStudioSelected = 1;

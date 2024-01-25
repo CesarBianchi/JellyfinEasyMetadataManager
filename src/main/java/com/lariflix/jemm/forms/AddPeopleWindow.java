@@ -9,13 +9,19 @@ import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author cesarbianchi
+ * Represents a window for adding people in the JEMM application.
+ * @author Cesar Bianchi
  */
 public class AddPeopleWindow {
     JDialog dialog = null; 
     AddPeoplePanel panel = new AddPeoplePanel(); 
     
+    /**
+     * Constructs a new AddPeopleWindow object with the specified ConnectJellyfinAPI data.
+     * 
+     * @param lData the ConnectJellyfinAPI data to be used in the window
+     * @author Cesar Bianchi
+     */
     public AddPeopleWindow(ConnectJellyfinAPI lData) {
         
         panel.setLoadedData(lData);
@@ -32,6 +38,12 @@ public class AddPeopleWindow {
         }
     }
     
+    /**
+     * Displays the dialog window and allows the user to define a new person.
+     * 
+     * @return the newly defined JellyfinPeopleItem object
+     * @author Cesar Bianchi
+     */
     public JellyfinPeopleItem showDialog(){
         
         //Show dialog to user define the new People (From existing or New)
@@ -47,22 +59,43 @@ public class AddPeopleWindow {
         return newPeople;
     }
 
+    /**
+     * Returns the dialog associated with this AddPeopleWindow.
+     * 
+     * @return the JDialog object representing the dialog
+     * @author Cesar Bianchi
+     */
     public JDialog getDialog() {
         return dialog;
     }
 
+    /**
+     * Sets the dialog associated with this AddPeopleWindow.
+     * 
+     * @param dialog the JDialog object representing the dialog
+     * @author Cesar Bianchi
+     */
     public void setDialog(JDialog dialog) {
         this.dialog = dialog;
     }
 
+    /**
+     * Returns the panel associated with this AddPeopleWindow.
+     * 
+     * @return the AddPeoplePanel object representing the panel
+     * @author Cesar Bianchi
+     */
     public AddPeoplePanel getPanel() {
         return panel;
     }
 
+    /**
+     * Sets the panel associated with this AddPeopleWindow.
+     * 
+     * @param panel the AddPeoplePanel object representing the panel
+     * @author Cesar Bianchi
+     */
     public void setPanel(AddPeoplePanel panel) {
         this.panel = panel;
     }
-
-    
-    
 }
