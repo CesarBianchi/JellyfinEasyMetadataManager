@@ -22,8 +22,13 @@ import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
 /**
- * Represents a window for adding a new studio in the JEMM application.
+ * This class represents a panel for adding studios in the application.
+ * It extends javax.swing.JPanel and provides the necessary interface and methods to handle user interactions for adding new studios.
+ * 
  * @author Cesar Bianchi
+ * @since 1.0
+ * @see javax.swing.JPanel
+ * @createdate 2022-02-01
  */
 public class AddStudioPanel extends javax.swing.JPanel {
 
@@ -31,6 +36,14 @@ public class AddStudioPanel extends javax.swing.JPanel {
     static int newStudioSelected = 2;
     static ConnectJellyfinAPI connectAPI = new ConnectJellyfinAPI();
     
+    /**
+     * Constructs a new AddStudioPanel.
+     * This constructor initializes the components of the panel.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public AddStudioPanel() {
         initComponents();
     }
@@ -315,6 +328,16 @@ public class AddStudioPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Handles the event of a studio being selected from the table.
+     * This method gets the selected row from the table and retrieves the id and name of the studio from the selected row.
+     * It then sets the text of the id and name text fields to the retrieved id and name.
+     * If no row is selected, it does nothing.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void studioSelected() {
         
         if (jTable1.getSelectedRow() >= 0){
@@ -328,6 +351,17 @@ public class AddStudioPanel extends javax.swing.JPanel {
 
     }
     
+    /**
+     * Handles the event of a radio button being selected.
+     * This method checks which radio button was selected and performs the appropriate actions.
+     * If the "Existing Studio" radio button was selected, it enables the table, sets its background color to white, disables the text field, and loads the existing studios into the table.
+     * If the "New Studio" radio button was selected, it disables the table, sets its background color to gray, enables the text field, and clears the text fields.
+     * 
+     * @param selectedOption The option that was selected. 1 for "Existing Studio", 2 for "New Studio".
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void itemChecked(int selectedOption) {
         
         if (selectedOption == existingStudioSelected){
@@ -372,16 +406,42 @@ public class AddStudioPanel extends javax.swing.JPanel {
         }
         
     }
-        
+    
+    /**
+     * Retrieves the instance of ConnectJellyfinAPI used by the AddStudioPanel.
+     * 
+     * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public static ConnectJellyfinAPI getLoadedData() {
         return connectAPI;
     }
 
+    /**
+     * Retrieves the instance of ConnectJellyfinAPI used by the AddStudioPanel.
+     * 
+     * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         connectAPI = lData;
         loadExistingStudio();
     }
     
+    /**
+     * Loads the existing studios from the Jellyfin server and displays them in the table.
+     * This method requests the existing studios from the Jellyfin server, clears the table, and adds the existing studios to the table.
+     * Each row in the table represents a studio and contains the id and name of the studio.
+     * After adding the existing studios to the table, it resizes the table width columns.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void loadExistingStudio() {
         JellyfinCadStudioItem studioItem = new JellyfinCadStudioItem();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -413,6 +473,18 @@ public class AddStudioPanel extends javax.swing.JPanel {
         
     }
     
+    /**
+     * Resizes the width of the columns of the given table based on the content of the cells.
+     * This method iterates over each column of the table and for each column, it iterates over each row to find the maximum preferred width of the cells in the column.
+     * It then sets the preferred width of the column to the maximum preferred width found.
+     * If the maximum preferred width found is less than 100, it sets the preferred width of the column to 100.
+     * After resizing the columns, it disables the auto resizing of the table.
+     * 
+     * @param table The table whose columns are to be resized.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
         final TableColumnModel columnModel = table.getColumnModel();
@@ -448,9 +520,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
         this.jTextField2 = jTextField2;
     }
     
-    
-     
-     
+         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
