@@ -42,7 +42,7 @@ import java.util.Date;
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public JellyfinCadPeopleItem() {
     }

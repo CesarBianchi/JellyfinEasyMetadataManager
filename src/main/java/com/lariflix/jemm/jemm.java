@@ -27,7 +27,7 @@ public class Jemm {
      * @param args An array of command-line arguments for the application.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public static void main(String[] args) {
         LoginWindow loginFrame = new LoginWindow(instanceData);

@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class AddGenreWindow {
     JDialog dialog = null; 
@@ -28,7 +28,7 @@ public class AddGenreWindow {
      * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddGenreWindow(ConnectJellyfinAPI lData) {
         
@@ -54,7 +54,7 @@ public class AddGenreWindow {
      * @return The new genre defined by the user.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public JellyfinGenreItem showDialog(){
         

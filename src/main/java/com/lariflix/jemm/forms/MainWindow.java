@@ -68,18 +68,25 @@ public class MainWindow extends javax.swing.JFrame {
     private final int UPLOADING_DATA = 2;
     
     /**
-     * Default constructor for the MainWindow class.
-     * Initializes the components of the main window.
+     * Constructs a new MainWindow.
+     * This constructor initializes the components of the window.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
      */
     public MainWindow() {
         initComponents();
     }
 
     /**
-     * Constructor for the MainWindow class that accepts a JellyfinInstanceDetails instance.
-     * Initializes the components of the main window and sets the instance data.
-     *
-     * @param instData The JellyfinInstanceDetails instance to be used.
+     * Sets the instance data and updates the base URL and API token in the ConnectAPI.
+     * This method sets the instance data to the given JellyfinInstanceDetails, and updates the base URL and API token in the ConnectAPI with the base URL and API token from the given JellyfinInstanceDetails.
+     * 
+     * @param instData The JellyfinInstanceDetails to be set.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
      */
     public void setInstanceData(JellyfinInstanceDetails instData){
         this.instanceData = instData;
@@ -1380,6 +1387,17 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Loads the folders from the Jellyfin API and updates the instance data and the list model.
+     * This method retrieves the users, admin user, and folders from the Jellyfin API and sets them in the instance data. It then updates the list model with the names of the folders.
+     * 
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If a URL is malformed.
+     * @throws ParseException If an error occurs while parsing.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void loadFolders() throws IOException, MalformedURLException, ParseException {
         //Load Users From Jellyfin API
         instanceData.setUsers(connectAPI.getUsers());
@@ -1401,6 +1419,14 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Selects the first folder in the list if it exists and sets the field values accordingly.
+     * This method checks if the list model has at least one item. If it does, it sets the selected index to 0 and calls the setFieldsValues method to update the field values based on the selected item.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void selectFirstFolder() {
         if (jList2.getModel().getSize() > 0){
             jList2.setSelectedIndex(0);
@@ -1408,6 +1434,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Sets the field values based on the selected item in the list.
+     * This method displays a waiting window and sets the cursor to the waiting cursor. It then calls the setFieldsValuesBackground method to load the fields and grids. After the fields and grids are loaded, it sets the cursor back to the default cursor.
+     * 
+     * @throws ParseException If an error occurs while parsing.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     public void setFieldsValues() {
         
         try {
@@ -1428,6 +1463,15 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
     
+    /**
+     * Sets the field values in the background based on the selected item in the list.
+     * This method retrieves the selected item from the list and requests the metadata and content items for the selected folder from the Jellyfin API. It then updates the instance data with the retrieved metadata and content items, and refreshes the GUI objects based on the instance data.
+     * 
+     * @throws ParseException If an error occurs while parsing.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setFieldsValuesBackground() throws java.text.ParseException {
         //get Selected jList item
         int nIndex = jList2.getSelectedIndex();
@@ -1463,7 +1507,16 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
-    
+    /**
+     * Sets all the field values based on the given JellyfinFolderMetadata.
+     * This method sets the text of the fields to the corresponding properties of the given JellyfinFolderMetadata. The date fields are converted to Brazilian date format before being set.
+     * 
+     * @param folderMetadata The JellyfinFolderMetadata to be used.
+     * @throws ParseException If an error occurs while parsing the dates.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAlljFields(JellyfinFolderMetadata folderMetadata) throws java.text.ParseException {
         
         //All "Header" Fields
@@ -1479,6 +1532,15 @@ public class MainWindow extends javax.swing.JFrame {
         jTextArea1.setText(folderMetadata.getOverview());
     }
 
+    /**
+     * Sets all the rows in the people table based on the given JellyfinFolderMetadata.
+     * This method creates a new JellyfinPeopleItem and a new model for the jTable1. It then clears the model and adds a row for each person in the given JellyfinFolderMetadata. Each row contains the id, name, type, and role of the person. After all the rows have been added, it sets the model of jTable1 to the new model and resizes the table width columns.
+     * 
+     * @param folderMetadata The JellyfinFolderMetadata to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAllPeopleRows(JellyfinFolderMetadata folderMetadata) {
         JellyfinPeopleItem people = new JellyfinPeopleItem();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -1500,6 +1562,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Sets all the rows in the genres table based on the given JellyfinFolderMetadata.
+     * This method creates a new JellyfinGenreItem and a new model for the jTable2. It then clears the model and adds a row for each genre in the given JellyfinFolderMetadata. Each row contains the id and name of the genre. After all the rows have been added, it sets the model of jTable2 to the new model and resizes the table width columns.
+     * 
+     * @param folderMetadata The JellyfinFolderMetadata to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAllGenresRows(JellyfinFolderMetadata folderMetadata) {
         JellyfinGenreItem genre = new JellyfinGenreItem();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -1520,6 +1591,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Sets all the rows in the studios table based on the given JellyfinFolderMetadata.
+     * This method creates a new JellyfinStudioItem and a new model for the jTable3. It then clears the model and adds a row for each studio in the given JellyfinFolderMetadata. Each row contains the id and name of the studio. After all the rows have been added, it sets the model of jTable3 to the new model and resizes the table width columns.
+     * 
+     * @param folderMetadata The JellyfinFolderMetadata to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAllStudioRows(JellyfinFolderMetadata folderMetadata) {
         JellyfinStudioItem studio = new JellyfinStudioItem();
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
@@ -1539,6 +1619,15 @@ public class MainWindow extends javax.swing.JFrame {
         this.resizeTableWidthColumns(jTable3);
     }
 
+    /**
+     * Sets all the rows in the tags table based on the given JellyfinFolderMetadata.
+     * This method creates a new String for the tag and a new model for the jTable4. It then clears the model and adds a row for each tag in the given JellyfinFolderMetadata. Each row contains the tag. After all the rows have been added, it sets the model of jTable4 to the new model and resizes the table width columns.
+     * 
+     * @param folderMetadata The JellyfinFolderMetadata to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAllTagsRows(JellyfinFolderMetadata folderMetadata) {
         String tag = new String();
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
@@ -1557,6 +1646,16 @@ public class MainWindow extends javax.swing.JFrame {
         this.resizeTableWidthColumns(jTable4);
     }
     
+    /**
+     * Sets all the rows in the folder content table based on the given JellyfinItems.
+     * This method creates a new JellyfinItem and a new model for the jTable5. It then clears the model and adds a row for each item in the given JellyfinItems. Each row contains the id, metadata, and other details of the item. After all the rows have been added, it sets the model of jTable5 to the new model and resizes the table width columns.
+     * 
+     * @param folderItems The JellyfinItems to be used.
+     * @throws ParseException If an error occurs while parsing the dates.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setAllFolderContent(JellyfinItems folderItems) throws java.text.ParseException {
         JellyfinItem item = new JellyfinItem();
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
@@ -1591,7 +1690,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
-    
+    /**
+     * Resizes the width of all columns in the given JTable based on the content of the cells.
+     * This method retrieves the TableColumnModel of the given JTable and iterates over all columns. For each column, it calculates the maximum width of the cells in the column and sets the preferred width of the column to this value. If the calculated width is less than 100, it sets the preferred width to 100. After all columns have been resized, it sets the auto resize mode of the table to AUTO_RESIZE_OFF.
+     * 
+     * @param table The JTable to be resized.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
         final TableColumnModel columnModel = table.getColumnModel();
@@ -1611,6 +1718,17 @@ public class MainWindow extends javax.swing.JFrame {
         table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }
 
+    /**
+     * Converts the given Date to a string in Brazilian date format.
+     * This method checks if the given Date is not null. If it is not null, it creates a new SimpleDateFormat with the pattern "dd/MM/yyyy" and formats the Date to a string using this SimpleDateFormat. It then returns the formatted string. If the given Date is null, it returns an empty string.
+     * 
+     * @param date The Date to be converted.
+     * @return The Date as a string in Brazilian date format, or an empty string if the Date is null.
+     * @throws ParseException If an error occurs while formatting the Date.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private String toBrazilianDate(Date date) throws java.text.ParseException {
         String cBrazilianFormatDate = new String();
         
@@ -1624,6 +1742,14 @@ public class MainWindow extends javax.swing.JFrame {
         return cBrazilianFormatDate;
     }
 
+    /**
+     * Sets the content of the child elements based on the selected item in the folder and content lists.
+     * This method retrieves the selected item from the folder list and the content list. It then retrieves the people, genres, studios, and tags of the selected content item and sets the people, genres, studios, and tags grids to these values.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setContentChilds() {
         int nFolderSelectedItem = jList2.getSelectedIndex();
         int nContentSelectedItem = jTable5.getSelectedRow();
@@ -1647,6 +1773,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Sets the rows in the people table based on the given ArrayList of JellyfinPeopleItem.
+     * This method creates a new DefaultTableModel for the jTable6 and clears it. It then adds a row for each JellyfinPeopleItem in the given ArrayList. Each row contains the id, name, type, and role of the JellyfinPeopleItem. After all the rows have been added, it sets the model of jTable6 to the new model and resizes the table width columns.
+     * 
+     * @param people The ArrayList of JellyfinPeopleItem to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setContentPeople(ArrayList<JellyfinPeopleItem> people) {
         //Erase Grid
         DefaultTableModel model = (DefaultTableModel) jTable6.getModel();
@@ -1664,6 +1799,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Sets the rows in the genres table based on the given ArrayList of JellyfinGenreItem.
+     * This method creates a new DefaultTableModel for the jTable7 and clears it. It then adds a row for each JellyfinGenreItem in the given ArrayList. Each row contains the id and name of the JellyfinGenreItem. After all the rows have been added, it sets the model of jTable7 to the new model and resizes the table width columns.
+     * 
+     * @param genres The ArrayList of JellyfinGenreItem to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setContentGenres(ArrayList<JellyfinGenreItem> genres) {
         //Erase Grid
         DefaultTableModel model = (DefaultTableModel) jTable7.getModel();
@@ -1679,6 +1823,15 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Sets the rows in the studios table based on the given ArrayList of JellyfinStudioItem.
+     * This method creates a new DefaultTableModel for the jTable8 and clears it. It then adds a row for each JellyfinStudioItem in the given ArrayList. Each row contains the id and name of the JellyfinStudioItem. After all the rows have been added, it sets the model of jTable8 to the new model and resizes the table width columns.
+     * 
+     * @param studios The ArrayList of JellyfinStudioItem to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setContetStudios(ArrayList<JellyfinStudioItem> studios) {
         //Erase Grid
         DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
@@ -1694,6 +1847,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Sets the rows in the tags table based on the given ArrayList of Strings.
+     * This method creates a new DefaultTableModel for the jTable9 and clears it. It then adds a row for each String in the given ArrayList. Each row contains the tag. After all the rows have been added, it sets the model of jTable9 to the new model and resizes the table width columns.
+     * 
+     * @param tags The ArrayList of Strings to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void setContentTags(ArrayList<String> tags) {
         //Erase Grid
         DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
@@ -1708,6 +1870,15 @@ public class MainWindow extends javax.swing.JFrame {
         this.resizeTableWidthColumns(jTable9);
     }
 
+    /**
+     * Adds a new person to the people grid or the people content grid.
+     * This method shows a dialog to the user to define the new person. If the name of the new person is not empty, it adds a new row to the people grid or the people content grid, depending on the value of nFrom. The new row contains the id, name, type, and role of the new person. After the new row has been added, it resizes the width of the columns in the grid.
+     * 
+     * @param nFrom The tab from which the method was called. If it is from_folder_tab, the new person is added to the people grid. If it is from_content_tab, the new person is added to the people content grid.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void addPeople(int nFrom) {
 
         //Show a Dialog to User Define the new People
@@ -1739,6 +1910,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * If the checkbox jCheckBox1 is selected, sets the text of jTextField6 to the text of jTextField2 and disables jTextField6. If the checkbox is not selected, sets the text of jTextField6 back to its old value and enables jTextField6.
+     * This method is used to ensure that the sort name is the same as the title when the checkbox is selected.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void sortNameSameOfTitle() {
         //
         
@@ -1754,6 +1933,14 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * If the checkbox jCheckBox2 is selected, sets the text of jTextField7 to the text of jTextField2 and disables jTextField7. If the checkbox is not selected, sets the text of jTextField7 back to its old value and enables jTextField7.
+     * This method is used to ensure that the forced sort name is the same as the title when the checkbox is selected.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void forcedNameSameOfTitle() {
         //forcedSortNameOldValue
         
@@ -1769,6 +1956,16 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Removes a person from the people grid or the people content grid.
+     * This method retrieves the selected row from the people grid or the people content grid, depending on the value of nOpc. 
+     * If a row is selected, it shows a confirmation dialog to the user. If the user confirms, it removes the selected row from the grid and resizes the width of the columns in the grid.
+     * 
+     * @param nOpc The tab from which the method was called. If it is from_folder_tab, the person is removed from the people grid. If it is from_content_tab, the person is removed from the people content grid.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void delPeople(int nOpc) {
         
         String cPeople = new String();
@@ -1823,6 +2020,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Adds a new genre to the genre grid or the genre content grid.
+     * This method shows a dialog to the user to define the new genre. If the name of the new genre is not empty, it adds a new row to the genre grid or the genre content grid, depending on the value of nFrom. The new row contains the id and name of the new genre. After the new row has been added, it resizes the width of the columns in the grid.
+     * 
+     * @param nFrom The tab from which the method was called. If it is from_folder_tab, the new genre is added to the genre grid. If it is from_content_tab, the new genre is added to the genre content grid.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void addGenre(int nFrom) {
         //Show a Dialog to User Define the new Genre
         JellyfinGenreItem newGenreInserted = new JellyfinGenreItem();

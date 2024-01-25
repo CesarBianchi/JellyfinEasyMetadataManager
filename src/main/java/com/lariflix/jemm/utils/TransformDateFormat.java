@@ -17,7 +17,7 @@ import java.util.Locale;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class TransformDateFormat {
 
@@ -27,7 +27,7 @@ public class TransformDateFormat {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public TransformDateFormat() {
     }
@@ -40,7 +40,7 @@ public class TransformDateFormat {
      * @return A string representing the date in the format "dd/MM/yyyy", or an empty string if the date is null.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public String getSimpleDateFromFull(Date date){
         String cBrazilianFormatDate = new String();
@@ -63,7 +63,7 @@ public class TransformDateFormat {
      * @throws ParseException if the string is not in the correct format.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public Date getFullDateFromSimple(String dt) throws ParseException{
         
@@ -86,7 +86,7 @@ public class TransformDateFormat {
      * @return A string representing the date in the format "yyyy-MM-dd'T'HH:mm:ss'Z'", or an empty string if the date is null.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public String convertToFull(Date dt){
         

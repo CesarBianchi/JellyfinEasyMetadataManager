@@ -28,7 +28,7 @@ import org.json.simple.parser.ParseException;
  * @author Cesar Bianchi
  * @since 1.0
  * @see javax.swing.JPanel
- * @createdate 2022-02-01
+ 
  */
 public class AddStudioPanel extends javax.swing.JPanel {
 
@@ -42,7 +42,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddStudioPanel() {
         initComponents();
@@ -336,7 +336,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void studioSelected() {
         
@@ -360,7 +360,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * @param selectedOption The option that was selected. 1 for "Existing Studio", 2 for "New Studio".
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void itemChecked(int selectedOption) {
         
@@ -413,7 +413,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public static ConnectJellyfinAPI getLoadedData() {
         return connectAPI;
@@ -425,7 +425,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         connectAPI = lData;
@@ -440,7 +440,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void loadExistingStudio() {
         JellyfinCadStudioItem studioItem = new JellyfinCadStudioItem();
@@ -483,7 +483,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * @param table The table whose columns are to be resized.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
