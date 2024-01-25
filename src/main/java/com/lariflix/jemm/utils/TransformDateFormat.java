@@ -10,16 +10,27 @@ import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
 import java.util.Locale;
 
+
 /**
+ * The TransformDateFormat class provides methods to transform dates between different formats.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
  */
 public class TransformDateFormat {
 
+    /**
+     * Constructs a new TransformDateFormat object.
+     */
     public TransformDateFormat() {
     }
     
-    
+    /**
+     * Converts a full date to a simple date format (dd/MM/yyyy).
+     * 
+     * @param date the full date to be converted
+     * @return the date in the simple format (dd/MM/yyyy)
+     * @author Cesar Bianchi
+     */
     public String getSimpleDateFromFull(Date date){
         String cBrazilianFormatDate = new String();
         
@@ -32,7 +43,14 @@ public class TransformDateFormat {
         return cBrazilianFormatDate;
     }
     
-    
+    /**
+     * Converts a simple date (dd/MM/yyyy) to a full date.
+     * 
+     * @param dt the simple date to be converted
+     * @return the full date
+     * @throws ParseException if the date cannot be parsed
+     * @author Cesar Bianchi
+     */
     public Date getFullDateFromSimple(String dt) throws ParseException{
         
         //Convert From String to Date.
@@ -46,6 +64,13 @@ public class TransformDateFormat {
         return dateReturn;
     }
     
+    /**
+     * Converts a date to the full date format (yyyy-MM-dd'T'HH:mm:ss'Z').
+     * 
+     * @param dt the date to be converted
+     * @return the date in the full format
+     * @author Cesar Bianchi
+     */
     public String convertToFull(Date dt){
         
         String dateReturn = new String();
