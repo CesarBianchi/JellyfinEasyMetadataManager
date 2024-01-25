@@ -10,17 +10,26 @@ import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
- * Represents a window for adding a new studio in the JEMM application.
+ * This class represents a window for adding studios in the application.
+ * It provides the necessary interface and methods to handle user interactions for adding new studios.
+ * 
  * @author Cesar Bianchi
+ * @since 1.0
+ * @createdate 2022-02-01
  */
 public class AddStudioWindow {
     JDialog dialog = null; 
     AddStudioPanel panel = new AddStudioPanel(); 
     
-    /**
-     * Constructs a new AddStudioWindow object with the specified ConnectJellyfinAPI instance.
-     * @param lData the ConnectJellyfinAPI instance used to load data.
+   /**
+     * Constructs a new AddStudioWindow.
+     * This constructor initializes the components of the window, sets the instance of ConnectJellyfinAPI to be used by the AddStudioWindow, and creates a new dialog.
+     * If the dialog has not been created yet, it creates a new dialog with the title "JEMM - Add Studio", sets its size to 1050x600, adds the panel to the dialog, packs the dialog, and centers the dialog on the screen.
+     * 
+     * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public AddStudioWindow(ConnectJellyfinAPI lData) {
         
@@ -39,9 +48,13 @@ public class AddStudioWindow {
     }
     
     /**
-     * Displays the dialog window and allows the user to define a new studio.
-     * @return the newly defined JellyfinStudioItem object.
+     * Displays the dialog to the user to define a new studio and returns the new studio defined by the user.
+     * This method makes the dialog visible, retrieves the id and name of the new studio from the text fields, and creates a new JellyfinStudioItem with the retrieved id and name.
+     * 
+     * @return The new JellyfinStudioItem defined by the user.
      * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public JellyfinStudioItem showDialog(){
         
