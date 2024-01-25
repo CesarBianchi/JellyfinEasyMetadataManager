@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
- * @author cesarbianchi
+ * This class represents the metadata for a Jellyfin folder.
+ * It is used to store and manage information related to the metadata of a specific folder in the Jellyfin server.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
  */
 public class JellyfinFolderMetadata {
     @JsonProperty("Name") 
@@ -31,8 +34,7 @@ public class JellyfinFolderMetadata {
     @JsonProperty("PreferredMetadataLanguage") 
     public String preferredMetadataLanguage;
     @JsonProperty("PreferredMetadataCountryCode") 
-    public String preferredMetadataCountryCode;
-    
+    public String preferredMetadataCountryCode; 
     @JsonProperty("PremiereDate") 
     public Date premiereDate;
     @JsonProperty("ExternalUrls") 
