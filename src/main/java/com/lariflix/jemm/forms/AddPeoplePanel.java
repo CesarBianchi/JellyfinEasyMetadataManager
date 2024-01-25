@@ -23,8 +23,13 @@ import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
 /**
- *
- * @author cesarbianchi
+ * This class represents a panel for adding people in the application.
+ * It extends javax.swing.JPanel and provides the necessary interface and methods to handle user interactions for adding new people.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @createdate 2022-02-01
+ * @see javax.swing.JPanel
  */
 public class AddPeoplePanel extends javax.swing.JPanel {
 
@@ -32,6 +37,14 @@ public class AddPeoplePanel extends javax.swing.JPanel {
     static int newPeopleSelected = 2;
     static ConnectJellyfinAPI loadedData = new ConnectJellyfinAPI();
     
+    /**
+     * Constructs a new AddPeoplePanel.
+     * This constructor initializes the components of the panel.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public AddPeoplePanel() {
         initComponents();
     }
@@ -366,6 +379,17 @@ public class AddPeoplePanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Handles the event of an item being checked.
+     * This method takes the selected option and performs different actions based on whether the selected option is 'existingPeopleSelected' or 'newPeopleSelected'.
+     * If 'existingPeopleSelected' is selected, it enables the table, sets the background color to white, disables and clears the text field, and loads the existing people.
+     * If 'newPeopleSelected' is selected, it disables the table, sets the background color to gray, enables and clears the text field.
+     * 
+     * @param selectedOption The selected option, which can be 'existingPeopleSelected' or 'newPeopleSelected'.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void itemChecked(int selectedOption) {
         
         if (selectedOption == existingPeopleSelected){
@@ -414,17 +438,41 @@ public class AddPeoplePanel extends javax.swing.JPanel {
         
     }
 
+    /**
+     * Retrieves the instance of ConnectJellyfinAPI used by the AddPeoplePanel.
+     * 
+     * @return The instance of ConnectJellyfinAPI used by the AddPeoplePanel.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public static ConnectJellyfinAPI getLoadedData() {
         return loadedData;
     }
 
+    /**
+     * Sets the instance of ConnectJellyfinAPI to be used by the AddPeoplePanel and loads the existing people.
+     * 
+     * @param lData The instance of ConnectJellyfinAPI to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         loadedData = lData;
         loadExistingPeople();
     }
-
-    
-    
+  
+    /**
+     * Loads the existing people from the Jellyfin server and displays them in the table.
+     * This method requests the existing people from the Jellyfin server, clears the table, and adds the existing people to the table.
+     * Each row in the table represents a person and contains the id and name of the person.
+     * After adding the existing people to the table, it resizes the table width columns.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void loadExistingPeople() {
         JellyfinCadPeopleItem peopleItem = new JellyfinCadPeopleItem();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -453,13 +501,21 @@ public class AddPeoplePanel extends javax.swing.JPanel {
 
         //Resize table width columns
         this.resizeTableWidthColumns(jTable1);
-        
-        
-        
-        
-        
+                
     }
     
+    /**
+     * Resizes the width of the columns of a given JTable.
+     * This method iterates over each column of the table and calculates the maximum width needed to display the content of each cell in the column.
+     * It then sets the preferred width of the column to the calculated width.
+     * If the calculated width is less than 100, it sets the preferred width to 100.
+     * After resizing the columns, it disables the auto resize mode of the table.
+     * 
+     * @param table The JTable whose columns are to be resized.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
         final TableColumnModel columnModel = table.getColumnModel();
@@ -511,6 +567,16 @@ public class AddPeoplePanel extends javax.swing.JPanel {
         this.jTextField3 = jTextField3;
     }
 
+    /**
+     * Handles the event of a person being selected from the table.
+     * This method gets the selected row from the table and retrieves the id and name of the person from the selected row.
+     * It then sets the text of the id and name text fields to the retrieved id and name.
+     * If no row is selected, it does nothing.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void personSelected() {
         
         if (jTable1.getSelectedRow() >= 0){
