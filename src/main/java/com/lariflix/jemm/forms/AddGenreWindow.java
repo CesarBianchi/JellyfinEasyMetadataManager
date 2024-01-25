@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
@@ -13,13 +9,21 @@ import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author cesarbianchi
+ * Class to create a new Window to Add a new Genre to Jellyfin Server
+ * 
+ * @version 1.0
+ * @since 2020-05-01
+ * @author Cesar Bianchi
  */
 public class AddGenreWindow {
     JDialog dialog = null; 
     AddGenrePanel panel = new AddGenrePanel(); 
     
+    /**
+     * Constructs a new AddGenreWindow object.
+     * 
+     * @param lData the ConnectJellyfinAPI object used to load data
+     */
     public AddGenreWindow(ConnectJellyfinAPI lData) {
         
         panel.setLoadedData(lData);
@@ -36,6 +40,11 @@ public class AddGenreWindow {
         }
     }
     
+    /**
+     * Displays the Add Genre dialog to the user and returns the newly defined genre.
+     * 
+     * @return the JellyfinGenreItem object representing the new genre
+     */
     public JellyfinGenreItem showDialog(){
         
         //Show dialog to user define the new People (From existing or New)
