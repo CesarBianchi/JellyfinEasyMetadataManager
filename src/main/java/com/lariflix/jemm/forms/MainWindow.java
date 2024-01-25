@@ -32,8 +32,23 @@ import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
 /**
- *
- * @author cesarbianchi
+ * MainWindow is a class that extends JFrame and represents the main window of the application.
+ * This window is used to display the Jellyfin items and folders to the user.
+ * 
+ * The class contains methods to connect to the Jellyfin API, parse the response, and display the items and folders.
+ * 
+ * @author Cesar Bianchi
+ * @see JellyfinInstanceDetails
+ * @see ConnectJellyfinAPI
+ * @see JellyfinItem
+ * @see JellyfinItems
+ * @see JellyfinFolder
+ * @see JellyfinFolderMetadata
+ * @see JellyfinGenreItem
+ * @see JellyfinPeopleItem
+ * @see JellyfinStudioItem
+ * @see JellyfinUtilFunctions
+ * @see TransformDateFormat
  */
 public class MainWindow extends javax.swing.JFrame {
 
@@ -52,10 +67,20 @@ public class MainWindow extends javax.swing.JFrame {
     private final int DOWNLOADING_DATA = 1;
     private final int UPLOADING_DATA = 2;
     
+    /**
+     * Default constructor for the MainWindow class.
+     * Initializes the components of the main window.
+     */
     public MainWindow() {
         initComponents();
     }
 
+    /**
+     * Constructor for the MainWindow class that accepts a JellyfinInstanceDetails instance.
+     * Initializes the components of the main window and sets the instance data.
+     *
+     * @param instData The JellyfinInstanceDetails instance to be used.
+     */
     public void setInstanceData(JellyfinInstanceDetails instData){
         this.instanceData = instData;
         connectAPI.setcBaseURL(instanceData.getCredentials().getBaseURL());
