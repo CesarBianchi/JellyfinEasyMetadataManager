@@ -7,7 +7,7 @@ package com.lariflix.jemm.utils;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class JemmVersion {
     /**
@@ -22,7 +22,7 @@ public class JemmVersion {
      * @return The version of Jemm.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public String getVersion() {
         this.setVersion("v1.0.3 - (beta)");
@@ -36,7 +36,7 @@ public class JemmVersion {
      * @param version the version to set
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void setVersion(String version) {
         this.version = version;

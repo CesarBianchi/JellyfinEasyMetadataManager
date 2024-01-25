@@ -29,20 +29,25 @@ public class LoginWindow extends javax.swing.JFrame {
     private static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();
 
     /**
-     * Default constructor for the LoginWindow class.
-     * Initializes the components of the login window and creates a new JellyfinInstanceDetails instance.
+     * Constructs a new LoginWindow.
+     * This constructor initializes the components of the window.
+     * 
      * @author Cesar Bianchi
+     * @since 1.0
+     
      */
     public LoginWindow() {
         initComponents();
     }
     
-    /**
-     * Constructor for the LoginWindow class that accepts a JellyfinInstanceDetails instance.
-     * Initializes the components of the login window and uses the provided JellyfinInstanceDetails instance.
-     *
+   /**
+     * Constructs a new LoginWindow with the given JellyfinInstanceDetails.
+     * This constructor initializes the components of the window and sets the instance data to be used by the LoginWindow.
+     * 
+     * @param instData The JellyfinInstanceDetails to be used.
      * @author Cesar Bianchi
-     * @param instData The JellyfinInstanceDetails instance to be used.
+     * @since 1.0
+     
      */
     public LoginWindow(JellyfinInstanceDetails instData) {
         this.instanceData = instData;
@@ -325,6 +330,14 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jURLField;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Ensures that the text in the jURLField ends with a "/".
+     * This method checks if the last character of the text in the jURLField is not a "/". If it is not, it appends a "/" to the end of the text.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
     private void addLastChar() {
         if (!jURLField.getText().substring(jURLField.getText().length()-1, jURLField.getText().length()).equals("/")){
             jURLField.setText(jURLField.getText().concat("/"));

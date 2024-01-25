@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class AddStudioWindow {
     JDialog dialog = null; 
@@ -29,7 +29,7 @@ public class AddStudioWindow {
      * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddStudioWindow(ConnectJellyfinAPI lData) {
         
@@ -54,7 +54,7 @@ public class AddStudioWindow {
      * @return The new JellyfinStudioItem defined by the user.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public JellyfinStudioItem showDialog(){
         

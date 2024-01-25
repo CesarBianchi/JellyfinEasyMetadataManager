@@ -26,7 +26,7 @@ import org.json.simple.parser.ParseException;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class AddGenrePanel extends javax.swing.JPanel {
 
@@ -40,7 +40,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddGenrePanel() {
         initComponents();
@@ -336,7 +336,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void genreSelected() {
         
@@ -358,7 +358,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * @param selectedOption The selected option. Use existingGenreSelected for the existing genre option and newGenreSelected for the new genre option.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void itemChecked(int selectedOption) {
         
@@ -412,7 +412,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * @return The instance of ConnectJellyfinAPI used by the AddGenrePanel.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public static ConnectJellyfinAPI getLoadedData() {
         return connectAPI;
@@ -424,7 +424,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         connectAPI = lData;
@@ -439,7 +439,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void loadExistingGenre() {
         JellyfinCadGenresItem genreItem = new JellyfinCadGenresItem();
@@ -482,7 +482,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * @param table The table whose columns are to be resized.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)

@@ -2,25 +2,34 @@
 package com.lariflix.jemm.forms;
 
 /**
- * A window for adding tags.
+ * This class represents a window for adding tags in the application.
+ * It provides the necessary interface and methods to handle user interactions for adding new tags.
  * 
  * @author Cesar Bianchi
+ * @since 1.0
+ 
  */
 public class AddTagWindow {
 
     /**
      * Constructs a new AddTagWindow.
+     * This constructor initializes the components of the window.
      * 
      * @author Cesar Bianchi
+     * @since 1.0
+     
      */
     public AddTagWindow() {
     }
     
     /**
-     * Displays a dialog to prompt the user for a tag name.
+     * Displays a dialog to the user to define a new tag and returns the new tag defined by the user.
+     * This method makes the dialog visible and retrieves the name of the new tag from the input dialog.
      * 
-     * @return the tag name entered by the user
+     * @return The new tag defined by the user.
      * @author Cesar Bianchi
+     * @since 1.0
+     
      */
     public String showDialog(){
         

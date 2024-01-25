@@ -28,7 +28,7 @@ import org.json.simple.parser.ParseException;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  * @see javax.swing.JPanel
  */
 public class AddPeoplePanel extends javax.swing.JPanel {
@@ -43,7 +43,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddPeoplePanel() {
         initComponents();
@@ -388,7 +388,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * @param selectedOption The selected option, which can be 'existingPeopleSelected' or 'newPeopleSelected'.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void itemChecked(int selectedOption) {
         
@@ -444,7 +444,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * @return The instance of ConnectJellyfinAPI used by the AddPeoplePanel.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public static ConnectJellyfinAPI getLoadedData() {
         return loadedData;
@@ -456,7 +456,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         loadedData = lData;
@@ -471,7 +471,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void loadExistingPeople() {
         JellyfinCadPeopleItem peopleItem = new JellyfinCadPeopleItem();
@@ -514,7 +514,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * @param table The JTable whose columns are to be resized.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
@@ -575,7 +575,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     private void personSelected() {
         

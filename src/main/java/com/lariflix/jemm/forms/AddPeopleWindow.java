@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2022-02-01
+ 
  */
 public class AddPeopleWindow {
     JDialog dialog = null; 
@@ -28,7 +28,7 @@ public class AddPeopleWindow {
      * @param lData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddPeopleWindow(ConnectJellyfinAPI lData) {
         
@@ -54,7 +54,7 @@ public class AddPeopleWindow {
      * @return The new person defined by the user.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public JellyfinPeopleItem showDialog(){
         
@@ -78,7 +78,7 @@ public class AddPeopleWindow {
      * @see JDialog
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public JDialog getDialog() {
         return dialog;
@@ -91,7 +91,7 @@ public class AddPeopleWindow {
      * @see JDialog
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public void setDialog(JDialog dialog) {
         this.dialog = dialog;
@@ -103,7 +103,7 @@ public class AddPeopleWindow {
      * @return The instance of AddPeoplePanel used by the AddPeopleWindow.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2022-02-01
+     
      */
     public AddPeoplePanel getPanel() {
         return panel;
