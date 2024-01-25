@@ -10,8 +10,12 @@ import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author cesarbianchi
+ * This class represents a window that is displayed while the application is waiting for a process to complete.
+ * It extends the JFrame class from the javax.swing package.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see javax.swing.JFrame
  */
 public class WaitingWindow {
     JDialog dialog = null; 
@@ -19,6 +23,17 @@ public class WaitingWindow {
     private final int DOWNLOADING_DATA = 1;
     private final int UPLOADING_DATA = 2;
     
+    /**
+     * Constructs a new WaitingWindow with the specified base URL and option.
+     * This constructor initializes the panel with the base URL and option, and creates a new dialog with the panel as its content pane.
+     * 
+     * @param cURL The base URL to be set in the panel.
+     * @param nOption The option to be set in the panel. It can be either DOWNLOADING_DATA or UPLOADING_DATA.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see WaitingPanel
+     * @see javax.swing.JDialog
+     */
     public WaitingWindow(String cURL, int nOption) {
         
         panel = new WaitingPanel(cURL, nOption); 
@@ -37,6 +52,16 @@ public class WaitingWindow {
         
     }
     
+    /**
+     * Displays the dialog to the user and automatically closes it after 2 seconds.
+     * This method uses a ScheduledExecutorService to schedule a task that closes the dialog after 2 seconds. The dialog is then made visible to the user.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see java.util.concurrent.ScheduledExecutorService
+     * @see java.util.concurrent.Executors
+     * @see java.util.concurrent.TimeUnit
+     */
     public void showDialog(){
         
         //Show dialog to user define the new People (From existing or New)
