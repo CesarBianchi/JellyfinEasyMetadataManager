@@ -2,23 +2,38 @@ package com.lariflix.jemm.utils;
 
 import javax.swing.table.DefaultTableModel;
 
+
 /**
- * This class provides utility functions for Jemm.
-* @author Cesar Bianchi
+ * Utility class for Jellyfin related functions.
+ * This class provides utility methods that can be used across the application.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @createdate 2024-02-01
  */
 public class JellyfinUtilFunctions {
 
     /**
-     * Constructs a new JellyfinUtilFunctions object.
+     * Default constructor for the JellyfinUtilFunctions class.
+     * This constructor is used when creating a new instance of this class without setting any initial values.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2024-02-01
      */
     public JellyfinUtilFunctions() {
     }
     
+
     /**
-     * Removes all rows from the given DefaultTableModel.
+     * Erases all rows from the given DefaultTableModel.
+     * This method is used to clear a table model.
      * 
      * @param model The DefaultTableModel to be cleared.
      * @return The cleared DefaultTableModel.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2024-02-01
      */
     public DefaultTableModel eraseModel(DefaultTableModel model) {
         DefaultTableModel modelRet = model;

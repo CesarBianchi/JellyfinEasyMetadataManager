@@ -5,10 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 /**
- *
- * @author cesarbianchi
+ * Represents a JellyfinCadPeopleItem object.
+ * 
+ * @version 1.0.0
+ * @since 1.0.0
+ * @author Cesar Bianchi
+ * @see JellyfinCadPeopleItems
  */
-public class JellyfinCadPeopleItem {
+ public class JellyfinCadPeopleItem {
     @JsonProperty("Name") 
     public String name;
     @JsonProperty("ServerId") 
@@ -32,6 +36,14 @@ public class JellyfinCadPeopleItem {
     @JsonProperty("LocationType") 
     public String locationType;
 
+    /**
+     * Default constructor for the JellyfinCadPeopleItem class.
+     * This constructor is used when creating a new instance of this class without setting any initial values.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public JellyfinCadPeopleItem() {
     }
 

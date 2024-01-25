@@ -12,24 +12,35 @@ import java.util.Locale;
 
 
 /**
- * The TransformDateFormat class provides methods to transform dates between different formats.
- *
+ * Utility class for transforming date formats.
+ * This class provides methods for converting dates between different formats.
+ * 
  * @author Cesar Bianchi
+ * @since 1.0
+ * @createdate 2022-02-01
  */
 public class TransformDateFormat {
 
     /**
-     * Constructs a new TransformDateFormat object.
+     * Default constructor for the TransformDateFormat class.
+     * This constructor is used when creating a new instance of this class without setting any initial values.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public TransformDateFormat() {
     }
     
     /**
-     * Converts a full date to a simple date format (dd/MM/yyyy).
+     * Converts a Date object into a simple date string in the format "dd/MM/yyyy".
+     * If the provided date is null, an empty string is returned.
      * 
-     * @param date the full date to be converted
-     * @return the date in the simple format (dd/MM/yyyy)
+     * @param date The Date object to be converted.
+     * @return A string representing the date in the format "dd/MM/yyyy", or an empty string if the date is null.
      * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public String getSimpleDateFromFull(Date date){
         String cBrazilianFormatDate = new String();
@@ -44,12 +55,15 @@ public class TransformDateFormat {
     }
     
     /**
-     * Converts a simple date (dd/MM/yyyy) to a full date.
+     * Converts a simple date string in the format "dd/MM/yyyy" into a Date object.
+     * If the provided string is not in the correct format, a ParseException is thrown.
      * 
-     * @param dt the simple date to be converted
-     * @return the full date
-     * @throws ParseException if the date cannot be parsed
+     * @param dt The date string to be converted.
+     * @return A Date object representing the date, or null if the string is not in the correct format.
+     * @throws ParseException if the string is not in the correct format.
      * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public Date getFullDateFromSimple(String dt) throws ParseException{
         
@@ -65,11 +79,14 @@ public class TransformDateFormat {
     }
     
     /**
-     * Converts a date to the full date format (yyyy-MM-dd'T'HH:mm:ss'Z').
+     * Converts a Date object into a full date string in the format "yyyy-MM-dd'T'HH:mm:ss'Z'".
+     * If the provided date is null, an empty string is returned.
      * 
-     * @param dt the date to be converted
-     * @return the date in the full format
+     * @param dt The Date object to be converted.
+     * @return A string representing the date in the format "yyyy-MM-dd'T'HH:mm:ss'Z'", or an empty string if the date is null.
      * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
      */
     public String convertToFull(Date dt){
         

@@ -21,8 +21,12 @@ import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
 /**
- *
- * @author cesarbianchi
+ * Represents the panel for adding a new genre in the application.
+ * This class extends javax.swing.JPanel and provides the UI for adding a new genre.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @createdate 2022-02-01
  */
 public class AddGenrePanel extends javax.swing.JPanel {
 
@@ -30,6 +34,14 @@ public class AddGenrePanel extends javax.swing.JPanel {
     static int newGenreSelected = 2;
     static ConnectJellyfinAPI connectAPI = new ConnectJellyfinAPI();
     
+    /**
+     * Default constructor for the AddGenrePanel class.
+     * This constructor initializes the components of the panel.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public AddGenrePanel() {
         initComponents();
     }
@@ -318,6 +330,14 @@ public class AddGenrePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Handles the event of a genre being selected from the table.
+     * This method retrieves the ID and name of the selected genre and sets them in the respective text fields.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void genreSelected() {
         
         if (jTable1.getSelectedRow() >= 0){
@@ -331,6 +351,15 @@ public class AddGenrePanel extends javax.swing.JPanel {
 
     }
     
+    /**
+     * Handles the event of a radio button being selected.
+     * This method updates the UI based on the selected option. If the existing genre option is selected, it enables the genre table and loads the existing genres. If the new genre option is selected, it disables the genre table and enables the genre name text field.
+     * 
+     * @param selectedOption The selected option. Use existingGenreSelected for the existing genre option and newGenreSelected for the new genre option.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void itemChecked(int selectedOption) {
         
         if (selectedOption == existingGenreSelected){
@@ -375,16 +404,43 @@ public class AddGenrePanel extends javax.swing.JPanel {
         }
         
     }
-        
+    
+    /**
+     * Retrieves the instance of ConnectJellyfinAPI used by the AddGenrePanel.
+     * This method is used to get the instance of ConnectJellyfinAPI that contains the data loaded from the Jellyfin server.
+     * 
+     * @return The instance of ConnectJellyfinAPI used by the AddGenrePanel.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public static ConnectJellyfinAPI getLoadedData() {
         return connectAPI;
     }
 
+    /**
+     * Sets the instance of ConnectJellyfinAPI used by the AddGenrePanel and loads the existing genres.
+     * 
+     * @param lData The instance of ConnectJellyfinAPI to be used.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void setLoadedData(ConnectJellyfinAPI lData) {
         connectAPI = lData;
         loadExistingGenre();
     }
     
+    /**
+     * Loads the existing genres from the Jellyfin server and displays them in the genre table.
+     * This method requests the existing genres from the Jellyfin server and adds them to the genre table.
+     * If an error occurs during the request, it is logged and the method continues with the next genre.
+     * After all genres have been added, the method resizes the width of the columns in the table based on the content of the cells.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     public void loadExistingGenre() {
         JellyfinCadGenresItem genreItem = new JellyfinCadGenresItem();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -417,6 +473,17 @@ public class AddGenrePanel extends javax.swing.JPanel {
         
     }
     
+    /**
+     * Resizes the width of the columns in the provided table based on the content of the cells.
+     * This method calculates the preferred width for each column based on the content of its cells and sets the preferred width to the maximum calculated width.
+     * The minimum width for a column is 100 pixels. If the calculated width is less than 100 pixels, the width is set to 100 pixels.
+     * After all columns have been resized, the auto resize mode of the table is turned off.
+     * 
+     * @param table The table whose columns are to be resized.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @createdate 2022-02-01
+     */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
         final TableColumnModel columnModel = table.getColumnModel();
