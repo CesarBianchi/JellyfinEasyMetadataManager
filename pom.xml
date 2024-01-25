@@ -35,7 +35,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.lariflix.jemm.jemm</mainClass>
+                            <mainClass>com.lariflix.jemm.Jemm</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -89,7 +89,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <exec.mainClass>com.lariflix.jemm.jemm</exec.mainClass>        
+        <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>        
     </properties>
     
 </project>
