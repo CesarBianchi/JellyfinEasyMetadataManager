@@ -17,7 +17,7 @@
 *.vscode
 
 # Form files
-*.form
+#*.form
 
 # Package Files #
 #*.jar
