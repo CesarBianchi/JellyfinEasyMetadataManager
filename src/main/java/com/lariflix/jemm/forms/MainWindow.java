@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -2059,6 +2060,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method is used to remove a genre from a specific table.
+     * @param nOpc An integer that determines from which table the genre will be removed.
+     * If nOpc is equal to from_folder_tab, the genre will be removed from the jTable2.
+     * If nOpc is equal to from_content_tab, the genre will be removed from the jTable7.
+     * @autor Cesar Bianchi
+     * @since 1.0
+     */
     private void delGenre(int nOpc) {
             
         String cGenre = new String();
@@ -2112,6 +2121,14 @@ public class MainWindow extends javax.swing.JFrame {
         }    
     }
     
+    /**
+     * This method is used to add a new studio to a specific table.
+     * @param nFrom An integer that determines in which table the new studio will be added.
+     * If nFrom is equal to from_folder_tab, the studio will be added to the jTable3.
+     * If nFrom is equal to from_content_tab, the studio will be added to the jTable8.
+     * @autor Cesar Bianchi
+     * @since 1.0
+     */
     private void addStudio(int nFrom) {
         //Show a Dialog to User Define the new Studio
         JellyfinStudioItem newStudioInserted = new JellyfinStudioItem();
@@ -2142,6 +2159,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method is used to remove a studio from a specific table.
+     * @param nOpc An integer that determines from which table the studio will be removed.
+     * If nOpc is equal to from_folder_tab, the studio will be removed from the jTable3.
+     * If nOpc is equal to from_content_tab, the studio will be removed from the jTable8.
+     * @autor Cesar Bianchi
+     * @since 1.0
+     */
     private void delStudio(int nOpc) {
             
         String cStudio = new String();
@@ -2195,6 +2220,14 @@ public class MainWindow extends javax.swing.JFrame {
         }    
     }
     
+    /**
+     * This method is used to add a new tag to a specific table.
+     * @param nFrom An integer that determines in which table the new tag will be added.
+     * If nFrom is equal to from_folder_tab, the tag will be added to the jTable4.
+     * If nFrom is equal to from_content_tab, the tag will be added to the jTable9.
+     * @autor Cesar Bianchi
+     * @since 1.0
+     */
     private void addTag(int nFrom) {
         //Show a Dialog to User Define the new Tag
         String newTagInserted = new String();
@@ -2228,6 +2261,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method is used to remove a tag from a specific table.
+     * @param nOpc An integer that determines from which table the tag will be removed.
+     * If nOpc is equal to from_folder_tab, the tag will be removed from the jTable4.
+     * If nOpc is equal to from_content_tab, the tag will be removed from the jTable9.
+     * @autor Cesar Bianchi
+     * @since 1.0
+     */
     private void delTag(int nOpc) {
             
         String cTagName = new String();
@@ -2281,6 +2322,15 @@ public class MainWindow extends javax.swing.JFrame {
         }    
     }
 
+    /**
+     * This method is used to save the folder after checking all mandatory fields.
+     * It updates the values in the main object from GUI Objects and posts updates on the Jellyfin instance.
+     * 
+     * @throws java.text.ParseException If parsing the date fails.
+     * @autor Cesar Bianchi
+     * @see checkAllMandatoryFieldsIsOk()
+     * @since 1.0
+     */
     private void saveFolder() throws java.text.ParseException {
         if (this.checkAllMandatoryFieldsIsOk()){        
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -2305,6 +2355,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * This method is used to save the content after checking all mandatory fields.
+     * It updates the values in the main object from GUI Objects and posts updates on the Jellyfin instance.
+     * 
+     * @param lAll A boolean that determines whether all content should be saved.
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     private void saveContent(boolean lAll) throws java.text.ParseException {
         
         if (this.checkAllMandatoryFieldsIsOk()){ 
@@ -2334,7 +2393,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
-    
+    /**
+     * This method is used to set the GUI from the instance object for a specific folder.
+     * It retrieves the metadata and folder items from the main instance object and updates the GUI accordingly.
+     * 
+     * @param cFolderID A string that represents the ID of the folder.
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     private void setFolderGUIFromInstObj(String cFolderID) throws java.text.ParseException {
         
         //Get metadata object from Instance Main Object
@@ -2376,6 +2443,15 @@ public class MainWindow extends javax.swing.JFrame {
         this.setAllFolderContent(folderItems); 
     }
 
+    /**
+     * This method is used to set the instance object from the GUI for a specific folder.
+     * It retrieves the data from the GUI and updates the instance object accordingly.
+     * 
+     * @param nIndex An integer that represents the index of the folder in the instance object.
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     private void setFolderInstObjFromGUI(int nIndex) throws java.text.ParseException {
         
         TransformDateFormat transforDate = new TransformDateFormat();
@@ -2467,6 +2543,20 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
+    /**
+     * This method is used to set the instance object from the GUI for a specific folder's items.
+     * It retrieves the data from the GUI and updates the instance object accordingly.
+     * 
+     * @param nIndex An integer that represents the index of the folder in the instance object.
+     * @param lUpdateFromFolder A boolean that determines whether the content should be updated from the folder.
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see TransformDateFormat#getFullDateFromSimple(String)
+     * @see JellyfinPeopleItem
+     * @see JellyfinGenreItem
+     * @see JellyfinStudioItem
+     */
     private void setFolderItemsInstObjFromGUI(int nIndex, boolean lUpdateFromFolder) throws java.text.ParseException {
         int nSize = jTable5.getModel().getRowCount();
         TransformDateFormat transforDate = new TransformDateFormat();
@@ -2606,6 +2696,16 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * This method is used to replace the items content from a specific folder.
+     * It retrieves the data from the GUI and updates the instance object accordingly.
+     * 
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see TransformDateFormat#getFullDateFromSimple(String)
+     * @see DefaultTableModel
+     */
     private void replaceItensContentFromFolder() throws java.text.ParseException {
         int nCount = 0;
         String newTitle = new String();        
@@ -2689,6 +2789,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method is used to complete the episode name with the episode number.
+     * 
+     * @param text The base name of the episode.
+     * @param nJ The index of the episode.
+     * @return The complete name of the episode.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     private String completeEpisodeName(String text, int nJ) {
         
         int nI = nJ+1;
@@ -2703,6 +2812,15 @@ public class MainWindow extends javax.swing.JFrame {
         return episodeName;
     }
 
+    /**
+     * This method is used to check if all mandatory fields are filled.
+     * 
+     * @return A boolean indicating whether all mandatory fields are filled.
+     * @throws java.text.ParseException If parsing the date fails.
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see JOptionPane#showMessageDialog(Component, Object, String, int, Icon)
+     */
     private boolean checkAllMandatoryFieldsIsOk() {
         boolean lret = false;
         
