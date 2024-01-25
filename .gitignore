@@ -13,6 +13,12 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Visual Studio Code files
+*.vscode
+
+# Form files
+*.form
+
 # Package Files #
 #*.jar
 #*.war
