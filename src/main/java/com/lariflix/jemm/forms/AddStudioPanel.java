@@ -21,10 +21,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 
-/**
- *
- * @author cesarbianchi
- */
+
 public class AddStudioPanel extends javax.swing.JPanel {
 
     static int existingStudioSelected = 1;

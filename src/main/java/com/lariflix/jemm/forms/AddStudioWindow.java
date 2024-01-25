@@ -10,13 +10,18 @@ import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
- *
- * @author cesarbianchi
+ * Represents a window for adding a new studio in the JEMM application.
+ * @author Cesar Bianchi
  */
 public class AddStudioWindow {
     JDialog dialog = null; 
     AddStudioPanel panel = new AddStudioPanel(); 
     
+    /**
+     * Constructs a new AddStudioWindow object with the specified ConnectJellyfinAPI instance.
+     * @param lData the ConnectJellyfinAPI instance used to load data.
+     * @author Cesar Bianchi
+     */
     public AddStudioWindow(ConnectJellyfinAPI lData) {
         
         panel.setLoadedData(lData);
@@ -33,6 +38,11 @@ public class AddStudioWindow {
         }
     }
     
+    /**
+     * Displays the dialog window and allows the user to define a new studio.
+     * @return the newly defined JellyfinStudioItem object.
+     * @author Cesar Bianchi
+     */
     public JellyfinStudioItem showDialog(){
         
         //Show dialog to user define the new People (From existing or New)
