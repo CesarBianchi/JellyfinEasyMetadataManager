@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.CheckJellyfinConnection;
@@ -15,28 +11,42 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author cesarbianchi
+ * LoginWindow is a class that extends JFrame and represents the login window of the application.
+ * This window is used to collect the user's Jellyfin instance details such as URL and API key.
+ * 
+ * The class has two constructors, one that initializes a new JellyfinInstanceDetails instance
+ * and another that accepts an existing JellyfinInstanceDetails instance.
+ * 
+ * The class also contains a method to initialize the components of the login window.
+ * 
+ * @author Cesar Bianchi
+ * @see JellyfinInstanceDetails
+ * @see CheckJellyfinConnection
+ * @see JellyfinConnectionResult
  */
 public class LoginWindow extends javax.swing.JFrame {
 
     private static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();
 
     /**
-     * Creates new form LoginWindow
+     * Default constructor for the LoginWindow class.
+     * Initializes the components of the login window and creates a new JellyfinInstanceDetails instance.
+     * @author Cesar Bianchi
      */
     public LoginWindow() {
         initComponents();
     }
     
+    /**
+     * Constructor for the LoginWindow class that accepts a JellyfinInstanceDetails instance.
+     * Initializes the components of the login window and uses the provided JellyfinInstanceDetails instance.
+     *
+     * @author Cesar Bianchi
+     * @param instData The JellyfinInstanceDetails instance to be used.
+     */
     public LoginWindow(JellyfinInstanceDetails instData) {
         this.instanceData = instData;
         initComponents();
-
-        //Set Icon
-        //URL iconURL = getClass().getResource("/com/lariflix/jemm/icons/jellyfinIconTransparency.png");
-        //ImageIcon icon = new ImageIcon(iconURL);
-        //this.setIconImage(icon.getImage());
     }
 
     /**
