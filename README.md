@@ -16,9 +16,9 @@ If you are a developer, you can download the project directly using your preferr
 JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use your preferred IDE.
 
 ## To create an Api Key in your Jellyfin Instance
-Once in Jellyfin, navigate to the Jellyfin Dashboard by clicking the hamburger icon in the top left corner and click on Admin > Dashboard. 
-In the left Navigation menu, scroll down to Advanced and click on Api Keys. 
-Now click on the + button next to API Keys.
+1. Once in Jellyfin, navigate to the Jellyfin Dashboard by clicking the hamburger icon in the top left corner and click on Admin > Dashboard. 
+2. In the left Navigation menu, scroll down to Advanced and click on Api Keys. 
+3. Now click on the + button next to API Keys.
 
 ## To contribute to this project
 If you are a developer and want to contribute to this project (Bug Fixes, New Features, Translation, Documentation, etc.), please write to cesar_bianchi@hotmail.com.
