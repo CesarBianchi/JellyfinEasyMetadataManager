@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.lariflix.jemm.forms;
 
 /**
- *
- * @author cesarbianchi
+ * This class represents a panel that is displayed while the application is waiting for a process to complete.
+ * It extends the JPanel class from the javax.swing package.
+ * 
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see javax.swing.JPanel
  */
 public class WaitingPanel extends javax.swing.JPanel {
 
@@ -16,6 +16,15 @@ public class WaitingPanel extends javax.swing.JPanel {
     private String cMessage = new String();
     private String baseURL = new String();
     
+    /**
+     * Constructs a new WaitingPanel with the specified base URL and option.
+     * This constructor initializes the components of the panel, sets the base URL, and sets the option for downloading or uploading data.
+     * 
+     * @param cInsURL The base URL to be set.
+     * @param nOption The option to be set. It can be either DOWNLOADING_DATA or UPLOADING_DATA.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public WaitingPanel(String cInsURL, int nOption) {       
         initComponents();
         
@@ -28,34 +37,78 @@ public class WaitingPanel extends javax.swing.JPanel {
         
     }
 
+    /**
+     * Sets the selected option to DOWNLOADING_DATA and updates the message and label text accordingly.
+     * This method sets the selected option to DOWNLOADING_DATA, constructs a message with the base URL, and sets this message as the text of jLabel2.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public void setOptionDowloading() {
         this.SELECTED_OPTION = DOWNLOADING_DATA;
         this.setcMessage("Downloading data from ".concat(this.getBaseURL()));
         jLabel2.setText(this.getcMessage());
     }
     
+    /**
+     * Sets the selected option to DOWNLOADING_DATA and updates the message and label text accordingly.
+     * This method sets the selected option to DOWNLOADING_DATA, constructs a message with the base URL, and sets this message as the text of jLabel2.
+     * 
+     * @author Cesar Bianchi
+     * @since 1.0
+     * @see #setcMessage(String)
+     * @see #getBaseURL()
+     * @see #getcMessage()
+     */
     public void setOptionUploading() {
         this.SELECTED_OPTION = UPLOADING_DATA;
         this.setcMessage("Uploading data to ".concat(this.getBaseURL()));
         jLabel2.setText(this.getcMessage());
     }
 
+    /**
+     * Gets the base URL.
+     * 
+     * @return The base URL.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public String getBaseURL() {
         return baseURL;
     }
 
+    /**
+     * Sets the base URL.
+     * 
+     * @param baseURL The base URL to be set.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public void setBaseURL(String baseURL) {
         this.baseURL = baseURL;
     }
 
+    /**
+     * Gets the message.
+     * 
+     * @return The message.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public String getcMessage() {
         return cMessage;
     }
 
+    /**
+     * Sets the message.
+     * 
+     * @param cMessage The message to be set.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
     public void setcMessage(String cMessage) {
         this.cMessage = cMessage;
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
