@@ -1,25 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.lariflix.jemm;
 
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.forms.LoginWindow;
 
 /**
- *
- * @author cesarbianchi
+ * Main class of the application.
+ * 
+ * This class is responsible for starting the application.
+ * 
+ * It creates an instance of JellyfinInstanceDetails and passes it to the LoginWindow.
+ * @author Cesar Bianchi
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see com.lariflix.jemm.dtos.JellyfinInstanceDetails
+ * @see com.lariflix.jemm.forms.LoginWindow
+ * 
  */
-public class jemm {
+public class Jemm {
 
-    static JellyfinInstanceDetails InstanceData = new JellyfinInstanceDetails();
+    static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();
     
     public static void main(String[] args) {
         
-        LoginWindow loginFrame = new LoginWindow(InstanceData);
+        LoginWindow loginFrame = new LoginWindow(instanceData);
         loginFrame.setLocationRelativeTo(null);
-        loginFrame.show();
+        loginFrame.setVisible(true);
         
     }
 }
