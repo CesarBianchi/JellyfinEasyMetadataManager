@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * Represents a JellyfinCadPeopleItem object.
  * 
- * @version 1.0.0
  * @since 1.0.0
  * @author Cesar Bianchi
  * @see JellyfinCadPeopleItems
