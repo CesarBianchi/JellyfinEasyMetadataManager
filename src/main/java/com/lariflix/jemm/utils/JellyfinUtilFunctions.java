@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
  * 
  * @author Cesar Bianchi
  * @since 1.0
- * @createdate 2024-02-01
  */
 public class JellyfinUtilFunctions {
 
@@ -19,7 +18,6 @@ public class JellyfinUtilFunctions {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2024-02-01
      */
     public JellyfinUtilFunctions() {
     }
@@ -33,7 +31,6 @@ public class JellyfinUtilFunctions {
      * @return The cleared DefaultTableModel.
      * @author Cesar Bianchi
      * @since 1.0
-     * @createdate 2024-02-01
      */
     public DefaultTableModel eraseModel(DefaultTableModel model) {
         DefaultTableModel modelRet = model;

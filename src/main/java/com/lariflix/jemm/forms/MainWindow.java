@@ -88,8 +88,6 @@ public class MainWindow extends javax.swing.JFrame {
      * @author Cesar Bianchi
      * @since 1.0
      * @see JellyfinInstanceDetails
-     * @see ConnectAPI#setcBaseURL(String)
-     * @see ConnectAPI#setcTokenApi(String)
      */
     public void setInstanceData(JellyfinInstanceDetails instData){
         this.instanceData = instData;
@@ -1444,7 +1442,6 @@ public class MainWindow extends javax.swing.JFrame {
      * Sets the field values based on the selected item in the list.
      * This method displays a waiting window and sets the cursor to the waiting cursor. It then calls the setFieldsValuesBackground method to load the fields and grids. After the fields and grids are loaded, it sets the cursor back to the default cursor.
      * 
-     * @throws ParseException If an error occurs while parsing.
      * @author Cesar Bianchi
      * @since 1.0
      

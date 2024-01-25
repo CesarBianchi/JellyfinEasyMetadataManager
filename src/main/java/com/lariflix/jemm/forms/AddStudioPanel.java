@@ -422,7 +422,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
     /**
      * Retrieves the instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * 
-     * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * @author Cesar Bianchi
      * @since 1.0
      
