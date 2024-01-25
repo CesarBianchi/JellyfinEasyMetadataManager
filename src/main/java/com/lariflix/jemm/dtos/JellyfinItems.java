@@ -21,7 +21,7 @@ public class JellyfinItems {
     @JsonProperty("StartIndex") 
     public int startIndex;
 
-    p    /**
+    /**
      * Default constructor for JellyfinItems.
      *
      * @since 1.0
