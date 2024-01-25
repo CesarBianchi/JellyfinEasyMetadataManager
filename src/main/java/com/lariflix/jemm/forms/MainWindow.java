@@ -87,7 +87,9 @@ public class MainWindow extends javax.swing.JFrame {
      * @param instData The JellyfinInstanceDetails to be set.
      * @author Cesar Bianchi
      * @since 1.0
-     
+     * @see JellyfinInstanceDetails
+     * @see ConnectAPI#setcBaseURL(String)
+     * @see ConnectAPI#setcTokenApi(String)
      */
     public void setInstanceData(JellyfinInstanceDetails instData){
         this.instanceData = instData;
@@ -1397,7 +1399,10 @@ public class MainWindow extends javax.swing.JFrame {
      * @throws ParseException If an error occurs while parsing.
      * @author Cesar Bianchi
      * @since 1.0
-     
+     * @see ConnectAPI#getUsers()
+     * @see ConnectAPI#getAdminUser()
+     * @see ConnectAPI#getFolders()
+     * @see JellyfinFolder     
      */
     private void loadFolders() throws IOException, MalformedURLException, ParseException {
         //Load Users From Jellyfin API
@@ -1426,7 +1431,7 @@ public class MainWindow extends javax.swing.JFrame {
      * 
      * @author Cesar Bianchi
      * @since 1.0
-     
+     * @see #setFieldsValues()
      */
     private void selectFirstFolder() {
         if (jList2.getModel().getSize() > 0){
