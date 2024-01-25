@@ -10,19 +10,6 @@ import java.util.Date;
  * @since 1.0
  * @author Cesar Bianchi
  * @see com.lariflix.jemm.dtos.JellyfinCadGenresItem
- * @see com.lariflix.jemm.dtos.JellyfinCadGenres
- * @see com.lariflix.jemm.dtos.JellyfinCad
- * @see com.lariflix.jemm.dtos.JellyfinCadItems
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItem
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageTags
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageBlurHashes
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageAdditionalImages
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageImageTags
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImage
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemUserData
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemProviderIds
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemPeople
- * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemMediaStreams
 * 
  */
 public class JellyfinCadGenresItem {
