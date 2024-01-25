@@ -9,6 +9,21 @@ import java.util.Date;
  * 
  * @since 1.0
  * @author Cesar Bianchi
+ * @see com.lariflix.jemm.dtos.JellyfinCadGenresItem
+ * @see com.lariflix.jemm.dtos.JellyfinCadGenres
+ * @see com.lariflix.jemm.dtos.JellyfinCad
+ * @see com.lariflix.jemm.dtos.JellyfinCadItems
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItem
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageTags
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageBlurHashes
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageAdditionalImages
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImageImageTags
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemImage
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemUserData
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemProviderIds
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemPeople
+ * @see com.lariflix.jemm.dtos.JellyfinCadItemsItemMediaStreams
+* 
  */
 public class JellyfinCadGenresItem {
     @JsonProperty("Name") 
@@ -36,6 +51,7 @@ public class JellyfinCadGenresItem {
      * Constructs a new JellyfinCadGenresItem object.
      * 
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public JellyfinCadGenresItem() {
     }
@@ -45,6 +61,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The name of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getName() {
         return name;
@@ -55,6 +72,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param name The name of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setName(String name) {
         this.name = name;
@@ -65,6 +83,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The server ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getServerId() {
         return serverId;
@@ -75,6 +94,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param serverId The server ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setServerId(String serverId) {
         this.serverId = serverId;
@@ -85,6 +105,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getId() {
         return id;
@@ -95,6 +116,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param id The ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setId(String id) {
         this.id = id;
@@ -105,6 +127,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The channel ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public Object getChannelId() {
         return channelId;
@@ -115,6 +138,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param channelId The channel ID of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setChannelId(Object channelId) {
         this.channelId = channelId;
@@ -125,6 +149,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The type of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getType() {
         return type;
@@ -135,6 +160,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param type The type of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setType(String type) {
         this.type = type;
@@ -145,6 +171,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The location type of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getLocationType() {
         return locationType;
@@ -155,6 +182,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param locationType The location type of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setLocationType(String locationType) {
         this.locationType = locationType;
@@ -165,6 +193,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The premiere date of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public Date getPremiereDate() {
         return premiereDate;
@@ -175,6 +204,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param premiereDate The premiere date of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setPremiereDate(Date premiereDate) {
         this.premiereDate = premiereDate;
@@ -185,6 +215,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The critic rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public int getCriticRating() {
         return criticRating;
@@ -195,6 +226,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param criticRating The critic rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setCriticRating(int criticRating) {
         this.criticRating = criticRating;
@@ -205,6 +237,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The official rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public String getOfficialRating() {
         return officialRating;
@@ -215,6 +248,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param officialRating The official rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setOfficialRating(String officialRating) {
         this.officialRating = officialRating;
@@ -225,6 +259,7 @@ public class JellyfinCadGenresItem {
      * 
      * @return The community rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public int getCommunityRating() {
         return communityRating;
@@ -235,6 +270,7 @@ public class JellyfinCadGenresItem {
      * 
      * @param communityRating The community rating of the genre.
      * @since 1.0
+     * @author Cesar Bianchi
      */
     public void setCommunityRating(int communityRating) {
         this.communityRating = communityRating;
