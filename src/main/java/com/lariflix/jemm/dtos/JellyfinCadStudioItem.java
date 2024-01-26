@@ -10,12 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Cesar Bianchi
  * @since 1.0
  */
-/**
- * Represents a Jellyfin Cad Studio item.
- * 
- * @author Cesar Bianchi
- * @since 1.0
- */
 public class JellyfinCadStudioItem {
     @JsonProperty("Name") 
     public String name;

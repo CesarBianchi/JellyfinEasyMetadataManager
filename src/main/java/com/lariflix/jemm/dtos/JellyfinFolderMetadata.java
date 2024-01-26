@@ -11,6 +11,11 @@ import java.util.Date;
  * 
  * @author Cesar Bianchi
  * @since 1.0
+ * @see JellyfinPeopleItem
+ * @see JellyfinStudioItem
+ * @see JellyfinGenreItem
+ * @see JellyfinCadPeopleItem
+ * @see JellyfinCadStudioItem
  */
 public class JellyfinFolderMetadata {
     @JsonProperty("Name") 

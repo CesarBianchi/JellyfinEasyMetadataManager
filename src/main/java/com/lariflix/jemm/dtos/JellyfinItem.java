@@ -8,6 +8,9 @@ import java.util.Date;
  *
  * @author Cesar Bianchi
  * @since 1.0
+ * @see JellyfinItemMetadata
+ * @see JellyfinItem
+ 
  */
 public class JellyfinItem {
 

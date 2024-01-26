@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.lariflix.jemm.core;
 
 import com.lariflix.jemm.dtos.JellyfinCadGenresItems;
@@ -19,33 +15,91 @@ import java.net.MalformedURLException;
 import org.json.simple.parser.ParseException;
 
 /**
+ * This class is used to establish a connection with the Jellyfin API.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JellyfinUsers
+ * @see JellyfinFolders
+ * @see JellyfinFolderMetadata
+ * @see JellyfinItems
+ * @see JellyfinItemMetadata
+ * @see JellyfinCadPeopleItems
+ * @see JellyfinCadGenresItems
+ * @see JellyfinCadStudioItems
+ * @see JellyfinUser
+ * @see JellyfinInstanceDetails
+ * @see JellyfinUser
+ * @see JellyfinInstanceDetails
  */
 public class ConnectJellyfinAPI {
 
     private String cBaseURL = new String();
     private String cTokenApi = new String();
     
+    /**
+     * Constructor for the ConnectJellyfinAPI class.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public ConnectJellyfinAPI() {
     }
-   
+
+    /**
+     * Returns the base URL for the Jellyfin API.
+     *
+     * @return The base URL for the Jellyfin API.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getcBaseURL() {
         return cBaseURL;
     }
 
+    /**
+     * Sets the base URL for the Jellyfin API.
+     *
+     * @param cBaseURL The new base URL for the Jellyfin API.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setcBaseURL(String cBaseURL) {
         this.cBaseURL = cBaseURL;
     }
 
+    /**
+     * Returns the token for the Jellyfin API.
+     *
+     * @return The token for the Jellyfin API.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getcTokenApi() {
         return cTokenApi;
     }
 
+    /**
+     * Sets the token for the Jellyfin API.
+     *
+     * @param cTokenApi The new token for the Jellyfin API.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setcTokenApi(String cTokenApi) {
         this.cTokenApi = cTokenApi;
     }
 
+    /**
+     * Retrieves all users from the Jellyfin server.
+     *
+     * @return A JellyfinUsers object containing all users.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinUsers getUsers() throws IOException, MalformedURLException, ParseException{
         
         LoadUsers LoadJellyfinUsers = new LoadUsers(this.getcBaseURL(),this.getcTokenApi());
@@ -55,6 +109,16 @@ public class ConnectJellyfinAPI {
         return allUsers;
     }
     
+    /**
+     * Retrieves all folders from the Jellyfin server.
+     *
+     * @return A JellyfinFolders object containing all folders.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinFolders getFolders() throws IOException, MalformedURLException, ParseException{
         
         LoadFolders loadedallFolders = new LoadFolders(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId());
@@ -64,7 +128,17 @@ public class ConnectJellyfinAPI {
         return allFolders;
     }
     
-    
+    /**
+     * Retrieves metadata for a specific folder from the Jellyfin server.
+     *
+     * @param cFolderID The ID of the folder for which to retrieve metadata.
+     * @return A JellyfinFolderMetadata object containing the folder's metadata.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinFolderMetadata getFolderMetadata(String cFolderID) throws IOException, MalformedURLException, ParseException{
         
         LoadFolderMetadata loadedallFolders = new LoadFolderMetadata(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId(),cFolderID);
@@ -74,6 +148,17 @@ public class ConnectJellyfinAPI {
         return folderMetadata;
     }
     
+    /**
+     * Retrieves all items from a specific parent folder from the Jellyfin server.
+     *
+     * @param cParentID The ID of the parent folder from which to retrieve items.
+     * @return A JellyfinItems object containing all items from the specified parent folder.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinItems getItems(String cParentID) throws IOException, MalformedURLException, ParseException{
         
         //1* - First, request all itens (without Metadata Property)
@@ -96,6 +181,16 @@ public class ConnectJellyfinAPI {
         return folderItems;
     }
     
+    /**
+     * Retrieves all people from the Jellyfin server.
+     *
+     * @return A JellyfinCadPeopleItems object containing all people.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinCadPeopleItems getPeople() throws IOException, MalformedURLException, ParseException{
         
         LoadPeople loadedPeople = new LoadPeople(this.getcBaseURL(),this.getcTokenApi());
@@ -105,6 +200,16 @@ public class ConnectJellyfinAPI {
         return people;
     }
     
+    /**
+     * Retrieves all genres from the Jellyfin server.
+     *
+     * @return A JellyfinCadGenresItems object containing all genres.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinCadGenresItems getGenres() throws IOException, MalformedURLException, ParseException{
         
         LoadGenres loadGenres = new LoadGenres(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId());
@@ -114,6 +219,16 @@ public class ConnectJellyfinAPI {
         return allGenres;
     }
     
+    /**
+     * Retrieves all studios from the Jellyfin server.
+     *
+     * @return A JellyfinCadStudioItems object containing all studios.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinCadStudioItems getStudios() throws IOException, MalformedURLException, ParseException{
         
         LoadStudios loadStudios = new LoadStudios(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId());
@@ -123,6 +238,16 @@ public class ConnectJellyfinAPI {
         return allStudios;
     }
     
+    /**
+     * Retrieves the admin user from the Jellyfin server.
+     *
+     * @return A JellyfinUser object representing the admin user.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinUser getAdminUser() throws IOException, MalformedURLException, ParseException{
         JellyfinUser admUsr = new JellyfinUser();
         
@@ -144,6 +269,20 @@ public class ConnectJellyfinAPI {
         return admUsr;
     }
     
+    /**
+     * Posts an update to a specific item in a specific folder on the Jellyfin server.
+     *
+     * @param cFolderID The ID of the folder containing the item to be updated.
+     * @param cItemID The ID of the item to be updated.
+     * @param instanceDetails The details of the Jellyfin instance.
+     * @param nOPC The operation code for the update.
+     * @return The response code from the server.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public int postUpdate(String cFolderID, String cItemID, JellyfinInstanceDetails instanceDetails, int nOPC) throws IOException, MalformedURLException, ParseException{
         
         SaveFolder updateItem = new SaveFolder(instanceDetails, cFolderID, cItemID, nOPC, this.getcBaseURL(),this.getcTokenApi());

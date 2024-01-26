@@ -94,6 +94,7 @@ public class JellyfinInstanceDetails {
      * @return A JellyfinFolders object representing the folders.
      * @author Cesar Bianchi
      * @since 1.0
+     * @see JellyfinFolders
      */
     public JellyfinFolders getFolders() {
         return folders;

@@ -2,6 +2,15 @@
 package com.lariflix.jemm.core;
 
 import com.lariflix.jemm.dtos.JellyfinConnectionResult;
+import com.lariflix.jemm.dtos.JellyfinCredentials;
+import com.lariflix.jemm.dtos.JellyfinFolder;
+import com.lariflix.jemm.dtos.JellyfinFolders;
+import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import com.lariflix.jemm.dtos.JellyfinUser;
+import com.lariflix.jemm.dtos.JellyfinUserConfiguration;
+import com.lariflix.jemm.dtos.JellyfinUserPolicy;
+import com.lariflix.jemm.dtos.JellyfinUsers;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -9,19 +18,44 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
+ * This class is used to check the connection to the Jellyfin server.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JellyfinConnectionResult
+ * @see JellyfinInstanceDetails
+ * @see JellyfinUser
+ * @see JellyfinUsers
+ * @see JellyfinUserConfiguration
+ * @see JellyfinUserPolicy
+ * @see JellyfinFolders
+ * @see JellyfinFolder
+ * @see JellyfinCredentials
  */
 public class CheckJellyfinConnection {
 
     /**
+     * Constructor for the CheckJellyfinConnection class.
      *
+     * @since 1.0
+     * @author Cesar Bianchi
      */
     public void CheckJellyfinConnection() {
         
     }
 
+    /**
+     * Tries to establish a connection to the Jellyfin server.
+     *
+     * @param cURL The URL of the Jellyfin server.
+     * @param cApiKey The API key for the Jellyfin server.
+     * @return A JellyfinConnectionResult object containing the result of the connection attempt.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinConnectionResult tryConnection(String cURL, String cApiKey) throws MalformedURLException {
         
         JellyfinConnectionResult connResult = new JellyfinConnectionResult();

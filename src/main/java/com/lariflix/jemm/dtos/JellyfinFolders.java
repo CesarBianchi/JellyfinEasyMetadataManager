@@ -9,6 +9,7 @@ import java.util.ArrayList;
  *
  * @author Cesar Bianchi
  * @since 1.0
+ * @see JellyfinFolder
  */
 public class JellyfinFolders {
     @JsonProperty("Items") 
