@@ -10,6 +10,10 @@ import java.util.Date;
  * @author Cesar Bianchi
  * @since 1.0
  * @see JellyfinItem
+ * @see JellyfinItemMetadata
+ * @see JellyfinProviderIds
+ * @see JellyfinPeopleItem
+ * @see JellyfinStudioItem
  */
 public class JellyfinItemUpdate {
 

@@ -10,6 +10,8 @@ import java.util.Date;
  * @author Cesar Bianchi
  * @since 1.0
  * @see JellyfinItem
+ * @see JellyfinPeopleItem
+ * @see JellyfinStudioItem
  */
 public class JellyfinItemMetadata {
     @JsonProperty("Name") 

@@ -12,6 +12,8 @@ import java.util.Date;
  *
  * @author Cesar Bianchi
  * @since 1.0
+ * @see JellyfinUserConfiguration
+ * @see JellyfinUserPolicy
  */
 public class JellyfinUser {
 

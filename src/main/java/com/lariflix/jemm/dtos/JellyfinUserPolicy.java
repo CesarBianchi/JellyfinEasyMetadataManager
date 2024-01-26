@@ -9,7 +9,9 @@ import java.util.ArrayList;
  *
  * @author Cesar Bianchi
  * @since 1.0
- */
+ * @see JellyfinUser
+ * @see JellyfinUserConfiguration
+*/
 public class JellyfinUserPolicy {
     @JsonProperty("IsAdministrator") 
     public boolean isAdministrator;
