@@ -5,11 +5,6 @@ package com.lariflix.jemm.dtos;
  *
  * @author Cesar Bianchi
  * @since 1.0
- * @see JellyfinInstance
- * @see JellyfinCredentials
- * @see JellyfinUser    
- * @see JellyfinUsers
- * @see JellyfinFolders
  */
 public class JellyfinInstanceDetails {
 

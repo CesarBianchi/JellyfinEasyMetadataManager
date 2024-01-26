@@ -12,10 +12,6 @@ import java.net.URL;
 import java.util.Scanner;
 import org.json.simple.parser.ParseException;
 
-/**
- *
- * @author cesarbianchi
- */
 public class LoadFolders {
     private String jellyfinInstanceUrl = new String();
     private String apiToken = new String();

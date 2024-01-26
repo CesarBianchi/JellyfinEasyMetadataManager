@@ -15,6 +15,9 @@ import java.util.logging.Logger;
  */
 public class CheckJellyfinConnection {
 
+    /**
+     *
+     */
     public void CheckJellyfinConnection() {
         
     }

@@ -8,10 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author cesarbianchi
- */
 public class JellyfinUsers {
     @JsonProperty("Users") 
     List<JellyfinUser> Users = new ArrayList<>();

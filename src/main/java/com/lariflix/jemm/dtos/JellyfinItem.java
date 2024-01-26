@@ -8,7 +8,6 @@ import java.util.Date;
  *
  * @author Cesar Bianchi
  * @since 1.0
- * @see JellyfinInstance
  */
 public class JellyfinItem {
 
