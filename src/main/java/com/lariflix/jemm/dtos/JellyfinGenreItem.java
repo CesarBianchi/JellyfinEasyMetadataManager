@@ -7,11 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author Cesar Bianchi
  * @since 1.0
- * @see JellyfinItems
- * @see JellyfinGenre
- * @see JellyfinGenreItem
- * @see JellyfinGenreItems
- * @see JellyfinGenreResponse
  */
 public class JellyfinGenreItem {
 

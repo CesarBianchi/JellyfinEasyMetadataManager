@@ -7,10 +7,6 @@ package com.lariflix.jemm.dtos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 
-/**
- *
- * @author cesarbianchi
- */
 public class JellyfinUserConfiguration {
     
     

@@ -9,12 +9,6 @@ import java.util.ArrayList;
  *
  * @author Cesar Bianchi
  * @since 1.0
- * @see JellyfinItems
- * @see JellyfinFolder
- * @see JellyfinMedia
- * @see JellyfinMediaInfo
- * @see JellyfinUser
- * @see JellyfinUsers
  */
 public class JellyfinFolders {
     @JsonProperty("Items") 

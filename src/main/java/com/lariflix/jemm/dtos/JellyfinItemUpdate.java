@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * This class represents the updates to Jellyfin items.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JellyfinItem
  */
 public class JellyfinItemUpdate {
+
     @JsonProperty("Id") 
     public String id;
     @JsonProperty("Name") 
