@@ -12,9 +12,10 @@
             <properties>
                 <exec.vmArgs></exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
-                <exec.appArgs></exec.appArgs>
+                <exec.appArgs>https://lariflix.ddns.net:8920/ fbc01131400e49a69faf494d94df74a3</exec.appArgs>
                 <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>
                 <exec.executable>java</exec.executable>
+                <exec.workingdir>fbc01131400e49a69faf494d94df74a3</exec.workingdir>
             </properties>
         </action>
         <action>
@@ -29,10 +30,11 @@
             <properties>
                 <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
-                <exec.appArgs></exec.appArgs>
+                <exec.appArgs>https://lariflix.ddns.net:8920/ fbc01131400e49a69faf494d94df74a3</exec.appArgs>
                 <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
+                <exec.workingdir>fbc01131400e49a69faf494d94df74a3</exec.workingdir>
             </properties>
         </action>
         <action>
@@ -49,7 +51,8 @@
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>
                 <exec.executable>java</exec.executable>
-                <exec.appArgs></exec.appArgs>
+                <exec.appArgs>https://lariflix.ddns.net:8920/ fbc01131400e49a69faf494d94df74a3</exec.appArgs>
+                <exec.workingdir>fbc01131400e49a69faf494d94df74a3</exec.workingdir>
             </properties>
         </action>
     </actions>

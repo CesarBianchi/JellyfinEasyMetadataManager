@@ -1,5 +1,6 @@
 package com.lariflix.jemm;
 
+import com.lariflix.jemm.dtos.JellyfinCredentials;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.forms.LoginWindow;
 
@@ -30,9 +31,23 @@ public class Jemm {
      
      */
     public static void main(String[] args) {
+        
+        //If URL and apiToken was sent by parameters on application load
+        if (args.length > 0) {
+            String cURL = args[0];
+            String cTokenAPI = args[1];
+            
+            JellyfinCredentials credentials = new JellyfinCredentials(cURL,cTokenAPI);            
+            instanceData.setCredentials(credentials);
+        }
+        
         LoginWindow loginFrame = new LoginWindow(instanceData);
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);
+    }
+
+    public static JellyfinInstanceDetails getInstanceData() {
+        return instanceData;
     }
     
 }
