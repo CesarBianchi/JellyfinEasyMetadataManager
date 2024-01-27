@@ -17,12 +17,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 
+
 /**
+ * This class is responsible for managing and save folder items in Jellyfin Server.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see SaveFolder
  */
 public class SaveFolder {
-    
+
     private JellyfinInstanceDetails instance = new JellyfinInstanceDetails();
     private String jellyfinInstanceUrl = new String();
     private String apiToken = new String();
@@ -36,9 +40,28 @@ public class SaveFolder {
     private final int FOLDER_AND_CONTENT = 2;
     private final int JUST_CONTENT_ITEM = 3;
     
+    /**
+     * Default constructor for the SaveFolder class.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public SaveFolder() {
+        // ...
     }
 
+    /**
+     * Constructor for the SaveFolder class.
+     *
+     * @param inst The Jellyfin instance details.
+     * @param cFolderID The ID of the folder.
+     * @param IDItem The ID of the item.
+     * @param nOpc The option number.
+     * @param jellyfinURL The URL of the Jellyfin server.
+     * @param apiToken The API token for accessing the Jellyfin server.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public SaveFolder(JellyfinInstanceDetails inst, String cFolderID, String IDItem, int nOpc, String jellyfinURL, String apiToken) {
         this.setInstance(inst);
         this.setcFolderID(cFolderID);
@@ -46,9 +69,18 @@ public class SaveFolder {
         this.setnOpc(nOpc);
         this.setJellyfinInstanceUrl(jellyfinURL);
         this.setApiToken(apiToken);
-        
     }
 
+    /**
+     * Posts updates about folders to the Jellyfin server.
+     *
+     * @return The HTTP response code from the server.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws IOException If an I/O error occurs.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public int postUpdates() throws MalformedURLException, IOException, ParseException{
         int responsecode = 0;
 
@@ -79,6 +111,13 @@ public class SaveFolder {
         
     }
     
+    /**
+     * This method is used to post the Jellyfin item to update.
+     *
+     * @return JellyfinItemUpdate object with the item details to be updated.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     private JellyfinItemUpdate getObjItemToUpdate() {
         JellyfinItemUpdate itemToUpdate = new JellyfinItemUpdate();
         ArrayList<String> genres = new ArrayList();
@@ -201,56 +240,148 @@ public class SaveFolder {
         return itemToUpdate;
     }
     
+    /**
+     * Gets the Jellyfin instance details.
+     *
+     * @return The Jellyfin instance details.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinInstanceDetails getInstance() {
         return instance;
     }
 
+    /**
+     * Sets the Jellyfin instance details.
+     *
+     * @param instance The Jellyfin instance details.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setInstance(JellyfinInstanceDetails instance) {
         this.instance = instance;
     }
 
+    /**
+     * Gets the Jellyfin instance URL.
+     *
+     * @return The Jellyfin instance URL.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getJellyfinInstanceUrl() {
         return jellyfinInstanceUrl;
     }
 
+    /**
+     * Sets the Jellyfin instance URL.
+     *
+     * @param jellyfinInstanceUrl The Jellyfin instance URL.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setJellyfinInstanceUrl(String jellyfinInstanceUrl) {
         this.jellyfinInstanceUrl = jellyfinInstanceUrl;
     }
 
+    /**
+     * Gets the API token.
+     *
+     * @return The API token.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getApiToken() {
         return apiToken;
     }
 
+    /**
+     * Sets the API token.
+     *
+     * @param apiToken The API token.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setApiToken(String apiToken) {
         this.apiToken = apiToken;
     }
 
+    /**
+     * Gets the option number.
+     *
+     * @return The option number.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public int getnOpc() {
         return nOpc;
     }
 
+    /**
+     * Sets the option number.
+     *
+     * @param nOpc The option number.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setnOpc(int nOpc) {
         this.nOpc = nOpc;
     }
 
+    /**
+     * Gets the item ID.
+     *
+     * @return The item ID.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getItemID() {
         return itemID;
     }
 
+    /**
+     * Sets the item ID.
+     *
+     * @param itemID The item ID.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setItemID(String itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Gets the folder ID.
+     *
+     * @return The folder ID.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getcFolderID() {
         return cFolderID;
     }
 
+    /**
+     * Sets the folder ID.
+     *
+     * @param cFolderID The folder ID.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setcFolderID(String cFolderID) {
         this.cFolderID = cFolderID;
     }
 
     
-
+    /**
+     * Constructs the full URL for update the items on the Jellyfin server.
+     * The URL is constructed based on the option number. If the option number is JUST_FOLDER_ITEM,
+     * the folder ID is used. If the option number is JUST_CONTENT_ITEM, the item ID is used.
+     *
+     * @return The full URL as a string.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getFullURL() {
         String urlWithApiKey = new String();
         String id = new String();

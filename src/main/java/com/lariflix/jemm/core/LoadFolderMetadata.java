@@ -21,12 +21,6 @@ import org.json.simple.parser.ParseException;
  * @see JellyfinFolders
  * @see LoadFolderMetadata
  * @see LoadFolders
- * @see LoadFolderItems
- * @see LoadItemMetadata
- * @see LoadItemMediaInfo
- * @see LoadItemMediaStreams
- * @see LoadItemImages
- * @see LoadItemSubtitles
  * 
  */
 public class LoadFolderMetadata {

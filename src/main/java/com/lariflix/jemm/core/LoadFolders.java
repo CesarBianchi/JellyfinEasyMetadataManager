@@ -12,21 +12,54 @@ import java.net.URL;
 import java.util.Scanner;
 import org.json.simple.parser.ParseException;
 
+/**
+ * This class is responsible for loading folders from the Jellyfin server.
+ *
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see LoadFolderMetadata
+ */
 public class LoadFolders {
     private String jellyfinInstanceUrl = new String();
     private String apiToken = new String();
     private String cUserAdminID = new String();
     private String fullURL = new String();
 
+    /**
+     * Default constructor for the LoadFolders class.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public LoadFolders() {
+        // ...
     }
     
-    public LoadFolders(String jellyfinURL, String apiToken, String cAdminID) {
-       this.setJellyfinInstanceUrl(jellyfinURL);
-       this.setApiToken(apiToken);
-       this.setcUserAdminID(cAdminID);
-    }
+     /**
+      * Constructor for the LoadFolders class.
+      *
+      * @param jellyfinURL The URL of the Jellyfin server.
+      * @param apiToken The API token for accessing the Jellyfin server.
+      * @param cAdminID The ID of the admin user.
+      * @since 1.0
+      * @author Cesar Bianchi
+      */
+     public LoadFolders(String jellyfinURL, String apiToken, String cAdminID) {
+         this.setJellyfinInstanceUrl(jellyfinURL);
+         this.setApiToken(apiToken);
+         this.setcUserAdminID(cAdminID);
+     }
 
+    /**
+     * Requests a list of folders from the Jellyfin server.
+     *
+     * @return A JellyfinFolders object containing the list of folders.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws IOException If an I/O error occurs.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinFolders requestFolders() throws MalformedURLException, IOException, ParseException{
         
         URL url = new URL(this.getFullURL());
@@ -68,23 +101,58 @@ public class LoadFolders {
     }
     
     
+    /**
+     * Gets the Jellyfin instance URL.
+     *
+     * @return The Jellyfin instance URL.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getJellyfinInstanceUrl() {
         return jellyfinInstanceUrl;
     }
 
+    /**
+     * Sets the Jellyfin instance URL.
+     *
+     * @param jellyfinInstanceUrl The Jellyfin instance URL.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setJellyfinInstanceUrl(String jellyfinInstanceUrl) {
         this.jellyfinInstanceUrl = jellyfinInstanceUrl;
     }
 
+    /**
+     * Gets the API token.
+     *
+     * @return The API token.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getApiToken() {
         return apiToken;
     }
 
+    /**
+     * Sets the API token.
+     *
+     * @param apiToken The API token.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setApiToken(String apiToken) {
         this.apiToken = apiToken;
     }
-
-     public String getFullURL() {
+    
+    /**
+     * Constructs the full URL for accessing the items on the Jellyfin server.
+     *
+     * @return The full URL as a string.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
+    public String getFullURL() {
         String urlWithApiKey = new String();
         
         urlWithApiKey = this.getJellyfinInstanceUrl().concat("Items");
@@ -94,14 +162,35 @@ public class LoadFolders {
         return urlWithApiKey;
     }
 
+    /**
+     * Sets the full URL for accessing a specific folder on the Jellyfin server.
+     *
+     * @param fullURL The full URL as a string.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setFullURL(String fullURL) {
         this.fullURL = fullURL;
     }
 
+    /**
+     * Gets the ID of the admin user.
+     *
+     * @return The ID of the admin user.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public String getcUserAdminID() {
         return cUserAdminID;
     }
 
+    /**
+     * Sets the ID of the admin user.
+     *
+     * @param cUserAdminID The ID of the admin user.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setcUserAdminID(String cUserAdminID) {
         this.cUserAdminID = cUserAdminID;
     }
