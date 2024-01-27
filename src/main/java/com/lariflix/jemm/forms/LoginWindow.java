@@ -52,6 +52,15 @@ public class LoginWindow extends javax.swing.JFrame {
     public LoginWindow(JellyfinInstanceDetails instData) {
         this.instanceData = instData;
         initComponents();
+        
+        //If URL and apiToken was sent by parameters on application load
+        if (!instanceData.getCredentials().getBaseURL().isEmpty()){
+            jURLField.setText(instanceData.getCredentials().getBaseURL());
+        }
+        
+        if (!instanceData.getCredentials().getTokenAPI().isEmpty()){
+            jApiTokenField.setText(instanceData.getCredentials().getTokenAPI());
+        }        
     }
 
     /**
