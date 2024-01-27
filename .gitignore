@@ -18,6 +18,7 @@
 
 #Test results
 *.xml
+*.lst
 
 # Form files
 #*.form
