@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.lariflix.jemm"},{"l":"com.lariflix.jemm.core"},{"l":"com.lariflix.jemm.dtos"},{"l":"com.lariflix.jemm.forms"},{"l":"com.lariflix.jemm.utils"}];updateSearchResults();
