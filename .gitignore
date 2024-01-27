@@ -16,6 +16,9 @@
 # Visual Studio Code files
 *.vscode
 
+#Test results
+*.xml
+
 # Form files
 #*.form
 
