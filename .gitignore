@@ -20,6 +20,9 @@
 *.xml
 *.lst
 
+#TestCase Credentials
+JellyfinTestCaseCredentials.java
+
 # Form files
 #*.form
 

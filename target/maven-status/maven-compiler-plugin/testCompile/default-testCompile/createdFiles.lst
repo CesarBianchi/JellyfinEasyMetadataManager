@@ -1,2 +1,7 @@
-com/lariflix/jemm/JemmTest.class
 com/lariflix/jemm/utils/JellyfinUtilFunctionsTest.class
+com/lariflix/jemm/utils/JemmVersionTest.class
+com/lariflix/jemm/JemmTest.class
+com/lariflix/jemm/utils/TransformDateFormatTest.class
+com/lariflix/jemm/forms/AddGenrePanelTest.class
+com/lariflix/jemm/forms/AddPeoplePanelTest.class
+com/lariflix/jemm/forms/AddGenreWindowTest.class
