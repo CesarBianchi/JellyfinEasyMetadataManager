@@ -25,14 +25,14 @@ public class AddGenreWindow {
      * This constructor sets the instance of ConnectJellyfinAPI used by the AddGenrePanel and initializes the dialog.
      * If the dialog has not been initialized yet, it creates a new JDialog with the title "JEMM - Add Genre", sets its size, adds the panel to it, packs it, and centers it on the screen.
      * 
-     * @param lData The instance of ConnectJellyfinAPI to be used.
+     * @param connData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
      
      */
-    public AddGenreWindow(ConnectJellyfinAPI lData) {
+    public AddGenreWindow(ConnectJellyfinAPI connData) {
         
-        panel.setLoadedData(lData);
+        panel.setLoadedData(connData);
         
         if (dialog == null) {
             Window win = SwingUtilities.getWindowAncestor(panel);
@@ -68,4 +68,24 @@ public class AddGenreWindow {
            
         return newGenre;
     }
+    
+    /**
+     * Load the classes but down show the window.
+     * This method was created just to perform Test Case. Please don't apply in other cases.
+     * After the test has defined a new genre, it creates a new JellyfinGenreItem, sets its id and name based on the text in the text fields, and returns it.
+     * 
+     * @return The new genre defined by the user.
+     * @author Cesar Bianchi
+     * @since 1.0
+     
+     */
+    public JellyfinGenreItem justLoadWithoutShow(){
+         //Return the New Genre Defined
+        JellyfinGenreItem newGenre = new JellyfinGenreItem();
+        newGenre.setId(panel.getjTextField1().getText());
+        newGenre.setName(panel.getjTextField2().getText());
+           
+        return newGenre;
+    }
+    
 }

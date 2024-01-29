@@ -421,13 +421,13 @@ public class AddGenrePanel extends javax.swing.JPanel {
     /**
      * Sets the instance of ConnectJellyfinAPI used by the AddGenrePanel and loads the existing genres.
      * 
-     * @param lData The instance of ConnectJellyfinAPI to be used.
+     * @param connData The instance of ConnectJellyfinAPI to be used.
      * @author Cesar Bianchi
      * @since 1.0
      
      */
-    public void setLoadedData(ConnectJellyfinAPI lData) {
-        connectAPI = lData;
+    public void setLoadedData(ConnectJellyfinAPI connData) {
+        connectAPI = connData;
         loadExistingGenre();
     }
     
@@ -445,7 +445,7 @@ public class AddGenrePanel extends javax.swing.JPanel {
         JellyfinCadGenresItem genreItem = new JellyfinCadGenresItem();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        //Request existing People
+        //Request existing Genres
         JellyfinCadGenresItems existingGenres = null;
         try {
             existingGenres = connectAPI.getGenres();
@@ -459,12 +459,15 @@ public class AddGenrePanel extends javax.swing.JPanel {
         //add Genre in Grid Existing Genres
         //Clean Grid before load again
         model = new JellyfinUtilFunctions().eraseModel(model);
-        for (int nI = 0; nI < existingGenres.getItems().size(); nI++ ){
+        
+        if (existingGenres != null){
+            for (int nI = 0; nI < existingGenres.getItems().size(); nI++ ){
 
-            genreItem = existingGenres.getItems().get(nI);
+                genreItem = existingGenres.getItems().get(nI);
 
-            Object[] row = { genreItem.getId(), genreItem.getName() };
-            model.addRow(row);                
+                Object[] row = { genreItem.getId(), genreItem.getName() };
+                model.addRow(row);                
+            }
         }
         jTable1.setModel(model);
 
@@ -523,12 +526,12 @@ public class AddGenrePanel extends javax.swing.JPanel {
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
