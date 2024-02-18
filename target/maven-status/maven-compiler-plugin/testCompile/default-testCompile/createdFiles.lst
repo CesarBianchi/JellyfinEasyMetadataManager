@@ -1,4 +1,5 @@
 com/lariflix/jemm/dtos/JellyfinGenreItemTest.class
+com/lariflix/jemm/core/LoadItemsTest.class
 com/lariflix/jemm/core/LoadFolderMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinUsersTest.class
 com/lariflix/jemm/dtos/JellyfinCadStudioItemTest.class
@@ -11,15 +12,18 @@ com/lariflix/jemm/core/LoadGenresTest.class
 com/lariflix/jemm/core/ConnectJellyfinAPITest.class
 com/lariflix/jemm/dtos/JellyfinFoldersTest.class
 com/lariflix/jemm/core/LoadItemMetadataTest.class
+com/lariflix/jemm/core/LoadUsersTest.class
 com/lariflix/jemm/dtos/JellyfinProviderIdsTest.class
 com/lariflix/jemm/utils/JemmVersionTest.class
 com/lariflix/jemm/dtos/JellyfinFolderMetadataTest.class
 com/lariflix/jemm/JemmTest.class
+com/lariflix/jemm/core/LoadStudiosTest.class
 com/lariflix/jemm/dtos/JellyfinCadStudioItemsTest.class
 com/lariflix/jemm/utils/TransformDateFormatTest.class
 com/lariflix/jemm/dtos/JellyfinCadGenresItemsTest.class
 com/lariflix/jemm/dtos/JellyfinUserTest.class
 com/lariflix/jemm/dtos/JellyfinUserPolicyTest.class
+com/lariflix/jemm/core/LoadPeopleTest.class
 com/lariflix/jemm/core/CheckJellyfinConnectionTest.class
 com/lariflix/jemm/dtos/JellyfinCadGenresItemTest.class
 com/lariflix/jemm/core/CheckJellyfinConnectionTest$1.class
