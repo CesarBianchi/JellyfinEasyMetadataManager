@@ -7,8 +7,10 @@ com/lariflix/jemm/dtos/JellyfinPeopleItemTest.class
 com/lariflix/jemm/dtos/JellyfinConnectionResultTest.class
 com/lariflix/jemm/forms/AddGenrePanelTest.class
 com/lariflix/jemm/forms/AddPeoplePanelTest.class
+com/lariflix/jemm/core/LoadGenresTest.class
 com/lariflix/jemm/core/ConnectJellyfinAPITest.class
 com/lariflix/jemm/dtos/JellyfinFoldersTest.class
+com/lariflix/jemm/core/LoadItemMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinProviderIdsTest.class
 com/lariflix/jemm/utils/JemmVersionTest.class
 com/lariflix/jemm/dtos/JellyfinFolderMetadataTest.class
