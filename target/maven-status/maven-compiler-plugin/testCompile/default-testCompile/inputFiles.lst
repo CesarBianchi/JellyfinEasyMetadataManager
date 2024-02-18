@@ -1,5 +1,6 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinCadStudioItemTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadPeopleTest.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadStudiosTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinUserPolicyTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/forms/AddPeoplePanelTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinProviderIdsTest.java
@@ -13,6 +14,7 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinCredentialsTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinFolderTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/forms/AddGenreWindowTest.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadUsersTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinItemUpdateTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinCadGenresItemTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinStudioItemTest.java
