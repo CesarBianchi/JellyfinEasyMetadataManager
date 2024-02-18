@@ -8,7 +8,7 @@ Recommended for managing the metadata fiels of private content not available on 
 With JEMM, you can easily replicate the same metadata fields defined in a folder to the child-items.
 
 ## To download a runnable file
-If you are not a developer or do not want to download the complete source-code and build it locally, you can directly download the runnable file [jemm_runnable-jar-with-dependencies.jar](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/5484c5d0d31ac219ba51458d2d31dd4b2bc86557/target/jemm_runnable-jar-with-dependencies.jar) (available at: root/target/jemm_runnable-jar-with-dependencies.jar). 
+If you are not a developer or do not want to download the complete source-code and build it locally, you can directly download the runnable file [jemm_runnable-jar-with-dependencies.jar](target/jemm_runnable-jar-with-dependencies.jar) (available at: root/target/jemm_runnable-jar-with-dependencies.jar). 
 **Java version 11 is required on your machine and you will need able an Api Key - through the "Administration options" in your Jellyfin instance.**
 
 ## To build locally
