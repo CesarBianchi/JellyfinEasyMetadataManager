@@ -3,6 +3,7 @@ package com.lariflix.jemm;
 import com.lariflix.jemm.dtos.JellyfinCredentials;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.forms.LoginWindow;
+import com.lariflix.jemm.utils.JellyfinLookAndFell;
 
 /**
  * Main class of the application.
@@ -40,6 +41,18 @@ public class Jemm {
             JellyfinCredentials credentials = new JellyfinCredentials(cURL,cTokenAPI);            
             instanceData.setCredentials(credentials);
         }
+        
+        //Set Look And Feel Apereance
+        JellyfinLookAndFell lookAndFeel = new JellyfinLookAndFell();
+    	//lookAndFeel.setLookAndFeelFlatDarculaLaf();
+        //lookAndFeel.setLookAndFeelNimbus();
+        //lookAndFeel.setLookAndFeelFlatLightLaf();
+        //lookAndFeel.setLookAndFeelFlatDarkLaf();
+        //lookAndFeel.setLookAndFeelFlatIntelijLaf();
+        //lookAndFeel.setLookAndFeelArcOrange();
+        lookAndFeel.setLookAndFeelFlatDarkPurpleIJTheme();
+        //lookAndFeel.setLookAndFeelFlatFlatNordTheme();
+        
         
         LoginWindow loginFrame = new LoginWindow(instanceData);
         loginFrame.setLocationRelativeTo(null);

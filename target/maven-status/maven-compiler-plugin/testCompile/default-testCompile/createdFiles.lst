@@ -26,7 +26,6 @@ com/lariflix/jemm/dtos/JellyfinUserPolicyTest.class
 com/lariflix/jemm/core/LoadPeopleTest.class
 com/lariflix/jemm/core/CheckJellyfinConnectionTest.class
 com/lariflix/jemm/dtos/JellyfinCadGenresItemTest.class
-com/lariflix/jemm/core/CheckJellyfinConnectionTest$1.class
 com/lariflix/jemm/dtos/JellyfinStudioItemTest.class
 com/lariflix/jemm/dtos/JellyfinItemMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinItemUpdateTest.class
