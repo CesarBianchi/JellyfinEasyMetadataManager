@@ -71,7 +71,7 @@ public class WaitingWindow {
                 dialog.setVisible(false);
                 dialog.dispose();
             }
-        }, 2, TimeUnit.SECONDS);
+        }, 500, TimeUnit.MILLISECONDS);
         
         
         dialog.setVisible(true);

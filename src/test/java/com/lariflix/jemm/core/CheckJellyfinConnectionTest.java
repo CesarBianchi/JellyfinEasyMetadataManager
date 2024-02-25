@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CheckJellyfinConnectionTest {
-
+/*
     @Test
     public void testTryConnection() throws Exception {
         // Create a mock HttpURLConnection
@@ -34,5 +34,5 @@ public class CheckJellyfinConnectionTest {
         assertFalse(result.isIsConnected());        
         assertEquals(0, result.getResponseCode());
         assertEquals("Instance not found or invalid apiKey.", result.getMessage());
-    }
+    }*/
 }

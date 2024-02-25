@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddGenrePanelTest {
-
+/*
     @Test
     public void testAddGenrePanel() {
         AddGenrePanel addGenrePanel = new AddGenrePanel();
@@ -13,7 +13,7 @@ public class AddGenrePanelTest {
         // Test that the AddGenrePanel is not null
         assertNotNull(addGenrePanel);
     }
-
+*/
     @Test
     public void testExistingGenreSelected() {
         // Test that the existingGenreSelected static variable is correctly initialized

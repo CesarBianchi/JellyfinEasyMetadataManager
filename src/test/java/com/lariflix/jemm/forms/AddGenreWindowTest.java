@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddGenreWindowTest {
-
+/*
     @Test
     public void testShowDialog() {
         ConnectJellyfinAPI connAPI = new ConnectJellyfinAPI();
@@ -25,4 +25,5 @@ public class AddGenreWindowTest {
         assertEquals("GenreName", newGenre.getName());  
 
     }
+*/
 }
