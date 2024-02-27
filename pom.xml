@@ -13,7 +13,7 @@
     <developers>
         <developer>
             <id>cesar_bianchi</id>
-            <name>Cesar Augusto Bianchi da Silva</name>
+            <name>Cesar Bianchi</name>
             <email>cesar_bianchi@hotmail.com</email>
             <organization>MySelf</organization>
             <organizationUrl>https://www.linkedin.com/in/cesar-bianchi-9b90571b/</organizationUrl>
@@ -111,6 +111,12 @@
             <artifactId>flatlaf-intellij-themes</artifactId>
             <version>3.2.5</version>
         </dependency>
+        
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.2</version>
+  </dependency>
         
     </dependencies>
     
