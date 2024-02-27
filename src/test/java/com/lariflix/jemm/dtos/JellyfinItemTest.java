@@ -52,7 +52,7 @@ public class JellyfinItemTest {
 
         boolean isFolder = true;
         item.setIsFolder(isFolder);
-        assertEquals(isFolder, item.isIsFolder());
+        assertEquals(isFolder, item.IsFolder());
 
         String type = "Test Type";
         item.setType(type);
