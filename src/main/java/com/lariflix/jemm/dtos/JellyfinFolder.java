@@ -257,7 +257,7 @@ public class JellyfinFolder {
      * @author Cesar Bianchi
      * @since 1.0
      */
-    public boolean isIsFolder() {
+    public boolean IsFolder() {
         return isFolder;
     }
 
