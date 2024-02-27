@@ -49,7 +49,7 @@ public class JellyfinFolderTest {
 
         boolean isFolder = true;
         folder.setIsFolder(isFolder);
-        assertEquals(isFolder, folder.isIsFolder());
+        assertEquals(isFolder, folder.IsFolder());
 
         String type = "Type1";
         folder.setType(type);

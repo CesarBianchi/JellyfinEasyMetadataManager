@@ -11,6 +11,6 @@ public class JemmVersionTest {
         JemmVersion jemmVersion = new JemmVersion();
 
         // Test that the getVersion method returns the correct version
-        assertEquals("v1.0.3 - (beta)", jemmVersion.getVersion());
+        assertEquals("v1.1.0", jemmVersion.getVersion());
     }
 }

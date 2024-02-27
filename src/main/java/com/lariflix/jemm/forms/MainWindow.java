@@ -10,7 +10,7 @@ import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
-import com.lariflix.jemm.reports.JellyfinReport;
+import com.lariflix.jemm.reports.JellyfinReportInventory;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Component;
@@ -1309,7 +1309,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        JellyfinReport fullReport = new JellyfinReport(instanceData); 
+        JellyfinReportInventory fullReport = new JellyfinReportInventory(instanceData); 
         try {
             fullReport.paintReport();
         } catch (IOException ex) {
