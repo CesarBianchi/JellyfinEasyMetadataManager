@@ -12,6 +12,7 @@ public class JellyfinInstanceDetails {
     public JellyfinUsers users = new JellyfinUsers();
     public JellyfinUser adminUser = new JellyfinUser();
     public JellyfinFolders folders = new JellyfinFolders();
+    public boolean isDebug = false;
     
     /**
      * Default constructor for JellyfinInstanceDetails.
@@ -111,6 +112,15 @@ public class JellyfinInstanceDetails {
         this.folders = folders;
     }
 
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public void setIsDebug(boolean isDebug) {
+        this.isDebug = isDebug;
+    }
+    
+    
     
 
     

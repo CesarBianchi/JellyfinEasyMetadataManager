@@ -86,5 +86,14 @@ public class WaitingWindow {
 
     }
 
-
+    public void showD(){
+        dialog.setVisible(true);
+    }
+    
+    public void endD(){
+        Window win = SwingUtilities.getWindowAncestor(null);
+        if (win != null) {
+            win.dispose();
+        }
+    }
 }
