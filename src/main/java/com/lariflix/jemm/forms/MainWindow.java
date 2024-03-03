@@ -10,9 +10,7 @@ import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
-import com.lariflix.jemm.reports.JellyfinReportInventoryItem;
 import com.lariflix.jemm.reports.JellyfinReportInventoryBasic;
-import com.lariflix.jemm.reports.JellyfinReportInventoryStructure;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Component;
@@ -109,6 +107,7 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem14 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
@@ -191,11 +190,28 @@ public class MainWindow extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+
+        jMenuItem14.setText("jMenuItem14");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JEMM - Jellyfin Easy Metadata Manager");
@@ -1100,7 +1116,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Folder Metadata");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Main");
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem5.setText("Exit");
+        jMenu1.add(jMenuItem5);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Reports");
@@ -1127,10 +1148,58 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu2.add(jMenu4);
 
+        jMenu5.setText("Genres");
+
+        jMenuItem6.setText("Basic");
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Full");
+        jMenu5.add(jMenuItem7);
+
+        jMenu2.add(jMenu5);
+
+        jMenu6.setText("People");
+        jMenu6.setToolTipText("");
+
+        jMenuItem8.setText("Basic");
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem9.setText("Full");
+        jMenu6.add(jMenuItem9);
+
+        jMenu2.add(jMenu6);
+
+        jMenu7.setText("Tags");
+
+        jMenuItem10.setText("Basic");
+        jMenu7.add(jMenuItem10);
+
+        jMenuItem11.setText("Full");
+        jMenu7.add(jMenuItem11);
+
+        jMenu2.add(jMenu7);
+
+        jMenu8.setText("Year");
+
+        jMenuItem12.setText("Basic");
+        jMenu8.add(jMenuItem12);
+
+        jMenuItem13.setText("Full");
+        jMenu8.add(jMenuItem13);
+
+        jMenu2.add(jMenu8);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Help");
         jMenu3.setToolTipText("");
+
+        jMenuItem4.setText("Source Code");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem3.setText("About JEMM");
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -1412,9 +1481,25 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

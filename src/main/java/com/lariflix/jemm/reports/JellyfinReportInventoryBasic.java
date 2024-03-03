@@ -1,3 +1,4 @@
+package com.lariflix.jemm.reports;
 /*
  * Copyright (C) 2024 cesarbianchi
  *
@@ -15,7 +16,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.lariflix.jemm.reports;
+
+
 
 import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadItemMetadata;
@@ -27,13 +29,10 @@ import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 
-import java.io.Serializable;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
@@ -128,12 +127,17 @@ public class JellyfinReportInventoryBasic {
 
     public void paintReport() throws JRException, MalformedURLException, IOException {
         //gerando o jasper design
-        String layout = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml";       
-        JasperDesign desenho = JRXmlLoader.load( layout );
-
+        
+        //DEBUG WAY
+        String jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml";       
+        JasperDesign desenho = JRXmlLoader.load( jrxmlFile );
+        
+        //EMBEBED WAY
+        //String jrxmlFile = "/reports/jasperfiles/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml";
+        //InputStream desenho = getClass().getResourceAsStream(jrxmlFile);
+        
         //compila o relatório
-
-        JasperReport relatorio = JasperCompileManager.compileReport( desenho );
+        JasperReport relatorio =  JasperCompileManager.compileReport( desenho );
 
         //implementação da interface JRDataSource para DataSource ResultSet
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(this.items);
