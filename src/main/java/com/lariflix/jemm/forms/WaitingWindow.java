@@ -73,7 +73,6 @@ public class WaitingWindow {
             }
         }, 500, TimeUnit.MILLISECONDS);
         
-        
         dialog.setVisible(true);
 
     }
