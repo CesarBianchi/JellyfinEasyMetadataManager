@@ -32,14 +32,22 @@ public class Jemm {
      
      */
     public static void main(String[] args) {
-        
+        boolean isDebug = false;
+                
         //If URL and apiToken was sent by parameters on application load
         if (args.length > 0) {
             String cURL = args[0];
             String cTokenAPI = args[1];
             
+            if (args.length > 2){
+                if (args[2].trim().equals("DEBUG")){
+                    isDebug = true;
+                }                
+            }
+            
             JellyfinCredentials credentials = new JellyfinCredentials(cURL,cTokenAPI);            
             instanceData.setCredentials(credentials);
+            instanceData.setIsDebug(isDebug);
         }
         
         //Set Look And Feel Apereance

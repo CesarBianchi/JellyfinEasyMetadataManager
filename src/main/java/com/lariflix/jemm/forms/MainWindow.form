@@ -115,11 +115,6 @@
                 <Property name="text" type="java.lang.String" value="Year"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Basic"/>
-                  </Properties>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Full"/>

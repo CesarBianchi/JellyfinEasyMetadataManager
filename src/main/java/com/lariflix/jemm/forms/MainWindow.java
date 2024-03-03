@@ -10,7 +10,9 @@ import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
-import com.lariflix.jemm.reports.JellyfinReportInventoryBasic;
+import com.lariflix.jemm.reports.JellyfinReportEngine;
+import com.lariflix.jemm.reports.JellyfinReportInventory;
+import com.lariflix.jemm.reports.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Component;
@@ -205,7 +207,6 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -1181,9 +1182,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu8.setText("Year");
 
-        jMenuItem12.setText("Basic");
-        jMenu8.add(jMenuItem12);
-
         jMenuItem13.setText("Full");
         jMenu8.add(jMenuItem13);
 
@@ -1390,19 +1388,22 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        JellyfinReportInventoryBasic fullReport = new JellyfinReportInventoryBasic(instanceData); 
+  
+        JellyfinReportTypes rpType = JellyfinReportTypes.INVENTORY_BASIC;
+        JellyfinReportEngine reportPrinter = new JellyfinReportEngine(rpType, instanceData);        
+        reportPrinter.start();
         
-        try {
-            fullReport.loadReportItems();
-            fullReport.paintReport();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JRException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        synchronized(reportPrinter){
+            try{
+                System.out.println("Aguardando o request completar...");
+                reportPrinter.wait();
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
         }
+        
+        
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     /**
@@ -1489,7 +1490,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
