@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -48,6 +49,7 @@ public class WaitingWindow {
             dialog.pack();
             dialog.setLocationRelativeTo(null);
             
+            
         }
         
     }
@@ -62,7 +64,7 @@ public class WaitingWindow {
      * @see java.util.concurrent.Executors
      * @see java.util.concurrent.TimeUnit
      */
-    public void showDialog(){
+    public void showDialogWithTimmer(){
         
         //Show dialog to user define the new People (From existing or New)
         ScheduledExecutorService sch = Executors.newSingleThreadScheduledExecutor();     
@@ -77,23 +79,34 @@ public class WaitingWindow {
 
     }
     
-    public void closeDialog(){
-        /*
-        Window win = SwingUtilities.getWindowAncestor(null);
-        if (win != null) {
-            win.dispose();
-        }*/
-
-    }
-
-    public void showD(){
+    public void showDialogWithTimmer(int delay){
+        
+        //Show dialog to user define the new People (From existing or New)
+        ScheduledExecutorService sch = Executors.newSingleThreadScheduledExecutor();     
+        sch.schedule(new Runnable() {
+            public void run() {
+                dialog.setVisible(false);
+                dialog.dispose();
+            }
+        }, delay, TimeUnit.MILLISECONDS);
+        
         dialog.setVisible(true);
+
     }
     
-    public void endD(){
+    public void closeDialog(){
         Window win = SwingUtilities.getWindowAncestor(null);
         if (win != null) {
             win.dispose();
         }
+
+    }
+
+    public void showDialog(){
+        dialog.setVisible(true);
+    }
+    
+    public void endDialog(){
+        dialog.setVisible(false);
     }
 }

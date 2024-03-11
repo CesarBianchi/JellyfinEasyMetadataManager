@@ -33,6 +33,7 @@ import org.json.simple.parser.ParseException;
 public class JellyfinReportEngine extends Thread {
     private JellyfinReportTypes reportType = null;
     private JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();
+    private boolean isDone = false;
     
     public JellyfinReportEngine(JellyfinReportTypes rpType, JellyfinInstanceDetails instData){
         this.setReportType(rpType);
@@ -48,6 +49,7 @@ public class JellyfinReportEngine extends Thread {
             switch(rpType) {
                 case INVENTORY_BASIC:
                     printReportInventoryBasic();
+                    isDone = true;
                     break;
                 case INVENTORY_FULL:
                     /*TO DO*/
@@ -71,6 +73,10 @@ public class JellyfinReportEngine extends Thread {
 
     public void setInstanceData(JellyfinInstanceDetails instanceData) {
         this.instanceData = instanceData;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
     
     private void printReportInventoryBasic(){
