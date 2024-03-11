@@ -1397,7 +1397,7 @@ public class MainWindow extends javax.swing.JFrame {
         while (!reportEng.isDone()){
             waitWindow.showDialogWithTimmer(3000);
         }
-        //waitWindow.endDialog();
+
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     

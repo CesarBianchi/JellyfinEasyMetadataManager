@@ -56,6 +56,7 @@ public class JellyfinReportInventory {
     
     static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();    
     private JellyfinReportInventoryStructure items = new JellyfinReportInventoryStructure();
+    private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
     public JellyfinReportInventory(JellyfinReportTypes rpType) {
@@ -74,11 +75,13 @@ public class JellyfinReportInventory {
             case INVENTORY_BASIC:
                 this.loadItems();
                 this.loadSubItems();
+                this.setTotalOfSubItems();
                 break;
             case INVENTORY_FULL:
                 this.loadItems();
                 this.loadSubItems();
                 this.loadSubItemsMetadata();
+                this.setTotalOfSubItems();
                 break;
         }
     }
@@ -109,8 +112,6 @@ public class JellyfinReportInventory {
         
         items.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
         
-        
-        System.out.println("breakpoint");
     }
 
     
@@ -136,8 +137,7 @@ public class JellyfinReportInventory {
             }
             
         }
-        
-        System.out.println("breakpoint");
+       
     }
 
     public void printReport() throws JRException, MalformedURLException, IOException {
@@ -187,6 +187,8 @@ public class JellyfinReportInventory {
         Map reportParameters = new HashMap();
         reportParameters.put("INSTANCE_URL",instanceData.getCredentials().getBaseURL());
         reportParameters.put("JEMM_VERSION",new JemmVersion().getVersion() );
+        reportParameters.put("TOTAL_FOLDERITEMS",Integer.toString(this.items.size()));
+        reportParameters.put("TOTAL_CONTENT",Integer.toString(this.totalsubItems));
         
         //Paint Report
         JasperPrint paintedReport = JasperFillManager.fillReport( report , reportParameters,  dataSource);
@@ -225,8 +227,7 @@ public class JellyfinReportInventory {
                 
             }            
         }
-        
-        System.out.println("breakpoint");
+       
     }
 
     public static JellyfinInstanceDetails getInstanceData() {
@@ -243,6 +244,16 @@ public class JellyfinReportInventory {
 
     public void setItems(JellyfinReportInventoryStructure items) {
         this.items = items;
+    }
+
+    private void setTotalOfSubItems() {
+        int countSubItems = 0;
+        
+        for (int nI = 0; nI< this.items.size();nI++){
+            countSubItems = countSubItems + this.items.get(nI).getSubItems().size();
+        }
+        
+        this.totalsubItems = countSubItems;
     }
     
 }
