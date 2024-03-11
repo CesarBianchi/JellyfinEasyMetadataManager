@@ -4,6 +4,8 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
 	<parameter name="INSTANCE_URL" class="java.lang.String"/>
 	<parameter name="JEMM_VERSION" class="java.lang.String"/>
+	<parameter name="TOTAL_FOLDERITEMS" class="java.lang.String"/>
+	<parameter name="TOTAL_CONTENT" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -86,7 +88,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="190" height="26" uuid="d460df50-0470-45ff-8d5b-e3756352d146">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca7be63b-6ab1-461b-bf67-abeec7d3438f"/>
@@ -133,7 +135,7 @@
 				<text><![CDATA[Total Folder Content]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="490" y="-1" width="150" height="26" uuid="e2161cc0-046b-42d9-8460-a9b448938799">
+				<reportElement x="490" y="-1" width="150" height="26" forecolor="#030000" uuid="e2161cc0-046b-42d9-8460-a9b448938799">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="241bfbd7-c28c-40aa-afbc-8cb66c74044b"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -242,6 +244,43 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="18" splitType="Stretch"/>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="370" y="0" width="148" height="12" uuid="55adc201-35dd-496f-9527-5156fefcf159">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SubTotal Folder Content]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="12" uuid="0ba3a38d-9dbb-43c8-b111-aaf654146f0d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SubTotal Folders]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="12" width="140" height="10" uuid="5ced4f4b-5ef9-4fbc-9979-b9b1b6e39f57">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL_FOLDERITEMS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="12" width="148" height="10" uuid="e73023ec-88ca-4954-878b-0c995531211a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL_CONTENT}]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>
