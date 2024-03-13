@@ -48,11 +48,12 @@ public class JellyfinReportEngine extends Thread {
             
             switch(rpType) {
                 case INVENTORY_BASIC:
-                    printReportInventoryBasic();
+                    printInventoryReport();
                     isDone = true;
                     break;
                 case INVENTORY_FULL:
-                    /*TO DO*/
+                    printInventoryReport();                    
+                    isDone = true;
                     break;
             }
             notify();
@@ -79,7 +80,7 @@ public class JellyfinReportEngine extends Thread {
         return isDone;
     }
     
-    private void printReportInventoryBasic(){
+    private void printInventoryReport(){
 
         JellyfinReportInventory fullReport = new JellyfinReportInventory(this.getInstanceData(),this.getReportType());
         try {

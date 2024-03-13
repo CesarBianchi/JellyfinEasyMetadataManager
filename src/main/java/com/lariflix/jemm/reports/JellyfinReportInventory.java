@@ -166,12 +166,12 @@ public class JellyfinReportInventory {
                 if(instanceData.isDebug() ){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");   
-                    jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryBasic/JemmInstanceInventoryFull.jrxml";       
+                    jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
                 } else {
                     //EMBEBED WAY
-                    jrxmlFile = "/reports/jasperfiles/InstanceInventoryBasic/JemmInstanceInventoryFull.jrxml";
+                    jrxmlFile = "/reports/jasperfiles/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
                 }
