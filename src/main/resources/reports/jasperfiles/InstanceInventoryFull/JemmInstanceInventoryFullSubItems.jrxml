@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JemmInstanceInventoryFullSubItems" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2f0a196-186d-4a46-9e55-9aa6ccfbf0c0">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="criticRating" class="java.lang.Integer">
+		<fieldDescription><![CDATA[criticRating]]></fieldDescription>
+	</field>
+	<field name="productionYear" class="java.lang.Integer">
+		<fieldDescription><![CDATA[productionYear]]></fieldDescription>
+	</field>
+	<field name="container" class="java.lang.String">
+		<fieldDescription><![CDATA[container]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="220" height="10" uuid="75342dc9-8209-49c5-9192-f0bc063669e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e254ca19-47fc-427c-a1ae-2ccfc778d947"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="50" height="20" uuid="e1354eca-5cc0-4869-985f-9504a74efdd7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e44234d7-43b4-495e-b0a4-7c4ae23c0e3c"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Production Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="0" width="50" height="20" uuid="3ce3deb8-3f10-4884-8433-dd5d756b4d66">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f68ac10f-bd30-4866-825b-0362ffa080a4"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Critic Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="170" height="10" uuid="cc00ab40-b19b-4240-b22b-af4da1bc3dfa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84019dac-3c78-40e2-8cf7-e9f5a624ec71"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type of Media]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="220" height="10" uuid="11fedf47-f06b-4f7c-b54e-9f813eb9d01f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e254ca19-47fc-427c-a1ae-2ccfc778d947"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="50" height="10" uuid="832852c9-dd19-4a3e-9430-be56caf87c1c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e44234d7-43b4-495e-b0a4-7c4ae23c0e3c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productionYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="0" width="50" height="10" uuid="44a6501e-df87-4c46-bf13-661d7764ff6a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f68ac10f-bd30-4866-825b-0362ffa080a4"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{criticRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="170" height="10" uuid="5f2bb3b4-ccdc-4bc4-9c66-a5415e5d846a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84019dac-3c78-40e2-8cf7-e9f5a624ec71"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{container}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>
