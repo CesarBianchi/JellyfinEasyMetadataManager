@@ -10,6 +10,9 @@
 # MacOs directory files
 *.DS_Store
 
+# JasperReports Compiled Files
+*.jasper
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
