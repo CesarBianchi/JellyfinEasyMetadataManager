@@ -1,6 +1,12 @@
 package com.lariflix.jemm.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.io.FileUtils;
 
 
 /**
@@ -44,5 +50,23 @@ public class JellyfinUtilFunctions {
         
         return modelRet;
     }
+    
+    public boolean extractFileFromJar(String originName, String destName){
+        boolean isSuccess = false;
+        String destFullPathName = System.getProperty("java.io.tmpdir").concat(destName);
+        
+        
+        InputStream initialStream = getClass().getResourceAsStream(originName);
+        File file = new File(destFullPathName);
+        try {
+            FileUtils.copyInputStreamToFile(initialStream, file);
+            isSuccess = true;
+        } catch (IOException ex) {
+            Logger.getLogger(JellyfinUtilFunctions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+        return isSuccess;
+    }
+    
     
 }

@@ -28,9 +28,8 @@ import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
+import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +46,11 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -145,6 +149,12 @@ public class JellyfinReportInventory {
         JasperDesign draw = null;
         JasperReport report = null;
         
+        String jrxmlSubRepFile = new String();
+        JasperReport subreport = null;
+        JasperDesign drawSub = null;
+        JellyfinUtilFunctions commonFunctions = new JellyfinUtilFunctions();
+        String tempFilesPath = System.getProperty("java.io.tmpdir");
+        
         switch(reportType) {
             case INVENTORY_BASIC:
                 
@@ -163,18 +173,35 @@ public class JellyfinReportInventory {
                 break;
             
             case INVENTORY_FULL:
+            
                 if(instanceData.isDebug() ){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");   
                     jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
+                    
+                    
+                    jrxmlSubRepFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml";       
+                    drawSub = JRXmlLoader.load( jrxmlFile );
+                    subreport = JasperCompileManager.compileReport( drawSub );
+                    
+                    //Use a localfile subreport
+                    JasperCompileManager.compileReportToFile(jrxmlSubRepFile,tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jasper"));
                 } else {
                     //EMBEBED WAY
                     jrxmlFile = "/reports/jasperfiles/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
+                    
+                    //Extract subreport from resource to a localfile                    
+                    jrxmlSubRepFile =  "/reports/jasperfiles/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml";                    
+                    if (commonFunctions.extractFileFromJar(jrxmlSubRepFile, "JemmInstanceInventoryFullSubItems.jrxml") ){
+                        JasperCompileManager.compileReportToFile(tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jrxml"),tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jasper"));                    
+                    }
                 }
+                
+                                
                 break;
                 
         } 
@@ -189,6 +216,7 @@ public class JellyfinReportInventory {
         reportParameters.put("JEMM_VERSION",new JemmVersion().getVersion() );
         reportParameters.put("TOTAL_FOLDERITEMS",Integer.toString(this.items.size()));
         reportParameters.put("TOTAL_CONTENT",Integer.toString(this.totalsubItems));
+        reportParameters.put("SUBREPORT_JASPER_FILE",tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jasper"));
         
         //Paint Report
         JasperPrint paintedReport = JasperFillManager.fillReport( report , reportParameters,  dataSource);
