@@ -95,7 +95,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Folder Name]]></text>
 			</staticText>
@@ -104,7 +104,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d530d75-52b3-420c-9654-3675db54e034"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Production Year]]></text>
 			</staticText>
@@ -113,7 +113,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ada7e631-738e-4272-828d-1077f6d763a4"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Official Rating]]></text>
 			</staticText>
@@ -122,7 +122,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Critic Rating]]></text>
 			</staticText>
@@ -131,7 +131,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Folder Content]]></text>
 			</staticText>
@@ -141,7 +141,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Genres]]></text>
 			</staticText>
@@ -150,7 +150,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23f162e0-221c-4371-89ab-40c7b6a780a6"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tags]]></text>
 			</staticText>
@@ -253,7 +253,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SubTotal Folder Content]]></text>
 			</staticText>
@@ -263,7 +263,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SubTotal Folders]]></text>
 			</staticText>
