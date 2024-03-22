@@ -223,6 +223,7 @@ public class JellyfinReportInventory {
         
         //Show Report
         JasperViewer viewer = new JasperViewer( paintedReport , false );
+        viewer.setTitle("Jellyfin Easy Metadata Manager - Inventory Report");
         viewer.show();
        
     }
