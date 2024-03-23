@@ -1157,6 +1157,11 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu5.setText("Genres");
 
         jMenuItem6.setText("Basic");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenuItem7.setText("Full");
@@ -1402,6 +1407,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
+        // Inventory Basic Report Menu Item
         WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
@@ -1422,6 +1428,20 @@ public class MainWindow extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        // Genres Basic Report Menu Item
+        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        
+        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_BASIC,instanceData);
+        reportEng.start();
+        
+        while (!reportEng.isDone()){
+            waitWindow.showDialogWithTimmer(2000);
+        }
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
     
     /**
      * @param args the command line arguments
