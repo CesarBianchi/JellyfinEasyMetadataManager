@@ -68,5 +68,16 @@ public class JellyfinUtilFunctions {
         return isSuccess;
     }
     
+    public String getJRXMLLocalPath(){
+        String localPathforDebug = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager";
+        
+        return localPathforDebug;               
+    }
+    
+    public String getJRXMLResourcePath(){
+        String resourceReportPath = "/reports/jasperfiles";
+        
+        return resourceReportPath;                
+    }
     
 }

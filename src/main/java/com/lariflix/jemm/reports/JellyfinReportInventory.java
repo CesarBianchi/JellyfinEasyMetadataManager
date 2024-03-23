@@ -26,6 +26,7 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
+import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -78,13 +79,12 @@ public class JellyfinReportInventory {
         switch(reportType) {
             case INVENTORY_BASIC:
                 this.loadItems();
-                this.loadSubItems();
+                this.loadSubItems(JellyfinReportTypes.INVENTORY_BASIC);
                 this.setTotalOfSubItems();
                 break;
             case INVENTORY_FULL:
                 this.loadItems();
-                this.loadSubItems();
-                this.loadSubItemsMetadata();
+                this.loadSubItems(JellyfinReportTypes.INVENTORY_FULL);
                 this.setTotalOfSubItems();
                 break;
         }
@@ -102,7 +102,7 @@ public class JellyfinReportInventory {
             JellyfinReportInventoryItem item = new JellyfinReportInventoryItem();
             item.setItem( folders.getItems().get(nI) );
             
-            //set itemMetadata
+            //load itemMetadata
             LoadItemMetadata loadItemMetadata = new LoadItemMetadata();
             loadItemMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
             loadItemMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
@@ -119,7 +119,7 @@ public class JellyfinReportInventory {
     }
 
     
-    private void loadSubItems(){
+    private void loadSubItems(JellyfinReportTypes tpInventoryReport){
         
         LoadItems loadSubItems = new LoadItems();
         loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
@@ -132,7 +132,24 @@ public class JellyfinReportInventory {
             try {
                 JellyfinItems subItems = loadSubItems.requestItems();
                 
-                items.get(nI).setSubItems(subItems);                
+                items.get(nI).setSubItems(subItems);
+                
+                //load subitems metadata
+                if (tpInventoryReport == JellyfinReportTypes.INVENTORY_FULL){
+                    for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){ 
+                        LoadItemMetadata loadsubItemMetadata = new LoadItemMetadata();
+                        loadsubItemMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+                        loadsubItemMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
+                        loadsubItemMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
+
+                        String subItemID = items.get(nI).getSubItems().get(nJ).getId();                            
+
+                        loadsubItemMetadata.setcItemID(subItemID);                
+                        JellyfinItemMetadata subItemMetadata = loadsubItemMetadata.requestItemMetadata();                                
+
+                        items.get(nI).getSubItems().get(nJ).setSubItemMetadata(subItemMetadata);
+                    }
+                }
                 
             } catch (IOException ex) {
                 Logger.getLogger(JellyfinReportInventory.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,6 +162,9 @@ public class JellyfinReportInventory {
     }
 
     public void printReport() throws JRException, MalformedURLException, IOException {
+        String localReportBasePath = new JellyfinUtilFunctions().getJRXMLLocalPath();
+        String resorceReportBasePath =  new  JellyfinUtilFunctions().getJRXMLResourcePath();
+        
         String jrxmlFile = new String();
         JasperDesign draw = null;
         JasperReport report = null;
@@ -161,12 +181,12 @@ public class JellyfinReportInventory {
                 if(instanceData.isDebug()){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");                    
-                    jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml";       
+                    jrxmlFile = localReportBasePath.concat("/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml");       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
                 } else {
                     //EMBEBED WAY
-                    jrxmlFile = "/reports/jasperfiles/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml";
+                    jrxmlFile = resorceReportBasePath.concat("/InstanceInventoryBasic/JemmInstanceInventoryBasic.jrxml");
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
                 }
@@ -177,12 +197,12 @@ public class JellyfinReportInventory {
                 if(instanceData.isDebug() ){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");   
-                    jrxmlFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";       
+                    jrxmlFile = localReportBasePath.concat("/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml");       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
                     
                     
-                    jrxmlSubRepFile = "/Users/cesarbianchi/JaspersoftWorkspace/JellyfinEasyMetadataManager/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml";       
+                    jrxmlSubRepFile = localReportBasePath.concat("/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml");       
                     drawSub = JRXmlLoader.load( jrxmlFile );
                     subreport = JasperCompileManager.compileReport( drawSub );
                     
@@ -190,18 +210,16 @@ public class JellyfinReportInventory {
                     JasperCompileManager.compileReportToFile(jrxmlSubRepFile,tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jasper"));
                 } else {
                     //EMBEBED WAY
-                    jrxmlFile = "/reports/jasperfiles/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml";
+                    jrxmlFile = resorceReportBasePath.concat("/InstanceInventoryFull/JemmInstanceInventoryFull.jrxml");
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
                     
                     //Extract subreport from resource to a localfile                    
-                    jrxmlSubRepFile =  "/reports/jasperfiles/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml";                    
+                    jrxmlSubRepFile =  resorceReportBasePath.concat("/InstanceInventoryFull/JemmInstanceInventoryFullSubItems.jrxml");                    
                     if (commonFunctions.extractFileFromJar(jrxmlSubRepFile, "JemmInstanceInventoryFullSubItems.jrxml") ){
                         JasperCompileManager.compileReportToFile(tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jrxml"),tempFilesPath.concat("JemmInstanceInventoryFullSubItems.jasper"));                    
                     }
-                }
-                
-                                
+                }                
                 break;
                 
         } 
@@ -228,37 +246,6 @@ public class JellyfinReportInventory {
        
     }
     
-    
-    
-    private void loadSubItemsMetadata() {
-        
-        LoadItemMetadata loadSubItemMetadata = new LoadItemMetadata();
-        loadSubItemMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
-        loadSubItemMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
-        loadSubItemMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
-        
-        for (int nI = 0; nI < items.size(); nI++){            
-            for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){
-                
-                String cItemID = items.get(nI).getSubItems().get(nJ).getId();                
-                loadSubItemMetadata.setcItemID(cItemID);
-                
-                JellyfinItemMetadata subItemMetadata;
-                try {
-                    subItemMetadata = loadSubItemMetadata.requestItemMetadata();
-                    items.get(nI).getSubItems().get(nJ).setSubItemMetadata(subItemMetadata);
-                    
-                } catch (IOException ex) {
-                    Logger.getLogger(JellyfinReportInventory.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(JellyfinReportInventory.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }            
-        }
-       
-    }
-
     public static JellyfinInstanceDetails getInstanceData() {
         return instanceData;
     }
