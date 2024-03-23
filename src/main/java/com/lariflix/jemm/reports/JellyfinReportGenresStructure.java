@@ -17,10 +17,25 @@
  */
 package com.lariflix.jemm.reports;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author cesarbianchi
  */
-public class JellyfinReportGenresStructure {
+public class JellyfinReportGenresStructure extends ArrayList<JellyfinReportGenresItem>{
+   
+    private ArrayList<JellyfinReportGenresItem> items = new ArrayList();
+ 
+      public JellyfinReportGenresStructure() {
+    }
+
+    public ArrayList<JellyfinReportGenresItem> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<JellyfinReportGenresItem> items) {
+        this.items = items;
+    }
     
 }

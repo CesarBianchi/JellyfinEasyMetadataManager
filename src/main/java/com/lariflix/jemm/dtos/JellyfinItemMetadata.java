@@ -96,7 +96,10 @@ public class JellyfinItemMetadata {
     @JsonProperty("MediaType") 
     public String mediaType;
     @JsonProperty("LockData") 
-    public boolean lockData;
+    public boolean lockData;    
+    @JsonProperty("ChildCount") 
+    public String childcount;
+    
 
 
     /**
@@ -984,6 +987,14 @@ public class JellyfinItemMetadata {
      */
     public void setLockData(boolean lockData) {
         this.lockData = lockData;
+    }
+
+    public String getChildcount() {
+        return childcount;
+    }
+
+    public void setChildcount(String childcount) {
+        this.childcount = childcount;
     }
 
     

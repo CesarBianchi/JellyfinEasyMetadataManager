@@ -106,7 +106,7 @@ public class JellyfinReportEngine extends Thread {
     
     private void printGenresReport(){
 
-        JellyfinReportInventory fullReport = new JellyfinReportInventory(this.getInstanceData(),this.getReportType());
+        JellyfinReportGenres fullReport = new JellyfinReportGenres(this.getInstanceData(),this.getReportType());
         try {
             fullReport.loadReportItems();
             fullReport.printReport();
