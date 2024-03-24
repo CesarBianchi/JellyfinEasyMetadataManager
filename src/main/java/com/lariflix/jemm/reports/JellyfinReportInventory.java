@@ -26,7 +26,6 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -48,10 +47,8 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import org.apache.commons.io.FileUtils;
 
 /**
  *

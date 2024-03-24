@@ -18,7 +18,9 @@
 package com.lariflix.jemm.reports;
 
 import com.lariflix.jemm.dtos.JellyfinCadGenresItem;
+import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,7 +29,9 @@ import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 public class JellyfinReportGenresItem extends JellyfinCadGenresItem{
 
     private JellyfinItemMetadata genreMetadata = new JellyfinItemMetadata();
-    
+    private ArrayList<JellyfinReportInventorySubItem> genreEpisodes = new ArrayList();
+    private int totalsubItems = 0;
+
     public JellyfinReportGenresItem() {
     }
     
@@ -52,6 +56,26 @@ public class JellyfinReportGenresItem extends JellyfinCadGenresItem{
         this.genreMetadata = genreMetadata;
     }
     
+    public void setTotalsubItems(int totalsubItems) {
+        this.totalsubItems = totalsubItems;
+    }
+    
+    public void addGenreEpisode(JellyfinItem episode, JellyfinItemMetadata episodeMetadata){
+        
+        JellyfinReportInventorySubItem eps = new JellyfinReportInventorySubItem();
+        eps.setSubItem(episode);
+        eps.setSubItemMetadata(episodeMetadata);
+        
+        this.genreEpisodes.add(eps);        
+    }
+
+    public ArrayList<JellyfinReportInventorySubItem> getGenreEpisodes() {
+        return genreEpisodes;
+    }
+
+    public void setGenreEpisodes(ArrayList<JellyfinReportInventorySubItem> genreEpisodes) {
+        this.genreEpisodes = genreEpisodes;
+    }
     
     
 }

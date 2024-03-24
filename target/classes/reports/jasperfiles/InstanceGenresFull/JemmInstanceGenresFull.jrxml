@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JemmInstanceGenresFull" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57bc915e-3ee1-42a1-aaa0-24a713cb125c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+	<parameter name="INSTANCE_URL" class="java.lang.String"/>
+	<parameter name="JEMM_VERSION" class="java.lang.String"/>
+	<parameter name="TOTAL_FOLDERITEMS" class="java.lang.String"/>
+	<parameter name="TOTAL_CONTENT" class="java.lang.String"/>
+	<parameter name="SUBREPORT_JASPER_FILE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="officialRating" class="java.lang.String">
+		<fieldDescription><![CDATA[officialRating]]></fieldDescription>
+	</field>
+	<field name="premiereDate" class="java.util.Date">
+		<fieldDescription><![CDATA[premiereDate]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="locationType" class="java.lang.String">
+		<fieldDescription><![CDATA[locationType]]></fieldDescription>
+	</field>
+	<field name="communityRating" class="java.lang.Integer">
+		<fieldDescription><![CDATA[communityRating]]></fieldDescription>
+	</field>
+	<field name="criticRating" class="java.lang.Integer">
+		<fieldDescription><![CDATA[criticRating]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[type]]></fieldDescription>
+	</field>
+	<field name="serverId" class="java.lang.String">
+		<fieldDescription><![CDATA[serverId]]></fieldDescription>
+	</field>
+	<field name="channelId" class="java.lang.Object">
+		<fieldDescription><![CDATA[channelId]]></fieldDescription>
+	</field>
+	<field name="genreMetadata.childcount" class="java.lang.String">
+		<fieldDescription><![CDATA[genreMetadata.childcount]]></fieldDescription>
+	</field>
+	<field name="genreEpisodes" class="java.util.ArrayList">
+		<fieldDescription><![CDATA[genreEpisodes]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="68" splitType="Stretch">
+			<frame>
+				<reportElement mode="Transparent" x="0" y="0" width="800" height="49" backcolor="#B386E3" uuid="39dc88fc-85dc-4af2-a0d8-82ec6cec99af"/>
+				<staticText>
+					<reportElement x="40" y="11" width="290" height="20" forecolor="#030000" uuid="694aca1b-3562-439d-8306-0d3b06ce3285"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Jellyfin Genres Full Report]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="572" y="0" width="228" height="15" forecolor="#191EA8" uuid="350294c6-424b-4d4e-b6e2-48fcddeeb3fc">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Jellyfin Easy Metadata Manager]]></text>
+				</staticText>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="612" y="36" width="188" height="13" forecolor="#757575" uuid="ebcfae1b-dd33-4628-a743-88efebce103e"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<image>
+					<reportElement x="-1" y="9" width="40" height="40" uuid="7713f127-b835-4853-a5fa-d9f5b3d6b1b0"/>
+					<imageExpression><![CDATA["https://features.jellyfin.org/images/logos/a7Lx9nYDzWuDR94Az8Yum7neWMvNMndkm9qr4QVtmjaMrOHDLisS5K7LJctTRzK9-icon-transparent.png?size=100"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="40" y="31" width="178" height="18" uuid="5f4fba70-e6c6-4f55-b610-983c942d7357"/>
+					<textElement textAlignment="Left">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{INSTANCE_URL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="700" y="16" width="100" height="14" uuid="29c7a579-5950-4e24-84bc-cdf8a6706fe8"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{JEMM_VERSION}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="60" width="800" height="4" forecolor="#595656" backcolor="#C7C7C7" uuid="514eb603-96e5-4115-910d-7ff1a99544e3"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineColor="#595656"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="10" uuid="d460df50-0470-45ff-8d5b-e3756352d146">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca7be63b-6ab1-461b-bf67-abeec7d3438f"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genre Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="70" height="10" uuid="c811fb83-7a9e-4a9d-9dd5-bc81b454c0ce">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d530d75-52b3-420c-9654-3675db54e034"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Premiere Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="70" height="10" uuid="64af34cb-616f-49c8-a1db-e40c8bf4740c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ada7e631-738e-4272-828d-1077f6d763a4"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Official Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="71" height="10" uuid="013d9e46-4804-4bd6-801e-6be7cfc39635">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Critic Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="368" height="10" uuid="d6028c2b-db1d-438c-aa14-1f469aa516e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23f162e0-221c-4371-89ab-40c7b6a780a6"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tags]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="71" height="10" uuid="1179f490-50f3-423f-b80e-c06764e0fadc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genre Items]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="11" width="800" height="1" forecolor="#C4C4C4" uuid="29b60398-2b8b-44f6-9a99-c0ed9e308b2f"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="150" height="10" uuid="e4a59ff1-86b2-4ab8-9697-9e3521479a37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c613494-bba9-4344-8350-867c9636106e"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="70" height="10" uuid="587a3d2a-60e2-414f-9a31-d1b50e9f2c45">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8d1a64fd-7825-4a8b-89f5-c6d3abd26b3c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{premiereDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="70" height="10" uuid="60af3d10-4adc-4a10-a3fd-6fb14e055605">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="098ae8a1-c41f-405c-a957-41445ff5425b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{officialRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="70" height="10" uuid="ec349759-1ea7-4f6a-a4b5-ea45ae16b251">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f7256ba8-e5a7-4c38-a812-55535b769a2b"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{criticRating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="70" height="10" uuid="9f291696-6326-4d99-9247-95482555a43b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6043f808-070f-4fda-aab0-86125fde294f"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{genreMetadata.childcount}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="10" y="14" width="772" height="15" uuid="41e783f7-7bc9-4795-b52f-3d87f97869e8"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{genreEpisodes})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_JASPER_FILE}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="12" uuid="0ba3a38d-9dbb-43c8-b111-aaf654146f0d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genres subtotal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="12" width="140" height="10" uuid="5ced4f4b-5ef9-4fbc-9979-b9b1b6e39f57">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL_FOLDERITEMS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

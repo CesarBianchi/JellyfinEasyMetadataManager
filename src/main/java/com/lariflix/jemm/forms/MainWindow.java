@@ -11,7 +11,6 @@ import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
-import com.lariflix.jemm.reports.JellyfinReportInventory;
 import com.lariflix.jemm.reports.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
@@ -33,7 +32,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
-import net.sf.jasperreports.engine.JRException;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -1134,7 +1132,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu4.setText("Inventory");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("Basic");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1143,7 +1141,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setText("Full");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1156,6 +1154,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu5.setText("Genres");
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem6.setText("Basic");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1164,7 +1163,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem6);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem7.setText("Full");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenu2.add(jMenu5);
@@ -1442,6 +1447,19 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // Genres Full Report Menu Item
+        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        
+        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_FULL,instanceData);
+        reportEng.start();
+        
+        while (!reportEng.isDone()){
+            waitWindow.showDialogWithTimmer(20000);
+        }
+
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     
     /**
      * @param args the command line arguments

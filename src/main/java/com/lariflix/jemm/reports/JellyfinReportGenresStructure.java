@@ -27,7 +27,7 @@ public class JellyfinReportGenresStructure extends ArrayList<JellyfinReportGenre
    
     private ArrayList<JellyfinReportGenresItem> items = new ArrayList();
  
-      public JellyfinReportGenresStructure() {
+    public JellyfinReportGenresStructure() {
     }
 
     public ArrayList<JellyfinReportGenresItem> getItems() {
@@ -36,6 +36,7 @@ public class JellyfinReportGenresStructure extends ArrayList<JellyfinReportGenre
 
     public void setItems(ArrayList<JellyfinReportGenresItem> items) {
         this.items = items;
+        
     }
     
 }
