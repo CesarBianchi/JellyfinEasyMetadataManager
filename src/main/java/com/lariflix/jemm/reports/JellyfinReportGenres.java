@@ -17,11 +17,16 @@
  */
 package com.lariflix.jemm.reports;
 
+import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadGenres;
 import com.lariflix.jemm.core.LoadItemMetadata;
+import com.lariflix.jemm.core.LoadItems;
 import com.lariflix.jemm.dtos.JellyfinCadGenresItems;
+import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
+import com.lariflix.jemm.dtos.JellyfinItems;
 import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import static com.lariflix.jemm.reports.JellyfinReportInventory.instanceData;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -29,8 +34,11 @@ import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -50,6 +58,7 @@ public class JellyfinReportGenres {
     
     static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();    
     private JellyfinReportGenresStructure items = new JellyfinReportGenresStructure();
+    private ArrayList<JellyfinItem> nonOrdenedEpisodes = new ArrayList();
     private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
@@ -62,17 +71,15 @@ public class JellyfinReportGenres {
         this.reportType = rpType;
     }
     
-    public void  loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
+    public void loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
         
         switch(reportType) {
             case GENRES_BASIC:
                 this.loadItems();
-                //this.loadSubItems();
                 break;
             case GENRES_FULL:
                 this.loadItems();
-                //this.loadSubItems();
-                //this.loadSubItemsMetadata();
+                this.loadEpisodes();
                 break;
         }
     }
@@ -103,6 +110,64 @@ public class JellyfinReportGenres {
         }
         
         items.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+    }
+    
+    private void loadEpisodes() {
+        
+        //1* Get All Folders
+        LoadFolders loadItems = new LoadFolders();
+        loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+        loadItems.setApiToken(instanceData.getCredentials().getTokenAPI());
+        loadItems.setcUserAdminID(instanceData.adminUser.getId());        
+        JellyfinFolders folders;
+        try {
+            folders = loadItems.requestFolders();
+            
+            //2* Get All Itens for each folder
+            LoadItems loadSubItems = new LoadItems();
+            loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+            loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
+            loadSubItems.setcUserAdminID(instanceData.adminUser.getId());        
+            
+            for (int nI = 0; nI< folders.getItems().size(); nI++){            
+                loadSubItems.setcParentID(folders.getItems().get(nI).getId());                            
+                JellyfinItems subItems = loadSubItems.requestItems();                
+                
+                for (int nJ = 0; nJ < subItems.getItems().size(); nJ++){                    
+                    nonOrdenedEpisodes.add(subItems.getItems().get(nJ));
+                }
+            }
+            
+            //3* For each episode, Get the metadata and check if the genre episode is the same of genres-item
+            LoadItemMetadata loadEpisodeMetadata = new LoadItemMetadata();
+            loadEpisodeMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+            loadEpisodeMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
+            loadEpisodeMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
+            for (int nI = 0; nI < this.items.size(); nI++){
+            
+                //for (int nJ = 0; nJ < 10; nJ++){
+                for (int nJ = 0; nJ < nonOrdenedEpisodes.size(); nJ++){
+                    
+                    loadEpisodeMetadata.setcItemID(nonOrdenedEpisodes.get(nJ).getId());                
+                    JellyfinItemMetadata genreItemMetadata = loadEpisodeMetadata.requestItemMetadata();                            
+                    for (int nK = 0; nK < genreItemMetadata.getGenreItems().size(); nK++){
+                    
+                        if (genreItemMetadata.getGenreItems().get(nK).getId().equals(this.getItems().get(nI).getId())){
+                            
+                            this.items.get(nI).addGenreEpisode(nonOrdenedEpisodes.get(nJ),genreItemMetadata);
+                        }                        
+                    }
+                }
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
     }
     
     public void printReport() throws JRException, MalformedURLException, IOException {
@@ -170,7 +235,7 @@ public class JellyfinReportGenres {
                 
         }       
 
-        //Set report Data Source (From jellyfinReportGenresItem List)
+        //Set report Data Source
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(this.getItems());
 
         //Set Report Parameters
@@ -194,6 +259,8 @@ public class JellyfinReportGenres {
     public JellyfinReportGenresStructure getItems() {
         return items;
     }
+
+    
     
     
     
