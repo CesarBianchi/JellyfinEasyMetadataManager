@@ -17,15 +17,18 @@
  */
 package com.lariflix.jemm.reports;
 
+import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadItemMetadata;
+import com.lariflix.jemm.core.LoadItems;
 import com.lariflix.jemm.core.LoadPeople;
 import com.lariflix.jemm.dtos.JellyfinCadPeopleItems;
+import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
+import com.lariflix.jemm.dtos.JellyfinItems;
+import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import static com.lariflix.jemm.reports.JellyfinReportPeople.instanceData;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_BASIC;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
@@ -34,6 +37,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -108,7 +113,61 @@ public class JellyfinReportPeople {
     }
 
     private void loadEpisodes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        //1* Get All Folders
+        LoadFolders loadItems = new LoadFolders();
+        loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+        loadItems.setApiToken(instanceData.getCredentials().getTokenAPI());
+        loadItems.setcUserAdminID(instanceData.adminUser.getId());        
+        JellyfinFolders folders;
+        try {
+            folders = loadItems.requestFolders();
+            
+            //2* Get All Itens for each folder
+            LoadItems loadSubItems = new LoadItems();
+            loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+            loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
+            loadSubItems.setcUserAdminID(instanceData.adminUser.getId());        
+            
+            for (int nI = 0; nI< folders.getItems().size(); nI++){            
+                loadSubItems.setcParentID(folders.getItems().get(nI).getId());                            
+                JellyfinItems subItems = loadSubItems.requestItems();                
+                
+                for (int nJ = 0; nJ < subItems.getItems().size(); nJ++){                    
+                    nonOrdenedEpisodes.add(subItems.getItems().get(nJ));
+                }
+            }
+            
+            //3* For each episode, Get the metadata and check if the people episode is the same of people-item
+            LoadItemMetadata loadEpisodeMetadata = new LoadItemMetadata();
+            loadEpisodeMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
+            loadEpisodeMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
+            loadEpisodeMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
+            for (int nI = 0; nI < this.items.size(); nI++){
+            
+                //for (int nJ = 0; nJ < 10; nJ++){
+                for (int nJ = 0; nJ < nonOrdenedEpisodes.size(); nJ++){
+                    
+                    loadEpisodeMetadata.setcItemID(nonOrdenedEpisodes.get(nJ).getId());                
+                    JellyfinItemMetadata episodeMetadata = loadEpisodeMetadata.requestItemMetadata();
+                    
+                    
+                    for (int nK = 0; nK < episodeMetadata.getPeople().size(); nK++){
+                    
+                        if (episodeMetadata.getPeople().get(nK).getId().equals(this.getItems().get(nI).getId())){
+                            
+                            this.items.get(nI).addPeopleEpisode(nonOrdenedEpisodes.get(nJ),episodeMetadata);
+                        }                        
+                    }
+                }
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     public void printReport() throws JRException, MalformedURLException, IOException {
