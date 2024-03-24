@@ -19,6 +19,7 @@ package com.lariflix.jemm.reports;
 
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_BASIC;
+import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_FULL;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
 import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
 import java.io.IOException;
@@ -63,7 +64,15 @@ public class JellyfinReportEngine extends Thread {
                 case GENRES_FULL:
                     printGenresReport();                    
                     isDone = true;
-                    break;        
+                    break;
+                case PEOPLE_BASIC:
+                    printPeopleReport();                    
+                    isDone = true;
+                    break;  
+                case PEOPLE_FULL:
+                    printPeopleReport();                    
+                    isDone = true;
+                    break;  
             }
             notify();
         }
@@ -107,6 +116,21 @@ public class JellyfinReportEngine extends Thread {
     private void printGenresReport(){
 
         JellyfinReportGenres fullReport = new JellyfinReportGenres(this.getInstanceData(),this.getReportType());
+        try {
+            fullReport.loadReportItems();
+            fullReport.printReport();
+        } catch (IOException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void printPeopleReport(){
+
+        JellyfinReportPeople fullReport = new JellyfinReportPeople(this.getInstanceData(),this.getReportType());
         try {
             fullReport.loadReportItems();
             fullReport.printReport();

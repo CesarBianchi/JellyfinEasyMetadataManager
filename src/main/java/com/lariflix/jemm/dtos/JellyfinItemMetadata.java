@@ -98,9 +98,10 @@ public class JellyfinItemMetadata {
     @JsonProperty("LockData") 
     public boolean lockData;    
     @JsonProperty("ChildCount") 
-    public String childcount;
+    public String childcount;    
+    @JsonProperty("ProductionLocations") 
+    public ArrayList<String> productionlocations;
     
-
 
     /**
      * Default constructor.
@@ -996,6 +997,15 @@ public class JellyfinItemMetadata {
     public void setChildcount(String childcount) {
         this.childcount = childcount;
     }
+
+    public ArrayList<String> getProductionlocations() {
+        return productionlocations;
+    }
+
+    public void setProductionlocations(ArrayList<String> productionlocations) {
+        this.productionlocations = productionlocations;
+    }
+
 
     
 }
