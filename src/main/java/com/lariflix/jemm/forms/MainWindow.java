@@ -1177,9 +1177,16 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu6.setText("People");
         jMenu6.setToolTipText("");
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem8.setText("Basic");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem8);
 
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem9.setText("Full");
         jMenu6.add(jMenuItem9);
 
@@ -1460,6 +1467,18 @@ public class MainWindow extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // People Basic Report Menu Item
+        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        
+        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_BASIC,instanceData);
+        reportEng.start();
+        
+        while (!reportEng.isDone()){
+            waitWindow.showDialogWithTimmer(3000);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
     
     /**
      * @param args the command line arguments
