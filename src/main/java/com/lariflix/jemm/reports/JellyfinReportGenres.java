@@ -17,6 +17,7 @@
  */
 package com.lariflix.jemm.reports;
 
+import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadGenres;
 import com.lariflix.jemm.core.LoadItemMetadata;

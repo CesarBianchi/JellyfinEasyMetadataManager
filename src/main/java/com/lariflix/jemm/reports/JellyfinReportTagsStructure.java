@@ -1,4 +1,3 @@
-package com.lariflix.jemm.reports;
 /*
  * Copyright (C) 2024 cesarbianchi
  *
@@ -16,7 +15,7 @@ package com.lariflix.jemm.reports;
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+package com.lariflix.jemm.reports;
 
 import java.util.ArrayList;
 
@@ -24,21 +23,6 @@ import java.util.ArrayList;
  *
  * @author cesarbianchi
  */
-public class JellyfinReportInventoryStructure extends ArrayList<JellyfinReportInventoryItem>  {
-    /*
-    private ArrayList<JellyfinReportInventoryItem> items = new ArrayList();
-
-    public JellyfinReportInventoryStructure() {
-    }
-
-    public ArrayList<JellyfinReportInventoryItem> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<JellyfinReportInventoryItem> items) {
-        this.items = items;
-    }
-    */
-    
+public class JellyfinReportTagsStructure extends ArrayList<String>{
     
 }

@@ -11,7 +11,7 @@ import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
-import com.lariflix.jemm.reports.JellyfinReportTypes;
+import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Component;
@@ -1199,9 +1199,16 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu7.setText("Tags");
 
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem10.setText("Basic");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem10);
 
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_8, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem11.setText("Full");
         jMenu7.add(jMenuItem11);
 
@@ -1209,6 +1216,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu8.setText("Year");
 
+        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_9, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem13.setText("Full");
         jMenu8.add(jMenuItem13);
 
@@ -1486,7 +1494,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // People Basic Report Menu Item
+        // People Full Report Menu Item
         WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_FULL,instanceData);
@@ -1496,6 +1504,18 @@ public class MainWindow extends javax.swing.JFrame {
             waitWindow.showDialogWithTimmer(20000);
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // Tags Basic Report Menu Item
+        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        
+        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_BASIC,instanceData);
+        reportEng.start();
+        
+        while (!reportEng.isDone()){
+            waitWindow.showDialogWithTimmer(10000);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
     
     /**
      * @param args the command line arguments
