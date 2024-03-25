@@ -17,19 +17,19 @@
  */
 package com.lariflix.jemm.reports;
 
-import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadItemMetadata;
 import com.lariflix.jemm.core.LoadItems;
-import com.lariflix.jemm.core.LoadPeople;
-import com.lariflix.jemm.dtos.JellyfinCadPeopleItems;
 import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
-import static com.lariflix.jemm.reports.JellyfinReportPeople.instanceData;
+import static com.lariflix.jemm.reports.JellyfinReportTags.instanceData;
+import com.lariflix.jemm.utils.JellyfinReportTypes;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_BASIC;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
@@ -55,65 +55,37 @@ import org.json.simple.parser.ParseException;
  *
  * @author cesarbianchi
  */
-public class JellyfinReportPeople {
+public class JellyfinReportTags {
 
     static JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();    
-    private JellyfinReportPeopleStructure items = new JellyfinReportPeopleStructure();
+    private JellyfinReportTagsStructure items = new JellyfinReportTagsStructure();
     private ArrayList<JellyfinItem> nonOrdenedEpisodes = new ArrayList();
+    private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
-    public JellyfinReportPeople(JellyfinReportTypes rpType) {
+    public JellyfinReportTags(JellyfinReportTypes rpType) {
         this.reportType = rpType;
     }
 
-    public JellyfinReportPeople(JellyfinInstanceDetails instanceData, JellyfinReportTypes rpType) {
-        JellyfinReportPeople.instanceData = instanceData;
+    public JellyfinReportTags(JellyfinInstanceDetails instanceData, JellyfinReportTypes rpType) {
+        JellyfinReportTags.instanceData = instanceData;
         this.reportType = rpType;
     }
     
     public void loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
         
         switch(reportType) {
-            case PEOPLE_BASIC:
+            case GENRES_BASIC:
                 this.loadItems();
                 break;
-            case PEOPLE_FULL:
+            case GENRES_FULL:
                 this.loadItems();
                 this.loadEpisodes();
                 break;
         }
     }
-    
-    private void loadItems() throws IOException, MalformedURLException, ParseException{
-        
-        LoadPeople loadPeople = new LoadPeople();
-        loadPeople.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
-        loadPeople.setApiToken(instanceData.getCredentials().getTokenAPI());
-        loadPeople.setcUserAdminID(instanceData.adminUser.getId());        
-        JellyfinCadPeopleItems people = loadPeople.requestPeople();
-        
-        
-        for(int nI = 0; nI < people.getTotalRecordCount();nI++){            
-            JellyfinReportPeopleItem item = new JellyfinReportPeopleItem();
-            
-            item.setItem( people.getItems().get(nI) );
-            
-            /*Get People Metadata*/
-            LoadItemMetadata loadPepopleMetadata = new LoadItemMetadata();
-            loadPepopleMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
-            loadPepopleMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
-            loadPepopleMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
-            loadPepopleMetadata.setcItemID(item.getId());                
-            JellyfinItemMetadata peopleMetadata = loadPepopleMetadata.requestItemMetadata();            
-            item.setPeopleMetadata(peopleMetadata);
-            
-            items.add(item);
-        }
-        
-        items.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
-    }
 
-    private void loadEpisodes() {
+    private void loadItems() {
         
         //1* Get All Folders
         LoadFolders loadItems = new LoadFolders();
@@ -128,8 +100,7 @@ public class JellyfinReportPeople {
             LoadItems loadSubItems = new LoadItems();
             loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
             loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
-            loadSubItems.setcUserAdminID(instanceData.adminUser.getId());        
-            
+            loadSubItems.setcUserAdminID(instanceData.adminUser.getId());
             for (int nI = 0; nI< folders.getItems().size(); nI++){            
                 loadSubItems.setcParentID(folders.getItems().get(nI).getId());                            
                 JellyfinItems subItems = loadSubItems.requestItems();                
@@ -139,7 +110,7 @@ public class JellyfinReportPeople {
                 }
             }
             
-            //3* For each episode, Get the metadata and check if the people episode is the same of people-item
+            //3* For each episode, Get the metadata
             LoadItemMetadata loadEpisodeMetadata = new LoadItemMetadata();
             loadEpisodeMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
             loadEpisodeMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
@@ -150,25 +121,41 @@ public class JellyfinReportPeople {
                 for (int nJ = 0; nJ < nonOrdenedEpisodes.size(); nJ++){
                     
                     loadEpisodeMetadata.setcItemID(nonOrdenedEpisodes.get(nJ).getId());                
-                    JellyfinItemMetadata episodeMetadata = loadEpisodeMetadata.requestItemMetadata();
+                    JellyfinItemMetadata episodeItemMetadata = loadEpisodeMetadata.requestItemMetadata();                                                
                     
-                    
-                    for (int nK = 0; nK < episodeMetadata.getPeople().size(); nK++){
-                    
-                        if (episodeMetadata.getPeople().get(nK).getId().equals(this.getItems().get(nI).getId())){
-                            
-                            this.items.get(nI).addPeopleEpisode(nonOrdenedEpisodes.get(nJ),episodeMetadata);
-                        }                        
+                    //4* For each Tag, add in TagItems
+                    for (int nK = 0; nK < episodeItemMetadata.getTags().size(); nK++){
+                        
+                        //Check if the tag has already added
+                        String tag = episodeItemMetadata.getTags().get(nK);
+                        boolean added = false;
+                        
+                        for (int nL = 0; nL < this.items.size() ; nL++){
+                            String tempTag = this.items.get(nL);
+                            if (tempTag.equals(tag)){
+                                added = true;
+                                break;                                
+                            }
+                        }
+                        
+                        if (!added){
+                            this.items.add(tag);
+                        }
+                        
                     }
                 }
             }
+            
             
         } catch (IOException ex) {
             Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+
+    private void loadEpisodes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     public void printReport() throws JRException, MalformedURLException, IOException {
@@ -186,48 +173,48 @@ public class JellyfinReportPeople {
         String tempFilesPath = System.getProperty("java.io.tmpdir");
         
         switch(reportType) {
-            case PEOPLE_BASIC:
+            case TAGS_BASIC:
                 
                 if(instanceData.isDebug()){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");                    
-                    jrxmlFile = localReportBasePath.concat("/InstancePeopleBasic/JemmInstancePeopleBasic.jrxml");       
+                    jrxmlFile = localReportBasePath.concat("/InstanceTagsBasic/JemmInstanceTagsBasic.jrxml");       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
                 } else {
                     //EMBEBED WAY
-                    jrxmlFile = resorceReportBasePath.concat("/InstancePeopleBasic/JemmInstancePeopleBasic.jrxml");
+                    jrxmlFile = resorceReportBasePath.concat("/InstanceTagsBasic/JemmInstanceTagsBasic.jrxml");
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
                 }
                 break;
             
-            case PEOPLE_FULL:
+            case TAGS_FULL:
             
                 if(instanceData.isDebug() ){                    
                     //DEBUG WAY
                     System.out.println("This Application is running on Netbeans, in DEBUG MODE");   
-                    jrxmlFile = localReportBasePath.concat("/InstancePeopleFull/JemmInstancePeopleFull.jrxml");       
+                    jrxmlFile = localReportBasePath.concat("/InstanceTagsFull/JemmInstanceTagsFull.jrxml");       
                     draw = JRXmlLoader.load( jrxmlFile );
                     report =  JasperCompileManager.compileReport( draw );
                     
                     
-                    jrxmlSubRepFile = localReportBasePath.concat("/InstancePeopleFull/JemmInstancePeopleFullSubItems.jrxml");       
+                    jrxmlSubRepFile = localReportBasePath.concat("/InstanceTagsFull/JemmInstanceTagsFullSubItems.jrxml");       
                     drawSub = JRXmlLoader.load( jrxmlFile );
                     subreport = JasperCompileManager.compileReport( drawSub );
                     
                     //Use a localfile subreport
-                    JasperCompileManager.compileReportToFile(jrxmlSubRepFile,tempFilesPath.concat("JemmInstancePeopleFullSubItems.jasper"));
+                    JasperCompileManager.compileReportToFile(jrxmlSubRepFile,tempFilesPath.concat("JemmInstanceTagsFullSubItems.jasper"));
                 } else {
                     //EMBEBED WAY
-                    jrxmlFile = resorceReportBasePath.concat("/InstancePeopleFull/JemmInstancePeopleFull.jrxml");
+                    jrxmlFile = resorceReportBasePath.concat("/InstanceTagsFull/JemmInstanceTagsFull.jrxml");
                     InputStream drawIS = getClass().getResourceAsStream(jrxmlFile);
                     report =  JasperCompileManager.compileReport( drawIS );
                     
                     //Extract subreport from resource to a localfile                    
-                    jrxmlSubRepFile =  resorceReportBasePath.concat("/InstancePeopleFull/JemmInstancePeopleFullSubItems.jrxml");                    
-                    if (commonFunctions.extractFileFromJar(jrxmlSubRepFile, "JemmInstancePeopleFullSubItems.jrxml") ){
-                        JasperCompileManager.compileReportToFile(tempFilesPath.concat("JemmInstancePeopleFullSubItems.jrxml"),tempFilesPath.concat("JemmInstancePeopleFullSubItems.jasper"));                    
+                    jrxmlSubRepFile =  resorceReportBasePath.concat("/InstanceTagsFull/JemmInstanceTagsFullSubItems.jrxml");                    
+                    if (commonFunctions.extractFileFromJar(jrxmlSubRepFile, "JemmInstanceTagsFullSubItems.jrxml") ){
+                        JasperCompileManager.compileReportToFile(tempFilesPath.concat("JemmInstanceTagsFullSubItems.jrxml"),tempFilesPath.concat("JemmInstanceTagsFullSubItems.jasper"));                    
                     }
                 }
                 
@@ -244,20 +231,20 @@ public class JellyfinReportPeople {
         reportParameters.put("INSTANCE_URL",instanceData.getCredentials().getBaseURL());
         reportParameters.put("JEMM_VERSION",new JemmVersion().getVersion() );
         reportParameters.put("TOTAL_FOLDERITEMS",Integer.toString(this.items.size()));
-        //reportParameters.put("TOTAL_CONTENT",Integer.toString(this.totalsubItems));
-        reportParameters.put("SUBREPORT_JASPER_FILE",tempFilesPath.concat("JemmInstancePeopleFullSubItems.jasper"));
+        reportParameters.put("TOTAL_CONTENT",Integer.toString(this.totalsubItems));
+        reportParameters.put("SUBREPORT_JASPER_FILE",tempFilesPath.concat("JemmInstanceTagsFullSubItems.jasper"));
         
         //Paint Report
         JasperPrint paintedReport = JasperFillManager.fillReport( report , reportParameters,  dataSource);
         
         //Show Report
         JasperViewer viewer = new JasperViewer( paintedReport , false );
-        viewer.setTitle("Jellyfin Easy Metadata Manager - People Report");
+        viewer.setTitle("Jellyfin Easy Metadata Manager - Tags Report");
         viewer.show();
        
     }
-    
-    public JellyfinReportPeopleStructure getItems() {
+
+    public JellyfinReportTagsStructure getItems() {
         return items;
     }
     

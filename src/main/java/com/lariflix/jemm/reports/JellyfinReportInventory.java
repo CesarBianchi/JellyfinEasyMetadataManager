@@ -19,6 +19,7 @@ package com.lariflix.jemm.reports;
 
 
 
+import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.core.LoadFolders;
 import com.lariflix.jemm.core.LoadItemMetadata;
 import com.lariflix.jemm.core.LoadItems;
@@ -26,8 +27,8 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_BASIC;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.net.MalformedURLException;

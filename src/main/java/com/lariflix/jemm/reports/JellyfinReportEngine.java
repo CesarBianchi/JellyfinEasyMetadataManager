@@ -17,11 +17,14 @@
  */
 package com.lariflix.jemm.reports;
 
+import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_BASIC;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.GENRES_FULL;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_BASIC;
-import static com.lariflix.jemm.reports.JellyfinReportTypes.INVENTORY_FULL;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_BASIC;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_FULL;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_BASIC;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_FULL;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.PEOPLE_BASIC;
+import static com.lariflix.jemm.utils.JellyfinReportTypes.PEOPLE_FULL;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,6 +74,14 @@ public class JellyfinReportEngine extends Thread {
                     break;  
                 case PEOPLE_FULL:
                     printPeopleReport();                    
+                    isDone = true;
+                    break;
+                case TAGS_BASIC:
+                    printTagsReport();                    
+                    isDone = true;
+                    break;  
+                case TAGS_FULL:
+                    printTagsReport();                    
                     isDone = true;
                     break;  
             }
@@ -131,6 +142,21 @@ public class JellyfinReportEngine extends Thread {
     private void printPeopleReport(){
 
         JellyfinReportPeople fullReport = new JellyfinReportPeople(this.getInstanceData(),this.getReportType());
+        try {
+            fullReport.loadReportItems();
+            fullReport.printReport();
+        } catch (IOException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(JellyfinReportEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void printTagsReport(){
+
+        JellyfinReportTags fullReport = new JellyfinReportTags(this.getInstanceData(),this.getReportType());
         try {
             fullReport.loadReportItems();
             fullReport.printReport();
