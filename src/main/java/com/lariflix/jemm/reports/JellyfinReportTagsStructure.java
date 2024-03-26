@@ -23,6 +23,9 @@ import java.util.ArrayList;
  *
  * @author cesarbianchi
  */
-public class JellyfinReportTagsStructure extends ArrayList<String>{
-    
+public class JellyfinReportTagsStructure extends ArrayList<JellyfinReportTagsItem> {
+ 
+    public JellyfinReportTagsStructure(){
+        
+    }
 }

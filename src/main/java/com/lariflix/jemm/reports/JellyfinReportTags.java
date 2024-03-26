@@ -25,7 +25,6 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import static com.lariflix.jemm.reports.JellyfinReportTags.instanceData;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_BASIC;
@@ -75,12 +74,11 @@ public class JellyfinReportTags {
     public void loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
         
         switch(reportType) {
-            case GENRES_BASIC:
+            case TAGS_BASIC:
                 this.loadItems();
                 break;
-            case GENRES_FULL:
+            case TAGS_FULL:
                 this.loadItems();
-                this.loadEpisodes();
                 break;
         }
     }
@@ -110,54 +108,66 @@ public class JellyfinReportTags {
                 }
             }
             
-            //3* For each episode, Get the metadata
+            //3* For each episode, Get the ItemMetadata
             LoadItemMetadata loadEpisodeMetadata = new LoadItemMetadata();
             loadEpisodeMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
             loadEpisodeMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
             loadEpisodeMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
-            for (int nI = 0; nI < this.items.size(); nI++){
             
-                //for (int nJ = 0; nJ < 10; nJ++){
-                for (int nJ = 0; nJ < nonOrdenedEpisodes.size(); nJ++){
-                    
-                    loadEpisodeMetadata.setcItemID(nonOrdenedEpisodes.get(nJ).getId());                
-                    JellyfinItemMetadata episodeItemMetadata = loadEpisodeMetadata.requestItemMetadata();                                                
-                    
-                    //4* For each Tag, add in TagItems
-                    for (int nK = 0; nK < episodeItemMetadata.getTags().size(); nK++){
-                        
-                        //Check if the tag has already added
-                        String tag = episodeItemMetadata.getTags().get(nK);
-                        boolean added = false;
-                        
-                        for (int nL = 0; nL < this.items.size() ; nL++){
-                            String tempTag = this.items.get(nL);
-                            if (tempTag.equals(tag)){
-                                added = true;
-                                break;                                
-                            }
+            //for (int nJ = 0; nJ < 10; nJ++){
+            for (int nJ = 0; nJ < nonOrdenedEpisodes.size(); nJ++){
+
+                loadEpisodeMetadata.setcItemID(nonOrdenedEpisodes.get(nJ).getId());                
+                JellyfinItemMetadata episodeItemMetadata = loadEpisodeMetadata.requestItemMetadata();                                                
+                nonOrdenedEpisodes.get(nJ).setItemMetadata(episodeItemMetadata);
+                
+                //4* add the itemTag to TagList
+                for (int nK = 0; nK < episodeItemMetadata.getTags().size(); nK++){
+
+                    //Check if the tag has already added before
+                    String tag = episodeItemMetadata.getTags().get(nK);
+                    boolean added = false;
+
+                    for (int nI = 0; nI < this.items.size() ; nI++){
+                        String tempTag = this.items.get(nI).getTagName();
+                        if (tempTag.equals(tag)){
+                            added = true;
+
+                            //add the Episode as TagSubItem
+                            JellyfinReportInventorySubItem episode = new JellyfinReportInventorySubItem();
+                            episode.setSubItem(nonOrdenedEpisodes.get(nJ));                           
+                            episode.setSubItemMetadata(nonOrdenedEpisodes.get(nJ).getItemMetadata());
+                            
+                            this.items.get(nI).addTagEpisode(episode);
+
+                            break;                                
                         }
-                        
-                        if (!added){
-                            this.items.add(tag);
-                        }
-                        
                     }
+
+                    if (!added){
+                        JellyfinReportInventorySubItem episode = new JellyfinReportInventorySubItem();
+                        episode.setSubItem(nonOrdenedEpisodes.get(nJ));                                
+                        episode.setSubItemMetadata(nonOrdenedEpisodes.get(nJ).getItemMetadata());
+                        JellyfinReportTagsItem newTag = new JellyfinReportTagsItem();
+                        newTag.setTagName(tag);
+                        newTag.addTagEpisode(episode);
+
+                        this.items.add(newTag);
+                    }
+
                 }
             }
-            
             
         } catch (IOException ex) {
             Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        items.sort((o1, o2) -> o1.getTagName().toUpperCase().compareTo(o2.getTagName().toUpperCase()));
+        
     }
 
-    private void loadEpisodes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     public void printReport() throws JRException, MalformedURLException, IOException {
         String localReportBasePath = new JellyfinUtilFunctions().getJRXMLLocalPath();
         String resorceReportBasePath =  new  JellyfinUtilFunctions().getJRXMLResourcePath();
@@ -247,5 +257,7 @@ public class JellyfinReportTags {
     public JellyfinReportTagsStructure getItems() {
         return items;
     }
+
+
     
 }

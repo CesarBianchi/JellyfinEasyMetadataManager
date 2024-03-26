@@ -24,7 +24,12 @@ import java.util.ArrayList;
  * @author cesarbianchi
  */
 public class JellyfinReportGenresStructure extends ArrayList<JellyfinReportGenresItem>{
-   /*
+   
+    public JellyfinReportGenresStructure(){
+        
+    }
+    
+    /*
     private ArrayList<JellyfinReportGenresItem> items = new ArrayList();
  
     public JellyfinReportGenresStructure() {
