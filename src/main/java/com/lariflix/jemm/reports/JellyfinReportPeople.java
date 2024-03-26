@@ -110,7 +110,7 @@ public class JellyfinReportPeople {
             items.add(item);
         }
         
-        items.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+        items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
     }
 
     private void loadEpisodes() {

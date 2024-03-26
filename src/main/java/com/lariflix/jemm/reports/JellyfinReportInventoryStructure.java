@@ -25,6 +25,11 @@ import java.util.ArrayList;
  * @author cesarbianchi
  */
 public class JellyfinReportInventoryStructure extends ArrayList<JellyfinReportInventoryItem>  {
+    
+    public JellyfinReportInventoryStructure(){
+        
+    }
+    
     /*
     private ArrayList<JellyfinReportInventoryItem> items = new ArrayList();
 

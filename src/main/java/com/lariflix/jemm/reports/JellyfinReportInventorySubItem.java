@@ -47,7 +47,7 @@ public class JellyfinReportInventorySubItem extends JellyfinItem{
         this.setType(subIt.getType());
         this.setVideoType(subIt.getVideoType());
     }
-
+   
     public void setSubItemMetadata(JellyfinItemMetadata subItemMetadata) {
         this.subItemMetadata = subItemMetadata;
     }

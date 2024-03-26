@@ -85,7 +85,6 @@ com/lariflix/jemm/forms/AddPeopleWindow.class
 com/lariflix/jemm/forms/MainWindow$50.class
 com/lariflix/jemm/forms/MainWindow$46.class
 com/lariflix/jemm/forms/MainWindow$36.class
-com/lariflix/jemm/reports/JellyfinReportTypes.class
 com/lariflix/jemm/forms/MainWindow$30.class
 com/lariflix/jemm/dtos/JellyfinUser.class
 com/lariflix/jemm/forms/MainWindow$20.class
@@ -98,6 +97,7 @@ com/lariflix/jemm/forms/MainWindow$23.class
 com/lariflix/jemm/forms/AddGenrePanel$7.class
 com/lariflix/jemm/forms/MainWindow$49.class
 com/lariflix/jemm/dtos/JellyfinItems.class
+com/lariflix/jemm/reports/JellyfinReportTagsStructure.class
 com/lariflix/jemm/forms/AddStudioPanel$2.class
 com/lariflix/jemm/forms/MainWindow$29.class
 com/lariflix/jemm/forms/MainWindow$26.class
@@ -124,8 +124,10 @@ com/lariflix/jemm/forms/MainWindow$1.class
 com/lariflix/jemm/core/ConnectJellyfinAPI.class
 com/lariflix/jemm/reports/JellyfinReportGenres.class
 com/lariflix/jemm/forms/MainWindow$35.class
+com/lariflix/jemm/reports/JellyfinReportTagsItem.class
 com/lariflix/jemm/forms/MainWindow$41.class
 com/lariflix/jemm/forms/MainWindow$25.class
+com/lariflix/jemm/forms/MainWindow$51.class
 com/lariflix/jemm/forms/MainWindow$18.class
 com/lariflix/jemm/forms/AddStudioPanel$10.class
 com/lariflix/jemm/forms/LoginWindow$5.class
@@ -140,11 +142,15 @@ com/lariflix/jemm/forms/MainWindow$24.class
 com/lariflix/jemm/dtos/JellyfinItem.class
 com/lariflix/jemm/forms/AddPeoplePanel$10.class
 com/lariflix/jemm/forms/MainWindow$7.class
+com/lariflix/jemm/forms/MainWindow$52.class
 com/lariflix/jemm/core/LoadGenres.class
 com/lariflix/jemm/forms/MainWindow$19.class
 com/lariflix/jemm/forms/AddStudioPanel$9.class
 com/lariflix/jemm/reports/JellyfinReportPeopleItem.class
 com/lariflix/jemm/forms/AddGenrePanel$2.class
+com/lariflix/jemm/reports/JellyfinReportTags.class
+com/lariflix/jemm/utils/JellyfinReportTypes.class
+com/lariflix/jemm/reports/JellyfinReportTags$1.class
 com/lariflix/jemm/dtos/JellyfinUserConfiguration.class
 com/lariflix/jemm/forms/MainWindow$47.class
 com/lariflix/jemm/forms/AddPeoplePanel$2.class
