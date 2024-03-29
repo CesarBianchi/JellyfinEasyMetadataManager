@@ -27,8 +27,6 @@ import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import static com.lariflix.jemm.reports.JellyfinReportTags.instanceData;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
-import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_BASIC;
-import static com.lariflix.jemm.utils.JellyfinReportTypes.GENRES_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;

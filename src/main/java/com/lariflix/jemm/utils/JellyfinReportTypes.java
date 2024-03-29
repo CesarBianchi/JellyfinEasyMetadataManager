@@ -30,7 +30,9 @@ public enum JellyfinReportTypes {
     PEOPLE_FULL,
     TAGS_BASIC,
     TAGS_FULL,
-    YEARS_FULL;
+    YEARS_FULL,
+    STUDIOS_BASIC,
+    STUDIOS_FULL;
 
     public static void JellyfinReportTypes() {
         
