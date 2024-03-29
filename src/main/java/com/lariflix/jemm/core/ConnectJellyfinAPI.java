@@ -125,6 +125,11 @@ public class ConnectJellyfinAPI {
          
         JellyfinFolders allFolders = loadedallFolders.requestFolders();
         
+        //Set the return by alfabetical order
+        if (allFolders.items != null && allFolders.items.size() > 0){
+            allFolders.items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
+        }
+        
         return allFolders;
     }
     
@@ -177,6 +182,12 @@ public class ConnectJellyfinAPI {
             
             folderItems.getItems().get(nI).setItemMetadata(itemMetadata);
         }
+        
+        //Set the return by alfabetical order
+        if (folderItems.items != null && folderItems.items.size() > 0){
+            folderItems.items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
+        }
+        
         
         return folderItems;
     }
