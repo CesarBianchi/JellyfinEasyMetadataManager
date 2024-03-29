@@ -29,7 +29,6 @@ import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
-import static com.lariflix.jemm.reports.JellyfinReportInventory.instanceData;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
@@ -80,7 +79,7 @@ public class JellyfinReportGenres {
                 break;
             case GENRES_FULL:
                 this.loadItems();
-                this.loadEpisodes();
+                this.loadSubItems();
                 break;
         }
     }
@@ -113,7 +112,7 @@ public class JellyfinReportGenres {
         items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
     }
     
-    private void loadEpisodes() {
+    private void loadSubItems() {
         
         //1* Get All Folders
         LoadFolders loadItems = new LoadFolders();
