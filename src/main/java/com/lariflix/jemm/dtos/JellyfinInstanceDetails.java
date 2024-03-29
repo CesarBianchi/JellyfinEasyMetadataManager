@@ -109,7 +109,7 @@ public class JellyfinInstanceDetails {
      * @since 1.0
      */
     public void setFolders(JellyfinFolders folders) {
-        this.folders = folders;
+        this.folders = folders;   
     }
 
     public boolean isDebug() {

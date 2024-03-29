@@ -146,6 +146,8 @@ public class MainWindow extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -374,6 +376,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton22.setText("Refresh Folders");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        jButton23.setText("Search Folder");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -386,7 +402,11 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -409,7 +429,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -1135,7 +1157,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.setText("Main");
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem12.setText("ReLoad Folders and Itens");
+        jMenuItem12.setText("Refresh Folders and Itens");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -1144,7 +1166,12 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(jMenuItem12);
 
         jMenuItem17.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem17.setText("Find");
+        jMenuItem17.setText("Search Item");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem17);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
@@ -1298,6 +1325,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem4);
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("About JEMM");
         jMenu3.add(jMenuItem3);
 
@@ -1612,7 +1640,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+        this.reloadFolderItems();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
@@ -1650,6 +1678,18 @@ public class MainWindow extends javax.swing.JFrame {
             waitWindow.showDialogWithTimmer(20000);
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        this.reloadFolderItems();
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        this.searchFolderItem();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        this.searchFolderItem();
+    }//GEN-LAST:event_jButton23ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1701,6 +1741,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1825,7 +1867,7 @@ public class MainWindow extends javax.swing.JFrame {
         int nI = 0;
         for (nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
             newFolder = instanceData.getFolders().getItems().get(nI);
-            modelList.addElement(Integer.toString(nI).concat(" - ").concat(newFolder.getName()) );
+            modelList.addElement(Integer.toString(nI+1).concat(" - ").concat(newFolder.getName()) );
         }
         this.selectFirstFolder();
         
@@ -3247,6 +3289,45 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         return lret;
+    }
+    
+    public void reloadFolderItems(){
+        //Reload Folders and Itens button        
+        try {
+            modelList = new DefaultListModel<>();
+            this.loadFolders();
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void searchFolderItem() {
+        String itemName = javax.swing.JOptionPane.showInputDialog("Please, type the folder name to search");
+        String foundItemName = new String();
+        boolean found = false;
+        int foundIndex = 0;
+        if (itemName != null && !itemName.isEmpty()){
+            
+            for (int nI = 0; nI < modelList.size(); nI++){
+                
+                if (modelList.getElementAt(nI).toUpperCase().contains(itemName.toUpperCase())){
+                    found = true;
+                    foundIndex = nI;
+                    foundItemName = modelList.getElementAt(nI);                    
+                    break;
+                }
+            }
+            
+            if (found){
+                javax.swing.JOptionPane.showMessageDialog(rootPane,"Found the item: ".concat(foundItemName), "Item Found!", JOptionPane.INFORMATION_MESSAGE);
+                jList2.setSelectedIndex(foundIndex);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(rootPane,"There's no folders with the name: ".concat(itemName), "No items found!", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
     }
     
 }
