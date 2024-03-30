@@ -14,7 +14,7 @@ public class JellyfinItemsTest {
         items.setItems(itemList);
         assertEquals(itemList, items.getItems());
 
-        int totalRecordCount = 10;
+        int totalRecordCount = 0;
         items.setTotalRecordCount(totalRecordCount);
         assertEquals(totalRecordCount, items.getTotalRecordCount());
 

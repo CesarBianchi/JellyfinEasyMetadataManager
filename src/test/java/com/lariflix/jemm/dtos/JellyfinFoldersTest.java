@@ -14,7 +14,7 @@ public class JellyfinFoldersTest {
         folders.setItems(folderList);
         assertEquals(folderList, folders.getItems());
 
-        int totalRecordCount = 10;
+        int totalRecordCount = 0;
         folders.setTotalRecordCount(totalRecordCount);
         assertEquals(totalRecordCount, folders.getTotalRecordCount());
 

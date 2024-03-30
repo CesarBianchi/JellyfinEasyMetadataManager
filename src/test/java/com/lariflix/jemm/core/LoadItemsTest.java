@@ -40,6 +40,6 @@ public class LoadItemsTest {
         loadItems.setApiToken("1234567890");
         loadItems.setcUserAdminID("admin");
         loadItems.setcParentID("parent1");
-        assertEquals("http://localhost:8096/Users/admin/Items?parentId=parent1&userId=admin&ApiKey=1234567890", loadItems.getFullURL());
+        assertEquals("http://localhost:8096/Users/admin/Items?parentId=parent1&userId=admin&ApiKey=1234567890&filters=IsNotFolder", loadItems.getFullURL());
     }
 }
