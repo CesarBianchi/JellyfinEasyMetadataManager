@@ -20,6 +20,7 @@ public class JellyfinItems {
     public int totalRecordCount;
     @JsonProperty("StartIndex") 
     public int startIndex;
+    
 
     /**
      * Default constructor for JellyfinItems.
@@ -50,6 +51,7 @@ public class JellyfinItems {
      */
     public void setItems(ArrayList<JellyfinItem> items) {
         this.items = items;
+        totalRecordCount = items.size();        
     }
 
     /**
@@ -60,6 +62,7 @@ public class JellyfinItems {
      * @author Cesar Bianchi
      */
     public int getTotalRecordCount() {
+        totalRecordCount = items.size();
         return totalRecordCount;
     }
 

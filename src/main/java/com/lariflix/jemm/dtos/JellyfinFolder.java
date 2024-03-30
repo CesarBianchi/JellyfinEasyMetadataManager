@@ -45,6 +45,8 @@ public class JellyfinFolder {
     public JellyfinFolderMetadata metadata;
     public JellyfinItems folderContent;
     
+    private int folderLevel = 1;
+    
     /**
      * Default constructor for the JellyfinFolder class.
      * 
@@ -380,6 +382,14 @@ public class JellyfinFolder {
      */
     public void setFolderContent(JellyfinItems items) {
         this.folderContent = items;
+    }
+
+    public int getFolderLevel() {
+        return folderLevel;
+    }
+
+    public void setFolderLevel(int folderLevel) {
+        this.folderLevel = folderLevel;
     }
     
     

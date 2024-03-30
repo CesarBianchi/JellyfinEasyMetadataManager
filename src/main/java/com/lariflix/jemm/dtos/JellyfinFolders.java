@@ -48,6 +48,7 @@ public class JellyfinFolders {
      */
     public void setItems(ArrayList<JellyfinFolder> items) {
         this.items = items;
+        totalRecordCount = items.size();
     }
 
     /**
@@ -58,6 +59,7 @@ public class JellyfinFolders {
      * @since 1.0
      */
     public int getTotalRecordCount() {
+        totalRecordCount = items.size();
         return totalRecordCount;
     }
 

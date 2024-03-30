@@ -10,6 +10,7 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinUser;
 import com.lariflix.jemm.dtos.JellyfinUsers;
+import com.lariflix.jemm.utils.JellyfimParameters;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import org.json.simple.parser.ParseException;
@@ -119,16 +120,18 @@ public class ConnectJellyfinAPI {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public JellyfinFolders getFolders() throws IOException, MalformedURLException, ParseException{
+    public JellyfinFolders getFolders(JellyfimParameters typeOfFolders) throws IOException, MalformedURLException, ParseException{
         
-        LoadFolders loadedallFolders = new LoadFolders(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId());
+        LoadFolders loadedallFolders = new LoadFolders(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId(),typeOfFolders);
          
         JellyfinFolders allFolders = loadedallFolders.requestFolders();
         
         //Set the return by alfabetical order
+        //Removed after fix to show SubFolders
+        /*
         if (allFolders.items != null && allFolders.items.size() > 0){
             allFolders.items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
-        }
+        }*/
         
         return allFolders;
     }
@@ -166,8 +169,11 @@ public class ConnectJellyfinAPI {
      */
     public JellyfinItems getItems(String cParentID) throws IOException, MalformedURLException, ParseException{
         
+        JellyfimParameters typeOfItems = JellyfimParameters.JUST_ITEMS;
+        
+        
         //1* - First, request all itens (without Metadata Property)
-        LoadItems loadedallFolders = new LoadItems(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId(),cParentID);
+        LoadItems loadedallFolders = new LoadItems(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId(),cParentID,typeOfItems);
         JellyfinItems folderItems = loadedallFolders.requestItems();
         
         //2* Then, for each item, request their Metadata info.

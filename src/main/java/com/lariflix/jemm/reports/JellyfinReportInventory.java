@@ -27,6 +27,7 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
+import com.lariflix.jemm.utils.JellyfimParameters;
 import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_BASIC;
 import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -90,13 +91,13 @@ public class JellyfinReportInventory {
     
     private void loadItems() throws IOException, MalformedURLException, ParseException{
         
-        LoadFolders loadItems = new LoadFolders();
+        LoadFolders loadItems = new LoadFolders(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
         loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadItems.setcUserAdminID(instanceData.adminUser.getId());        
         JellyfinFolders folders = loadItems.requestFolders();
         
-        for(int nI = 0; nI < folders.getTotalRecordCount();nI++){            
+        for(int nI = 0; nI < folders.getItems().size();nI++){            
             JellyfinReportInventoryItem item = new JellyfinReportInventoryItem();
             item.setItem( folders.getItems().get(nI) );
             
@@ -119,7 +120,7 @@ public class JellyfinReportInventory {
     
     private void loadSubItems(JellyfinReportTypes tpInventoryReport){
         
-        LoadItems loadSubItems = new LoadItems();
+        LoadItems loadSubItems = new LoadItems(JellyfimParameters.JUST_ITEMS);
         loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadSubItems.setcUserAdminID(instanceData.adminUser.getId());

@@ -3,13 +3,18 @@ package com.lariflix.jemm.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lariflix.jemm.dtos.JellyfinFolder;
 import com.lariflix.jemm.dtos.JellyfinFolders;
-import com.lariflix.jemm.dtos.JellyfinUsers;
+import com.lariflix.jemm.dtos.JellyfinItem;
+import com.lariflix.jemm.dtos.JellyfinItems;
+import com.lariflix.jemm.utils.JellyfimParameters;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -24,6 +29,7 @@ public class LoadFolders {
     private String apiToken = new String();
     private String cUserAdminID = new String();
     private String fullURL = new String();
+    private JellyfimParameters foldersType = null;
 
     /**
      * Default constructor for the LoadFolders class.
@@ -31,8 +37,8 @@ public class LoadFolders {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public LoadFolders() {
-        // ...
+    public LoadFolders(JellyfimParameters typeOfFolders) {
+        this.setFoldersType(typeOfFolders);
     }
     
      /**
@@ -44,10 +50,11 @@ public class LoadFolders {
       * @since 1.0
       * @author Cesar Bianchi
       */
-     public LoadFolders(String jellyfinURL, String apiToken, String cAdminID) {
+     public LoadFolders(String jellyfinURL, String apiToken, String cAdminID, JellyfimParameters typeOfFolders) {
          this.setJellyfinInstanceUrl(jellyfinURL);
          this.setApiToken(apiToken);
          this.setcUserAdminID(cAdminID);
+         this.setFoldersType(typeOfFolders);
      }
 
     /**
@@ -93,7 +100,17 @@ public class LoadFolders {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             JellyfinFolders folders = mapper.readValue(inline, JellyfinFolders.class);
 
-
+            //Define order By Name (Just for Root Folders)
+            if (folders.items != null && folders.items.size() > 0){
+                folders.items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
+            }
+            
+            //load and add SubFolders as Folder-Item
+            //Issue: https://github.com/CesarBianchi/JellyfinEasyMetadataManager/issues/12
+            if (this.getFoldersType() == JellyfimParameters.FOLDERS_AND_SUBFOLDERS){
+                folders = this.getSubFolders(folders);
+            }
+            
             return folders;
         }
         
@@ -195,7 +212,88 @@ public class LoadFolders {
         this.cUserAdminID = cUserAdminID;
     }
 
-  
+    public JellyfimParameters getFoldersType() {
+        return foldersType;
+    }
+
+    public void setFoldersType(JellyfimParameters foldersType) {
+        this.foldersType = foldersType;
+    }
+
+    private JellyfinFolders getSubFolders(JellyfinFolders folders) {
+        
+        for (int nI = 0; nI < folders.getItems().size(); nI++){
+            
+            LoadItems loadSubFolders = new LoadItems(JellyfimParameters.JUST_SUBFOLDERS);
+            loadSubFolders.setJellyfinInstanceUrl(this.getJellyfinInstanceUrl());
+            loadSubFolders.setApiToken(this.getApiToken());
+            loadSubFolders.setcUserAdminID(this.getcUserAdminID());
+            loadSubFolders.setcParentID(folders.getItems().get(nI).getId() );            
+            
+            try {
+                JellyfinItems subFolders = loadSubFolders.requestItems();
+                
+                //Set Alfabetical Order
+                if (subFolders.getItems() != null && subFolders.getItems().size() > 0){
+                    subFolders.items.sort((o2, o1) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
+                }
+                
+                for (int nJ = 0; nJ < subFolders.getItems().size(); nJ++){
+                   
+                    //get parentFolder level
+                    int parentFolderLevel = folders.getItems().get(nI).getFolderLevel();
+                   
+                    
+                    JellyfinFolder newSubFolder = new JellyfinFolder();
+                    newSubFolder = this.addNewSubFolder(subFolders.getItems().get(nJ),parentFolderLevel);                                      
+                    
+                    //Add a new SubFolder
+                    folders.getItems().add(nI+1, newSubFolder);                    
+                }
+                
+                
+            
+            } catch (IOException ex) {
+                Logger.getLogger(LoadFolders.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(LoadFolders.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
+        
+        return folders;
+    }
+
+    private JellyfinFolder addNewSubFolder(JellyfinItem subFolder, int parentFolderLevel) {
+        
+        //Define the prefix String - like "path indentation"
+        String prefix = new String();
+        prefix = new String(" ").repeat(parentFolderLevel*3).concat("⎆ ");
+        
+        //Transform a "JellyfinItem Object" to "JellyfinFolder Object"
+        JellyfinFolder newSubFolder = new JellyfinFolder();        
+        newSubFolder.setName(prefix.concat(subFolder.getName()));
+        newSubFolder.setServerId(subFolder.getServerId());
+        newSubFolder.setId(subFolder.getId());
+        newSubFolder.setPremiereDate(subFolder.getPremiereDate());
+        newSubFolder.setCriticRating(subFolder.getCriticRating());
+        newSubFolder.setOfficialRating(subFolder.getOfficialRating());
+        newSubFolder.setChannelId("<Unknow - Check LoadFolders.addNewSubFolder>");
+        newSubFolder.setCommunityRating(subFolder.getCommunityRating());
+        newSubFolder.setProductionYear(subFolder.getProductionYear());
+        newSubFolder.setIsFolder(true);
+        newSubFolder.setType(subFolder.getType());
+        newSubFolder.setCollectionType("<Unknow - Check LoadFolders.addNewSubFolder>");
+        newSubFolder.setLocationType(subFolder.getLocationType());
+        newSubFolder.setFolderLevel(parentFolderLevel+1);
+        
+        return newSubFolder;
+    }
+
+ 
+
+    
 
     
 }
