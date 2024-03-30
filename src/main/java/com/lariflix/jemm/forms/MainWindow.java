@@ -198,6 +198,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -1177,6 +1178,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem17);
+        jMenu1.add(jSeparator1);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem5.setText("Exit");
@@ -1331,6 +1333,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("About JEMM");
+        jMenuItem3.setEnabled(false);
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -1819,6 +1822,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
