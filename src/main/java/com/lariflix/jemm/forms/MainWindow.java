@@ -1333,7 +1333,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("About JEMM");
-        jMenuItem3.setEnabled(false);
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -1696,6 +1700,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         this.searchFolderItem();
     }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        AboutJemmWindow aboutWindow = new AboutJemmWindow();
+        aboutWindow.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -3309,6 +3318,16 @@ public class MainWindow extends javax.swing.JFrame {
         return lret;
     }
     
+    /**
+     * Reloads the folder items displayed in the MainWindow.
+     *
+     * This method clears the current list of folder items, then reloads them by calling the loadFolders method. If an error occurs while loading the folders, it is logged and the method exits.
+     *
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void reloadFolderItems(){
         //Reload Folders and Itens button        
         try {
@@ -3321,6 +3340,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Searches for a folder item in the MainWindow.
+     *
+     * This method prompts the user to enter the name of the folder item to search for. It then searches the list of folder items for an item that contains the entered name. If an item is found, it is selected in the list and a message is displayed to the user. If no item is found, a message is displayed to the user.
+     *
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void searchFolderItem() {
         String itemName = javax.swing.JOptionPane.showInputDialog("Please, type the folder name to search");
         String foundItemName = new String();

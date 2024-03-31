@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
 package com.lariflix.jemm.reports;
 
 import com.lariflix.jemm.utils.JellyfinReportTypes;
@@ -28,7 +11,6 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import static com.lariflix.jemm.reports.JellyfinReportGenres.instanceData;
 import com.lariflix.jemm.utils.JellyfimParameters;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
@@ -52,8 +34,12 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.json.simple.parser.ParseException;
 
 /**
+ * The JellyfinReportGenres class is used to generate genre reports from a Jellyfin server.
  *
- * @author cesarbianchi
+ * This class retrieves genre data from the Jellyfin server and formats it into a report. 
+ * The report includes details such as the genre name, the number of items in each genre, and other relevant details.
+ *
+ * @author Cesar Bianchi
  */
 public class JellyfinReportGenres {
     
@@ -63,15 +49,44 @@ public class JellyfinReportGenres {
     private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
+    /**
+     * Constructor for the JellyfinReportGenres class.
+     *
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be any of the types defined in the JellyfinReportTypes class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportGenres(JellyfinReportTypes rpType) {
         this.reportType = rpType;
     }
 
+    /**
+     * Constructor for the JellyfinReportGenres class.
+     *
+     * @param instanceData A JellyfinInstanceDetails object containing the details of the Jellyfin instance from which to generate the report. This includes the URL, API token, and other necessary details.
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be any of the types defined in the JellyfinReportTypes class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportGenres(JellyfinInstanceDetails instanceData, JellyfinReportTypes rpType) {
         JellyfinReportGenres.instanceData = instanceData;
         this.reportType = rpType;
     }
     
+    /**
+     * Loads the report items.
+     *
+     * This method loads the report items based on the report type. 
+     * If the report type is GENRES_BASIC, it loads the items. 
+     * If the report type is GENRES_FULL, it loads the items and the sub-items.
+     *
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws MalformedURLException If the URL of the Jellyfin server is not formatted correctly.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @throws JRException If there is an error generating the report. This can happen if there's a problem with the report template, the data, or the JasperReports engine.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
         
         switch(reportType) {
@@ -85,6 +100,19 @@ public class JellyfinReportGenres {
         }
     }
     
+    /**
+     * Loads the genre items.
+     *
+     * This method loads the genre items from the Jellyfin server. 
+     * It creates a new LoadGenres object, sets the necessary parameters, and then requests the genres from the server. 
+     * It then loops through the genres, creates a new JellyfinReportGenresItem for each one, loads the metadata for the genre, and adds the item to the items list. Finally, it sorts the items list in ascending order by name.
+     *
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws MalformedURLException If the URL of the Jellyfin server is not formatted correctly.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     private void loadItems() throws IOException, MalformedURLException, ParseException{
         
         LoadGenres loadGenres = new LoadGenres();
@@ -113,6 +141,18 @@ public class JellyfinReportGenres {
         items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
     }
     
+    /**
+     * Loads the sub-items for each genre.
+     *
+     * This method loads the sub-items for each genre from the Jellyfin server. 
+     * It first gets all folders from the server, then gets all items for each folder. For each item, it gets the metadata and checks 
+     * if the genre of the item is the same as the genre of the genre-item. If it is, it adds the item to the genre-item's list of episodes.
+     *
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void loadSubItems() {
         
         //1* Get All Folders
@@ -167,10 +207,21 @@ public class JellyfinReportGenres {
             Logger.getLogger(JellyfinReportGenres.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
     }
     
+    /**
+     * Prints the genre report.
+     *
+     * This method generates and prints the genre report based on the report type.
+     * If the report type is GENRES_BASIC, it generates a basic report. If the report type is GENRES_FULL, it generates a full report with sub-items. 
+     * The method first compiles the report, then sets the data source and report parameters, and finally fills the report and shows it.
+     *
+     * @throws JRException If there is an error generating the report. This can happen if there's a problem with the report template, the data, or the JasperReports engine.
+     * @throws MalformedURLException If the URL of the Jellyfin server is not formatted correctly.
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void printReport() throws JRException, MalformedURLException, IOException {
         String localReportBasePath = new JellyfinUtilFunctions().getJRXMLLocalPath();
         String resorceReportBasePath =  new  JellyfinUtilFunctions().getJRXMLResourcePath();
@@ -257,12 +308,15 @@ public class JellyfinReportGenres {
        
     }
 
+    /**
+     * Retrieves the items property of this JellyfinReportGenres.
+     *
+     * @return A JellyfinReportGenresStructure object representing the items of this JellyfinReportGenres. This includes the genre items and their sub-items.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportGenresStructure getItems() {
         return items;
     }
-
-    
-    
-    
     
 }

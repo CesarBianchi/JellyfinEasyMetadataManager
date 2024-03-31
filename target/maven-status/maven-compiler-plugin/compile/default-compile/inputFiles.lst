@@ -4,6 +4,7 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinItem.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinConnectionResult.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinFolderMetadata.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/AboutJemmWindow.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinProviderIds.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/reports/JellyfinReportTagsStructure.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinInstanceDetails.java
@@ -60,6 +61,7 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/core/ConnectJellyfinAPI.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinItemMetadata.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/core/LoadFolders.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/AboutJemmPanel.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/core/CheckJellyfinConnection.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/reports/JellyfinReportGenres.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/reports/JellyfinReportInventorySubItem.java

@@ -67,6 +67,13 @@ public class Jemm {
         loginFrame.setVisible(true);
     }
 
+    /**
+     * Retrieves the instanceData property of the Jemm class.
+     *
+     * @return A JellyfinInstanceDetails object representing the details of the Jellyfin instance. This includes the URL, API token, and other necessary details.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public static JellyfinInstanceDetails getInstanceData() {
         return instanceData;
     }

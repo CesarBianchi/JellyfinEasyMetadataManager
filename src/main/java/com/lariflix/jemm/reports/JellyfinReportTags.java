@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
 package com.lariflix.jemm.reports;
 
 import com.lariflix.jemm.core.LoadFolders;
@@ -25,7 +8,6 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import static com.lariflix.jemm.reports.JellyfinReportTags.instanceData;
 import com.lariflix.jemm.utils.JellyfimParameters;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -50,8 +32,12 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.json.simple.parser.ParseException;
 
 /**
+ * The JellyfinReportTags class is used to represent tags in a report.
  *
- * @author cesarbianchi
+ * This class contains the details of a tag, such as the name and other relevant details. 
+ * It provides methods to set and retrieve these details.
+ *
+ * @author Cesar Bianchi
  */
 public class JellyfinReportTags {
 
@@ -61,15 +47,51 @@ public class JellyfinReportTags {
     private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
+    /**
+     * Constructor for the JellyfinReportTags class.
+     *
+     * This constructor initializes a new instance of the JellyfinReportTags class with the given report type.
+     *
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be either TAGS_BASIC or TAGS_FULL.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportTags(JellyfinReportTypes rpType) {
         this.reportType = rpType;
     }
 
+    /**
+     * Constructor for the JellyfinReportTags class.
+     *
+     * This constructor initializes a new instance of the JellyfinReportTags class with the given instance data and report type.
+     *
+     * @param instanceData A JellyfinInstanceDetails object representing the details of the Jellyfin instance from which to generate the report. This includes the URL, API token, and other necessary details.
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be either TAGS_BASIC or TAGS_FULL.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportTags(JellyfinInstanceDetails instanceData, JellyfinReportTypes rpType) {
         JellyfinReportTags.instanceData = instanceData;
         this.reportType = rpType;
     }
     
+     
+    /**
+     * Loads the report items for this JellyfinReportTags.
+     *
+     * This method loads the items for this JellyfinReportTags based on the report type. 
+     * If the report type is TAGS_BASIC, it only loads the items. 
+     * If the report type is TAGS_FULL, it loads both the items and the sub-items.
+     *
+     * This method throws an IOException if there is a problem with the input or output, a MalformedURLException if the URL of the Jellyfin instance is not formatted correctly, a ParseException if there is a problem with parsing the data, and a JRException if there is a problem with generating the report.
+     *
+     * @throws IOException If there is a problem with the input or output.
+     * @throws MalformedURLException If the URL of the Jellyfin instance is not formatted correctly.
+     * @throws ParseException If there is a problem with parsing the data.
+     * @throws JRException If there is a problem with generating the report.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
         
         switch(reportType) {
@@ -82,6 +104,19 @@ public class JellyfinReportTags {
         }
     }
 
+    /**
+     * Loads the items for this JellyfinReportTags.
+     *
+     * This method retrieves all folders from the Jellyfin instance, retrieves all items for each folder, and adds each item to the non-ordered episodes list. 
+     * Then, for each episode, it retrieves the metadata and checks if the tag episode is the same as the tag-item. If it is, it adds the episode and its metadata to the tag-item.
+     *
+     * This method throws an IOException if there is a problem with the input or output, and a ParseException if there is a problem with parsing the data.
+     *
+     * @throws IOException If there is a problem with the input or output.
+     * @throws ParseException If there is a problem with parsing the data.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void loadItems() {
         
         //1* Get All Folders
@@ -167,6 +202,26 @@ public class JellyfinReportTags {
         
     }
 
+    /**
+     * Prints the report for this JellyfinReportTags.
+     *
+     * This method generates and displays a report based on the report type. 
+     * If the report type is TAGS_BASIC, it generates a basic report. 
+     * If the report type is TAGS_FULL, it generates a full report with sub-items.
+     *
+     * The method first determines the paths for the report files, then compiles the report based on the report type. 
+     * If the application is running in debug mode, it uses local files. Otherwise, it uses embedded resources.
+     *
+     * After compiling the report, it sets the data source to the items of this JellyfinReportTags, sets the report parameters, fills the report with data, and displays the report in a new JasperViewer.
+     *
+     * This method throws a JRException if there is a problem with generating the report, a MalformedURLException if the URL of the Jellyfin instance is not formatted correctly, and an IOException if there is a problem with the input or output.
+     *
+     * @throws JRException If there is a problem with generating the report.
+     * @throws MalformedURLException If the URL of the Jellyfin instance is not formatted correctly.
+     * @throws IOException If there is a problem with the input or output.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void printReport() throws JRException, MalformedURLException, IOException {
         String localReportBasePath = new JellyfinUtilFunctions().getJRXMLLocalPath();
         String resorceReportBasePath =  new  JellyfinUtilFunctions().getJRXMLResourcePath();
@@ -253,6 +308,13 @@ public class JellyfinReportTags {
        
     }
 
+    /**
+     * Retrieves the items property of this JellyfinReportTags.
+     *
+     * @return A JellyfinReportTagsStructure object representing the items of this JellyfinReportTags. Each item in the JellyfinReportTagsStructure represents a tag in the report.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfinReportTagsStructure getItems() {
         return items;
     }

@@ -79,6 +79,13 @@ public class WaitingWindow {
 
     }
     
+    /**
+     * Displays a dialog to the user for a specified amount of time.
+     *
+     * @param delay The amount of time, in milliseconds, that the dialog should be displayed. After this amount of time has passed, the dialog is automatically closed.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void showDialogWithTimmer(int delay){
         
         //Show dialog to user define the new People (From existing or New)
@@ -94,6 +101,14 @@ public class WaitingWindow {
 
     }
     
+    /**
+     * Closes the dialog window.
+     *
+     * This method finds the window that is the ancestor of the component, and then disposes of it, effectively closing the window. If the component does not have an ancestor, this method does nothing.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void closeDialog(){
         Window win = SwingUtilities.getWindowAncestor(null);
         if (win != null) {
@@ -102,10 +117,26 @@ public class WaitingWindow {
 
     }
 
+    /**
+     * Displays the dialog window.
+     *
+     * This method sets the visibility of the dialog to true, effectively displaying it to the user. If the dialog is already visible, this method does nothing.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void showDialog(){
         dialog.setVisible(true);
     }
     
+    /**
+     * Ends the dialog window.
+     *
+     * This method sets the visibility of the dialog to false, effectively hiding it from the user. If the dialog is already hidden, this method does nothing.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void endDialog(){
         dialog.setVisible(false);
     }

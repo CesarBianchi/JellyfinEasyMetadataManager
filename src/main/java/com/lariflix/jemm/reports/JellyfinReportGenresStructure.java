@@ -1,30 +1,26 @@
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
 package com.lariflix.jemm.reports;
 
 import java.util.ArrayList;
 
 /**
+ * The JellyfinReportGenresStructure class extends the ArrayList class and is used to represent a list of genre items in a report.
  *
- * @author cesarbianchi
+ * This class contains a list of JellyfinReportGenresItem objects, each representing a genre item in a report. It provides methods to add, remove, and retrieve genre items from the list.
+ *
+ * @author Cesar Bianchi
+ * @see JellyfinReportGenresItem
  */
 public class JellyfinReportGenresStructure extends ArrayList<JellyfinReportGenresItem>{
-   
+    
+    
+    /**
+     * Constructor for the JellyfinReportGenresStructure class.
+     *
+     * This is a no-argument constructor that initializes a new instance of the JellyfinReportGenresStructure class. It doesn't perform any specific actions.
+     *
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportGenresStructure(){
         
     }

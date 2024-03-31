@@ -1,34 +1,41 @@
 package com.lariflix.jemm.reports;
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
-
 
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 
 /**
+ * The JellyfinReportInventorySubItem class extends the JellyfinItem class and is used to represent a sub-item in an inventory item in a report.
  *
- * @author cesarbianchi
+ * This class contains the details of a sub-item, such as the name, the number of items in the category, and other relevant details. 
+ * It also contains a list of sub-items for the item, if any.
+ *
+ * @author Cesar Bianchi
  */
 public class JellyfinReportInventorySubItem extends JellyfinItem{
     
     private JellyfinItemMetadata subItemMetadata = new JellyfinItemMetadata();
- 
+     
+    /**
+     * Constructor for the JellyfinReportInventorySubItem class.
+     *
+     * This is a no-argument constructor that initializes a new instance of the JellyfinReportInventorySubItem class. It doesn't perform any specific actions.
+     *
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
+    public JellyfinReportInventorySubItem(){
+
+    }
+
+    /**
+     * Sets the properties of this JellyfinReportInventorySubItem based on the given JellyfinItem.
+     *
+     * This method sets the aspect ratio, community rating, container, critic rating, ID, whether it is a folder, item metadata, location type, media type, name, official rating, premiere date, production year, server ID, type, and video type of this JellyfinReportInventorySubItem to the corresponding properties of the given JellyfinItem.
+     *
+     * @param subIt A JellyfinItem object that should be used to set the properties of this JellyfinReportInventorySubItem.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void setSubItem(JellyfinItem subIt){
         this.setAspectRatio(subIt.getAspectRatio());
         this.setCommunityRating(subIt.getCommunityRating());
@@ -48,14 +55,28 @@ public class JellyfinReportInventorySubItem extends JellyfinItem{
         this.setVideoType(subIt.getVideoType());
     }
    
+    /**
+     * Sets the subItemMetadata property of this JellyfinReportInventorySubItem.
+     *
+     * @param subItemMetadata A JellyfinItemMetadata object that should be used as the new metadata for this JellyfinReportInventorySubItem. 
+     * This includes the name, server ID, ID, channel ID, type, location type, premiere date, critic rating, official rating, and community rating.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void setSubItemMetadata(JellyfinItemMetadata subItemMetadata) {
         this.subItemMetadata = subItemMetadata;
     }
 
+    /**
+     * Retrieves the subItemMetadata property of this JellyfinReportInventorySubItem.
+     *
+     * @return A JellyfinItemMetadata object representing the metadata of this JellyfinReportInventorySubItem. 
+     * This includes the name, server ID, ID, channel ID, type, location type, premiere date, critic rating, official rating, and community rating.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinItemMetadata getSubItemMetadata() {
         return subItemMetadata;
     }
-    
-    
     
 }

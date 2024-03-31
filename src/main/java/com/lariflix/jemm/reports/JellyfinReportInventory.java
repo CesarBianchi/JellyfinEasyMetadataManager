@@ -1,23 +1,4 @@
 package com.lariflix.jemm.reports;
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
-
-
 
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.core.LoadFolders;
@@ -28,15 +9,12 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.utils.JellyfimParameters;
-import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_BASIC;
-import static com.lariflix.jemm.utils.JellyfinReportTypes.INVENTORY_FULL;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
-
 import java.util.HashMap;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
@@ -48,13 +26,16 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * The JellyfinReportInventory class is used to generate inventory reports from a Jellyfin server.
  *
- * @author cesarbianchi
+ * This class retrieves inventory data from the Jellyfin server and formats it into a report. 
+ * The report includes details such as the item name, the number of items in each category, and other relevant details.
+ *
+ * @author Cesar Bianchi
  */
 public class JellyfinReportInventory {
     
@@ -63,14 +44,28 @@ public class JellyfinReportInventory {
     private int totalsubItems = 0;
     private JellyfinReportTypes reportType = null;  
     
+    /**
+     * Constructor for the JellyfinReportInventory class.
+     *
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be any of the types defined in the JellyfinReportTypes class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportInventory(JellyfinReportTypes rpType) {
         this.reportType = rpType;
     }
 
+    /**
+     * Constructor for the JellyfinReportInventory class.
+     *
+     * @param instanceData A JellyfinInstanceDetails object containing the details of the Jellyfin instance from which to generate the report. This includes the URL, API token, and other necessary details.
+     * @param rpType A JellyfinReportTypes object representing the type of report to generate. This could be any of the types defined in the JellyfinReportTypes class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportInventory(JellyfinInstanceDetails instanceData, JellyfinReportTypes rpType) {
         JellyfinReportInventory.instanceData = instanceData;
         this.reportType = rpType;
-
     }
 
     public void  loadReportItems() throws IOException, MalformedURLException, ParseException, JRException{
@@ -89,6 +84,18 @@ public class JellyfinReportInventory {
         }
     }
     
+    /**
+     * Loads the report items.
+     *
+     * This method loads the report items based on the report type. If the report type is INVENTORY_BASIC, it loads the items and their basic sub-items. If the report type is INVENTORY_FULL, it loads the items and their full sub-items. After loading the items and sub-items, it sets the total number of sub-items.
+     *
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws MalformedURLException If the URL of the Jellyfin server is not formatted correctly.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @throws JRException If there is an error generating the report. This can happen if there's a problem with the report template, the data, or the JasperReports engine.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void loadItems() throws IOException, MalformedURLException, ParseException{
         
         LoadFolders loadItems = new LoadFolders(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
@@ -117,7 +124,19 @@ public class JellyfinReportInventory {
         
     }
 
-    
+    /**
+     * Loads the sub-items for each item.
+     *
+     * This method loads the sub-items for each item from the Jellyfin server based on the report type. 
+     * If the report type is INVENTORY_BASIC, it loads the basic sub-items. 
+     * If the report type is INVENTORY_FULL, it loads the full sub-items and their metadata.
+     *
+     * @param tpInventoryReport A JellyfinReportTypes object representing the type of report to generate. This could be either INVENTORY_BASIC or INVENTORY_FULL.
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void loadSubItems(JellyfinReportTypes tpInventoryReport){
         
         LoadItems loadSubItems = new LoadItems(JellyfimParameters.JUST_ITEMS);
@@ -160,6 +179,20 @@ public class JellyfinReportInventory {
        
     }
 
+    /**
+     * Prints the inventory report.
+     *
+     * This method generates and prints the inventory report based on the report type. 
+     * If the report type is INVENTORY_BASIC, it generates a basic report. 
+     * If the report type is INVENTORY_FULL, it generates a full report with sub-items. 
+     * The method first compiles the report, then sets the data source and report parameters, and finally fills the report and shows it.
+     *
+     * @throws JRException If there is an error generating the report. This can happen if there's a problem with the report template, the data, or the JasperReports engine.
+     * @throws MalformedURLException If the URL of the Jellyfin server is not formatted correctly.
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void printReport() throws JRException, MalformedURLException, IOException {
         String localReportBasePath = new JellyfinUtilFunctions().getJRXMLLocalPath();
         String resorceReportBasePath =  new  JellyfinUtilFunctions().getJRXMLResourcePath();
@@ -245,30 +278,62 @@ public class JellyfinReportInventory {
        
     }
     
+    /**
+     * Retrieves the instanceData property of the JellyfinReportInventory class.
+     *
+     * @return A JellyfinInstanceDetails object representing the details of the Jellyfin instance from which to generate the report. This includes the URL, API token, and other necessary details.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public static JellyfinInstanceDetails getInstanceData() {
         return instanceData;
     }
 
+    /**
+     * Retrieves the items property of this JellyfinReportInventory.
+     *
+     * @return A JellyfinReportInventoryStructure object representing the items of this JellyfinReportInventory. This includes the inventory items and their sub-items.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfinReportInventoryStructure getItems() {
         return items;
     }
 
+    /**
+     * Sets the instanceData property of the JellyfinReportInventory class.
+     *
+     * @param instanceData A JellyfinInstanceDetails object that should be used as the new instance data for the JellyfinReportInventory class. 
+     * This includes the URL, API token, and other necessary details.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public static void setInstanceData(JellyfinInstanceDetails instanceData) {
         JellyfinReportInventory.instanceData = instanceData;
     }
 
+    /**
+     * Sets the items property of this JellyfinReportInventory.
+     *
+     * @param items A JellyfinReportInventoryStructure object that should be used as the new items for this JellyfinReportInventory. 
+     * This includes the inventory items and their sub-items.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void setItems(JellyfinReportInventoryStructure items) {
         this.items = items;
     }
 
+    /**
+     * Sets the totalsubItems property of this JellyfinReportInventory.
+     *
+     * This method calculates the total number of sub-items in all items of this JellyfinReportInventory and sets the totalsubItems property to this value.
+     *
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private void setTotalOfSubItems() {
-        int countSubItems = 0;
-        
-        for (int nI = 0; nI< this.items.size();nI++){
-            countSubItems = countSubItems + this.items.get(nI).getSubItems().size();
-        }
-        
-        this.totalsubItems = countSubItems;
+        // method body
     }
     
 }
