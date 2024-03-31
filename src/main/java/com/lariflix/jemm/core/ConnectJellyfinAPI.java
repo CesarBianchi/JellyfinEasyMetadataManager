@@ -110,9 +110,10 @@ public class ConnectJellyfinAPI {
         return allUsers;
     }
     
-    /**
+  /**
      * Retrieves all folders from the Jellyfin server.
      *
+     * @param typeOfFolders A JellyfinParameters object that specifies the type of folders to retrieve.
      * @return A JellyfinFolders object containing all folders.
      * @throws IOException If an I/O error occurs.
      * @throws MalformedURLException If the provided URL is not valid.
@@ -139,11 +140,11 @@ public class ConnectJellyfinAPI {
     /**
      * Retrieves metadata for a specific folder from the Jellyfin server.
      *
-     * @param cFolderID The ID of the folder for which to retrieve metadata.
+     * @param cFolderID The ID of the folder for which to retrieve metadata. This is a string that represents the unique identifier of the folder in the Jellyfin server.
      * @return A JellyfinFolderMetadata object containing the folder's metadata.
-     * @throws IOException If an I/O error occurs.
-     * @throws MalformedURLException If the provided URL is not valid.
-     * @throws ParseException If there is an error parsing the server's response.
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws MalformedURLException If the provided URL is not valid. This can happen if the base URL or the constructed URL for the API request is not a valid URL.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
      * @since 1.0
      * @author Cesar Bianchi
      */

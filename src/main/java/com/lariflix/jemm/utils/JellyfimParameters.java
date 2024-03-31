@@ -1,25 +1,17 @@
-/*
- * Copyright (C) 2024 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.utils;
 
 /**
+ * The JellyfimParameters enumeration is used to represent the parameters for a Jellyfin instance.
  *
- * @author cesarbianchi
+ * This enumeration contains a list of all possible parameters that can be used to configure a Jellyfin instance. Each parameter is represented as an enum constant.
+ *
+ * JUST_ROOT_FOLDERS: This parameter is used to indicate that only root folders should be considered (Used for the root folders of the library).
+ * FOLDERS_AND_SUBFOLDERS: This parameter is used to indicate that both folders and subfolders should be considered. (Used for the root folders of the library).
+ * JUST_ITEMS: This parameter is used to indicate that only items should be considered. (Used for the items of the root-library).
+ * JUST_SUBFOLDERS: This parameter is used to indicate that only subfolders should be considered. (Used for the items of the root-library)
+ *
+ * @author Cesar Bianchi
  */
 public enum JellyfimParameters {
     JUST_ROOT_FOLDERS,

@@ -2,7 +2,6 @@ package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
 import com.lariflix.jemm.dtos.JellyfinGenreItem;
-import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import java.awt.Dialog;
 import java.awt.Window;
 import javax.swing.JDialog;

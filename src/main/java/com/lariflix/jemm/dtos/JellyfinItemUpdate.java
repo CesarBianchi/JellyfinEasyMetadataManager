@@ -2,7 +2,6 @@ package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * This class represents the updates to Jellyfin items.

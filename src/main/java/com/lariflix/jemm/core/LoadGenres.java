@@ -3,7 +3,6 @@ package com.lariflix.jemm.core;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lariflix.jemm.dtos.JellyfinCadGenresItems;
-import com.lariflix.jemm.dtos.JellyfinUsers;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;

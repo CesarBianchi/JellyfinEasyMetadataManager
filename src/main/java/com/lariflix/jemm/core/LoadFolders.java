@@ -31,25 +31,27 @@ public class LoadFolders {
     private String fullURL = new String();
     private JellyfimParameters foldersType = null;
 
-    /**
+     /**
      * Default constructor for the LoadFolders class.
      *
-     * @since 1.0
+     * @param typeOfFolders A JellyfinParameters object representing the type of folders to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
      * @author Cesar Bianchi
      */
     public LoadFolders(JellyfimParameters typeOfFolders) {
         this.setFoldersType(typeOfFolders);
     }
     
-     /**
-      * Constructor for the LoadFolders class.
-      *
-      * @param jellyfinURL The URL of the Jellyfin server.
-      * @param apiToken The API token for accessing the Jellyfin server.
-      * @param cAdminID The ID of the admin user.
-      * @since 1.0
-      * @author Cesar Bianchi
-      */
+    /**
+     * Constructor for the LoadFolders class.
+     *
+     * @param jellyfinURL The URL of the Jellyfin server. This should be a valid URL, including the protocol (http or https) and the domain name or IP address of the Jellyfin server. It may also include a port number if the server is not running on the default port.
+     * @param apiToken The API token for accessing the Jellyfin server. This should be a valid API token provided by the Jellyfin server.
+     * @param cAdminID The ID of the admin user. This should be a valid user ID for a user with admin privileges on the Jellyfin server.
+     * @param typeOfFolders A JellyfinParameters object representing the type of folders to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
      public LoadFolders(String jellyfinURL, String apiToken, String cAdminID, JellyfimParameters typeOfFolders) {
          this.setJellyfinInstanceUrl(jellyfinURL);
          this.setApiToken(apiToken);
@@ -212,14 +214,38 @@ public class LoadFolders {
         this.cUserAdminID = cUserAdminID;
     }
 
+    /**
+     * Retrieves the type of folders that this LoadFolders instance is configured to load.
+     *
+     * @return A JellyfinParameters object representing the type of folders to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JellyfimParameters getFoldersType() {
         return foldersType;
     }
 
+    /**
+     * Sets the type of folders that this LoadFolders instance is configured to load.
+     *
+     * @param foldersType A JellyfinParameters object representing the type of folders to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setFoldersType(JellyfimParameters foldersType) {
         this.foldersType = foldersType;
     }
 
+     /**
+     * Retrieves the subfolders for each folder in the provided JellyfinFolders object.
+     *
+     * @param folders A JellyfinFolders object representing the folders for which to retrieve subfolders. Each folder in this object should have a valid ID.
+     * @return A JellyfinFolders object containing the original folders and their subfolders. The subfolders are added to the list immediately after their parent folder.
+     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
+     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private JellyfinFolders getSubFolders(JellyfinFolders folders) {
         
         for (int nI = 0; nI < folders.getItems().size(); nI++){
@@ -265,6 +291,15 @@ public class LoadFolders {
         return folders;
     }
 
+    /**
+     * Transforms a JellyfinItem object into a JellyfinFolder object and adds a prefix to the folder name to indicate its level in the folder hierarchy.
+     *
+     * @param subFolder A JellyfinItem object representing the subfolder to be added. This object should have all necessary properties set, such as name, serverId, id, premiereDate, criticRating, officialRating, communityRating, productionYear, type, and locationType.
+     * @param parentFolderLevel An integer representing the level of the parent folder in the folder hierarchy. This is used to create a prefix for the subfolder's name.
+     * @return A JellyfinFolder object representing the new subfolder. This object has the same properties as the input JellyfinItem, but with the addition of a prefix to the name and the isFolder property set to true.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     private JellyfinFolder addNewSubFolder(JellyfinItem subFolder, int parentFolderLevel) {
         
         //Define the prefix String - like "path indentation"
@@ -290,10 +325,6 @@ public class LoadFolders {
         
         return newSubFolder;
     }
-
- 
-
-    
 
     
 }

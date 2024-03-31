@@ -503,18 +503,46 @@ public class AddStudioPanel extends javax.swing.JPanel {
         table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }
     
+    /**
+     * Retrieves the jTextField1 property of this AddStudioPanel.
+     *
+     * @return A JTextField object representing the jTextField1 of this AddStudioPanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JTextField getjTextField1() {
         return jTextField1;
     }
 
+    /**
+     * Sets the jTextField1 property of this AddStudioPanel.
+     *
+     * @param jTextField1 A JTextField object that should be used as the new jTextField1 for this AddStudioPanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
     }
 
+    /**
+     * Retrieves the jTextField2 property of this AddStudioPanel.
+     *
+     * @return A JTextField object representing the jTextField2 of this AddStudioPanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JTextField getjTextField2() {
         return jTextField2;
     }
 
+    /**
+     * Sets the jTextField2 property of this AddStudioPanel.
+     *
+     * @param jTextField2 A JTextField object that should be used as the new jTextField2 for this AddStudioPanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjTextField2(JTextField jTextField2) {
         this.jTextField2 = jTextField2;
     }

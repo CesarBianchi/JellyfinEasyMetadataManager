@@ -30,7 +30,8 @@ public class LoadItems {
     /**
      * Default constructor for the LoadItems class.
      *
-     * @since 1.0
+     * @param typeOfItems A JellyfinParameters object representing the type of items to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
      * @author Cesar Bianchi
      */
     public LoadItems(JellyfimParameters typeOfItems) {
@@ -40,11 +41,12 @@ public class LoadItems {
     /**
      * Constructor for the LoadItems class.
      *
-     * @param jellyfinURL The URL of the Jellyfin server.
-     * @param apiToken The API token for accessing the Jellyfin server.
-     * @param cAdminID The ID of the admin user.
-     * @param cParID The ID of the parent item.
-     * @since 1.0
+     * @param jellyfinURL The URL of the Jellyfin server. This should be a valid URL, including the protocol (http or https) and the domain name or IP address of the Jellyfin server. It may also include a port number if the server is not running on the default port.
+     * @param apiToken The API token for accessing the Jellyfin server. This should be a valid API token provided by the Jellyfin server.
+     * @param cAdminID The ID of the admin user. This should be a valid user ID for a user with admin privileges on the Jellyfin server.
+     * @param cParID The ID of the parent item. This should be a valid item ID for an item on the Jellyfin server.
+     * @param typeOfItems A JellyfinParameters object representing the type of items to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
      * @author Cesar Bianchi
      */
     public LoadItems(String jellyfinURL, String apiToken, String cAdminID, String cParID,JellyfimParameters typeOfItems) {
@@ -194,8 +196,9 @@ public class LoadItems {
 
     /**
      * Constructs the full URL for accessing the items on the Jellyfin server.
+     * The URL is constructed based on the Jellyfin instance URL, the admin user ID, the parent ID, the API token, and the type of items to retrieve.
      *
-     * @return The full URL as a string.
+     * @return The full URL as a string. The URL includes the base Jellyfin instance URL, the path to the items endpoint, the parent ID, the user ID, the API token, and any necessary filters based on the type of items to retrieve.
      * @since 1.0
      * @author Cesar Bianchi
      */
@@ -219,10 +222,24 @@ public class LoadItems {
         return urlWithApiKey;
     }
 
+    /**
+     * Retrieves the type of items that this LoadItems instance is configured to load.
+     *
+     * @return A JellyfinParameters object representing the type of items to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public JellyfimParameters getItemsType() {
         return itemsType;
     }
 
+    /**
+     * Sets the type of items that this LoadItems instance is configured to load.
+     *
+     * @param itemsType A JellyfinParameters object representing the type of items to load. This could be any of the types defined in the JellyfinParameters class.
+     * @since 1.1
+     * @author Cesar Bianchi
+     */
     public void setItemsType(JellyfimParameters itemsType) {
         this.itemsType = itemsType;
     }

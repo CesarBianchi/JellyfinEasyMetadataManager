@@ -513,8 +513,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * 
      * @param table The JTable whose columns are to be resized.
      * @author Cesar Bianchi
-     * @since 1.0
-     
+     * @since 1.0     
      */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
@@ -535,34 +534,91 @@ public class AddPeoplePanel extends javax.swing.JPanel {
         table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }
 
+    /**
+     * Retrieves the jComboBox1 property of this AddPeoplePanel.
+     *
+     * @return A JComboBox object representing the jComboBox1 of this AddPeoplePanel. This JComboBox is typically used for user input in a GUI, and contains String objects.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JComboBox<String> getjComboBox1() {
         return jComboBox1;
     }
 
+    /**
+     * Sets the jComboBox1 property of this AddPeoplePanel.
+     *
+     * @param jComboBox1 A JComboBox object that should be used as the new jComboBox1 for this AddPeoplePanel. This JComboBox is typically used for user input in a GUI, and should contain String objects.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjComboBox1(JComboBox<String> jComboBox1) {
         this.jComboBox1 = jComboBox1;
     }
 
+    /**
+     * Retrieves the jTextField1 property of this AddPeoplePanel.
+     *
+     * @return A JTextField object representing the jTextField1 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JTextField getjTextField1() {
         return jTextField1;
     }
 
+    /**
+     * Retrieves the jTextField2 property of this AddPeoplePanel.
+     *
+     * @return A JTextField object representing the jTextField2 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
     }
 
+    /**
+     * Retrieves the jTextField2 property of this AddPeoplePanel.
+     *
+     * @return A JTextField object representing the jTextField2 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JTextField getjTextField2() {
         return jTextField2;
     }
 
+    /**
+     * Retrieves the jTextField3 property of this AddPeoplePanel.
+     *
+     * @return A JTextField object representing the jTextField3 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjTextField2(JTextField jTextField2) {
         this.jTextField2 = jTextField2;
     }
 
+    /**
+     * Retrieves the jTextField3 property of this AddPeoplePanel.
+     *
+     * @return A JTextField object representing the jTextField3 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public JTextField getjTextField3() {
         return jTextField3;
     }
 
+    /**
+     * Displays the About JEMM dialog.
+     *
+     * This method creates a new AboutJemmPanel and displays it in a modal JDialog. If the dialog has already been created, this method does nothing.
+     *
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
     public void setjTextField3(JTextField jTextField3) {
         this.jTextField3 = jTextField3;
     }
