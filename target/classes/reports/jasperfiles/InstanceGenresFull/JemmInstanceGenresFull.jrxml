@@ -76,10 +76,6 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
-				<image>
-					<reportElement x="-1" y="9" width="40" height="40" uuid="7713f127-b835-4853-a5fa-d9f5b3d6b1b0"/>
-					<imageExpression><![CDATA["https://features.jellyfin.org/images/logos/a7Lx9nYDzWuDR94Az8Yum7neWMvNMndkm9qr4QVtmjaMrOHDLisS5K7LJctTRzK9-icon-transparent.png?size=100"]]></imageExpression>
-				</image>
 				<textField>
 					<reportElement x="40" y="31" width="178" height="18" uuid="5f4fba70-e6c6-4f55-b610-983c942d7357"/>
 					<textElement textAlignment="Left">
