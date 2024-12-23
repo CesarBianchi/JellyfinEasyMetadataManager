@@ -3301,18 +3301,31 @@ public class MainWindow extends javax.swing.JFrame {
      * @see JOptionPane#showMessageDialog(Component, Object, String, int, Icon)
      */
     private boolean checkAllMandatoryFieldsIsOk() {
-        boolean lret = false;
+        boolean lret = true;
+        String mandatoryFieldsMsg = new String();
         
-        if (!jTextField2.getText().isEmpty() &&
-              !jTextField6.getText().isEmpty() &&
-              !jTextField7.getText().isEmpty() && 
-              !jTextField3.getText().isEmpty() &&
-              !jTextField8.getText().isEmpty() ) {
-            
-            lret = true;
+        if (jTextField2.getText().isEmpty()){
+            mandatoryFieldsMsg = "The 'Title' field is mandatory. Please, make sure it is filled out!";
+            lret = false;
+        } else if (jTextField6.getText().isEmpty()){
+            mandatoryFieldsMsg = "The 'Sort Name' field is mandatory. Please, make sure it is filled out!";
+            lret = false;    
+        } else if (jTextField7.getText().isEmpty()){
+            mandatoryFieldsMsg = "The 'Forced Sort Name' field is mandatory. Please, make sure it is filled out!";
+            lret = false;    
+        } else if (jTextField3.getText().isEmpty()) {
+            mandatoryFieldsMsg = "The 'Created Date' field is mandatory. Please, make sure it is filled out!";
+            lret = false;    
+        } else if (jTextField8.getText().isEmpty()) {
+            mandatoryFieldsMsg = "The 'Premiere Date' field is mandatory. Please, make sure it is filled out!";
+            lret = false; 
         } else {
+            lret = true;
+        }
+        
+        if (!lret){                        
             ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"));
-            JOptionPane.showMessageDialog(null, "Some mandatory fields are empty. Please, check it before apply changes!","Pay Attention!!",JOptionPane.WARNING_MESSAGE,icon);
+            JOptionPane.showMessageDialog(null, mandatoryFieldsMsg,"Pay Attention!!",JOptionPane.WARNING_MESSAGE,icon);
         }
         
         return lret;
