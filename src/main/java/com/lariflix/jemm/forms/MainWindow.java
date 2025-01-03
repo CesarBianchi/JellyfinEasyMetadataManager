@@ -1527,13 +1527,13 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(10000);
+            //waitWindow.showDialogWithTimmer(10000);
         }
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -1541,13 +1541,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         // Inventory Basic Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(3000);
+            //waitWindow.showDialogWithTimmer(3000);
         }
 
         
@@ -1565,75 +1565,75 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         
         // Genres Basic Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_BASIC,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(2000);
+            //waitWindow.showDialogWithTimmer(2000);
         }
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // Genres Full Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(20000);
+            //waitWindow.showDialogWithTimmer(20000);
         }
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // People Basic Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_BASIC,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(3000);
+            //waitWindow.showDialogWithTimmer(3000);
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // People Full Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(20000);
+            //waitWindow.showDialogWithTimmer(20000);
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // Tags Basic Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_BASIC,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(10000);
+            //waitWindow.showDialogWithTimmer(10000);
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // Tags FULL Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(10000);
+            //waitWindow.showDialogWithTimmer(10000);
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
