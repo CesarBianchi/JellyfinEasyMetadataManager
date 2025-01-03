@@ -1655,37 +1655,37 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // Studios Basic Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_BASIC,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(3000);
+            //waitWindow.showDialogWithTimmer(3000);
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // Studios Full Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(10000);
+            //waitWindow.showDialogWithTimmer(10000);
         }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // Years Full Report Menu Item
-        WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
+        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
         
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.YEARS_FULL,instanceData);
         reportEng.start();
         
         while (!reportEng.isDone()){
-            waitWindow.showDialogWithTimmer(20000);
+            //waitWindow.showDialogWithTimmer(20000);
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
@@ -1928,8 +1928,8 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             //Waitng Dialog and mouse cursor waiting
             /*  Commented by the Issue #27
-            WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),DOWNLOADING_DATA);
-            waitWin.showDialogWithTimmer();
+            //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),DOWNLOADING_DATA);
+            //waitWin.showDialogWithTimmer();
             */
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             
@@ -2822,8 +2822,8 @@ public class MainWindow extends javax.swing.JFrame {
             //Post Updates on Jellyfin instance
             try {
                 /* Commented by the Issue #27
-                WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
-                waitWin.showDialogWithTimmer();  
+                //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
+                //waitWin.showDialogWithTimmer();  
                 */
                 
                 String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
@@ -2863,8 +2863,8 @@ public class MainWindow extends javax.swing.JFrame {
                     String cItemID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getFolderContent().getItems().get(nI).getId();
                     
                     /*Commented by the Issue #27
-                    WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
-                    waitWin.showDialogWithTimmer();  
+                    //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
+                    //waitWin.showDialogWithTimmer();  
                     */
                     
                     connectAPI.postUpdate(cFolderID, cItemID, instanceData, JUST_CONTENT_ITEM);                
