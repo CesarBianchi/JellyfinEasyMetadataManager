@@ -1527,13 +1527,26 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_FULL,instanceData);
         reportEng.start();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(10000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Inventory Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -1541,13 +1554,25 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         // Inventory Basic Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
         reportEng.start();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(3000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Inventory Basic Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
 
         
@@ -1564,76 +1589,148 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         
-        // Genres Basic Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        // Genres Basic Report Menu Item  
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_BASIC,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(2000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Genres Basic Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // Genres Full Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_FULL,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(20000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Genres Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // People Basic Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_BASIC,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(3000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing People Basic Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // People Full Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_FULL,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(20000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing People Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // Tags Basic Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_BASIC,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(10000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Tags Basic Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // Tags FULL Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_FULL,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(10000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Tags Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -1655,37 +1752,73 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // Studios Basic Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_BASIC,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(3000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Studios Basic Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // Studios Full Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_FULL,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(10000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Studios Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // Years Full Report Menu Item
-        //WaitingWindow waitWindow = new WaitingWindow(instanceData.getCredentials().getBaseURL(),1 );
-        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.YEARS_FULL,instanceData);
         reportEng.start();
         
-        while (!reportEng.isDone()){
-            //waitWindow.showDialogWithTimmer(20000);
+        while (true){
+            if (reportEng.isDone()){
+                this.setCursor(Cursor.getDefaultCursor());
+                break;
+            } else {
+                try {
+                    
+                    Thread.sleep(2000);
+                    if (instanceData.isDebug()){
+                        System.out.println("Processing Years Full Report...");
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
