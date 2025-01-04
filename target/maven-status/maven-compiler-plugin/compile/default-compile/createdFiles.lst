@@ -12,6 +12,7 @@ com/lariflix/jemm/dtos/JellyfinFolder.class
 com/lariflix/jemm/utils/JemmVersion.class
 com/lariflix/jemm/forms/MainWindow$34.class
 com/lariflix/jemm/forms/MainWindow$14.class
+com/lariflix/jemm/forms/MainWindow$62.class
 com/lariflix/jemm/forms/MainWindow$54.class
 com/lariflix/jemm/forms/MainWindow$42.class
 com/lariflix/jemm/forms/MainWindow$2.class
@@ -37,6 +38,7 @@ com/lariflix/jemm/core/LoadItems.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItems.class
 com/lariflix/jemm/forms/LoginWindow$3.class
 com/lariflix/jemm/forms/MainWindow$27.class
+com/lariflix/jemm/csv/JellyfinExportMetadata.class
 com/lariflix/jemm/dtos/JellyfinCredentials.class
 com/lariflix/jemm/forms/LoginWindow$6.class
 com/lariflix/jemm/reports/JellyfinReportPeople$1.class

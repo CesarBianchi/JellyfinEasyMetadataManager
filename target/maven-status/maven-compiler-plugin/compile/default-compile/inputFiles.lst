@@ -31,6 +31,7 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinUserPolicy.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/core/LoadFolderMetadata.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinStudioItem.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/csv/JellyfinExportMetadata.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/utils/JemmVersion.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinUsers.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/dtos/JellyfinCadPeopleItem.java
