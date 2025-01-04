@@ -3,6 +3,7 @@ package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
+import com.lariflix.jemm.csv.JellyfinExportMetadata;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.dtos.JellyfinFolder;
@@ -35,8 +36,11 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 import java.awt.Desktop;
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * MainWindow is a class that extends JFrame and represents the main window of the application.
@@ -200,6 +204,9 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1191,6 +1198,23 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu10.setText("Tools");
+
+        jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem18.setText("Export Metadata");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem18);
+
+        jMenuItem19.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItem19.setText("Import Metadata");
+        jMenu10.add(jMenuItem19);
+
+        jMenuBar1.add(jMenu10);
+
         jMenu2.setText("Reports");
 
         jMenu4.setText("Inventory");
@@ -1838,6 +1862,22 @@ public class MainWindow extends javax.swing.JFrame {
         AboutJemmWindow aboutWindow = new AboutJemmWindow();
         aboutWindow.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        String cDestinationPath = this.showSaveFileDialog();
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath);
+        
+        if (exportCSV.finalStatusIsOk()){
+            JOptionPane.showMessageDialog(null, "Mensagem", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            
+        }
+        
+        this.setCursor(Cursor.getDefaultCursor());
+        
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1914,6 +1954,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -1932,6 +1973,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -3525,6 +3568,25 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
         }
+    }
+
+    private String showSaveFileDialog() {
+        String cDestPath = new String();
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify the destination export file");
+        
+        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file","csv"));
+        int userSelection = fileChooser.showSaveDialog(this);
+        
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            cDestPath = fileToSave.getAbsolutePath();
+            
+            System.out.println("Save as file: " + cDestPath);
+        }
+        
+        return cDestPath;
     }
     
 }
