@@ -57,6 +57,7 @@ com/lariflix/jemm/forms/MainWindow$9.class
 com/lariflix/jemm/forms/MainWindow$33.class
 com/lariflix/jemm/forms/AddPeoplePanel$3.class
 com/lariflix/jemm/forms/MainWindow$43.class
+com/lariflix/jemm/forms/MainWindow$63.class
 com/lariflix/jemm/dtos/JellyfinItems.class
 com/lariflix/jemm/reports/JellyfinReportTagsStructure.class
 com/lariflix/jemm/forms/AddStudioPanel$2.class
@@ -158,6 +159,7 @@ com/lariflix/jemm/forms/MainWindow$49.class
 com/lariflix/jemm/forms/MainWindow$26.class
 com/lariflix/jemm/utils/JellyfinUtilFunctions.class
 com/lariflix/jemm/dtos/JellyfinProviderIds.class
+com/lariflix/jemm/csv/JellyfinCsvStructure.class
 com/lariflix/jemm/forms/WaitingWindow.class
 com/lariflix/jemm/reports/JellyfinReportGenresItem.class
 com/lariflix/jemm/forms/AddStudioPanel$8.class

@@ -1211,6 +1211,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuItem19.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jMenuItem19.setText("Import Metadata");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu10.add(jMenuItem19);
 
         jMenuBar1.add(jMenu10);
@@ -1864,20 +1869,32 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        //Export Button        
+        boolean finalStatus = false;
         String cDestinationPath = this.showSaveFileDialog();
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath);
+        JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath,instanceData);
         
-        if (exportCSV.finalStatusIsOk()){
-            JOptionPane.showMessageDialog(null, "Mensagem", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            
-        }
-        
+        finalStatus = exportCSV.startProcess();
         this.setCursor(Cursor.getDefaultCursor());
         
+        String cMsg = new String();
+        if (finalStatus){
+            cMsg = "Export file successfully generated on ".concat(cDestinationPath);
+            JOptionPane.showMessageDialog(null, cMsg, "Export Metadata is done!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            cMsg = "One or more errors was found while tried create the export file ";
+            JOptionPane.showMessageDialog(null, cMsg, "Error creating export file", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // Import button 
+        String cMsg = "Not ready to use yet! ";
+        JOptionPane.showMessageDialog(null, cMsg, "Working in Progress..", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -3573,19 +3590,28 @@ public class MainWindow extends javax.swing.JFrame {
     private String showSaveFileDialog() {
         String cDestPath = new String();
         
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify the destination export file");
+        while (true){
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify the destination export file");
+
+            fileChooser.setFileFilter(new FileNameExtensionFilter("*.CSV file","csv"));
+            int userSelection = fileChooser.showSaveDialog(this);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                cDestPath = fileToSave.getAbsolutePath();
+
+            }
         
-        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file","csv"));
-        int userSelection = fileChooser.showSaveDialog(this);
-        
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            cDestPath = fileToSave.getAbsolutePath();
-            
-            System.out.println("Save as file: " + cDestPath);
+            if (cDestPath.toUpperCase().contains(".CSV")){
+                break;
+            } else {
+                String cMsg = "The destination file needs to be CSV format";
+                javax.swing.JOptionPane.showMessageDialog(rootPane,cMsg, "Invalid extension or format", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
+            
+            
         return cDestPath;
     }
     
