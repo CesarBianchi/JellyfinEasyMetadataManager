@@ -227,7 +227,7 @@ public class JellyfinExportMetadata {
             line.setOfficialRating(String.valueOf(items.get(nI).getOfficialRating()));
             line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getPremiereDate()));
             line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getItemMetadata().getDateCreated()));
-            line.setGenres(items.get(nI).getGenres());
+            line.setGenres(items.get(nI).getItemMetadata().getGenres());
             line.setPreferredMetadataLanguage(items.get(nI).getItemMetadata().getPreferredMetadataLanguage());
             line.setPreferredMetadataCountryCode(items.get(nI).getItemMetadata().getPreferredMetadataCountryCode());
             line.setStudios(items.get(nI).getItemMetadata().getStudios());
