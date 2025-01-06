@@ -51,181 +51,123 @@ public class JellyfinCsvStructure {
     }
 
     public String getId() {
-        if (Id == null){
-            Id = "";
-        }
-        
         return Id;
     }
 
     public void setId(String Id) {
-        this.Id = Id;
+        this.Id = this.removeInvalidChars(Id);
     }
 
     public String getParentId() {
-        if (ParentId == null){
-            ParentId = "";
-        }
-        
         return ParentId;
     }
 
     public void setParentId(String ParentId) {
-        this.ParentId = ParentId;
+        this.ParentId = this.removeInvalidChars(ParentId);
     }
 
     public String getName() {
-        if (Name == null){
-            Name = "";
-        }
-        
         return Name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.Name = this.removeInvalidChars(Name);
     }
 
     public String getOriginalTitle() {
-        if (OriginalTitle == null){
-            OriginalTitle = "";
-        }
-        
         return OriginalTitle;
     }
 
     public void setOriginalTitle(String OriginalTitle) {
-        this.OriginalTitle = OriginalTitle;
+        this.OriginalTitle = this.removeInvalidChars(OriginalTitle);
     }
 
     public String getSortName() {
-        if (SortName == null){
-            SortName = "";
-        }
-        
         return SortName;
     }
 
     public void setSortName(String SortName) {
-        this.SortName = SortName;
+        this.SortName = this.removeInvalidChars(SortName);
     }
 
     public String getForcedSortName() {
-        if (ForcedSortName == null){
-            ForcedSortName = "";
-        }
-        
         return ForcedSortName;
     }
 
     public void setForcedSortName(String ForcedSortName) {
-        this.ForcedSortName = ForcedSortName;
+        this.ForcedSortName = this.removeInvalidChars(ForcedSortName);
     }
 
     public String getType() {
-        if (Type == null){
-            Type = "";
-        }
-        
         return Type;
     }
 
     public void setType(String Type) {
-        this.Type = Type;
+        this.Type = this.removeInvalidChars(Type);
     }
 
     public String getCollectionType() {
-        if (CollectionType == null){
-            CollectionType = "";
-        }
-        
         return CollectionType;
     }
 
     public void setCollectionType(String CollectionType) {
-        this.CollectionType = CollectionType;
+        this.CollectionType = this.removeInvalidChars(CollectionType);
     }
 
     public String getProductionYear() {
-        if (ProductionYear == null){
-            ProductionYear = "";
-        }
-        
         return ProductionYear;
     }
 
     public void setProductionYear(String ProductionYear) {
-        this.ProductionYear = ProductionYear;
+        this.ProductionYear = this.removeInvalidChars(ProductionYear);
     }
 
     public String getCommunityRating() {
-        if (CommunityRating == null){
-            CommunityRating = "";
-        }
-        
         return CommunityRating;
     }
 
     public void setCommunityRating(String CommunityRating) {
-        this.CommunityRating = CommunityRating;
+        this.CommunityRating = this.removeInvalidChars(CommunityRating);
     }
 
     public String getCriticRating() {
-        if (CriticRating == null){
-            CriticRating = "";
-        }
-        
         return CriticRating;
     }
 
     public void setCriticRating(String CriticRating) {
-        this.CriticRating = CriticRating;
+        this.CriticRating = this.removeInvalidChars(CriticRating);
     }
 
     public String getOfficialRating() {
-        if (OfficialRating == null){
-            OfficialRating = "";
-        }
-        
         return OfficialRating;
     }
 
     public void setOfficialRating(String OfficialRating) {
-        this.OfficialRating = OfficialRating;
+        this.OfficialRating = this.removeInvalidChars(OfficialRating);
     }
 
     public String getPremiereDate() {
-        if (PremiereDate == null){
-            PremiereDate = "";
-        }
-        
         return PremiereDate;
     }
 
     public void setPremiereDate(String PremiereDate) {
-        this.PremiereDate = PremiereDate;
+        this.PremiereDate = this.removeInvalidChars(PremiereDate);
     }
 
     public String getDateCreated() {
-        if (DateCreated == null){
-            DateCreated = "";
-        }
         return DateCreated;
     }
 
     public void setDateCreated(String DateCreated) {
-        this.DateCreated = DateCreated;
+        this.DateCreated = this.removeInvalidChars(DateCreated);
     }
 
     public String getGenres() {
-        if (Genres == null){
-            Genres = "";
-        }
         return Genres;
     }
 
     public void setGenres(String genres) {
-        this.Genres = genres;
+        this.Genres = this.removeInvalidChars(genres);
     }
 
     public void setGenres(ArrayList<String>  grs) {
@@ -235,38 +177,29 @@ public class JellyfinCsvStructure {
             this.Genres = this.Genres.concat(grs.get(nI));
             
             if ((grs.size()-1) != nI){
-                this.Genres = this.Studios.concat("|");
+                this.Genres = this.removeInvalidChars(this.Studios.concat(", "));
             
             }
         }        
     }
     
     public String getPreferredMetadataLanguage() {        
-        if (PreferredMetadataLanguage == null){
-            PreferredMetadataLanguage = "";
-        }
         return PreferredMetadataLanguage;
     }
 
     public void setPreferredMetadataLanguage(String PreferredMetadataLanguage) {
-        this.PreferredMetadataLanguage = PreferredMetadataLanguage;
+        this.PreferredMetadataLanguage = this.removeInvalidChars(PreferredMetadataLanguage);
     }
 
     public String getPreferredMetadataCountryCode() {
-        if (PreferredMetadataCountryCode == null){
-            PreferredMetadataCountryCode = "";
-        }
         return PreferredMetadataCountryCode;
     }
 
     public void setPreferredMetadataCountryCode(String PreferredMetadataCountryCode) {
-        this.PreferredMetadataCountryCode = PreferredMetadataCountryCode;
+        this.PreferredMetadataCountryCode = this.removeInvalidChars(PreferredMetadataCountryCode);
     }
 
     public String getStudios() {
-        if (Studios == null){
-            Studios = "";
-        }
         return Studios;
     }
 
@@ -276,21 +209,18 @@ public class JellyfinCsvStructure {
             this.Studios = this.Studios.concat(Studios.get(nI).getName());
             
             if ((Studios.size()-1) != nI){
-                this.Studios = this.Studios.concat("|");
+                this.Studios = this.removeInvalidChars(this.Studios.concat(""));
             }            
         }
         
     }
 
     public String getTags() {
-        if (Tags == null){
-            Tags = "";
-        }
         return Tags;
     }
 
     public void setTags(String Tags) {
-        this.Tags = Tags;
+        this.Tags = this.removeInvalidChars(Tags);
     }
     
     public void setTags(ArrayList<String>  Tgs) {
@@ -299,7 +229,7 @@ public class JellyfinCsvStructure {
             this.Tags = this.Tags.concat(Tgs.get(nI));
             
             if ((Tgs.size()-1) != nI){
-                this.Tags = this.Tags.concat("|");
+                this.Tags = this.removeInvalidChars(this.Tags.concat(", "));
             }            
         }
         
@@ -307,36 +237,27 @@ public class JellyfinCsvStructure {
     }
 
     public String getLocationType() {
-        if (LocationType == null){
-            LocationType = "";
-        }
         return LocationType;
     }
 
     public void setLocationType(String LocationType) {
-        this.LocationType = LocationType;
+        this.LocationType = this.removeInvalidChars(LocationType);
     }
 
     public String getMediaType() {
-        if (MediaType == null){
-            MediaType = "";
-        }
         return MediaType;
     }
 
     public void setMediaType(String MediaType) {
-        this.MediaType = MediaType;
+        this.MediaType = this.removeInvalidChars(MediaType);
     }
 
     public String getIsHD() {
-        if (IsHD == null){
-            IsHD = "";
-        }
         return IsHD;
     }
 
     public void setIsHD(String IsHD) {
-        this.IsHD = IsHD;
+        this.IsHD = this.removeInvalidChars(IsHD);
     }
     
     public void setIsHD(boolean HD) {
@@ -349,15 +270,23 @@ public class JellyfinCsvStructure {
     }
     
     public String getPath() {
-        if (Path == null){
-            Path = "";
-        }
         return Path;
     }
 
     public void setPath(String Path) {
-        this.Path = Path;
+        this.Path = this.removeInvalidChars(Path);
     }
     
-    
+    private String removeInvalidChars(String cContent){
+        String cReplacedContent = new String();
+        
+        if (cContent != null) {        
+            cReplacedContent = new String(cContent).replace(";","");
+        } else {
+            cReplacedContent = "";
+        }
+        
+        return cReplacedContent;
+    }
+
 }

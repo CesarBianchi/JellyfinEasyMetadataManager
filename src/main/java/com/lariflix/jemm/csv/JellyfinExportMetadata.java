@@ -12,6 +12,7 @@ import com.lariflix.jemm.reports.JellyfinReportInventory;
 import com.lariflix.jemm.reports.JellyfinReportInventoryItem;
 import com.lariflix.jemm.reports.JellyfinReportInventoryStructure;
 import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
@@ -62,20 +63,42 @@ public class JellyfinExportMetadata {
     }
     
     
-    public boolean startProcess() {
-        boolean finalStatus = false;
+    public JellyfinResponseStandard startProcess() {
+        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
         
         if (!this.getDestinationPath().isEmpty()){
             try {
-                this.loadItems();
-                this.loadSubItems();                
-                this.loadLines();
-                
-                if (this.lines.size() > 0){
-                    this.createCSVFile();
-                    finalStatus = true;
+                if (this.loadItems()){
+                    
+                    if (this.loadSubItems()){
+                        
+                        if (this.loadLines()){
+                            
+                            if (this.lines.size() > 0){
+                                if (this.createCSVFile()){
+                                    processResult.setIsSuccess(true);
+                                    processResult.setResponseCode("CSV_EXP_001");
+                                    processResult.setResponseMessage("The export file was successfully generated on ".concat(cDestinationPath));
+                                } else {
+                                    
+                                }
+                            }
+                        } else {
+                            processResult.setIsSuccess(false);
+                            processResult.setResponseCode("CSV_EXP_002");
+                            processResult.setResponseMessage("Error while trying transform object into a ArrayList. There's no a valid folder or Item to do it available on Jellyfin Instance!");
+                        }
+                    } else {
+                        processResult.setIsSuccess(false);
+                        processResult.setResponseCode("CSV_EXP_003");
+                        processResult.setResponseMessage("Error while trying request subItems. Jellyfin Instance maybe is empty!");
+                    }
+                } else {
+                    processResult.setIsSuccess(false);
+                    processResult.setResponseCode("CSV_EXP_004");
+                    processResult.setResponseMessage("Error while trying request subItems. Jellyfin Instance maybe is empty!");
                 }
-
+                
             } catch (IOException ex) {
                 Logger.getLogger(JellyfinExportMetadata.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
@@ -83,13 +106,16 @@ public class JellyfinExportMetadata {
             }
 
         } else {
-            System.out.print("Error while trying create Export File. Destination FileName is empty!");
+            processResult.setIsSuccess(false);
+            processResult.setResponseCode("CSV_EXP_005");
+            processResult.setResponseMessage("Error while trying create Export File. Destination path is empty!");
         }
         
-        return finalStatus;
+        return processResult;
     }
 
-    private void loadItems() throws IOException, MalformedURLException, ParseException{
+    private boolean loadItems() throws IOException, MalformedURLException, ParseException{
+        boolean lSuccess = false;
         
         LoadFolders loadItems = new LoadFolders(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
         loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
@@ -111,18 +137,22 @@ public class JellyfinExportMetadata {
             item.setItemMetadata(itemMetadata);
             
             items.add(item);
+            lSuccess = true;
         }
         
         items.sort((o1, o2) -> o1.getName().toUpperCase().compareTo(o2.getName().toUpperCase()));
         
+        return lSuccess;
     }
     
-    private void loadSubItems(){
+    private boolean loadSubItems(){
+        boolean lSuccess = false;
         
         LoadItems loadSubItems = new LoadItems(JellyfimParameters.JUST_ITEMS);
         loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadSubItems.setcUserAdminID(instanceData.adminUser.getId());
+        lSuccess = true;
         
         for (int nI = 0; nI < items.size(); nI++){
             
@@ -155,13 +185,11 @@ public class JellyfinExportMetadata {
             }
             
         }
-       
+       return lSuccess;
     }
 
     private void loadHeader() {
-        JellyfinCsvStructure csvStructure = new JellyfinCsvStructure();
-        
-        Field[] declaredFields = csvStructure.getClass().getDeclaredFields();
+        Field[] declaredFields = getStandardHeader();
         
         for (int nI = 0; nI < declaredFields.length; nI++){
             this.header.add(declaredFields[nI].getName());
@@ -169,7 +197,16 @@ public class JellyfinExportMetadata {
         
     }
 
-    private void loadLines() {
+    public Field[] getStandardHeader(){
+        JellyfinCsvStructure csvStructure = new JellyfinCsvStructure();        
+        Field[] declaredFields = csvStructure.getClass().getDeclaredFields();
+        
+        return declaredFields;
+    }
+    
+    private boolean loadLines() {
+        boolean lSuccess = false;
+        
         JellyfinCsvStructure line = new JellyfinCsvStructure();
         TransformDateFormat transformDate = new TransformDateFormat();
         
@@ -202,7 +239,9 @@ public class JellyfinExportMetadata {
             
             lines.add(line);
             line = new JellyfinCsvStructure();
+            lSuccess = true;
             
+            //Get the Childs Items
             for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){
                 line.setId(items.get(nI).getSubItems().get(nJ).getId());
                 line.setParentId(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getParentId());
@@ -234,11 +273,11 @@ public class JellyfinExportMetadata {
             
             
         }
-        
+        return lSuccess;
     }
 
-    private void createCSVFile() {
-        
+    private boolean createCSVFile() {
+        boolean lSuccess = false;        
         BufferedWriter writer;
         String lineToBeAdded = new String();
         String delimiter = new String(";");
@@ -300,13 +339,13 @@ public class JellyfinExportMetadata {
             if (file.exists()) {
                 desktop.open(file);
             }
+            lSuccess = true;
             
         } catch (IOException ex) {
             Logger.getLogger(JellyfinExportMetadata.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return lSuccess;
        
-
     }
     
 }
