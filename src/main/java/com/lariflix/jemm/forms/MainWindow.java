@@ -4,6 +4,7 @@ package com.lariflix.jemm.forms;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
 import com.lariflix.jemm.csv.JellyfinExportMetadata;
+import com.lariflix.jemm.csv.JellyfinImportMetadata;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.dtos.JellyfinFolder;
@@ -14,6 +15,7 @@ import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
 import com.lariflix.jemm.utils.JellyfimParameters;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
+import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Component;
@@ -1870,30 +1872,54 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         //Export Button        
-        boolean finalStatus = false;
+        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
         String cDestinationPath = this.showSaveFileDialog();
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath,instanceData);
         
-        finalStatus = exportCSV.startProcess();
+        processResult = exportCSV.startProcess();
         this.setCursor(Cursor.getDefaultCursor());
         
-        String cMsg = new String();
-        if (finalStatus){
-            cMsg = "Export file successfully generated on ".concat(cDestinationPath);
-            JOptionPane.showMessageDialog(null, cMsg, "Export Metadata is done!", JOptionPane.INFORMATION_MESSAGE);
+        
+        String cMsg = processResult.getResponseMessage();
+        String cTitle = new String();
+        int msgType = 0;
+        
+        if (processResult.isSuccess()){
+            msgType = JOptionPane.INFORMATION_MESSAGE;
+            cTitle = "Export Metadata is done!";
         } else {
-            cMsg = "One or more errors was found while tried create the export file ";
-            JOptionPane.showMessageDialog(null, cMsg, "Error creating export file", JOptionPane.ERROR_MESSAGE);
+            msgType = JOptionPane.ERROR_MESSAGE;
+            cTitle = "Export Metadata failed!";
         }
+        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
+        
         
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // Import button 
-        String cMsg = "Not ready to use yet! ";
-        JOptionPane.showMessageDialog(null, cMsg, "Working in Progress..", JOptionPane.ERROR_MESSAGE);
+        boolean lSuccess = false;
+        String cOriginPath = this.showOpenFileDialog();
+        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
+        String cTitle = new String();
+        int msgType = 0;
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        JellyfinImportMetadata importCSV = new JellyfinImportMetadata(cOriginPath,instanceData);
+        processResult = importCSV.startProcess();        
+        this.setCursor(Cursor.getDefaultCursor());
+        
+        String cMsg = processResult.getResponseMessage();
+        if (processResult.isSuccess()){
+            msgType = JOptionPane.INFORMATION_MESSAGE;
+            cTitle = "Import Metadata is done!";
+        } else {
+            msgType = JOptionPane.ERROR_MESSAGE;
+            cTitle = "Import Metadata failed!";
+        }
+        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
     
     /**
@@ -3600,7 +3626,8 @@ public class MainWindow extends javax.swing.JFrame {
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File fileToSave = fileChooser.getSelectedFile();
                 cDestPath = fileToSave.getAbsolutePath();
-
+            } else {
+                break;
             }
         
             if (cDestPath.toUpperCase().contains(".CSV")){
@@ -3613,6 +3640,35 @@ public class MainWindow extends javax.swing.JFrame {
             
             
         return cDestPath;
+    }
+
+    private String showOpenFileDialog() {
+        String cOriginPath = new String();
+        
+        while (true){
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify the origin of import file");
+
+            fileChooser.setFileFilter(new FileNameExtensionFilter("*.CSV file","csv"));
+            int userSelection = fileChooser.showOpenDialog(this);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToOpen = fileChooser.getSelectedFile();
+                cOriginPath = fileToOpen.getAbsolutePath();
+            } else {
+                break;
+            }
+        
+            if (cOriginPath.toUpperCase().contains(".CSV")){
+                break;
+            } else {
+                String cMsg = "The origin file needs to be CSV format";
+                javax.swing.JOptionPane.showMessageDialog(rootPane,cMsg, "Invalid extension or format", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+            
+            
+        return cOriginPath;
     }
     
 }

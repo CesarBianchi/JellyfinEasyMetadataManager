@@ -20,6 +20,7 @@ com/lariflix/jemm/forms/AddPeoplePanel$7.class
 com/lariflix/jemm/forms/MainWindow$22.class
 com/lariflix/jemm/reports/JellyfinReportPeople.class
 com/lariflix/jemm/forms/AboutJemmPanel$6.class
+com/lariflix/jemm/utils/JellyfinResponseStandard.class
 com/lariflix/jemm/dtos/JellyfinPeopleItem.class
 com/lariflix/jemm/reports/JellyfinReportStudios$1.class
 com/lariflix/jemm/forms/MainWindow$15.class
@@ -52,6 +53,7 @@ com/lariflix/jemm/forms/AboutJemmPanel$2.class
 com/lariflix/jemm/forms/MainWindow$36.class
 com/lariflix/jemm/dtos/JellyfinUser.class
 com/lariflix/jemm/forms/MainWindow$20.class
+com/lariflix/jemm/csv/JellyfinImportMetadata.class
 com/lariflix/jemm/forms/MainWindow$13.class
 com/lariflix/jemm/forms/MainWindow$9.class
 com/lariflix/jemm/forms/MainWindow$33.class
