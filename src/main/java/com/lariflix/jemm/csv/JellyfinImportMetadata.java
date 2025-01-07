@@ -25,6 +25,7 @@ import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.utils.JellyfimParameters;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
+import com.lariflix.jemm.utils.JemmVersion;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.Desktop;
 import java.io.BufferedReader;
@@ -114,23 +115,27 @@ public class JellyfinImportMetadata {
             processStatus = this.checkHeader();
             if (processStatus.isSuccess()){
                 
-            
                 //2nd: Check if any line of file has more or less fields than expected. Needs to be the same quantity
                 processStatus = this.preCheckLines();
                 if (processStatus.isSuccess()){
                 
-                    //3rd: Create a kind of "From/To" Log Diferences.
-                    processStatus = this.compareDiferences();
+                    //3rd: Check if the file has one or more lines from different serverID (Instance) or
+                    //was generated from older jemm version
+                    processStatus = this.grantOrigin();
                     if (processStatus.isSuccess()){
-                        System.out.println("Process is done! ");
-                        
-                        //TEMP _ OPEN LOG FILE
-                        Desktop desktop = Desktop.getDesktop();
-                        File file = new File(this.getLogDiferencesFile());
-                        desktop.open(file);
-                        
-                    }
                     
+                        //4th: Create a kind of "From/To" Log Diferences.
+                        processStatus = this.compareDiferences();
+                        if (processStatus.isSuccess()){
+                            System.out.println("Process is done! ");
+
+                            //TEMP _ OPEN LOG FILE
+                            Desktop desktop = Desktop.getDesktop();
+                            File file = new File(this.getLogDiferencesFile());
+                            desktop.open(file);
+
+                        }
+                    }
                 }
             }    
         } catch (IOException ex) {
@@ -313,105 +318,114 @@ public class JellyfinImportMetadata {
             instanceItem = this.getItemFromInstance(itemID,parentID);
             String lineNumber = Integer.toString(nI+1);
             
-            
-            //Compare all fields between instance and line content
-            
-            //Name
-            oldValue = instanceItem.getName();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("Name"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"Name",oldValue,newValue);
-            
-            
-            //OriginalTitle
-            oldValue = instanceItem.getItemMetadata().getOriginalTitle();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("OriginalTitle"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"OriginalTitle",oldValue,newValue);
-            
-            //SortName
-            oldValue = instanceItem.getItemMetadata().getSortName();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("SortName"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"SortName",oldValue,newValue);
-            
-            //ForcedSortName
-            oldValue = instanceItem.getItemMetadata().getForcedSortName();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("ForcedSortName"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"ForcedSortName",oldValue,newValue);
-            
-            //ProductionYear
-            oldValue = Integer.toString(instanceItem.getProductionYear());
-            newValue = fieldsinLine.get(getDefaultIndexNumber("ProductionYear"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"ProductionYear",oldValue,newValue);
-            
-            //CommunityRating
-            oldValue = Integer.toString(instanceItem.getCommunityRating());
-            newValue = fieldsinLine.get(getDefaultIndexNumber("CommunityRating"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"CommunityRating",oldValue,newValue);
-            
-            //CriticRating
-            oldValue = Integer.toString(instanceItem.getCriticRating());
-            newValue = fieldsinLine.get(getDefaultIndexNumber("CriticRating"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"CriticRating",oldValue,newValue);
-            
-            //OfficialRating
-            oldValue = instanceItem.getOfficialRating();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("OfficialRating"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"OfficialRating",oldValue,newValue);
+            //Grant that item was found in Jellyfin Instance before continue
+            if ((instanceItem != null) && (instanceItem.getId() != null) && (instanceItem.getId().equals(itemID))){
+                
+                //Then Compare all fields between instance and line content
+                
+                //Name
+                oldValue = instanceItem.getName();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("Name"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"Name",oldValue,newValue);
 
-            //PremiereDate
-            oldValue = transformDate.getSimpleDateFromFull(instanceItem.getPremiereDate());
-            newValue = fieldsinLine.get(getDefaultIndexNumber("PremiereDate"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"PremiereDate",oldValue,newValue);
+                //OriginalTitle
+                oldValue = instanceItem.getItemMetadata().getOriginalTitle();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("OriginalTitle"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"OriginalTitle",oldValue,newValue);
 
-            //DateCreated
-            oldValue = transformDate.getSimpleDateFromFull(instanceItem.getItemMetadata().getDateCreated());
-            newValue = fieldsinLine.get(getDefaultIndexNumber("DateCreated"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"DateCreated",oldValue,newValue);
-            
-            //Genres
-            JellyfinCsvStructure tmpObjGenres = new JellyfinCsvStructure();
-            tmpObjGenres.setGenres(instanceItem.getItemMetadata().getGenres());            
-            oldValue = tmpObjGenres.getGenres();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("Genres"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"Genres",oldValue,newValue);
-            
-            //PreferredMetadataLanguage
-            oldValue = instanceItem.getItemMetadata().getPreferredMetadataLanguage();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("PreferredMetadataLanguage"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"PreferredMetadataLanguage",oldValue,newValue);
-            
-            //PreferredMetadataCountryCode
-            oldValue = instanceItem.getItemMetadata().getPreferredMetadataCountryCode();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"PreferredMetadataCountryCode",oldValue,newValue);
-            
-            //Studios
-            JellyfinCsvStructure tmpObjStudios = new JellyfinCsvStructure();
-            tmpObjStudios.setStudios(instanceItem.getItemMetadata().getStudios());
-            oldValue = tmpObjStudios.getStudios();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("Studios"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"Studios",oldValue,newValue);
-            
-            //Tags
-            JellyfinCsvStructure tmpObjTags = new JellyfinCsvStructure();
-            tmpObjTags.setTags( instanceItem.getItemMetadata().getTags());            
-            oldValue = tmpObjTags.getTags();
-            newValue = fieldsinLine.get(getDefaultIndexNumber("Tags"));
-            if ((oldValue == null) || (!(oldValue.equals(newValue))))
-                this.registerFieldDiference(lineNumber,"Tags",oldValue,newValue);
+                //SortName
+                oldValue = instanceItem.getItemMetadata().getSortName();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("SortName"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"SortName",oldValue,newValue);
+
+                //ForcedSortName
+                oldValue = instanceItem.getItemMetadata().getForcedSortName();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("ForcedSortName"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"ForcedSortName",oldValue,newValue);
+
+                //ProductionYear
+                oldValue = Integer.toString(instanceItem.getProductionYear());
+                newValue = fieldsinLine.get(getDefaultIndexNumber("ProductionYear"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"ProductionYear",oldValue,newValue);
+
+                //CommunityRating
+                oldValue = Integer.toString(instanceItem.getCommunityRating());
+                newValue = fieldsinLine.get(getDefaultIndexNumber("CommunityRating"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"CommunityRating",oldValue,newValue);
+
+                //CriticRating
+                oldValue = Integer.toString(instanceItem.getCriticRating());
+                newValue = fieldsinLine.get(getDefaultIndexNumber("CriticRating"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"CriticRating",oldValue,newValue);
+
+                //OfficialRating
+                oldValue = instanceItem.getOfficialRating();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("OfficialRating"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"OfficialRating",oldValue,newValue);
+
+                //PremiereDate
+                oldValue = transformDate.getSimpleDateFromFull(instanceItem.getPremiereDate());
+                newValue = fieldsinLine.get(getDefaultIndexNumber("PremiereDate"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"PremiereDate",oldValue,newValue);
+
+                //DateCreated
+                oldValue = transformDate.getSimpleDateFromFull(instanceItem.getItemMetadata().getDateCreated());
+                newValue = fieldsinLine.get(getDefaultIndexNumber("DateCreated"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"DateCreated",oldValue,newValue);
+
+                //Genres
+                JellyfinCsvStructure tmpObjGenres = new JellyfinCsvStructure();
+                tmpObjGenres.setGenres(instanceItem.getItemMetadata().getGenres());            
+                oldValue = tmpObjGenres.getGenres();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("Genres"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"Genres",oldValue,newValue);
+
+                //PreferredMetadataLanguage
+                oldValue = instanceItem.getItemMetadata().getPreferredMetadataLanguage();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("PreferredMetadataLanguage"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"PreferredMetadataLanguage",oldValue,newValue);
+
+                //PreferredMetadataCountryCode
+                oldValue = instanceItem.getItemMetadata().getPreferredMetadataCountryCode();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"PreferredMetadataCountryCode",oldValue,newValue);
+
+                //Studios
+                JellyfinCsvStructure tmpObjStudios = new JellyfinCsvStructure();
+                tmpObjStudios.setStudios(instanceItem.getItemMetadata().getStudios());
+                oldValue = tmpObjStudios.getStudios();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("Studios"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"Studios",oldValue,newValue);
+
+                //Tags
+                JellyfinCsvStructure tmpObjTags = new JellyfinCsvStructure();
+                tmpObjTags.setTags( instanceItem.getItemMetadata().getTags());            
+                oldValue = tmpObjTags.getTags();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("Tags"));
+                if ((oldValue == null) || (!(oldValue.equals(newValue))))
+                    this.registerFieldDiference(lineNumber,"Tags",oldValue,newValue);
+            } else {
+                String cInvalidIDMsg = new String();
+                cInvalidIDMsg = cInvalidIDMsg.concat("At line ").concat(lineNumber);
+                cInvalidIDMsg = cInvalidIDMsg.concat(" the ID ").concat(itemID);
+                cInvalidIDMsg = cInvalidIDMsg.concat(" or the ParentID ").concat(parentID);
+                cInvalidIDMsg = cInvalidIDMsg.concat(" is invalid. Make sure the selected CSV file is from the same Jellyfin Instance. ");
+                this.insertLogComparsionRecord(cInvalidIDMsg);            
+            }
             
         }
         
@@ -496,22 +510,26 @@ public class JellyfinImportMetadata {
             
             for (int nI = 0; nI < insItems.getItems().size(); nI++){
                 
-                item = insItems.getItems().get(nI);
-                
-                if (item.getId().equals(itemID)){
+                try {
+                    item = insItems.getItems().get(nI);
+
+                    if (item.getId().equals(itemID)){
+
+                        LoadItemMetadata instItemMetadata = new LoadItemMetadata(baseURL,apiToken,adminID,itemID);                    
+                        JellyfinItemMetadata itemMetadata = instItemMetadata.requestItemMetadata();
+                        item.setItemMetadata(itemMetadata);
+
+                        break;
+                    }
+                } catch (IOException ex) {
                     
-                    LoadItemMetadata instItemMetadata = new LoadItemMetadata(baseURL,apiToken,adminID,itemID);                    
-                    JellyfinItemMetadata itemMetadata = instItemMetadata.requestItemMetadata();
-                    item.setItemMetadata(itemMetadata);
-            
-                    break;
                 }
             }
             
         } catch (IOException ex) {
-            Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
         }
     
         return item;
@@ -530,6 +548,57 @@ public class JellyfinImportMetadata {
         cMsg = cMsg.concat(" and will be replaced by '").concat(newValue).concat("' ");
         
         this.insertLogComparsionRecord(cMsg);
+    }
+
+    private JellyfinResponseStandard grantOrigin() {
+        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
+        String lineContent = new String();
+        ArrayList<String> fieldsinLine = new ArrayList();
+        int indexJemmVersion = 0;
+        int indexServerID = 0;
+        String JemmVersion = new String();
+        String ServerID = new String();
+        JellyfinCsvStructure csvUtils = new JellyfinCsvStructure();
+        String JemmVersionRunning = new JemmVersion().getVersion();
+        String ServerIDRunning = instanceData.getAdminUser().getServerId();
+        
+        //Set the default response
+        processResult.setIsSuccess(true);
+        processResult.setResponseCode("");
+        processResult.setResponseMessage("All lines has a valid ServerID and JemmVersion");
+        
+        //Check all lines of file if there's unrecognized serverID or JemmVersion
+        indexJemmVersion = this.getDefaultIndexNumber("JemmVersion");
+        indexServerID = this.getDefaultIndexNumber("ServerID");
+        
+        for (int nI = 0; nI < this.fileLines.size(); nI++){
+            lineContent = this.fileLines.get(nI);
+            
+            fieldsinLine = this.myTokenizer(lineContent);
+            
+            JemmVersion = fieldsinLine.get(indexJemmVersion);
+            ServerID =  fieldsinLine.get(indexServerID);
+            
+            //1st: Check if JemmVersion present in line is the same of JemmVersion running
+            if (!csvUtils.checkJellyfinVersionMD5(JemmVersion, JemmVersionRunning)){
+                processResult.setIsSuccess(false);
+                processResult.setResponseCode("CSV_IMP_007");
+                processResult.setResponseMessage("The version of JEMM used to generate this file is different of version at running. Please make sure you are using a file exported from same version to import.");
+                break;
+            }
+            
+            //2nd: Check if ServerID present in line is the same of ServerID where Jemm is connected
+            if (!ServerID.equals(ServerIDRunning)){
+                processResult.setIsSuccess(false);
+                processResult.setResponseCode("CSV_IMP_008");
+                processResult.setResponseMessage("The ServerID registered in this file is different of ServerID where JEMM is connected. Probably, this file was generated from a different Jellyfin Instance. Please make sure you are using a file exported from same server/instance to import.");
+                break;
+            }
+            
+            
+        }
+                
+        return processResult;
     }
     
     
