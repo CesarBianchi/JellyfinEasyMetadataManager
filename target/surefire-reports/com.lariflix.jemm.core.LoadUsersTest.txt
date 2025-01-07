@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.lariflix.jemm.core.LoadUsersTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.lariflix.jemm.core.LoadUsersTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.lariflix.jemm.core.LoadUsersTest
