@@ -13,6 +13,7 @@ import com.lariflix.jemm.reports.JellyfinReportInventoryItem;
 import com.lariflix.jemm.reports.JellyfinReportInventoryStructure;
 import com.lariflix.jemm.utils.JellyfimParameters;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
+import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
@@ -236,6 +237,8 @@ public class JellyfinExportMetadata {
             line.setMediaType(items.get(nI).getItemMetadata().getMediaType());
             line.setIsHD(items.get(nI).getItemMetadata().isIsHD());            
             line.setPath(items.get(nI).getItemMetadata().getPath());
+            line.setJemmVersion( new JemmVersion().getVersion());
+            line.setServerID(instanceData.getAdminUser().getServerId());
             
             lines.add(line);
             line = new JellyfinCsvStructure();
@@ -266,6 +269,8 @@ public class JellyfinExportMetadata {
                 line.setMediaType(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getMediaType());
                 line.setIsHD(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().isIsHD());
                 line.setPath(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPath());
+                line.setJemmVersion( new JemmVersion().getVersion());
+                line.setServerID(instanceData.getAdminUser().getServerId());
                 
                 lines.add(line);
                 line = new JellyfinCsvStructure();
@@ -326,7 +331,10 @@ public class JellyfinExportMetadata {
                 lineToBeAdded = lineToBeAdded.concat(newLine.getLocationType()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getMediaType()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getIsHD()).concat(delimiter);
-                lineToBeAdded = lineToBeAdded.concat(newLine.getPath());
+                lineToBeAdded = lineToBeAdded.concat(newLine.getPath()).concat(delimiter);
+                lineToBeAdded = lineToBeAdded.concat(newLine.getJemmVersion()).concat(delimiter);
+                lineToBeAdded = lineToBeAdded.concat(newLine.getServerID());
+                
                 writer.write(lineToBeAdded);
                 writer.newLine();
                 lineToBeAdded = "";

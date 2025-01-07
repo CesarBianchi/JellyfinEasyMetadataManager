@@ -19,6 +19,7 @@ package com.lariflix.jemm.csv;
 
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import java.util.ArrayList;
+import org.apache.commons.codec.digest.DigestUtils;
 
 
 public class JellyfinCsvStructure {
@@ -45,6 +46,8 @@ public class JellyfinCsvStructure {
     public String MediaType = new String();
     public String IsHD = new String();            
     public String Path = new String();
+    public String JemmVersion = new String();
+    public String ServerID = new String();
     
     public JellyfinCsvStructure(){
         
@@ -288,5 +291,41 @@ public class JellyfinCsvStructure {
         
         return cReplacedContent;
     }
+
+    public String getJemmVersion() {
+        return JemmVersion;
+    }
+
+    public void setJemmVersion(String jemmVersion) {
+        
+        String withprefix = "to_prevent_noobies_".concat(jemmVersion);
+        
+        String md5Hex = DigestUtils.md5Hex(withprefix).toUpperCase();
+        
+        this.JemmVersion = md5Hex;
+    }
+
+    
+    public boolean checkJellyfinVersionMD5(String hash, String value){
+        
+        String withprefix = "to_prevent_noobies_".concat(value);
+        
+        String md5Hex = DigestUtils.md5Hex(withprefix).toUpperCase();
+        
+        boolean isOk = md5Hex.equals(hash);
+        
+        return isOk;
+    }
+    
+    public String getServerID() {
+        return ServerID;
+    }
+
+    public void setServerID(String serverID) {
+        this.ServerID = serverID;
+    }
+    
+    
+    
 
 }
