@@ -26,7 +26,7 @@ import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.forms.MainWindow;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JemmVersion;
 import com.lariflix.jemm.utils.TransformDateFormat;
@@ -524,7 +524,7 @@ public class JellyfinImportMetadata {
         String apiToken = this.instanceData.getCredentials().getTokenAPI();
         String adminID = this.instanceData.getAdminUser().getId();
         
-        LoadItems loadInstanceItems = new LoadItems(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
+        LoadItems loadInstanceItems = new LoadItems(JellyfinParameters.FOLDERS_AND_SUBFOLDERS);
         loadInstanceItems.setJellyfinInstanceUrl(baseURL);
         loadInstanceItems.setApiToken(apiToken);
         loadInstanceItems.setcUserAdminID(adminID);

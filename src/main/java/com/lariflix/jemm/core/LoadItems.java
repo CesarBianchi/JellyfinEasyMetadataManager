@@ -3,7 +3,7 @@ package com.lariflix.jemm.core;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -25,7 +25,7 @@ public class LoadItems {
     private String cUserAdminID = new String();
     private String cParentID = new String();
     private String fullURL = new String();
-    private JellyfimParameters itemsType = null;
+    private JellyfinParameters itemsType = null;
     
     /**
      * Default constructor for the LoadItems class.
@@ -34,7 +34,7 @@ public class LoadItems {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    public LoadItems(JellyfimParameters typeOfItems) {
+    public LoadItems(JellyfinParameters typeOfItems) {
         this.setItemsType(typeOfItems);
     }
 
@@ -49,7 +49,7 @@ public class LoadItems {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    public LoadItems(String jellyfinURL, String apiToken, String cAdminID, String cParID,JellyfimParameters typeOfItems) {
+    public LoadItems(String jellyfinURL, String apiToken, String cAdminID, String cParID,JellyfinParameters typeOfItems) {
        this.setJellyfinInstanceUrl(jellyfinURL);
        this.setApiToken(apiToken);
        this.setcUserAdminID(cAdminID);
@@ -215,9 +215,9 @@ public class LoadItems {
         urlWithApiKey = urlWithApiKey.concat("&userId=").concat(this.getcUserAdminID());
         urlWithApiKey = urlWithApiKey.concat("&ApiKey=").concat(this.apiToken);
         
-        if (this.getItemsType() == JellyfimParameters.JUST_ITEMS){
+        if (this.getItemsType() == JellyfinParameters.JUST_ITEMS){
             urlWithApiKey = urlWithApiKey.concat("&filters=").concat("IsNotFolder");
-        } else if (this.getItemsType() == JellyfimParameters.JUST_SUBFOLDERS){
+        } else if (this.getItemsType() == JellyfinParameters.JUST_SUBFOLDERS){
             urlWithApiKey = urlWithApiKey.concat("&filters=").concat("IsFolder");
         } else {
             //Nothig to do: Default way include Subfolers and Items
@@ -233,7 +233,7 @@ public class LoadItems {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    public JellyfimParameters getItemsType() {
+    public JellyfinParameters getItemsType() {
         return itemsType;
     }
 
@@ -244,7 +244,7 @@ public class LoadItems {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    public void setItemsType(JellyfimParameters itemsType) {
+    public void setItemsType(JellyfinParameters itemsType) {
         this.itemsType = itemsType;
     }
  
