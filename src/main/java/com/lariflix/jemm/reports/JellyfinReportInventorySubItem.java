@@ -53,6 +53,7 @@ public class JellyfinReportInventorySubItem extends JellyfinItem{
         this.setServerId(subIt.getServerId());
         this.setType(subIt.getType());
         this.setVideoType(subIt.getVideoType());
+        this.setParentId(subIt.getParentId());
     }
    
     /**
