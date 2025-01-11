@@ -216,7 +216,7 @@ public class JellyfinExportMetadata {
             
             //Do not add items type like "Playlist"
             //Otherwise, items can be duplicated in destination file
-            if (!items.get(nI).getType().toUpperCase().equals("PLAYLIST")) {
+            if (!items.get(nI).getType().toUpperCase().contains("PLAYLIST")) {
                 //Get parent record first and then, their childs            
                 line.setId(items.get(nI).getId());            
                 line.setParentId(items.get(nI).getItemMetadata().getParentId());
@@ -243,6 +243,7 @@ public class JellyfinExportMetadata {
                 line.setPath(items.get(nI).getItemMetadata().getPath());
                 line.setJemmVersion( new JemmVersion().getVersion());
                 line.setServerID(instanceData.getAdminUser().getServerId());
+                line.setOverview(items.get(nI).getItemMetadata().getOverview());
 
                 lines.add(line);
                 line = new JellyfinCsvStructure();
@@ -260,11 +261,11 @@ public class JellyfinExportMetadata {
                     line.setForcedSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getForcedSortName());
                     line.setType(items.get(nI).getSubItems().get(nJ).getType());
                     line.setCollectionType("<unavaiable>"); //There's no in subItems. Only Parents                
-                    line.setProductionYear(String.valueOf(items.get(nI).getSubItems().get(nJ).getProductionYear()));                
-                    line.setCommunityRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCommunityRating()));
+                    line.setProductionYear(String.valueOf(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getProductionYear()));                
+                    line.setCommunityRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getCommunityRating()));
                     line.setCriticRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCriticRating()));                
                     line.setOfficialRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getOfficialRating()));                
-                    line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getPremiereDate()));
+                    line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPremiereDate()));
                     line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated() ));                
                     line.setGenres(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getGenres());                
                     line.setPreferredMetadataLanguage(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataLanguage());
@@ -277,6 +278,7 @@ public class JellyfinExportMetadata {
                     line.setPath(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPath());
                     line.setJemmVersion( new JemmVersion().getVersion());
                     line.setServerID(instanceData.getAdminUser().getServerId());
+                    line.setOverview(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getOverview());
 
                     lines.add(line);
                     line = new JellyfinCsvStructure();
@@ -338,7 +340,8 @@ public class JellyfinExportMetadata {
                 lineToBeAdded = lineToBeAdded.concat(newLine.getIsHD()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getPath()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getJemmVersion()).concat(delimiter);
-                lineToBeAdded = lineToBeAdded.concat(newLine.getServerID());
+                lineToBeAdded = lineToBeAdded.concat(newLine.getServerID()).concat(delimiter);
+                lineToBeAdded = lineToBeAdded.concat(newLine.getOverview());
                 
                 writer.write(lineToBeAdded);
                 writer.newLine();
