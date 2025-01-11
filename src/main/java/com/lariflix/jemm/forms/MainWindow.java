@@ -73,13 +73,8 @@ public class MainWindow extends javax.swing.JFrame {
     static String forcedSortNameOldValue = new String();
     public final int from_folder_tab = 1;
     public final int from_content_tab = 2;
-        
-    private final int JUST_FOLDER_ITEM = 1;
-    //private final int FOLDER_AND_CONTENT = 2;
-    private final int JUST_CONTENT_ITEM = 3;
-    
-    private final int DOWNLOADING_DATA = 1;
-    private final int UPLOADING_DATA = 2;
+
+    private JellyfinParameters jemmParameters;
     
     /**
      * Constructs a new MainWindow.
@@ -2188,7 +2183,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             //Waitng Dialog and mouse cursor waiting
             /*  Commented by the Issue #27
-            //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),DOWNLOADING_DATA);
+            //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),jemmParameters.DOWNLOADING_DATA);
             //waitWin.showDialogWithTimmer();
             */
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -3087,7 +3082,7 @@ public class MainWindow extends javax.swing.JFrame {
                 */
                 
                 String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
-                connectAPI.postUpdate(folderID, "", instanceData,JUST_FOLDER_ITEM);
+                connectAPI.postUpdate(folderID, "", instanceData,jemmParameters.FOLDERS_AND_SUBFOLDERS);
             } catch (IOException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
@@ -3127,7 +3122,7 @@ public class MainWindow extends javax.swing.JFrame {
                     //waitWin.showDialogWithTimmer();  
                     */
                     
-                    connectAPI.postUpdate(cFolderID, cItemID, instanceData,JUST_CONTENT_ITEM);                
+                    connectAPI.postUpdate(cFolderID, cItemID, instanceData, jemmParameters.JUST_ITEMS);
                 }
 
             } catch (IOException | ParseException ex) {

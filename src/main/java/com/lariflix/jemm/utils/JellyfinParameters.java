@@ -17,5 +17,8 @@ public enum JellyfinParameters {
     JUST_ROOT_FOLDERS,
     FOLDERS_AND_SUBFOLDERS,
     JUST_ITEMS,
-    JUST_SUBFOLDERS;
+    JUST_SUBFOLDERS,
+    
+    DOWNLOADING_DATA,
+    UPLOADING_DATA;
 }

@@ -301,9 +301,9 @@ public class ConnectJellyfinAPI {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public int postUpdate(String cFolderID, String cItemID, JellyfinInstanceDetails instanceDetails, int nOPC) throws IOException, MalformedURLException, ParseException{
+    public int postUpdate(String cFolderID, String cItemID, JellyfinInstanceDetails instanceDetails, JellyfinParameters jemmParameters) throws IOException, MalformedURLException, ParseException{
         
-        SaveFolder updateItem = new SaveFolder(instanceDetails, cFolderID, cItemID, nOPC, this.getcBaseURL(),this.getcTokenApi());
+        SaveFolder updateItem = new SaveFolder(instanceDetails, cFolderID, cItemID, jemmParameters, this.getcBaseURL(),this.getcTokenApi());
          
         int responseCode =  updateItem.postUpdates();
         

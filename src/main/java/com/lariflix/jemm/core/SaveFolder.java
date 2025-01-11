@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItemUpdate;
 import com.lariflix.jemm.dtos.JellyfinProviderIds;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -32,7 +33,7 @@ public class SaveFolder {
     private String apiToken = new String();
     private String fullURL = new String();
     private TransformDateFormat transformDate = new TransformDateFormat();
-    private int nOpc = 0;
+    private JellyfinParameters jemmParameters;
     private String itemID = new String();
     private String cFolderID = new String();
     
@@ -62,11 +63,11 @@ public class SaveFolder {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public SaveFolder(JellyfinInstanceDetails inst, String cFolderID, String IDItem, int nOpc, String jellyfinURL, String apiToken) {
+    public SaveFolder(JellyfinInstanceDetails inst, String cFolderID, String IDItem, JellyfinParameters jemmParam, String jellyfinURL, String apiToken) {
         this.setInstance(inst);
         this.setcFolderID(cFolderID);
         this.setItemID(IDItem);
-        this.setnOpc(nOpc);
+        this.setnOpc(jemmParam);
         this.setJellyfinInstanceUrl(jellyfinURL);
         this.setApiToken(apiToken);
     }
@@ -122,7 +123,7 @@ public class SaveFolder {
         JellyfinItemUpdate itemToUpdate = new JellyfinItemUpdate();
         ArrayList<String> genres = new ArrayList();
         
-        if (this.getnOpc() == JUST_FOLDER_ITEM){
+        if (this.getnOpc() == jemmParameters.FOLDERS_AND_SUBFOLDERS){
             
             //Seek Folder
             for (int nI = 0; nI < instance.getFolders().getItems().size(); nI++){
@@ -171,7 +172,7 @@ public class SaveFolder {
             }
         
             
-        } else if (this.getnOpc() == JUST_CONTENT_ITEM){
+        } else if (this.getnOpc() == jemmParameters.JUST_ITEMS){
             
             //Seek Folder
             for (int nI = 0; nI < instance.getFolders().getItems().size(); nI++){                
@@ -313,8 +314,8 @@ public class SaveFolder {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public int getnOpc() {
-        return nOpc;
+    public JellyfinParameters getnOpc() {
+        return jemmParameters;
     }
 
     /**
@@ -324,8 +325,8 @@ public class SaveFolder {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public void setnOpc(int nOpc) {
-        this.nOpc = nOpc;
+    public void setnOpc(JellyfinParameters jemmParam) {
+        this.jemmParameters = jemmParam;
     }
 
     /**
@@ -386,9 +387,9 @@ public class SaveFolder {
         String urlWithApiKey = new String();
         String id = new String();
         
-        if (this.getnOpc() == JUST_FOLDER_ITEM){
+        if (this.getnOpc() == jemmParameters.FOLDERS_AND_SUBFOLDERS){
             id = this.getcFolderID();
-        } else if (this.getnOpc() == JUST_CONTENT_ITEM){
+        } else if (this.getnOpc() == jemmParameters.JUST_ITEMS){
             id = this.getItemID();
         }
         
