@@ -74,6 +74,8 @@ public class JellyfinCsvStructure {
     }
 
     public void setName(String Name) {
+        
+        
         this.Name = this.removeInvalidChars(Name);
     }
 
@@ -283,8 +285,18 @@ public class JellyfinCsvStructure {
     private String removeInvalidChars(String cContent){
         String cReplacedContent = new String();
         
+        //To prevent "broke csv line" case any string has comma inside
         if (cContent != null) {        
             cReplacedContent = new String(cContent).replace(";","");
+            
+            //Remove "indentation spaces present in subfoldes name
+            String prefixSubFolder = "   ";
+            String prefixSubFolderInd = "⎆ ";
+            if (cReplacedContent.contains(prefixSubFolderInd)){
+                cReplacedContent = cReplacedContent.replace(prefixSubFolder, "");
+                cReplacedContent = cReplacedContent.replace(prefixSubFolderInd,"");
+            }
+            
         } else {
             cReplacedContent = "";
         }

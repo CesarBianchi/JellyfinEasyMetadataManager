@@ -153,6 +153,7 @@ public class JellyfinExportMetadata {
         loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadSubItems.setcUserAdminID(instanceData.adminUser.getId());
+        
         lSuccess = true;
         
         for (int nI = 0; nI < items.size(); nI++){
@@ -213,70 +214,74 @@ public class JellyfinExportMetadata {
         
         for (int nI = 0; nI < items.size(); nI++){
             
-            //Get parent record first and then, their childs            
-            line.setId(items.get(nI).getId());            
-            line.setParentId(items.get(nI).getItemMetadata().getParentId());
-            line.setName(items.get(nI).getName());
-            line.setOriginalTitle(items.get(nI).getItemMetadata().getOriginalTitle());
-            line.setSortName(items.get(nI).getItemMetadata().getSortName());                       
-            line.setForcedSortName(items.get(nI).getItemMetadata().getForcedSortName());
-            line.setType(items.get(nI).getType());
-            line.setCollectionType(items.get(nI).getCollectionType());
-            line.setProductionYear(String.valueOf(items.get(nI).getProductionYear()));
-            line.setCommunityRating(String.valueOf(items.get(nI).getCommunityRating()));
-            line.setCriticRating(String.valueOf(items.get(nI).getCriticRating()));
-            line.setOfficialRating(String.valueOf(items.get(nI).getOfficialRating()));
-            line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getPremiereDate()));
-            line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getItemMetadata().getDateCreated()));
-            line.setGenres(items.get(nI).getItemMetadata().getGenres());
-            line.setPreferredMetadataLanguage(items.get(nI).getItemMetadata().getPreferredMetadataLanguage());
-            line.setPreferredMetadataCountryCode(items.get(nI).getItemMetadata().getPreferredMetadataCountryCode());
-            line.setStudios(items.get(nI).getItemMetadata().getStudios());
-            line.setTags(items.get(nI).getTags());            
-            line.setLocationType(items.get(nI).getLocationType());
-            line.setMediaType(items.get(nI).getItemMetadata().getMediaType());
-            line.setIsHD(items.get(nI).getItemMetadata().isIsHD());            
-            line.setPath(items.get(nI).getItemMetadata().getPath());
-            line.setJemmVersion( new JemmVersion().getVersion());
-            line.setServerID(instanceData.getAdminUser().getServerId());
-            
-            lines.add(line);
-            line = new JellyfinCsvStructure();
-            lSuccess = true;
-            
-            //Get the Childs Items
-            for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){
-                line.setId(items.get(nI).getSubItems().get(nJ).getId());
-                line.setParentId(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getParentId());
-                line.setName(items.get(nI).getSubItems().get(nJ).getName());                
-                line.setOriginalTitle(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getOriginalTitle());                
-                line.setSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getSortName());                
-                line.setForcedSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getForcedSortName());
-                line.setType(items.get(nI).getSubItems().get(nJ).getType());
-                line.setCollectionType("<unavaiable>"); //There's no in subItems. Only Parents                
-                line.setProductionYear(String.valueOf(items.get(nI).getSubItems().get(nJ).getProductionYear()));                
-                line.setCommunityRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCommunityRating()));
-                line.setCriticRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCriticRating()));                
-                line.setOfficialRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getOfficialRating()));                
-                line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getPremiereDate()));
-                line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated() ));                
-                line.setGenres(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getGenres());                
-                line.setPreferredMetadataLanguage(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataLanguage());
-                line.setPreferredMetadataCountryCode(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataCountryCode());
-                line.setStudios(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getStudios());
-                line.setTags(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getTags());
-                line.setLocationType(items.get(nI).getSubItems().get(nJ).getLocationType());
-                line.setMediaType(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getMediaType());
-                line.setIsHD(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().isIsHD());
-                line.setPath(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPath());
+            //Do not add items type like "Playlist"
+            //Otherwise, items can be duplicated in destination file
+            if (!items.get(nI).getType().toUpperCase().equals("PLAYLIST")) {
+                //Get parent record first and then, their childs            
+                line.setId(items.get(nI).getId());            
+                line.setParentId(items.get(nI).getItemMetadata().getParentId());
+                line.setName(items.get(nI).getName());
+                line.setOriginalTitle(items.get(nI).getItemMetadata().getOriginalTitle());
+                line.setSortName(items.get(nI).getItemMetadata().getSortName());                       
+                line.setForcedSortName(items.get(nI).getItemMetadata().getForcedSortName());
+                line.setType(items.get(nI).getType());
+                line.setCollectionType(items.get(nI).getCollectionType());
+                line.setProductionYear(String.valueOf(items.get(nI).getProductionYear()));
+                line.setCommunityRating(String.valueOf(items.get(nI).getCommunityRating()));
+                line.setCriticRating(String.valueOf(items.get(nI).getCriticRating()));
+                line.setOfficialRating(String.valueOf(items.get(nI).getOfficialRating()));
+                line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getPremiereDate()));
+                line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getItemMetadata().getDateCreated()));
+                line.setGenres(items.get(nI).getItemMetadata().getGenres());
+                line.setPreferredMetadataLanguage(items.get(nI).getItemMetadata().getPreferredMetadataLanguage());
+                line.setPreferredMetadataCountryCode(items.get(nI).getItemMetadata().getPreferredMetadataCountryCode());
+                line.setStudios(items.get(nI).getItemMetadata().getStudios());
+                line.setTags(items.get(nI).getTags());            
+                line.setLocationType(items.get(nI).getLocationType());
+                line.setMediaType(items.get(nI).getItemMetadata().getMediaType());
+                line.setIsHD(items.get(nI).getItemMetadata().isIsHD());            
+                line.setPath(items.get(nI).getItemMetadata().getPath());
                 line.setJemmVersion( new JemmVersion().getVersion());
                 line.setServerID(instanceData.getAdminUser().getServerId());
-                
+
                 lines.add(line);
                 line = new JellyfinCsvStructure();
-            }
-            
-            
+                lSuccess = true;
+
+                //Get the Childs Items
+                for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){
+                    line.setId(items.get(nI).getSubItems().get(nJ).getId());
+                    //line.setParentId(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getParentId());
+                    line.setParentId(items.get(nI).getSubItems().get(nJ).getParentId());
+                    //line.setParentId(items.get(nI).getId());
+                    line.setName(items.get(nI).getSubItems().get(nJ).getName());                
+                    line.setOriginalTitle(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getOriginalTitle());                
+                    line.setSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getSortName());                
+                    line.setForcedSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getForcedSortName());
+                    line.setType(items.get(nI).getSubItems().get(nJ).getType());
+                    line.setCollectionType("<unavaiable>"); //There's no in subItems. Only Parents                
+                    line.setProductionYear(String.valueOf(items.get(nI).getSubItems().get(nJ).getProductionYear()));                
+                    line.setCommunityRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCommunityRating()));
+                    line.setCriticRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCriticRating()));                
+                    line.setOfficialRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getOfficialRating()));                
+                    line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getPremiereDate()));
+                    line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated() ));                
+                    line.setGenres(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getGenres());                
+                    line.setPreferredMetadataLanguage(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataLanguage());
+                    line.setPreferredMetadataCountryCode(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataCountryCode());
+                    line.setStudios(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getStudios());
+                    line.setTags(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getTags());
+                    line.setLocationType(items.get(nI).getSubItems().get(nJ).getLocationType());
+                    line.setMediaType(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getMediaType());
+                    line.setIsHD(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().isIsHD());
+                    line.setPath(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPath());
+                    line.setJemmVersion( new JemmVersion().getVersion());
+                    line.setServerID(instanceData.getAdminUser().getServerId());
+
+                    lines.add(line);
+                    line = new JellyfinCsvStructure();
+                }
+            }            
         }
         return lSuccess;
     }
