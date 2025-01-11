@@ -45,6 +45,8 @@ public class JellyfinItem {
     @JsonProperty("MediaType") 
     public String mediaType;
     
+    public String ParentId;
+    
     public JellyfinItemMetadata itemMetadata;
     
 
@@ -408,5 +410,29 @@ public class JellyfinItem {
     public void setItemMetadata(JellyfinItemMetadata itemMetadata) {
         this.itemMetadata = itemMetadata;
     }
+
+        /**
+     * Gets the ParentID metadata.
+     *
+     * @return A JellyfinItemMetadata object representing the ParentID metadata.
+     * @author Cesar Bianchi
+     * @since 1.2.0
+     */
+    public String getParentId() {
+        return this.ParentId;
+    }
+
+    /**
+     * Sets the ParentID metadata.
+     *
+     * @param ParentId A JellyfinItemMetadata ParentId String .
+     * @author Cesar Bianchi
+     * @since 1.2.0
+     */
+    public void setParentId(String PrtId) {
+        this.ParentId = PrtId;
+    }
+    
+    
     
 }
