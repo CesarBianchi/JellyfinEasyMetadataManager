@@ -97,7 +97,11 @@ public class LoadItems {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             JellyfinItems folderItems = mapper.readValue(inline, JellyfinItems.class);
-
+            
+            //Add a ParentID from Here
+            for (int nI = 0; nI < folderItems.getItems().size(); nI++){
+                folderItems.getItems().get(nI).setParentId(this.getcParentID());
+            }
 
             return folderItems;
         }
@@ -180,7 +184,7 @@ public class LoadItems {
      * @author Cesar Bianchi
      */
     public String getcParentID() {
-        return cParentID;
+        return this.cParentID;
     }
 
     /**
