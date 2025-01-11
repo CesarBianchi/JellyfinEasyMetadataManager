@@ -182,7 +182,7 @@ public class JellyfinCsvStructure {
             this.Genres = this.Genres.concat(grs.get(nI));
             
             if ((grs.size()-1) != nI){
-                this.Genres = this.removeInvalidChars(this.Studios.concat(", "));
+                this.Genres = this.removeInvalidChars(this.Genres.concat(", "));
             
             }
         }        

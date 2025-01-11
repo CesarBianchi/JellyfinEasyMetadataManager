@@ -73,8 +73,9 @@ public class MainWindow extends javax.swing.JFrame {
     static String forcedSortNameOldValue = new String();
     public final int from_folder_tab = 1;
     public final int from_content_tab = 2;
+        
     private final int JUST_FOLDER_ITEM = 1;
-    private final int FOLDER_AND_CONTENT = 2;
+    //private final int FOLDER_AND_CONTENT = 2;
     private final int JUST_CONTENT_ITEM = 3;
     
     private final int DOWNLOADING_DATA = 1;
@@ -1908,8 +1909,48 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinImportMetadata importCSV = new JellyfinImportMetadata(cOriginPath,instanceData);
-        processResult = importCSV.startProcess();        
+        processResult = importCSV.startPreCheck();  
         this.setCursor(Cursor.getDefaultCursor());
+        
+        if (processResult.isSuccess()){            
+            String msgInfo = new String();            
+            msgInfo = msgInfo.concat("The CSV File chosen is ready to be imported. \n");
+            msgInfo = msgInfo.concat("Before start import process, would you like to see the changes ? \n");
+            msgInfo = msgInfo.concat("\n");
+            msgInfo = msgInfo.concat("Pay attention: This process is irreversible. Make sure the changes are ok before continue!");
+
+            String[] options = new String[] {"Open Log File", "Confirm", "Cancel"};
+
+            while (true){
+                int reply = JOptionPane.showOptionDialog(null, msgInfo, "CSV File  is checked and ready!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+
+                if (reply == 0) {                                
+                    try {
+                        //Ver os logs
+                        Desktop desktop = Desktop.getDesktop();
+                        File file = new File(importCSV.getLogDiferencesFile());
+                        desktop.open(file);
+                        continue;
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (reply == 1) {
+
+                    //Run the import process.
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                    processResult = importCSV.startImport();
+                    this.setCursor(Cursor.getDefaultCursor());
+                    break;
+
+                } else {
+
+                    break;
+                }
+            }
+            
+        }
         
         String cMsg = processResult.getResponseMessage();
         if (processResult.isSuccess()){
@@ -3046,7 +3087,7 @@ public class MainWindow extends javax.swing.JFrame {
                 */
                 
                 String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
-                connectAPI.postUpdate(folderID, "", instanceData, JUST_FOLDER_ITEM);
+                connectAPI.postUpdate(folderID, "", instanceData,JUST_FOLDER_ITEM);
             } catch (IOException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
@@ -3086,7 +3127,7 @@ public class MainWindow extends javax.swing.JFrame {
                     //waitWin.showDialogWithTimmer();  
                     */
                     
-                    connectAPI.postUpdate(cFolderID, cItemID, instanceData, JUST_CONTENT_ITEM);                
+                    connectAPI.postUpdate(cFolderID, cItemID, instanceData,JUST_CONTENT_ITEM);                
                 }
 
             } catch (IOException | ParseException ex) {
