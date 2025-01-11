@@ -1,8 +1,12 @@
 package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lariflix.jemm.utils.TransformDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents a folder in the Jellyfin server.
@@ -390,6 +394,26 @@ public class JellyfinFolder {
 
     public void setFolderLevel(int folderLevel) {
         this.folderLevel = folderLevel;
+    }
+
+    public void mySetProductionYear(String prdYear) {
+        this.productionYear = Integer.parseInt(prdYear);
+    }
+
+    public void mySetCommunityRating(String rating) {
+        this.communityRating = Integer.parseInt(rating);
+    }
+
+    public void mySetCriticRating(String rating) {
+        this.criticRating = Integer.parseInt(rating);
+    }
+
+    public void mySetPremiereDate(String date) {
+        try {
+            this.premiereDate = new TransformDateFormat().getFullDateFromSimple(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinFolder.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

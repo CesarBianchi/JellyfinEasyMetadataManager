@@ -20,6 +20,7 @@ package com.lariflix.jemm.csv;
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
 import com.lariflix.jemm.core.LoadItemMetadata;
 import com.lariflix.jemm.core.LoadItems;
+import com.lariflix.jemm.dtos.JellyfinFolder;
 import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
@@ -316,7 +317,7 @@ public class JellyfinImportMetadata {
         //Set default return
         processStatus.setIsSuccess(true);
         processStatus.setResponseCode("CSV_IMP_010");
-        processStatus.setResponseMessage("File ok");
+        processStatus.setResponseMessage("Pre-check import process ok. File ready to be imported!");
         
         //1st: Log the start date on log Comparsion.
         this.startLogComparsion();
@@ -425,6 +426,11 @@ public class JellyfinImportMetadata {
                 newValue = fieldsinLine.get(getDefaultIndexNumber("Tags"));
                 lChanged = this.compareValues(oldValue, newValue, "Tags", lineNumber, lChanged);
             
+                //Overview
+                oldValue = instanceItem.getItemMetadata().getOverview();
+                newValue = fieldsinLine.get(getDefaultIndexNumber("Overview")).replace(" || ", "\n");
+                lChanged = this.compareValues(oldValue, newValue, "Overview", lineNumber, lChanged);
+                
                 //If have any field changed at line, add the full line to te array "linesChanged"
                 if (lChanged){
                     this.linesChanged.add(this.fileLines.get(nI));
@@ -467,6 +473,8 @@ public class JellyfinImportMetadata {
         cMsg = cMsg.concat(" \n");
         cMsg = cMsg.concat(" \n");
         cMsg = cMsg.concat("Log file generated at ".concat(date+" "+hour));
+        cMsg = cMsg.concat(" \n");
+        cMsg = cMsg.concat("CSV File analyzed: ".concat(this.getcOriginPath()));
         cMsg = cMsg.concat(" \n");
         cMsg = cMsg.concat("Total number of lines analyzed: ".concat(Integer.toString(this.getTotalLineToProcess())));
         cMsg = cMsg.concat(" \n");
@@ -627,40 +635,52 @@ public class JellyfinImportMetadata {
     }
 
     public JellyfinResponseStandard startImport() {
-         JellyfinResponseStandard processResult = new JellyfinResponseStandard();
-         ArrayList<String> fieldsinLine = new ArrayList();
-         boolean isFolder = false;
-         String itemID = new String();
-         String ParentID = new String();
+        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
+        ArrayList<String> fieldsinLine = new ArrayList();
+        boolean isFolder = false;
+        String itemID = new String();
+        String ParentID = new String();
+        boolean lUpdated = true;
          
-         for (int nI = 0; nI < this.linesChanged.size(); nI++){
+        for (int nI = 0; nI < this.linesChanged.size(); nI++){
+
+            //1st: Transoform the line in fields array
+            fieldsinLine = this.myTokenizer(this.linesChanged.get(nI),null);
+
+            //2nd: Gets the ID, ParentID e then Identify if the line is refered to a Folder or a Item.
+            itemID = fieldsinLine.get(getDefaultIndexNumber("Id"));
+            ParentID = fieldsinLine.get(getDefaultIndexNumber("ParentId"));
+            isFolder = fieldsinLine.get(getDefaultIndexNumber("Type")).toUpperCase().contains("FOLDER");
+
+            if (isFolder){
+                if (this.refreshFolder(itemID)){
+                    //Update the folder in the main object with values changed from file
+                    this.updateFolderInMainObj(itemID,fieldsinLine);                     
+                } else {
+                    lUpdated = false;
+                }
+            } else {
+                //Before update an item, get their most recent data and update main instance object
+                if (this.refreshItensOfFolder(ParentID)) {                 
+                   //Update item in the main object with values changed from file
+                   this.updateItemInMainObj(itemID,ParentID,fieldsinLine);                    
+                } else {
+                   lUpdated = false;
+                }
+            }
+        }
+        
+        if (lUpdated){
+            processResult.setIsSuccess(true);
+            processResult.setResponseCode("");
+            processResult.setResponseMessage("Import Process done!");
+        } else {
+            processResult.setIsSuccess(false);
+            processResult.setResponseCode("CSV_IMP_011");
+            processResult.setResponseMessage("Import Process done. One or more changes was not applied");
+        }
          
-             //1st: Transoform the line in fields array
-             fieldsinLine = this.myTokenizer(this.linesChanged.get(nI),null);
-             
-             //2nd: Gets the ID, ParentID e then Identify if the line is refered to a Folder or a Item.
-             itemID = fieldsinLine.get(getDefaultIndexNumber("Id"));
-             ParentID = fieldsinLine.get(getDefaultIndexNumber("ParentId"));
-             isFolder = fieldsinLine.get(getDefaultIndexNumber("Type")).toUpperCase().contains("FOLDER");
-             
-             if (isFolder){
-                 
-             } else {
-                 //Before update an item, get their most recent data and update main instance object
-                 if (this.refreshItensOfFolder(ParentID)) {;
-                 
-                    //Update item in the main object with values changed from file
-                    this.updateItemInMainObj(itemID,ParentID,fieldsinLine);
-                    
-                 } else {
-                     //TO DO TO DO
-                 }
-             }
-                     
-             
-         }
-         
-         return processResult;
+        return processResult;
     }
     
     private boolean compareValues(String oldValue, String newValue, String property, String lineNumber, boolean lChangedBefore){
@@ -731,6 +751,45 @@ public class JellyfinImportMetadata {
         return updateSuccess;            
     }
 
+    private boolean refreshFolder(String itemID) {
+        boolean lSuccess = false;
+        int nIndex = 0;
+        boolean lFound = false;
+        
+        //1st: Get the index of the folder-item in main object
+        for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++ ){
+
+            if (instanceData.getFolders().getItems().get(nI).getId().equals(itemID)){
+                nIndex = nI;
+                lFound = true;
+                break;
+            }
+        }
+        
+        //2nd: - Request Metadata for Selected Folder
+        if (lFound) {
+            JellyfinFolderMetadata folderMetadadta = null;        
+            
+            try {
+
+                //2.1 - Request Folder Metadata
+                folderMetadadta = connectAPI.getFolderMetadata(itemID);
+
+                //2.2 - Add folder metadata atributes to main instance object
+                instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
+
+                lSuccess = true; 
+                
+            } catch (IOException | ParseException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            lSuccess = false;
+        }
+        
+        return lSuccess;
+    }
+    
     private void updateItemInMainObj(String itemID, String parentID,ArrayList<String> fieldsInLine) {
         JellyfinItem item = new JellyfinItem();
         
@@ -743,28 +802,30 @@ public class JellyfinImportMetadata {
                     item = instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().get(nJ);
                     
                     if (item.getId().equals(itemID)){
-                        /*
+                        
                         item.setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
+                        item.getItemMetadata().setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
+                        
                         item.getItemMetadata().setOriginalTitle(fieldsInLine.get(getDefaultIndexNumber("OriginalTitle")));
                         item.getItemMetadata().setSortName(fieldsInLine.get(getDefaultIndexNumber("SortName")));
                         item.getItemMetadata().setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
                         
-                        item.setProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
-                        item.getItemMetadata().setProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
+                        item.mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
+                        item.getItemMetadata().mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
                         
-                        item.setCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
-                        item.getItemMetadata().setCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                        item.mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                        item.getItemMetadata().mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
                                                 
-                        item.setCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
-                        item.getItemMetadata().setCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
+                        item.mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
+                        item.getItemMetadata().mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
                         
                         item.setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
                         item.getItemMetadata().setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
                         
-                        item.setPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
-                        item.getItemMetadata().setPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
+                        item.mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
+                        item.getItemMetadata().mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                         
-                        item.getItemMetadata().setDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
+                        item.getItemMetadata().mySetDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
                         
                         ArrayList<String> lGenres = new ArrayList();
                         lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), " ,");
@@ -775,20 +836,24 @@ public class JellyfinImportMetadata {
                         
                         //TO DO TO DO
                         //item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
-                        
-                        
+                                          
                         ArrayList<String> lTags = new ArrayList();
                         lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), " ,");                        
                         item.getItemMetadata().setTags(lTags);
                         
+                        item.getItemMetadata().setOverview(fieldsInLine.get(getDefaultIndexNumber("Overview")).replace(" || ", "\n"));
+                        
                         //2nd: Finally, update the item on Jellyfin Instance. (Make API Call)
                         try {                            
-                            connectAPI.postUpdate(parentID, itemID, instanceData,JUST_CONTENT_ITEM);
+                            instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().set(nJ, item);
+                            
+                            connectAPI.postUpdate(parentID, itemID, instanceData,JellyfinParameters.JUST_ITEMS);
+                            
                         } catch (IOException ex) {
                             Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (ParseException ex) {
                             Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
-                        }*/
+                        }
                     }
                     
                 }
@@ -797,5 +862,72 @@ public class JellyfinImportMetadata {
         }
         
     }
-    
+
+    private void updateFolderInMainObj(String itemID, ArrayList<String> fieldsInLine) {
+        JellyfinFolder folderUpdated = new JellyfinFolder();
+        
+        //1st: Search the item in MainObject
+        for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++ ){
+            
+            if (instanceData.getFolders().getItems().get(nI).getId().equals(itemID)){
+                
+                folderUpdated = instanceData.getFolders().getItems().get(nI);
+                
+                folderUpdated.setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
+                folderUpdated.getMetadata().setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
+
+                //TO DO TO DO
+                //folderUpdated.getMetadata().setOriginalTitle(fieldsInLine.get(getDefaultIndexNumber("OriginalTitle")));
+                
+                folderUpdated.getMetadata().setSortName(fieldsInLine.get(getDefaultIndexNumber("SortName")));
+                folderUpdated.getMetadata().setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
+                folderUpdated.mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
+                folderUpdated.getMetadata().mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
+                folderUpdated.mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                folderUpdated.getMetadata().mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                folderUpdated.mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
+                
+                //TO DO TO DO
+                //folderUpdated.getMetadata().mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
+
+                folderUpdated.setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
+                folderUpdated.getMetadata().setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
+                folderUpdated.mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
+                folderUpdated.getMetadata().mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
+                folderUpdated.getMetadata().mySetDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
+
+                ArrayList<String> lGenres = new ArrayList();
+                lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), " ,");
+                //TO DO TO DO
+                //folderUpdated.getMetadata().setGenreItems(lGenres);
+                
+                folderUpdated.getMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));                        
+                folderUpdated.getMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
+
+                //TO DO TO DO
+                //item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
+
+                ArrayList<String> lTags = new ArrayList();
+                lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), " ,");                        
+                folderUpdated.getMetadata().setTags(lTags);
+
+                folderUpdated.getMetadata().setOverview(fieldsInLine.get(getDefaultIndexNumber("Overview")).replace(" || ", "\n"));
+
+                //2nd: Finally, update the folder on Jellyfin Instance. (Make API Call)
+                try {                            
+                    instanceData.getFolders().getItems().set(nI, folderUpdated);
+                    connectAPI.postUpdate(itemID, "", instanceData,JellyfinParameters.FOLDERS_AND_SUBFOLDERS);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(JellyfinImportMetadata.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+            
+        }
+
+    }
+
 }

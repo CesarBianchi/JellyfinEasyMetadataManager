@@ -1901,6 +1901,7 @@ public class MainWindow extends javax.swing.JFrame {
         JellyfinResponseStandard processResult = new JellyfinResponseStandard();
         String cTitle = new String();
         int msgType = 0;
+        boolean userAborted = false;
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinImportMetadata importCSV = new JellyfinImportMetadata(cOriginPath,instanceData);
@@ -1940,11 +1941,17 @@ public class MainWindow extends javax.swing.JFrame {
                     break;
 
                 } else {
-
+                    userAborted = true;    
                     break;
                 }
             }
             
+        }
+        
+        if (userAborted) {
+            processResult.setIsSuccess(false);
+            processResult.setResponseCode("ERR_001");
+            processResult.setResponseMessage("Aborted by user!");
         }
         
         String cMsg = processResult.getResponseMessage();
