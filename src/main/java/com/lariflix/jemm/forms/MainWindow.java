@@ -13,7 +13,7 @@ import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -2130,7 +2130,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void loadFolders() throws IOException, MalformedURLException, ParseException {
         //Folders Type
-        JellyfimParameters tpFolder = JellyfimParameters.FOLDERS_AND_SUBFOLDERS;
+        JellyfinParameters tpFolder = JellyfinParameters.FOLDERS_AND_SUBFOLDERS;
 
         //Load Users From Jellyfin API
         instanceData.setUsers(connectAPI.getUsers());

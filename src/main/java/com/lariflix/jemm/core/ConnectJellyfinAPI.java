@@ -10,7 +10,7 @@ import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinUser;
 import com.lariflix.jemm.dtos.JellyfinUsers;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import org.json.simple.parser.ParseException;
@@ -121,7 +121,7 @@ public class ConnectJellyfinAPI {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public JellyfinFolders getFolders(JellyfimParameters typeOfFolders) throws IOException, MalformedURLException, ParseException{
+    public JellyfinFolders getFolders(JellyfinParameters typeOfFolders) throws IOException, MalformedURLException, ParseException{
         
         LoadFolders loadedallFolders = new LoadFolders(this.getcBaseURL(),this.getcTokenApi(),getAdminUser().getId(),typeOfFolders);
          
@@ -170,7 +170,7 @@ public class ConnectJellyfinAPI {
      */
     public JellyfinItems getItems(String cParentID) throws IOException, MalformedURLException, ParseException{
         
-        JellyfimParameters typeOfItems = JellyfimParameters.JUST_ITEMS;
+        JellyfinParameters typeOfItems = JellyfinParameters.JUST_ITEMS;
         
         
         //1* - First, request all itens (without Metadata Property)

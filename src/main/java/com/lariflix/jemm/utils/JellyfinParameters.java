@@ -13,7 +13,7 @@ package com.lariflix.jemm.utils;
  *
  * @author Cesar Bianchi
  */
-public enum JellyfimParameters {
+public enum JellyfinParameters {
     JUST_ROOT_FOLDERS,
     FOLDERS_AND_SUBFOLDERS,
     JUST_ITEMS,

@@ -7,7 +7,7 @@ import com.lariflix.jemm.dtos.JellyfinFolder;
 import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -29,7 +29,7 @@ public class LoadFolders {
     private String apiToken = new String();
     private String cUserAdminID = new String();
     private String fullURL = new String();
-    private JellyfimParameters foldersType = null;
+    private JellyfinParameters foldersType = null;
 
      /**
      * Default constructor for the LoadFolders class.
@@ -38,7 +38,7 @@ public class LoadFolders {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    public LoadFolders(JellyfimParameters typeOfFolders) {
+    public LoadFolders(JellyfinParameters typeOfFolders) {
         this.setFoldersType(typeOfFolders);
     }
     
@@ -52,7 +52,7 @@ public class LoadFolders {
      * @since 1.1
      * @author Cesar Bianchi
      */
-     public LoadFolders(String jellyfinURL, String apiToken, String cAdminID, JellyfimParameters typeOfFolders) {
+     public LoadFolders(String jellyfinURL, String apiToken, String cAdminID, JellyfinParameters typeOfFolders) {
          this.setJellyfinInstanceUrl(jellyfinURL);
          this.setApiToken(apiToken);
          this.setcUserAdminID(cAdminID);
@@ -109,7 +109,7 @@ public class LoadFolders {
             
             //load and add SubFolders as Folder-Item
             //Issue: https://github.com/CesarBianchi/JellyfinEasyMetadataManager/issues/12
-            if (this.getFoldersType() == JellyfimParameters.FOLDERS_AND_SUBFOLDERS){
+            if (this.getFoldersType() == JellyfinParameters.FOLDERS_AND_SUBFOLDERS){
                 folders = this.getSubFolders(folders);
             }
             
@@ -221,7 +221,7 @@ public class LoadFolders {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public JellyfimParameters getFoldersType() {
+    public JellyfinParameters getFoldersType() {
         return foldersType;
     }
 
@@ -232,7 +232,7 @@ public class LoadFolders {
      * @since 1.0
      * @author Cesar Bianchi
      */
-    public void setFoldersType(JellyfimParameters foldersType) {
+    public void setFoldersType(JellyfinParameters foldersType) {
         this.foldersType = foldersType;
     }
 
@@ -250,7 +250,7 @@ public class LoadFolders {
         
         for (int nI = 0; nI < folders.getItems().size(); nI++){
             
-            LoadItems loadSubFolders = new LoadItems(JellyfimParameters.JUST_SUBFOLDERS);
+            LoadItems loadSubFolders = new LoadItems(JellyfinParameters.JUST_SUBFOLDERS);
             loadSubFolders.setJellyfinInstanceUrl(this.getJellyfinInstanceUrl());
             loadSubFolders.setApiToken(this.getApiToken());
             loadSubFolders.setcUserAdminID(this.getcUserAdminID());

@@ -11,7 +11,7 @@ import com.lariflix.jemm.dtos.JellyfinItems;
 import com.lariflix.jemm.reports.JellyfinReportInventory;
 import com.lariflix.jemm.reports.JellyfinReportInventoryItem;
 import com.lariflix.jemm.reports.JellyfinReportInventoryStructure;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
@@ -118,7 +118,7 @@ public class JellyfinExportMetadata {
     private boolean loadItems() throws IOException, MalformedURLException, ParseException{
         boolean lSuccess = false;
         
-        LoadFolders loadItems = new LoadFolders(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
+        LoadFolders loadItems = new LoadFolders(JellyfinParameters.FOLDERS_AND_SUBFOLDERS);
         loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadItems.setcUserAdminID(instanceData.adminUser.getId());        
@@ -149,7 +149,7 @@ public class JellyfinExportMetadata {
     private boolean loadSubItems(){
         boolean lSuccess = false;
         
-        LoadItems loadSubItems = new LoadItems(JellyfimParameters.JUST_ITEMS);
+        LoadItems loadSubItems = new LoadItems(JellyfinParameters.JUST_ITEMS);
         loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadSubItems.setcUserAdminID(instanceData.adminUser.getId());

@@ -110,6 +110,7 @@ com/lariflix/jemm/reports/JellyfinReportInventoryStructure.class
 com/lariflix/jemm/forms/AddGenrePanel$6.class
 com/lariflix/jemm/forms/AddStudioPanel.class
 com/lariflix/jemm/forms/AddStudioPanel$4.class
+com/lariflix/jemm/utils/JellyfinParameters.class
 com/lariflix/jemm/dtos/JellyfinUsers.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItem.class
 com/lariflix/jemm/forms/WaitingWindow$1.class
@@ -172,7 +173,6 @@ com/lariflix/jemm/forms/MainWindow$1.class
 com/lariflix/jemm/core/ConnectJellyfinAPI.class
 com/lariflix/jemm/forms/MainWindow$25.class
 com/lariflix/jemm/forms/MainWindow$51.class
-com/lariflix/jemm/utils/JellyfimParameters.class
 com/lariflix/jemm/forms/MainWindow$18.class
 com/lariflix/jemm/forms/MainWindow$48.class
 com/lariflix/jemm/forms/AddGenrePanel$8.class

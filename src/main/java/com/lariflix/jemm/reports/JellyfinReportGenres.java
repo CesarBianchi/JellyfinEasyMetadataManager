@@ -11,7 +11,7 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
-import com.lariflix.jemm.utils.JellyfimParameters;
+import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.io.IOException;
@@ -156,7 +156,7 @@ public class JellyfinReportGenres {
     private void loadSubItems() {
         
         //1* Get All Folders
-        LoadFolders loadItems = new LoadFolders(JellyfimParameters.FOLDERS_AND_SUBFOLDERS);
+        LoadFolders loadItems = new LoadFolders(JellyfinParameters.FOLDERS_AND_SUBFOLDERS);
         loadItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
         loadItems.setApiToken(instanceData.getCredentials().getTokenAPI());
         loadItems.setcUserAdminID(instanceData.adminUser.getId());        
@@ -165,7 +165,7 @@ public class JellyfinReportGenres {
             folders = loadItems.requestFolders();
             
             //2* Get All Itens for each folder
-            LoadItems loadSubItems = new LoadItems(JellyfimParameters.JUST_ITEMS);
+            LoadItems loadSubItems = new LoadItems(JellyfinParameters.JUST_ITEMS);
             loadSubItems.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
             loadSubItems.setApiToken(instanceData.getCredentials().getTokenAPI());
             loadSubItems.setcUserAdminID(instanceData.adminUser.getId());        
