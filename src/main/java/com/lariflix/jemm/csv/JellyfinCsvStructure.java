@@ -48,6 +48,7 @@ public class JellyfinCsvStructure {
     public String Path = new String();
     public String JemmVersion = new String();
     public String ServerID = new String();
+    public String Overview = new String();
     
     public JellyfinCsvStructure(){
         
@@ -335,6 +336,15 @@ public class JellyfinCsvStructure {
 
     public void setServerID(String serverID) {
         this.ServerID = serverID;
+    }
+
+    public String getOverview() {
+        return Overview;
+    }
+
+    public void setOverview(String ovView) {
+        this.Overview = this.removeInvalidChars(ovView);
+        this.Overview = this.Overview.replace("\n", " || ");
     }
     
     
