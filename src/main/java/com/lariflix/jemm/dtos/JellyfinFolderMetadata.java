@@ -2,8 +2,12 @@
 package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lariflix.jemm.utils.TransformDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents the metadata for a Jellyfin folder.
@@ -1003,7 +1007,30 @@ public class JellyfinFolderMetadata {
     public void setLockData(boolean lockData) {
         this.lockData = lockData;
     }
-    
-    
+
+    public void mySetProductionYear(String prdYear) {
+        this.productionYear = Integer.parseInt(prdYear);
+    }
+
+    public void mySetCommunityRating(String rating) {
+        this.communityRating = Integer.parseInt(rating);
+    }
+
+    public void mySetPremiereDate(String date) {
+        try {
+            this.premiereDate = new TransformDateFormat().getFullDateFromSimple(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinFolderMetadata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void mySetDateCreated(String date) {
+        try {
+            this.dateCreated = new TransformDateFormat().getFullDateFromSimple(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinFolderMetadata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
 }

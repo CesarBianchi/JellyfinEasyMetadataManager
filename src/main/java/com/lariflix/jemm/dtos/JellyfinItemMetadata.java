@@ -1,8 +1,12 @@
 package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lariflix.jemm.utils.TransformDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents the JellyfinItemMetadata.
@@ -244,6 +248,23 @@ public class JellyfinItemMetadata {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+    
+    /**
+     * Sets the date the item was created.
+     *
+     * @param dateCreated The new creation date of the item.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
+    public void mySetDateCreated(String cDate) {
+        TransformDateFormat transformDate = new TransformDateFormat();
+        
+        try {
+            this.dateCreated = transformDate.getFullDateFromSimple(cDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinItemMetadata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Returns whether the item can be deleted.
@@ -419,6 +440,23 @@ public class JellyfinItemMetadata {
     public void setPremiereDate(Date premiereDate) {
         this.premiereDate = premiereDate;
     }
+    
+    /**
+     * Sets the premiere date of the item.
+     *
+     * @param premiereDate The new premiere date of the item.
+     * @since 1.2.0
+     * @author Cesar Bianchi
+     */
+    public void mySetPremiereDate(String cDate) {
+        TransformDateFormat transformDate = new TransformDateFormat();
+        
+        try {
+            this.premiereDate = transformDate.getFullDateFromSimple(cDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinItemMetadata.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Returns the critic rating of the item.
@@ -440,6 +478,17 @@ public class JellyfinItemMetadata {
      */
     public void setCriticRating(int criticRating) {
         this.criticRating = criticRating;
+    }
+    
+    /**
+     * Sets the critic rating of the item.
+     *
+     * @param criticRating The new critic rating of the item.
+     * @since 1.0
+     * @author Cesar Bianchi
+     */
+    public void mySetCriticRating(String rating) {
+        this.criticRating = Integer.parseInt(rating);
     }
 
     /**
@@ -573,7 +622,7 @@ public class JellyfinItemMetadata {
     public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
-
+    
     /**
      * Returns the community rating of the item.
      *
@@ -594,6 +643,17 @@ public class JellyfinItemMetadata {
      */
     public void setCommunityRating(int communityRating) {
         this.communityRating = communityRating;
+    }
+    
+    /**
+     * Sets the community rating of the item.
+     *
+     * @param communityRating The new community rating of the item.
+     * @since 1.2.0
+     * @author Cesar Bianchi
+     */
+    public void mySetCommunityRating(String rating) {
+        this.communityRating = Integer.parseInt(rating);
     }
 
     /**
@@ -682,6 +742,17 @@ public class JellyfinItemMetadata {
      */
     public void setProductionYear(int productionYear) {
         this.productionYear = productionYear;
+    }
+    
+    /**
+     * Sets the production year of the item.
+     *
+     * @param productionYear The new production year of the item.
+     * @since 1.2.0
+     * @author Cesar Bianchi
+     */
+    public void mySetProductionYear(String prdYear) {
+        this.productionYear = Integer.parseInt(prdYear);
     }
 
     /**

@@ -347,6 +347,9 @@ public class JellyfinCsvStructure {
         this.Overview = this.Overview.replace("\n", " || ");
     }
     
+    public String getOverviewWithSkips() {
+        return Overview.replace(" || ", "\n");
+    }
     
     
 

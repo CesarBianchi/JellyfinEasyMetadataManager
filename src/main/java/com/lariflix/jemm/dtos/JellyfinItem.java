@@ -1,7 +1,11 @@
 package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lariflix.jemm.utils.TransformDateFormat;
+import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents the JellyfinItem.
@@ -170,6 +174,23 @@ public class JellyfinItem {
     }
 
     /**
+     * Sets the premiere date.
+     *
+     * @param premiereDate A String containing the new premiere date.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
+    public void mySetPremiereDate(String cDate) {
+        TransformDateFormat transformDt = new TransformDateFormat();
+        
+        try {
+            this.premiereDate = transformDt.getFullDateFromSimple(cDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(JellyfinItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
      * Gets the critic rating.
      *
      * @return An integer representing the critic rating.
@@ -189,6 +210,17 @@ public class JellyfinItem {
      */
     public void setCriticRating(int criticRating) {
         this.criticRating = criticRating;
+    }
+    
+    /**
+     * Sets the critic rating.
+     *
+     * @param criticRating An String containing the new critic rating.
+     * @author Cesar Bianchi
+     * @since 1.0
+     */
+    public void mySetCriticRating(String rating) {
+        this.criticRating = Integer.parseInt(rating);
     }
 
     /**
@@ -234,6 +266,17 @@ public class JellyfinItem {
     public void setCommunityRating(int communityRating) {
         this.communityRating = communityRating;
     }
+    
+    /**
+     * Sets the community rating.
+     *
+     * @param communityRating An integer containing the new community rating.
+     * @author Cesar Bianchi
+     * @since 1.2.0
+     */
+    public void mySetCommunityRating(String rating) {
+        this.communityRating = Integer.parseInt(rating);
+    }
 
     /**
      * Gets the aspect ratio.
@@ -277,6 +320,17 @@ public class JellyfinItem {
      */
     public void setProductionYear(int productionYear) {
         this.productionYear = productionYear;
+    }
+    
+    /**
+     * Sets the production year.
+     *
+     * @param productionYear An String containing the new production year.
+     * @author Cesar Bianchi
+     * @since 1.2.0
+     */
+    public void mySetProductionYear(String prdYear) {
+        this.productionYear = Integer.parseInt(prdYear);
     }
 
     /**
