@@ -8,6 +8,7 @@ import com.lariflix.jemm.dtos.JellyfinCadStudioItems;
 import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinFolders;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import com.lariflix.jemm.dtos.JellyfinServerInfo;
 import com.lariflix.jemm.dtos.JellyfinUser;
 import com.lariflix.jemm.dtos.JellyfinUsers;
 import com.lariflix.jemm.utils.JellyfinParameters;
@@ -256,6 +257,26 @@ public class ConnectJellyfinAPI {
         return allStudios;
     }
     
+     /**
+     * Retrieves all info about connected Jellyfin server.
+     *
+     * @return A JellyfinServerInfo object containing all server Info.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the provided URL is not valid.
+     * @throws ParseException If there is an error parsing the server's response.
+     * @since 1.2.0
+     * @author Cesar Bianchi
+     */
+    public JellyfinServerInfo getServerInfo() throws IOException, MalformedURLException, ParseException{
+        
+        LoadServerInfo loadServerInfo = new LoadServerInfo(this.getcBaseURL(),this.getcTokenApi());
+         
+        JellyfinServerInfo serverInfo = loadServerInfo.requestServerInfo();
+        
+        return serverInfo;
+    }
+    
+    
     /**
      * Retrieves the admin user from the Jellyfin server.
      *
@@ -309,5 +330,6 @@ public class ConnectJellyfinAPI {
         
         return responseCode;
     }
+    
     
 }

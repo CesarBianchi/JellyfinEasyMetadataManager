@@ -262,6 +262,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 this.dispose();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.setInstanceData(instanceData);
+                mainWindow.preDefineFooter();
                 mainWindow.setVisible(true);
 
             } else {

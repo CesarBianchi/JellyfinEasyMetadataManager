@@ -12,6 +12,7 @@ public class JellyfinInstanceDetails {
     public JellyfinUsers users = new JellyfinUsers();
     public JellyfinUser adminUser = new JellyfinUser();
     public JellyfinFolders folders = new JellyfinFolders();
+    public JellyfinServerInfo serverInfo = new JellyfinServerInfo();
     public boolean isDebug = false;
     
     /**
@@ -118,6 +119,14 @@ public class JellyfinInstanceDetails {
 
     public void setIsDebug(boolean isDebug) {
         this.isDebug = isDebug;
+    }
+
+    public JellyfinServerInfo getServerInfo() {
+        return serverInfo;
+    }
+
+    public void setServerInfo(JellyfinServerInfo serverInfo) {
+        this.serverInfo = serverInfo;
     }
     
     

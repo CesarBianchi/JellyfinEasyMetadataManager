@@ -41,6 +41,7 @@ com/lariflix/jemm/forms/DonationWin.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItems.class
 com/lariflix/jemm/forms/LoginWindow$3.class
 com/lariflix/jemm/forms/MainWindow$27.class
+com/lariflix/jemm/dtos/JellyfinServerInfo.class
 com/lariflix/jemm/csv/JellyfinExportMetadata.class
 com/lariflix/jemm/dtos/JellyfinCredentials.class
 com/lariflix/jemm/forms/LoginWindow$6.class
@@ -79,6 +80,7 @@ com/lariflix/jemm/reports/JellyfinReportEngine.class
 com/lariflix/jemm/reports/JellyfinReportGenresStructure.class
 com/lariflix/jemm/forms/AddGenrePanel$1.class
 com/lariflix/jemm/forms/MainWindow$8.class
+com/lariflix/jemm/core/LoadServerInfo.class
 com/lariflix/jemm/reports/JellyfinReportGenres.class
 com/lariflix/jemm/forms/MainWindow$35.class
 com/lariflix/jemm/reports/JellyfinReportTagsItem.class
@@ -124,6 +126,7 @@ com/lariflix/jemm/dtos/JellyfinCadGenresItem.class
 com/lariflix/jemm/forms/MainWindow$37.class
 com/lariflix/jemm/forms/MainWindow$17.class
 com/lariflix/jemm/forms/MainWindow$5.class
+com/lariflix/jemm/forms/MainFooterStatusPanel.class
 com/lariflix/jemm/forms/MainWindow$57.class
 com/lariflix/jemm/dtos/JellyfinStudioItem.class
 com/lariflix/jemm/forms/AddPeoplePanel$4.class
