@@ -1178,6 +1178,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Folder Metadata");
 
+        jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel4.setText("Connected on:");
 
         jLabel5.setText("https://www.google.com.br");
