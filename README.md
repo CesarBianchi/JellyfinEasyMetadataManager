@@ -24,7 +24,7 @@ JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use
 ## To contribute to this project
 If you are a developer and want to contribute to this project (Bug Fixes, New Features, Translation, Documentation, etc.), please write to cesar_bianchi@hotmail.com.
 
-If you want pay me a coffee or help me to pay some costs (certificates, and others), please consider [make some donation](https://www.paypal.com/donate/?hosted_button_id=SUBJ5D8KVC6ZN)
+If you want pay me a coffee or help me to pay some costs (certificates and others things), please consider [make some donation to me](https://www.paypal.com/donate/?hosted_button_id=SUBJ5D8KVC6ZN)
 
 ## About Jellyfin Project
 Jellyfin is the volunteer-built media solution that puts you in control of your media. 
