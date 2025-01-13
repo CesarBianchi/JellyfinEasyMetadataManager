@@ -4,6 +4,7 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinUserPolicyTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/forms/AddPeoplePanelTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinProviderIdsTest.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/csv/JellyfinCsvStructureTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinFoldersTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinCadPeopleItemsTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinGenreItemTest.java
@@ -34,8 +35,10 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinItemMetadataTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadFoldersTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadItemsTest.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/csv/JellyfinExportMetadataTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/forms/AddGenrePanelTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinFolderMetadataTest.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/csv/JellyfinImportMetadataTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinItemsTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/core/LoadItemMetadataTest.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/test/java/com/lariflix/jemm/dtos/JellyfinItemTest.java

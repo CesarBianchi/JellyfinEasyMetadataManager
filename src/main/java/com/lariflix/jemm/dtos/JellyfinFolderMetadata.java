@@ -1008,14 +1008,35 @@ public class JellyfinFolderMetadata {
         this.lockData = lockData;
     }
 
+    /**
+     * Sets the production year.
+     * 
+     * @param prdYear The production year to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetProductionYear(String prdYear) {
         this.productionYear = Integer.parseInt(prdYear);
     }
-
+    
+    /**
+     * Sets the community rating.
+     * 
+     * @param rating The community rating to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetCommunityRating(String rating) {
         this.communityRating = Integer.parseInt(rating);
     }
-
+    
+    /**
+     * Sets the premiere date.
+     * 
+     * @param date The premiere date to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetPremiereDate(String date) {
         try {
             this.premiereDate = new TransformDateFormat().getFullDateFromSimple(date);
@@ -1023,7 +1044,14 @@ public class JellyfinFolderMetadata {
             Logger.getLogger(JellyfinFolderMetadata.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Sets the date created.
+     * 
+     * @param date The date created to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetDateCreated(String date) {
         try {
             this.dateCreated = new TransformDateFormat().getFullDateFromSimple(date);
