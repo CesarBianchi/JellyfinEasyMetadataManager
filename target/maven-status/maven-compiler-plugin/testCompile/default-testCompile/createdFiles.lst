@@ -2,8 +2,11 @@ com/lariflix/jemm/dtos/JellyfinGenreItemTest.class
 com/lariflix/jemm/core/LoadItemsTest.class
 com/lariflix/jemm/core/LoadFolderMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinUsersTest.class
+com/lariflix/jemm/csv/JellyfinCsvStructureTest.class
+com/lariflix/jemm/csv/JellyfinImportMetadataTest$3.class
 com/lariflix/jemm/dtos/JellyfinCadStudioItemTest.class
 com/lariflix/jemm/forms/AddGenreWindowTest.class
+com/lariflix/jemm/csv/JellyfinImportMetadataTest$2.class
 com/lariflix/jemm/dtos/JellyfinPeopleItemTest.class
 com/lariflix/jemm/dtos/JellyfinConnectionResultTest.class
 com/lariflix/jemm/forms/AddGenrePanelTest.class
@@ -12,10 +15,12 @@ com/lariflix/jemm/core/LoadGenresTest.class
 com/lariflix/jemm/core/ConnectJellyfinAPITest.class
 com/lariflix/jemm/dtos/JellyfinFoldersTest.class
 com/lariflix/jemm/core/LoadItemMetadataTest.class
+com/lariflix/jemm/csv/JellyfinExportMetadataTest.class
 com/lariflix/jemm/core/LoadUsersTest.class
 com/lariflix/jemm/dtos/JellyfinProviderIdsTest.class
 com/lariflix/jemm/utils/JemmVersionTest.class
 com/lariflix/jemm/dtos/JellyfinFolderMetadataTest.class
+com/lariflix/jemm/csv/JellyfinImportMetadataTest$4.class
 com/lariflix/jemm/JemmTest.class
 com/lariflix/jemm/core/LoadStudiosTest.class
 com/lariflix/jemm/dtos/JellyfinCadStudioItemsTest.class
@@ -29,10 +34,12 @@ com/lariflix/jemm/dtos/JellyfinCadGenresItemTest.class
 com/lariflix/jemm/dtos/JellyfinStudioItemTest.class
 com/lariflix/jemm/dtos/JellyfinItemMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinItemUpdateTest.class
+com/lariflix/jemm/csv/JellyfinImportMetadataTest$1.class
 com/lariflix/jemm/utils/JellyfinUtilFunctionsTest.class
 com/lariflix/jemm/core/LoadFoldersTest.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItemsTest.class
 com/lariflix/jemm/dtos/JellyfinCredentialsTest.class
+com/lariflix/jemm/csv/JellyfinImportMetadataTest.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItemTest.class
 com/lariflix/jemm/dtos/JellyfinInstanceDetailsTest.class
 com/lariflix/jemm/dtos/JellyfinItemTest.class

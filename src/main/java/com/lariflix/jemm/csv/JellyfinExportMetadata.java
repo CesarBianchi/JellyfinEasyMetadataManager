@@ -28,8 +28,13 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
- *
- * @author cesarbianchi
+ * The JellyfinExportMetadata class is responsible for exporting metadata from a Jellyfin instance to a CSV file.
+ * It loads the metadata, processes it, and writes it to the specified destination path.
+ * 
+ * @since 1.2.0
+ * @version 1.0
+ * @see JellyfinCsvStructure
+ * @author CesarBianchi
  */
 public class JellyfinExportMetadata {
     private ArrayList<JellyfinCsvStructure> lines = new ArrayList();
@@ -38,32 +43,90 @@ public class JellyfinExportMetadata {
     private JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();  
     private JellyfinReportInventoryStructure items = new JellyfinReportInventoryStructure();
     
-    public JellyfinExportMetadata(){
+    /**
+     * Default constructor for the JellyfinExportMetadata class.
+     * 
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public JellyfinExportMetadata() {
     }
     
-    public JellyfinExportMetadata(String cPath, JellyfinInstanceDetails instData){
+    /**
+     * Constructor for the JellyfinExportMetadata class with parameters.
+     * 
+     * @param cPath The destination path for the CSV file.
+     * @param instData The instance data for the Jellyfin instance.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public JellyfinExportMetadata(String cPath, JellyfinInstanceDetails instData) {
         this.setDestinationPath(cPath);
         this.setInstanceData(instData);
         this.loadHeader();
     }
 
+    /**
+     * Gets the destination path for the CSV file.
+     * 
+     * @return The destination path.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public String getDestinationPath() {
         return cDestinationPath;
     }
-
+    
+    /**
+     * Sets the destination path for the CSV file.
+     * 
+     * @param cDestinationPath The destination path to set.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public void setDestinationPath(String cDestinationPath) {
         this.cDestinationPath = cDestinationPath;
     }
-
+    
+    /**
+     * Gets the instance data for the Jellyfin instance.
+     * 
+     * @return The instance data.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public JellyfinInstanceDetails getInstanceData() {
         return instanceData;
     }
-
+    
+    /**
+     * Sets the instance data for the Jellyfin instance.
+     * 
+     * @param instanceData The instance data to set.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public void setInstanceData(JellyfinInstanceDetails instanceData) {
         this.instanceData = instanceData;
     }
     
     
+    /**
+     * Starts the process of exporting metadata from the Jellyfin instance to a CSV file.
+     * 
+     * This method performs the following steps:
+     * 1. Checks if the destination path is not empty.
+     * 2. Loads the items from the Jellyfin instance.
+     * 3. Loads the sub-items for each item.
+     * 4. Transforms the items and sub-items into lines for the CSV file.
+     * 5. Creates the CSV file with the collected lines.
+     * 
+     * If any step fails, it sets the appropriate response code and message in the process result.
+     * 
+     * @return A JellyfinResponseStandard object containing the result of the process. If the process is successful, the response code is "CSV_EXP_001" and the response message indicates the file was generated successfully. If the process fails, the response code and message indicate the error.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public JellyfinResponseStandard startProcess() {
         JellyfinResponseStandard processResult = new JellyfinResponseStandard();
         
@@ -105,7 +168,7 @@ public class JellyfinExportMetadata {
             } catch (ParseException ex) {
                 Logger.getLogger(JellyfinExportMetadata.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+    
         } else {
             processResult.setIsSuccess(false);
             processResult.setResponseCode("CSV_EXP_005");
@@ -115,7 +178,28 @@ public class JellyfinExportMetadata {
         return processResult;
     }
 
-    private boolean loadItems() throws IOException, MalformedURLException, ParseException{
+    /**
+     * Loads the items from the Jellyfin instance.
+     * 
+     * This method performs the following steps:
+     * 1. Initializes a LoadFolders object to load folders and subfolders from the Jellyfin instance.
+     * 2. Sets the Jellyfin instance URL, API token, and admin user ID for the LoadFolders object.
+     * 3. Requests the folders from the Jellyfin instance.
+     * 4. For each folder, initializes a JellyfinReportInventoryItem object and sets its item.
+     * 5. Initializes a LoadItemMetadata object to load metadata for each item.
+     * 6. Sets the Jellyfin instance URL, API token, admin user ID, and item ID for the LoadItemMetadata object.
+     * 7. Requests the item metadata from the Jellyfin instance and sets it for the JellyfinReportInventoryItem object.
+     * 8. Adds the JellyfinReportInventoryItem object to the items list.
+     * 9. Sorts the items list by name in ascending order.
+     * 
+     * @return true if the items were loaded successfully, false otherwise.
+     * @throws IOException If an I/O error occurs.
+     * @throws MalformedURLException If the URL is malformed.
+     * @throws ParseException If a parsing error occurs.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public boolean loadItems() throws IOException, MalformedURLException, ParseException {
         boolean lSuccess = false;
         
         LoadFolders loadItems = new LoadFolders(JellyfinParameters.FOLDERS_AND_SUBFOLDERS);
@@ -146,7 +230,23 @@ public class JellyfinExportMetadata {
         return lSuccess;
     }
     
-    private boolean loadSubItems(){
+     /**
+     * Loads the sub-items for each item from the Jellyfin instance.
+     * 
+     * This method performs the following steps:
+     * 1. Initializes a LoadItems object to load sub-items from the Jellyfin instance.
+     * 2. Sets the Jellyfin instance URL, API token, and admin user ID for the LoadItems object.
+     * 3. For each item, sets the parent ID for the LoadItems object and requests the sub-items from the Jellyfin instance.
+     * 4. Sets the sub-items for each item.
+     * 5. For each sub-item, initializes a LoadItemMetadata object to load metadata for the sub-item.
+     * 6. Sets the Jellyfin instance URL, API token, admin user ID, and sub-item ID for the LoadItemMetadata object.
+     * 7. Requests the sub-item metadata from the Jellyfin instance and sets it for the sub-item.
+     * 
+     * @return true if the sub-items were loaded successfully, false otherwise.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public boolean loadSubItems() {
         boolean lSuccess = false;
         
         LoadItems loadSubItems = new LoadItems(JellyfinParameters.JUST_ITEMS);
@@ -170,12 +270,12 @@ public class JellyfinExportMetadata {
                     loadsubItemMetadata.setJellyfinInstanceUrl(instanceData.getCredentials().getBaseURL());
                     loadsubItemMetadata.setApiToken(instanceData.getCredentials().getTokenAPI());
                     loadsubItemMetadata.setcUserAdminID(instanceData.getAdminUser().getId());
-
+    
                     String subItemID = items.get(nI).getSubItems().get(nJ).getId();                            
-
+    
                     loadsubItemMetadata.setcItemID(subItemID);                
                     JellyfinItemMetadata subItemMetadata = loadsubItemMetadata.requestItemMetadata();                                
-
+    
                     items.get(nI).getSubItems().get(nJ).setSubItemMetadata(subItemMetadata);
                 }
                 
@@ -190,15 +290,30 @@ public class JellyfinExportMetadata {
        return lSuccess;
     }
 
+    /**
+     * Loads the header for the CSV file.
+     * 
+     * This method retrieves the standard header fields from the JellyfinCsvStructure class
+     * and adds their names to the header list.
+     * 
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     private void loadHeader() {
         Field[] declaredFields = getStandardHeader();
         
         for (int nI = 0; nI < declaredFields.length; nI++){
             this.header.add(declaredFields[nI].getName());
         }
-        
     }
-
+    
+    /**
+     * Retrieves the standard header fields from the JellyfinCsvStructure class.
+     * 
+     * @return An array of Field objects representing the standard header fields.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     public Field[] getStandardHeader(){
         JellyfinCsvStructure csvStructure = new JellyfinCsvStructure();        
         Field[] declaredFields = csvStructure.getClass().getDeclaredFields();
@@ -206,7 +321,23 @@ public class JellyfinExportMetadata {
         return declaredFields;
     }
     
-    private boolean loadLines() {
+        /**
+     * Loads the lines for the CSV file from the items and sub-items.
+     * 
+     * This method performs the following steps:
+     * 1. Initializes a JellyfinCsvStructure object and a TransformDateFormat object.
+     * 2. Iterates over the items list and processes each item.
+     * 3. For each item, sets the fields of the JellyfinCsvStructure object with the item's metadata.
+     * 4. Adds the JellyfinCsvStructure object to the lines list.
+     * 5. Iterates over the sub-items of each item and processes each sub-item.
+     * 6. For each sub-item, sets the fields of the JellyfinCsvStructure object with the sub-item's metadata.
+     * 7. Adds the JellyfinCsvStructure object to the lines list.
+     * 
+     * @return true if the lines were loaded successfully, false otherwise.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public boolean loadLines() {
         boolean lSuccess = false;
         
         JellyfinCsvStructure line = new JellyfinCsvStructure();
@@ -214,10 +345,10 @@ public class JellyfinExportMetadata {
         
         for (int nI = 0; nI < items.size(); nI++){
             
-            //Do not add items type like "Playlist"
-            //Otherwise, items can be duplicated in destination file
+            // Do not add items type like "Playlist"
+            // Otherwise, items can be duplicated in destination file
             if (!items.get(nI).getType().toUpperCase().contains("PLAYLIST")) {
-                //Get parent record first and then, their childs            
+                // Get parent record first and then, their childs            
                 line.setId(items.get(nI).getId());            
                 line.setParentId(items.get(nI).getItemMetadata().getParentId());
                 line.setName(items.get(nI).getName());
@@ -241,32 +372,30 @@ public class JellyfinExportMetadata {
                 line.setMediaType(items.get(nI).getItemMetadata().getMediaType());
                 line.setIsHD(items.get(nI).getItemMetadata().isIsHD());            
                 line.setPath(items.get(nI).getItemMetadata().getPath());
-                line.setJemmVersion( new JemmVersion().getVersion());
+                line.setJemmVersion(new JemmVersion().getVersion());
                 line.setServerID(instanceData.getAdminUser().getServerId());
                 line.setOverview(items.get(nI).getItemMetadata().getOverview());
-
+    
                 lines.add(line);
                 line = new JellyfinCsvStructure();
                 lSuccess = true;
-
-                //Get the Childs Items
+    
+                // Get the Childs Items
                 for (int nJ = 0; nJ < items.get(nI).getSubItems().size(); nJ++){
                     line.setId(items.get(nI).getSubItems().get(nJ).getId());
-                    //line.setParentId(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getParentId());
                     line.setParentId(items.get(nI).getSubItems().get(nJ).getParentId());
-                    //line.setParentId(items.get(nI).getId());
                     line.setName(items.get(nI).getSubItems().get(nJ).getName());                
                     line.setOriginalTitle(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getOriginalTitle());                
                     line.setSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getSortName());                
                     line.setForcedSortName(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getForcedSortName());
                     line.setType(items.get(nI).getSubItems().get(nJ).getType());
-                    line.setCollectionType("<unavaiable>"); //There's no in subItems. Only Parents                
+                    line.setCollectionType("<unavaiable>"); // There's no in subItems. Only Parents                
                     line.setProductionYear(String.valueOf(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getProductionYear()));                
                     line.setCommunityRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getCommunityRating()));
                     line.setCriticRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getCriticRating()));                
                     line.setOfficialRating(String.valueOf(items.get(nI).getSubItems().get(nJ).getOfficialRating()));                
                     line.setPremiereDate(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPremiereDate()));
-                    line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated() ));                
+                    line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated()));                
                     line.setGenres(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getGenres());                
                     line.setPreferredMetadataLanguage(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataLanguage());
                     line.setPreferredMetadataCountryCode(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataCountryCode());
@@ -276,10 +405,10 @@ public class JellyfinExportMetadata {
                     line.setMediaType(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getMediaType());
                     line.setIsHD(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().isIsHD());
                     line.setPath(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPath());
-                    line.setJemmVersion( new JemmVersion().getVersion());
+                    line.setJemmVersion(new JemmVersion().getVersion());
                     line.setServerID(instanceData.getAdminUser().getServerId());
                     line.setOverview(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getOverview());
-
+    
                     lines.add(line);
                     line = new JellyfinCsvStructure();
                 }
@@ -288,7 +417,19 @@ public class JellyfinExportMetadata {
         return lSuccess;
     }
 
-    private boolean createCSVFile() {
+    /**
+     * Creates the CSV file with the collected metadata.
+     * 
+     * This method performs the following steps:
+     * 1. Prints the header as the first line of the file.
+     * 2. Prints all collected lines.
+     * 3. Closes the file and opens it with the default application.
+     * 
+     * @return true if the CSV file was created successfully, false otherwise.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
+    public boolean createCSVFile() {
         boolean lSuccess = false;        
         BufferedWriter writer;
         String lineToBeAdded = new String();
@@ -298,7 +439,7 @@ public class JellyfinExportMetadata {
         try {
             writer = new BufferedWriter(new FileWriter(this.getDestinationPath()));
             
-            //1* Print the "header" as a f1rst line of file.
+            // Print the header as the first line of the file.
             for (int nI = 0; nI < this.header.size(); nI++){
                 lineToBeAdded = lineToBeAdded.concat(header.get(nI));
                 
@@ -310,7 +451,7 @@ public class JellyfinExportMetadata {
             writer.newLine();
             lineToBeAdded = "";
             
-            //2* Then, print all collected lines
+            // Then, print all collected lines
             for (int nI = 0; nI < this.lines.size(); nI++){
                 
                 newLine = this.lines.get(nI);
@@ -348,7 +489,7 @@ public class JellyfinExportMetadata {
                 lineToBeAdded = "";
             }
             
-            //3* Finally, close the file and open it.
+            // Finally, close the file and open it.
             writer.close();
             Desktop desktop = Desktop.getDesktop();
             File file = new File(this.getDestinationPath());
@@ -361,7 +502,6 @@ public class JellyfinExportMetadata {
             Logger.getLogger(JellyfinExportMetadata.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lSuccess;
-       
     }
     
 }

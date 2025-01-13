@@ -388,26 +388,68 @@ public class JellyfinFolder {
         this.folderContent = items;
     }
 
+    /**
+     * Gets the folder level.
+     * 
+     * @return The folder level.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public int getFolderLevel() {
         return folderLevel;
     }
-
+    
+    /**
+     * Sets the folder level.
+     * 
+     * @param folderLevel The folder level to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void setFolderLevel(int folderLevel) {
         this.folderLevel = folderLevel;
     }
-
+    
+    /**
+     * Sets the production year.
+     * 
+     * @param prdYear The production year to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetProductionYear(String prdYear) {
         this.productionYear = Integer.parseInt(prdYear);
     }
-
+    
+    /**
+     * Sets the community rating.
+     * 
+     * @param rating The community rating to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetCommunityRating(String rating) {
         this.communityRating = Integer.parseInt(rating);
     }
-
+    
+    /**
+     * Sets the critic rating.
+     * 
+     * @param rating The critic rating to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetCriticRating(String rating) {
         this.criticRating = Integer.parseInt(rating);
     }
-
+    
+    /**
+     * Sets the premiere date.
+     * 
+     * @param date The premiere date to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void mySetPremiereDate(String date) {
         try {
             this.premiereDate = new TransformDateFormat().getFullDateFromSimple(date);

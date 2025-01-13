@@ -24,11 +24,18 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- *
- * @author cesarbianchi
+ * The DonationPanel class represents a panel that encourages users to donate to support the development of the software.
+ * It provides a user interface with a message and a button that redirects to a PayPal donation page.
+ * 
+ * @since 1.2.0
+ * @version 1.0
+ * @author CesarBianchi
  */
 public class DonationPanel extends javax.swing.JPanel {
+    // Existing code...
+
 
     /**
      * Creates new form DonationPanel
@@ -129,11 +136,18 @@ public class DonationPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Opens the PayPal donation page in the default web browser.
+     * 
+     * This method checks if the desktop environment supports browsing and then attempts to open the specified URL in the default web browser.
+     * If an IOException or URISyntaxException occurs, it logs the error.
+     * 
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     private void OpenDonatePage() {
-        //Open the PayPal Campaing Jemm Donation Page
-        String cUrl = new String();
-        cUrl = "https://www.paypal.com/donate/?hosted_button_id=SUBJ5D8KVC6ZN";
-        
+        // Open the PayPal Campaign Jemm Donation Page
+        String cUrl = "https://www.paypal.com/donate/?hosted_button_id=SUBJ5D8KVC6ZN";
         
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {

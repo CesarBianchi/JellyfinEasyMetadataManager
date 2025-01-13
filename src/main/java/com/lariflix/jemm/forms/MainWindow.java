@@ -3762,16 +3762,26 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Displays a file save dialog to specify the destination CSV file.
+     * 
+     * This method opens a file chooser dialog for the user to specify the destination CSV file. If the selected file is not a CSV file,
+     * it shows an error message and prompts the user to select again.
+     * 
+     * @return The absolute path of the specified CSV file, or an empty string if no file was selected.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     private String showSaveFileDialog() {
         String cDestPath = new String();
         
         while (true){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify the destination export file");
-
+    
             fileChooser.setFileFilter(new FileNameExtensionFilter("*.CSV file","csv"));
             int userSelection = fileChooser.showSaveDialog(this);
-
+    
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File fileToSave = fileChooser.getSelectedFile();
                 cDestPath = fileToSave.getAbsolutePath();
@@ -3787,20 +3797,29 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
             
-            
         return cDestPath;
     }
 
+    /**
+     * Displays a file open dialog to select a CSV file.
+     * 
+     * This method opens a file chooser dialog for the user to select a CSV file. If the selected file is not a CSV file,
+     * it shows an error message and prompts the user to select again.
+     * 
+     * @return The absolute path of the selected CSV file, or an empty string if no file was selected.
+     * @since 1.2.0
+     * @author CesarBianchi
+     */
     private String showOpenFileDialog() {
         String cOriginPath = new String();
         
         while (true){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify the origin of import file");
-
+    
             fileChooser.setFileFilter(new FileNameExtensionFilter("*.CSV file","csv"));
             int userSelection = fileChooser.showOpenDialog(this);
-
+    
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File fileToOpen = fileChooser.getSelectedFile();
                 cOriginPath = fileToOpen.getAbsolutePath();
@@ -3816,11 +3835,18 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
             
-            
         return cOriginPath;
     }
 
-    public void preDefineFooter(){
+    /**
+     * Pre-defines the footer labels with initial text while establishing a connection.
+     * 
+     * This method sets the initial text for the footer labels to indicate that the connection is being established.
+     * 
+     * @since 1.2.0.
+     * @author CesarBianchi
+     */
+    public void preDefineFooter() {
         jLabel4.setText("Waiting... Establishing connection with: ".concat(instanceData.getCredentials().getBaseURL()));
         jLabel5.setText("");
         jLabel14.setText("");
@@ -3831,6 +3857,14 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel18.setText("");
     }
     
+    /**
+     * Prepares the footer labels with the connection details after a successful connection.
+     * 
+     * This method sets the text for the footer labels with the details of the connected Jellyfin instance.
+     * 
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void prepareFooter() {
         jLabel4.setText("Connected On:");
         jLabel5.setText(instanceData.getCredentials().getBaseURL());
@@ -3840,7 +3874,6 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel16.setText(instanceData.getServerInfo().getVersion());
         jLabel17.setText("Server ID:");
         jLabel18.setText(instanceData.getServerInfo().getId());
-        
     }
     
 }

@@ -22,32 +22,48 @@ import java.awt.Window;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
+
 /**
- *
- * @author cesarbianchi
+ * The DonationWin class is responsible for displaying a donation window.
+ * It creates a modal dialog containing a DonationPanel that encourages users to donate to support the development of the software.
+ * 
+ * @since 1.2.0
+ * @version 1.0
+ * @author CesarBianchi
  */
 public class DonationWin {
     private JDialog dialog = null; 
     
-    public DonationWin(){
-        
+    /**
+     * Default constructor for the DonationWin class.
+     * 
+     * @since 1.0
+     * @author CesarBianchi
+     */
+    public DonationWin() {
     }
     
-    public void show(){
-     
+    /**
+     * Shows the donation window.
+     * 
+     * This method creates and displays a modal dialog containing a DonationPanel.
+     * If the dialog is already created, it simply makes it visible.
+     * 
+     * @since 1.0
+     * @author CesarBianchi
+     */
+    public void show() {
         DonationPanel panel = new DonationPanel();
         
         if (dialog == null) {
            Window win = SwingUtilities.getWindowAncestor(panel);
 
-           dialog = new JDialog(win, "Buy me a coffee!!!",Dialog.ModalityType.APPLICATION_MODAL );
-           //dialog.setSize(500,500);
+           dialog = new JDialog(win, "Buy me a coffee!!!", Dialog.ModalityType.APPLICATION_MODAL);
            dialog.setResizable(false);
            dialog.getContentPane().add(panel);
            dialog.pack();
            dialog.setLocationRelativeTo(null);
            dialog.setVisible(true);
-
        }
     }        
 }

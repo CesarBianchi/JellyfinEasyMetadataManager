@@ -1061,18 +1061,46 @@ public class JellyfinItemMetadata {
         this.lockData = lockData;
     }
 
+    /**
+     * Gets the child count.
+     * 
+     * @return The child count.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public String getChildcount() {
         return childcount;
     }
-
+    
+    /**
+     * Sets the child count.
+     * 
+     * @param childcount The child count to set.
+     * @since 1.0
+    @author CesarBianchi
+     */
     public void setChildcount(String childcount) {
         this.childcount = childcount;
     }
-
+    
+    /**
+     * Gets the production locations.
+     * 
+     * @return The production locations.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public ArrayList<String> getProductionlocations() {
         return productionlocations;
     }
-
+    
+    /**
+     * Sets the production locations.
+     * 
+     * @param productionlocations The production locations to set.
+     * @since 1.0
+     * @author CesarBianchi
+     */
     public void setProductionlocations(ArrayList<String> productionlocations) {
         this.productionlocations = productionlocations;
     }
