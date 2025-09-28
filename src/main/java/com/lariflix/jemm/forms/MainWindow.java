@@ -1646,53 +1646,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_FULL,instanceData);
-        reportEng.start();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Inventory Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.INVENTORY_FULL,instanceData);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        // Inventory Basic Report Menu Item
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
-        reportEng.start();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Inventory Basic Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
+        this.runReport(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -1708,148 +1668,33 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         
         // Genres Basic Report Menu Item  
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_BASIC,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Genres Basic Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.GENRES_BASIC,instanceData);
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // Genres Full Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.GENRES_FULL,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Genres Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
+        this.runReport(JellyfinReportTypes.GENRES_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // People Basic Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_BASIC,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing People Basic Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.PEOPLE_BASIC,instanceData);   
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // People Full Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.PEOPLE_FULL,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing People Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.PEOPLE_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // Tags Basic Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_BASIC,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Tags Basic Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.TAGS_BASIC,instanceData);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // Tags FULL Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.TAGS_FULL,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Tags Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.TAGS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -1870,74 +1715,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // Studios Basic Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_BASIC,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Studios Basic Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.STUDIOS_BASIC,instanceData);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // Studios Full Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.STUDIOS_FULL,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Studios Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.STUDIOS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // Years Full Report Menu Item
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        JellyfinReportEngine reportEng = new JellyfinReportEngine(JellyfinReportTypes.YEARS_FULL,instanceData);
-        reportEng.start();
-        
-        while (true){
-            if (reportEng.isDone()){
-                this.setCursor(Cursor.getDefaultCursor());
-                break;
-            } else {
-                try {
-                    
-                    Thread.sleep(2000);
-                    if (instanceData.isDebug()){
-                        System.out.println("Processing Years Full Report...");
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        this.runReport(JellyfinReportTypes.YEARS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -3275,7 +3063,7 @@ public class MainWindow extends javax.swing.JFrame {
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-            JLabel label = new JLabel("Saving Folder changes to ".concat(instanceData.getCredentials().baseURL), JLabel.CENTER);
+            JLabel label = new JLabel("Saving Folder changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
             bar.setIndeterminate(true);
@@ -3335,7 +3123,7 @@ public class MainWindow extends javax.swing.JFrame {
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-            JLabel label = new JLabel("Saving Itens changes to ".concat(instanceData.getCredentials().baseURL), JLabel.CENTER);
+            JLabel label = new JLabel("Saving Itens and Metadata changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
             bar.setIndeterminate(true);
@@ -3979,7 +3767,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @author CesarBianchi
      */
     public void preDefineFooter() {
-        jLabel4.setText("Waiting... Establishing connection with: ".concat(instanceData.getCredentials().getBaseURL()));
+        jLabel4.setText("Wait... Establishing connection with: ".concat(instanceData.getCredentials().getBaseURL()));
         jLabel5.setText("");
         jLabel14.setText("");
         jLabel13.setText("");        
@@ -4006,6 +3794,55 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel16.setText(instanceData.getServerInfo().getVersion());
         jLabel17.setText("Server ID:");
         jLabel18.setText(instanceData.getServerInfo().getId());
+    }
+
+    private void runReport(JellyfinReportTypes jfReportTypes, JellyfinInstanceDetails instanceData) {
+        
+        // Create a new waiting dialog
+        JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+        waitDiag.setLayout(new BorderLayout());
+        waitDiag.setSize(600, 110);
+        waitDiag.setResizable(false);
+        waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        waitDiag.setLocationRelativeTo(this);
+
+
+        JLabel labelIco = new JLabel();
+        labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+
+        JProgressBar bar = new JProgressBar();
+        bar.setIndeterminate(true);
+
+        waitDiag.add(labelIco,BorderLayout.NORTH);
+        waitDiag.add(label, BorderLayout.CENTER);
+        waitDiag.add(bar, BorderLayout.SOUTH);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
+        // run load folders in background
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {      
+
+                // Inventory Basic Report Menu Item
+                JellyfinReportEngine reportEng = new JellyfinReportEngine(jfReportTypes,instanceData);
+                reportEng.start();
+        
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                waitDiag.dispose();
+            }
+        };
+        worker.execute();
+        waitDiag.setVisible(true);
+
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
     }
     
 }
