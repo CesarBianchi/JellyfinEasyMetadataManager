@@ -53,6 +53,7 @@ com/lariflix/jemm/forms/WaitingWindow$2.class
 com/lariflix/jemm/forms/MainWindow$56.class
 com/lariflix/jemm/forms/MainWindow$40.class
 com/lariflix/jemm/forms/AddPeopleWindow.class
+com/lariflix/jemm/forms/MainWindow$66.class
 com/lariflix/jemm/forms/AboutJemmPanel$2.class
 com/lariflix/jemm/forms/MainWindow$36.class
 com/lariflix/jemm/dtos/JellyfinUser.class
@@ -85,6 +86,7 @@ com/lariflix/jemm/reports/JellyfinReportGenres.class
 com/lariflix/jemm/forms/MainWindow$35.class
 com/lariflix/jemm/reports/JellyfinReportTagsItem.class
 com/lariflix/jemm/forms/MainWindow$41.class
+com/lariflix/jemm/forms/MainWindow$65.class
 com/lariflix/jemm/reports/JellyfinReportYearsStructure.class
 com/lariflix/jemm/forms/AddStudioPanel$10.class
 com/lariflix/jemm/forms/MainWindow$58.class

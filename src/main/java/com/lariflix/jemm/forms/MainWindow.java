@@ -18,6 +18,7 @@ import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import com.lariflix.jemm.utils.TransformDateFormat;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.io.IOException;
@@ -41,7 +42,12 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -2243,11 +2249,46 @@ public class MainWindow extends javax.swing.JFrame {
         //Load Admin User from Jellyfin API
         instanceData.setAdminUser(connectAPI.getAdminUser());
         
-        //Load Folders From Jellyfin API
-        instanceData.setFolders(connectAPI.getFolders(tpFolder));
+        // Create a new waiting dialog
+        JDialog waitDiag = new JDialog(this, "Please wait...", true);
+        waitDiag.setLayout(new BorderLayout());
+        waitDiag.setSize(600, 110);
+        waitDiag.setResizable(false);
+        waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        waitDiag.setLocationRelativeTo(this);
+
         
-        //Load Server Info from Jellyfin API
-        instanceData.setServerInfo(connectAPI.getServerInfo());
+        JLabel labelIco = new JLabel();
+        labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        JLabel label = new JLabel("Loading Folders and SubFolders...", JLabel.CENTER);
+        
+        JProgressBar bar = new JProgressBar();
+        bar.setIndeterminate(true);
+
+        waitDiag.add(labelIco,BorderLayout.NORTH);
+        waitDiag.add(label, BorderLayout.CENTER);
+        waitDiag.add(bar, BorderLayout.SOUTH);
+
+        // run load folders in background
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {      
+                //Load Server Info from Jellyfin API
+                instanceData.setServerInfo(connectAPI.getServerInfo());
+
+                //Load Folders From Jellyfin API
+                instanceData.setFolders(connectAPI.getFolders(tpFolder));
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                waitDiag.dispose();
+            }
+        };
+        worker.execute();
+        waitDiag.setVisible(true);
         
         //Set jList itens from instanceObject
         JellyfinFolder newFolder = new JellyfinFolder();
@@ -2330,30 +2371,63 @@ public class MainWindow extends javax.swing.JFrame {
             
             String cFolderId = instanceData.getFolders().getItems().get(nIndex).getId();
 
-            //1 - Request Metadata for Selected Folder
-            JellyfinFolderMetadata folderMetadadta = null;        
-            try {
+            // Create a new waiting dialog
+            JDialog waitDiag = new JDialog(this, "Please wait...", true);
+            waitDiag.setLayout(new BorderLayout());
+            waitDiag.setSize(600, 110);
+            waitDiag.setResizable(false);
+            waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            waitDiag.setLocationRelativeTo(this);
+
+
+            JLabel labelIco = new JLabel();
+            labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            JLabel label = new JLabel("Loading folder items and metadata...", JLabel.CENTER);
+
+            JProgressBar bar = new JProgressBar();
+            bar.setIndeterminate(true);
+
+            waitDiag.add(labelIco,BorderLayout.NORTH);
+            waitDiag.add(label, BorderLayout.CENTER);
+            waitDiag.add(bar, BorderLayout.SOUTH);
+
+            // run load folders in background
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {      
+
+                    //1 - Request Metadata for Selected Folder
+                    JellyfinFolderMetadata folderMetadadta = null;    
+
+                    //2 - Request Folder Metadata
+                    folderMetadadta = connectAPI.getFolderMetadata(cFolderId);
+
+                    //2.1 - Add folder metadata atributes to main instance object
+                    instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
+
+                    //3 - Request Folder Content Items 
+                    JellyfinItems folderItems = new JellyfinItems();
+                    folderItems = connectAPI.getItems(cFolderId);
+
+                    //4 - Add Folder Content Item to main instance object
+                    instanceData.getFolders().getItems().get(nIndex).setFolderContent(folderItems);
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    waitDiag.dispose();
+                }
+            };
+            worker.execute();
+            waitDiag.setVisible(true);
+
+
+            //5 - Refresh GUI Objects from Instance Obj
+            this.setFolderGUIFromInstObj(cFolderId);
                 
-                //2 - Request Folder Metadata
-                folderMetadadta = connectAPI.getFolderMetadata(cFolderId);
-
-                //2.1 - Add folder metadata atributes to main instance object
-                instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
-
-                //3 - Request Folder Content Items 
-                JellyfinItems folderItems = new JellyfinItems();
-                folderItems = connectAPI.getItems(cFolderId);
-
-                //4 - Add Folder Content Item to main instance object
-                instanceData.getFolders().getItems().get(nIndex).setFolderContent(folderItems);
-                
-                //5 - Refresh GUI Objects from Instance Obj
-                this.setFolderGUIFromInstObj(cFolderId);
-                
-
-            } catch (IOException | ParseException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
     
@@ -3186,22 +3260,49 @@ public class MainWindow extends javax.swing.JFrame {
             
             //Update values in main object, from GUI Objects
             this.setFolderInstObjFromGUI(jList2.getSelectedIndex());
-            
-            //Post Updates on Jellyfin instance
-            try {
-                /* Commented by the Issue #27
-                //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
-                //waitWin.showDialogWithTimmer();  
-                */
-                
-                String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
-                connectAPI.postUpdate(folderID, "", instanceData,jemmParameters.FOLDERS_AND_SUBFOLDERS);
-            } catch (IOException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
+
+
+            // Create a new waiting dialog
+            JDialog waitDiag = new JDialog(this, "Please wait...", true);
+            waitDiag.setLayout(new BorderLayout());
+            waitDiag.setSize(600, 110);
+            waitDiag.setResizable(false);
+            waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            waitDiag.setLocationRelativeTo(this);
+
+
+            JLabel labelIco = new JLabel();
+            labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            JLabel label = new JLabel("Saving Folder changes to ".concat(instanceData.getCredentials().baseURL), JLabel.CENTER);
+
+            JProgressBar bar = new JProgressBar();
+            bar.setIndeterminate(true);
+
+            waitDiag.add(labelIco,BorderLayout.NORTH);
+            waitDiag.add(label, BorderLayout.CENTER);
+            waitDiag.add(bar, BorderLayout.SOUTH);
+
+            // run load folders in background
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {      
+
+                    //Post Updates on Jellyfin instance
+                    connectAPI.postUpdate(folderID, "", instanceData, jemmParameters.FOLDERS_AND_SUBFOLDERS);
+                    
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    waitDiag.dispose();
+                }
+            };
+            worker.execute();
+            waitDiag.setVisible(true);
+         
             this.setCursor(Cursor.getDefaultCursor());
         }
     }
@@ -3222,25 +3323,56 @@ public class MainWindow extends javax.swing.JFrame {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             this.setFolderItemsInstObjFromGUI(folderIndex,lAll);
 
+            // Create a new waiting dialog
+            JDialog waitDiag = new JDialog(this, "Please wait...", true);
+            waitDiag.setLayout(new BorderLayout());
+            waitDiag.setSize(600, 110);
+            waitDiag.setResizable(false);
+            waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            waitDiag.setLocationRelativeTo(this);
 
-            //Post Updates on Jellyfin instance
-            try {
 
-                for (int nI = 0; nI < instanceData.getFolders().getItems().get(folderIndex).getFolderContent().getItems().size(); nI++ ){
-                    String cFolderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
-                    String cItemID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getFolderContent().getItems().get(nI).getId();
-                    
-                    /*Commented by the Issue #27
-                    //WaitingWindow waitWin = new WaitingWindow(instanceData.getCredentials().getBaseURL(),UPLOADING_DATA);
-                    //waitWin.showDialogWithTimmer();  
-                    */
-                    
-                    connectAPI.postUpdate(cFolderID, cItemID, instanceData, jemmParameters.JUST_ITEMS);
+            JLabel labelIco = new JLabel();
+            labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            JLabel label = new JLabel("Saving Itens changes to ".concat(instanceData.getCredentials().baseURL), JLabel.CENTER);
+
+            JProgressBar bar = new JProgressBar();
+            bar.setIndeterminate(true);
+
+            waitDiag.add(labelIco,BorderLayout.NORTH);
+            waitDiag.add(label, BorderLayout.CENTER);
+            waitDiag.add(bar, BorderLayout.SOUTH);
+
+            // run load folders in background
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {      
+
+                    //Post Updates on Jellyfin instance
+                    try {
+
+                        for (int nI = 0; nI < instanceData.getFolders().getItems().get(folderIndex).getFolderContent().getItems().size(); nI++ ){
+                            String cFolderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
+                            String cItemID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getFolderContent().getItems().get(nI).getId();
+
+                            connectAPI.postUpdate(cFolderID, cItemID, instanceData, jemmParameters.JUST_ITEMS);                
+                        }
+
+                    } catch (IOException | ParseException ex) {
+                        Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    return null;
                 }
 
-            } catch (IOException | ParseException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                @Override
+                protected void done() {
+                    waitDiag.dispose();
+                }
+            };
+            worker.execute();
+            waitDiag.setVisible(true);
+
 
             this.setCursor(Cursor.getDefaultCursor());
         }
