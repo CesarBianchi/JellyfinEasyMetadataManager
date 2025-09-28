@@ -1774,7 +1774,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(bar, BorderLayout.SOUTH);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        // run load folders in background
+        
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {      
@@ -1837,7 +1837,45 @@ public class MainWindow extends javax.swing.JFrame {
                     //Run the import process.
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-                    processResult = importCSV.startImport();
+                    // Create a new waiting dialog
+                    JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+                    waitDiag.setLayout(new BorderLayout());
+                    waitDiag.setSize(600, 110);
+                    waitDiag.setResizable(false);
+                    waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                    waitDiag.setLocationRelativeTo(this);
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                    JLabel labelIco = new JLabel();
+                    labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                    labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+                    JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+
+                    JProgressBar bar = new JProgressBar();
+                    bar.setIndeterminate(true);
+
+                    waitDiag.add(labelIco,BorderLayout.NORTH);
+                    waitDiag.add(label, BorderLayout.CENTER);
+                    waitDiag.add(bar, BorderLayout.SOUTH);
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                    SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {      
+                            importCSV.startImport();
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            waitDiag.dispose();
+                        }
+                    };
+                    worker.execute();
+                    waitDiag.setVisible(true);
+                    
+                    
+                    
                     this.setCursor(Cursor.getDefaultCursor());
                     break;
 
@@ -1849,21 +1887,6 @@ public class MainWindow extends javax.swing.JFrame {
             
         }
         
-        if (userAborted) {
-            processResult.setIsSuccess(false);
-            processResult.setResponseCode("ERR_001");
-            processResult.setResponseMessage("Aborted by user!");
-        }
-        
-        String cMsg = processResult.getResponseMessage();
-        if (processResult.isSuccess()){
-            msgType = JOptionPane.INFORMATION_MESSAGE;
-            cTitle = "Import Metadata is done!";
-        } else {
-            msgType = JOptionPane.ERROR_MESSAGE;
-            cTitle = "Import Metadata failed!";
-        }
-        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
@@ -2080,7 +2103,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(label, BorderLayout.CENTER);
         waitDiag.add(bar, BorderLayout.SOUTH);
 
-        // run load folders in background
+        
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {      
@@ -2202,7 +2225,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.add(label, BorderLayout.CENTER);
             waitDiag.add(bar, BorderLayout.SOUTH);
 
-            // run load folders in background
+            
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
                 protected Void doInBackground() throws Exception {      
@@ -3094,7 +3117,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.add(label, BorderLayout.CENTER);
             waitDiag.add(bar, BorderLayout.SOUTH);
 
-            // run load folders in background
+            
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
                 protected Void doInBackground() throws Exception {      
@@ -3154,7 +3177,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.add(label, BorderLayout.CENTER);
             waitDiag.add(bar, BorderLayout.SOUTH);
 
-            // run load folders in background
+            
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
                 protected Void doInBackground() throws Exception {      
@@ -3842,7 +3865,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(bar, BorderLayout.SOUTH);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         
-        // run load folders in background
+        
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {      
