@@ -58,6 +58,7 @@ com/lariflix/jemm/forms/AddPeopleWindow.class
 com/lariflix/jemm/forms/MainWindow$66.class
 com/lariflix/jemm/forms/AboutJemmPanel$2.class
 com/lariflix/jemm/forms/MainWindow$36.class
+com/lariflix/jemm/forms/MainWindow$70.class
 com/lariflix/jemm/dtos/JellyfinUser.class
 com/lariflix/jemm/forms/MainWindow$20.class
 com/lariflix/jemm/csv/JellyfinImportMetadata.class
