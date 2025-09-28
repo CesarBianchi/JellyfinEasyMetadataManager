@@ -1747,29 +1747,51 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         //Export Button        
-        JellyfinResponseStandard processResult = new JellyfinResponseStandard();
         String cDestinationPath = this.showSaveFileDialog();
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath,instanceData);
         
-        processResult = exportCSV.startProcess();
+        // Create a new waiting dialog
+        JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+        waitDiag.setLayout(new BorderLayout());
+        waitDiag.setSize(600, 110);
+        waitDiag.setResizable(false);
+        waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        waitDiag.setLocationRelativeTo(this);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        JLabel labelIco = new JLabel();
+        labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+
+        JProgressBar bar = new JProgressBar();
+        bar.setIndeterminate(true);
+
+        waitDiag.add(labelIco,BorderLayout.NORTH);
+        waitDiag.add(label, BorderLayout.CENTER);
+        waitDiag.add(bar, BorderLayout.SOUTH);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
+        // run load folders in background
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {      
+                exportCSV.startProcess();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                waitDiag.dispose();
+            }
+        };
+        worker.execute();
+        waitDiag.setVisible(true);
+
         this.setCursor(Cursor.getDefaultCursor());
-        
-        
-        String cMsg = processResult.getResponseMessage();
-        String cTitle = new String();
-        int msgType = 0;
-        
-        if (processResult.isSuccess()){
-            msgType = JOptionPane.INFORMATION_MESSAGE;
-            cTitle = "Export Metadata is done!";
-        } else {
-            msgType = JOptionPane.ERROR_MESSAGE;
-            cTitle = "Export Metadata failed!";
-        }
-        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
-        
+
         
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
@@ -3799,7 +3821,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void runReport(JellyfinReportTypes jfReportTypes, JellyfinInstanceDetails instanceData) {
         
         // Create a new waiting dialog
-        JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+        JDialog waitDiag = new JDialog(this, "Exporting data...", true);
         waitDiag.setLayout(new BorderLayout());
         waitDiag.setSize(600, 110);
         waitDiag.setResizable(false);
@@ -3810,7 +3832,7 @@ public class MainWindow extends javax.swing.JFrame {
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-        JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+        JLabel label = new JLabel("Downloading data and generating destination file... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
         bar.setIndeterminate(true);
@@ -3841,7 +3863,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.setVisible(true);
 
 
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+       this.setCursor(Cursor.getDefaultCursor());
         
     }
     
