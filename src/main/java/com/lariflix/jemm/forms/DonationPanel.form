@@ -60,13 +60,13 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Everyday many users use Jellyfin Easy Metadata Manager to enrich their instances"/>
+        <Property name="text" type="java.lang.String" value="This project runs on coffee, code, and kindness. If it&#x2019;s made your life easier (or just made you smile)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Help me to keep this software free."/>
+        <Property name="text" type="java.lang.String" value="consider tossing a coin to your dev! Your donation helps keep this project open, awesome, and ad-free.  "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

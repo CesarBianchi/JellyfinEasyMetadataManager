@@ -11,10 +11,10 @@ import org.json.simple.parser.ParseException;
 /**
  * The JellyfinReportEngine class extends the Thread class and is used to generate reports from a Jellyfin server.
  * This class runs in its own thread to prevent blocking the main application thread.
- *
+ * extends Thread
  * @author Cesar Bianchi
  */
-public class JellyfinReportEngine extends Thread {
+public class JellyfinReportEngine  {
     private JellyfinReportTypes reportType = null;
     private JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();
     private boolean isDone = false;
@@ -32,6 +32,10 @@ public class JellyfinReportEngine extends Thread {
         this.setInstanceData(instData);
     }
     
+    public void start(){
+        this.run();
+    }
+    
     /**
      * The main execution method for the JellyfinReportEngine thread.
      *
@@ -41,7 +45,7 @@ public class JellyfinReportEngine extends Thread {
      * @since 1.1
      * @author Cesar Bianchi
      */
-    @Override
+    //@Override
     public void run(){
         synchronized(this){
             

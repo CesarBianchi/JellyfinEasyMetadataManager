@@ -65,10 +65,10 @@ public class DonationPanel extends javax.swing.JPanel {
         jLabel1.setToolTipText("");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Everyday many users use Jellyfin Easy Metadata Manager to enrich their instances");
+        jLabel2.setText("This project runs on coffee, code, and kindness. If it’s made your life easier (or just made you smile)");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Help me to keep this software free.");
+        jLabel3.setText("consider tossing a coin to your dev! Your donation helps keep this project open, awesome, and ad-free.  ");
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
