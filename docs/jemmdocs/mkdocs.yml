@@ -1,0 +1,37 @@
+site_name: JEMM - User Manual - v1.2.3
+site_description: Welcome to the Jellyfin Easy Metadata Manager Users Manual
+site_author: Cesar Bianchi
+
+theme:
+  name: readthedocs
+  color_mode: auto
+  user_color_mode_toggle: true
+
+  analytics:
+    gtag: G-ABC123
+  locale: en
+
+nav:
+ - About:
+   - What's Jemm ?: about/whatsjemm.md
+   - Requirements: about/requirements.md
+   - Download: about/download.md
+   - Source Code: about/sourcecode.md
+   - Author: about/theauthor.md
+   - Found a Bug ?: about/bugs.md
+   - Buy me a Coffee: about/donations.md
+   - The Jellyfin Project: about/jellyfinproject.md
+ - Features:
+   - Main Menu: feat/mainmenu.md
+   - Footer StatusBar: feat/footerStatusBar.md
+   - Library Metadata: feat/librarymetadata.md
+   - Library Content: feat/librarycontent.md
+   - Export Feature: feat/exportfeature.md
+   - Import Feature: feat/importfeature.md
+   - Reports: 
+     - Inventory: feat/reportInventory.md
+     - Genres: feat/reportGenres.md
+     - People: feat/reportPeople.md
+     - Studios: feat/reportStudios.md
+     - Tags: feat/reportTags.md
+     - Year: feat/reportYear.md
