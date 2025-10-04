@@ -42,6 +42,7 @@ public class JellyfinExportMetadata {
     private String cDestinationPath = new String();
     private JellyfinInstanceDetails instanceData = new JellyfinInstanceDetails();  
     private JellyfinReportInventoryStructure items = new JellyfinReportInventoryStructure();
+    private JellyfinResponseStandard processFinalResult = new JellyfinResponseStandard();
     
     /**
      * Default constructor for the JellyfinExportMetadata class.
@@ -174,6 +175,8 @@ public class JellyfinExportMetadata {
             processResult.setResponseCode("CSV_EXP_005");
             processResult.setResponseMessage("Error while trying create Export File. Destination path is empty!");
         }
+        
+        this.setProcessFinalResult(processFinalResult);
         
         return processResult;
     }
@@ -503,5 +506,16 @@ public class JellyfinExportMetadata {
         }
         return lSuccess;
     }
+
+    public JellyfinResponseStandard getProcessFinalResult() {
+        return processFinalResult;
+    }
+
+    public void setProcessFinalResult(JellyfinResponseStandard processFinalResult) {
+        this.processFinalResult = processFinalResult;
+    }
+    
+    
+    
     
 }
