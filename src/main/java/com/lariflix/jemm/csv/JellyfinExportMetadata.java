@@ -176,7 +176,7 @@ public class JellyfinExportMetadata {
             processResult.setResponseMessage("Error while trying create Export File. Destination path is empty!");
         }
         
-        this.setProcessFinalResult(processFinalResult);
+        this.setProcessFinalResult(processResult);
         
         return processResult;
     }

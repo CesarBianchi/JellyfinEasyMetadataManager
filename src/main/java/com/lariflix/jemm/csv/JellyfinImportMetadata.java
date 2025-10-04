@@ -863,7 +863,7 @@ public class JellyfinImportMetadata {
             processResult.setResponseMessage("Import Process done. One or more changes were not applied");
         }
          
-        this.setProcessFinalResult(processFinalResult);
+        this.setProcessFinalResult(processResult);
         return processResult;
     }
     
