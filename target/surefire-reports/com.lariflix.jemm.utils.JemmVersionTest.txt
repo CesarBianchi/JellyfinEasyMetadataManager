@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: com.lariflix.jemm.utils.JemmVersionTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in com.lariflix.jemm.utils.JemmVersionTest
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! -- in com.lariflix.jemm.utils.JemmVersionTest
+com.lariflix.jemm.utils.JemmVersionTest.testGetVersion -- Time elapsed: 0.007 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <v1.2.2> but was: <v1.2.3>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:201)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1188)
+	at com.lariflix.jemm.utils.JemmVersionTest.testGetVersion(JemmVersionTest.java:14)
+
