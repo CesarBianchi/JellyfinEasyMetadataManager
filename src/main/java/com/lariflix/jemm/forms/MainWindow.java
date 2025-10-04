@@ -1753,7 +1753,7 @@ public class MainWindow extends javax.swing.JFrame {
         JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath,instanceData);
         
         // Create a new waiting dialog
-        JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+        JDialog waitDiag = new JDialog(this, "Exporting data...", true);
         waitDiag.setLayout(new BorderLayout());
         waitDiag.setSize(600, 110);
         waitDiag.setResizable(false);
@@ -1764,7 +1764,7 @@ public class MainWindow extends javax.swing.JFrame {
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-        JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+        JLabel label = new JLabel("Downloading data and generating destination file... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
         bar.setIndeterminate(true);
@@ -1773,7 +1773,6 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(label, BorderLayout.CENTER);
         waitDiag.add(bar, BorderLayout.SOUTH);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
         
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
@@ -1789,9 +1788,25 @@ public class MainWindow extends javax.swing.JFrame {
         };
         worker.execute();
         waitDiag.setVisible(true);
-
+            
+        
+        //Build the process Result Message to show to user
         this.setCursor(Cursor.getDefaultCursor());
+        JellyfinResponseStandard processResult = exportCSV.getProcessFinalResult();
 
+        String cMsg = processResult.getResponseMessage();
+        String cTitle = new String();
+        int msgType = 0;
+        
+        if (processResult.isSuccess()){
+            msgType = JOptionPane.INFORMATION_MESSAGE;
+            cTitle = "Export Metadata is done!";
+        } else {
+            msgType = JOptionPane.ERROR_MESSAGE;
+            cTitle = "Export Metadata failed!";
+        }
+        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
+        
         
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
@@ -1838,7 +1853,7 @@ public class MainWindow extends javax.swing.JFrame {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
                     // Create a new waiting dialog
-                    JDialog waitDiag = new JDialog(this, "Creating Report...", true);
+                    JDialog waitDiag = new JDialog(this, "Importing data...", true);
                     waitDiag.setLayout(new BorderLayout());
                     waitDiag.setSize(600, 110);
                     waitDiag.setResizable(false);
@@ -1849,7 +1864,7 @@ public class MainWindow extends javax.swing.JFrame {
                     JLabel labelIco = new JLabel();
                     labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                     labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-                    JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
+                    JLabel label = new JLabel("Reading file and updating metadata... ", JLabel.CENTER);
 
                     JProgressBar bar = new JProgressBar();
                     bar.setIndeterminate(true);
@@ -1874,8 +1889,6 @@ public class MainWindow extends javax.swing.JFrame {
                     worker.execute();
                     waitDiag.setVisible(true);
                     
-                    
-                    
                     this.setCursor(Cursor.getDefaultCursor());
                     break;
 
@@ -1886,6 +1899,22 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
         }
+        processResult = importCSV.getProcessFinalResult();
+        if (userAborted) {
+            processResult.setIsSuccess(false);
+            processResult.setResponseCode("ERR_001");
+            processResult.setResponseMessage("Aborted by user!");
+        }
+        
+        String cMsg = processResult.getResponseMessage();
+        if (processResult.isSuccess()){
+            msgType = JOptionPane.INFORMATION_MESSAGE;
+            cTitle = "Import Metadata is done!";
+        } else {
+            msgType = JOptionPane.ERROR_MESSAGE;
+            cTitle = "Import Metadata failed!";
+        }
+        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
         
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
@@ -2127,18 +2156,20 @@ public class MainWindow extends javax.swing.JFrame {
         JellyfinFolder newFolder = new JellyfinFolder();
         String prefix = new String();
         
-        for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
-            newFolder = instanceData.getFolders().getItems().get(nI);
-            
-            if (newFolder.getName().contains("⎆")){
-                prefix = "";
-            } else {
-                prefix = Integer.toString(nI+1).concat(" - ");
+        if (instanceData.getFolders().getItems() != null){ 
+            for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
+                newFolder = instanceData.getFolders().getItems().get(nI);
+
+                if (newFolder.getName().contains("⎆")){
+                    prefix = "";
+                } else {
+                    prefix = Integer.toString(nI+1).concat(" - ");
+                }
+
+                modelList.addElement(prefix.concat(newFolder.getName()) );
             }
-            
-            modelList.addElement(prefix.concat(newFolder.getName()) );
+            this.selectFirstFolder();
         }
-        this.selectFirstFolder();
         
     }
 
@@ -3844,7 +3875,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void runReport(JellyfinReportTypes jfReportTypes, JellyfinInstanceDetails instanceData) {
         
         // Create a new waiting dialog
-        JDialog waitDiag = new JDialog(this, "Exporting data...", true);
+        JDialog waitDiag = new JDialog(this, "Creating Report...", true);
         waitDiag.setLayout(new BorderLayout());
         waitDiag.setSize(600, 110);
         waitDiag.setResizable(false);
@@ -3855,7 +3886,7 @@ public class MainWindow extends javax.swing.JFrame {
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
-        JLabel label = new JLabel("Downloading data and generating destination file... ", JLabel.CENTER);
+        JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
         bar.setIndeterminate(true);

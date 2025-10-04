@@ -48,6 +48,7 @@ public class JellyfinImportMetadata {
     private ArrayList<String> fileLines = new ArrayList();
     private ArrayList<String> linesChanged = new ArrayList();
     private String logDiferencesFile = new String();
+    private JellyfinResponseStandard processFinalResult = new JellyfinResponseStandard();
     static ConnectJellyfinAPI connectAPI = new ConnectJellyfinAPI();
     
     /**
@@ -862,6 +863,7 @@ public class JellyfinImportMetadata {
             processResult.setResponseMessage("Import Process done. One or more changes were not applied");
         }
          
+        this.setProcessFinalResult(processFinalResult);
         return processResult;
     }
     
@@ -1175,6 +1177,14 @@ public class JellyfinImportMetadata {
             
         }
     
+    }
+
+    public JellyfinResponseStandard getProcessFinalResult() {
+        return processFinalResult;
+    }
+
+    public void setProcessFinalResult(JellyfinResponseStandard processFinalResult) {
+        this.processFinalResult = processFinalResult;
     }
 
 }
