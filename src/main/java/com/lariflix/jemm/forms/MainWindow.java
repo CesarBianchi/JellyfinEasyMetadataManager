@@ -17,6 +17,7 @@ import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
+import com.lariflix.jemm.utils.JemmVersion;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -212,6 +213,8 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -257,7 +260,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Library Folders"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Libraries"));
 
         jList2.setModel(modelList);
         jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -401,7 +404,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -643,14 +646,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BR-L", "BR-10", "BR-12", "BR-14", "BR-16", "BR-18" }));
 
-        jButton22.setText("Refresh Folders");
+        jButton22.setText("Refresh Libraries");
+        jButton22.setActionCommand("Refresh Libraries");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
             }
         });
 
-        jButton23.setText("Search Folder");
+        jButton23.setText("Search Library");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton23ActionPerformed(evt);
@@ -664,14 +668,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Apply for Folder and Content");
+        jButton3.setText("Apply for Library and Content");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Apply for Folder");
+        jButton2.setText("Apply for Library");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -806,7 +810,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jTabbedPane1.addTab("Folder Metadata", jPanel3);
+        jTabbedPane1.addTab("Library Metadata", jPanel3);
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1164,7 +1168,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane3.getAccessibleContext().setAccessibleName("People");
 
-        jTabbedPane1.addTab("Folder Content", jPanel4);
+        jTabbedPane1.addTab("Library Content", jPanel4);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1202,6 +1206,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel18.setText("ABC123XYZ");
 
+        jLabel19.setText("JEMM Version:");
+
+        jLabel20.setText("v0.0.0");
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -1211,7 +1219,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(86, 86, 86)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
@@ -1219,11 +1227,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
-                .addGap(233, 233, 233)
+                .addGap(82, 82, 82)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
-                .addGap(56, 56, 56))
+                .addGap(63, 63, 63)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1235,7 +1247,10 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addComponent(jLabel16)
                 .addComponent(jLabel17)
-                .addComponent(jLabel18))
+                .addComponent(jLabel18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20)))
         );
 
         jMenu1.setText("Main");
@@ -1480,6 +1495,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("Libraries");
 
         pack();
         setLocationRelativeTo(null);
@@ -1997,7 +2014,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabel5;
@@ -3870,6 +3889,9 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel16.setText(instanceData.getServerInfo().getVersion());
         jLabel17.setText("Server ID:");
         jLabel18.setText(instanceData.getServerInfo().getId());
+        jLabel19.setText("JEMM Version:");
+        jLabel20.setText(new JemmVersion().getVersion());
+        
     }
 
     private void runReport(JellyfinReportTypes jfReportTypes, JellyfinInstanceDetails instanceData) {
