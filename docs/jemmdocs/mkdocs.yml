@@ -30,8 +30,10 @@ nav:
      - Library Metadata Sheet: feat/librarymetadata.md
      - Library Content Sheet: feat/librarycontent.md
      - Footer StatusBar: feat/footerStatusBar.md
-   - Export Feature: feat/exportfeature.md
-   - Import Feature: feat/importfeature.md
+   - Massive Changes:
+     - How Apply Massive Changes: feat/howmassivechanges.md
+     - Export Feature: feat/exportfeature.md
+     - Import Feature: feat/importfeature.md
    - Reports: 
      - Inventory: feat/reportInventory.md
      - Genres: feat/reportGenres.md
@@ -39,3 +41,6 @@ nav:
      - Studios: feat/reportStudios.md
      - Tags: feat/reportTags.md
      - Year: feat/reportYear.md
+   - Others: 
+     - Other Things: feat/otherthings.md
+     
