@@ -17,4 +17,4 @@ You can generate your API Key from the Administration Panel in Jellyfin. Just go
 
 Once you’ve entered both, press "Login" button. JEMM will securely connect to your Jellyfin server and unlock all its metadata management features.
 
-![alt text](https://media.istockphoto.com/id/501282196/photo/laferrari.jpg?s=612x612&w=0&k=20&c=yJH3oUuhYSmta_BYdwoUOktqWps5zC86guy5hQ29608=)
+![Here's an example of JEMM Login Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/LoginForm.png?raw=true)

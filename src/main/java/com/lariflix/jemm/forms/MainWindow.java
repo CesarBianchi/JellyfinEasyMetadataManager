@@ -286,7 +286,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Details of Folder"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Details of Library"));
 
         jLabel1.setText("ID:");
 
@@ -647,7 +647,6 @@ public class MainWindow extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BR-L", "BR-10", "BR-12", "BR-14", "BR-16", "BR-18" }));
 
         jButton22.setText("Refresh Libraries");
-        jButton22.setActionCommand("Refresh Libraries");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
@@ -845,7 +844,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(jTable5);
 
-        jTabbedPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Content Details"));
+        jTabbedPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Item Details"));
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1240,6 +1239,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel19)
+                .addComponent(jLabel20))
+            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel4)
                 .addComponent(jLabel5)
                 .addComponent(jLabel14)
@@ -1247,16 +1249,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addComponent(jLabel16)
                 .addComponent(jLabel17)
-                .addComponent(jLabel18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)))
+                .addComponent(jLabel18))
         );
 
         jMenu1.setText("Main");
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem12.setText("Refresh Folders and Itens");
+        jMenuItem12.setText("Refresh Libraries and Itens");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -1495,8 +1494,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("Libraries");
 
         pack();
         setLocationRelativeTo(null);
