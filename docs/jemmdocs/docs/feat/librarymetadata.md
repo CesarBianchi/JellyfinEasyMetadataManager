@@ -34,3 +34,6 @@ After you've finished editing the metadata for your Library, it's time to save t
  - Your changes will be applied instantly, keeping your media collection organized and up to date.
 
 This ensures that everything you've customized — titles, descriptions and more — is safely stored and reflected in Jellyfin.
+
+
+![Here's an example of Library Metadata Sheet](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/LibraryMetadata.png?raw=true)
