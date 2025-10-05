@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Cesar Bianchi" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>How Apply Massive Changes - JEMM - User Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "How Apply Massive Changes";
+        var mkdocs_page_input_path = "feat/howmassivechanges.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ABC123"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-ABC123");
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> JEMM - User Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/whatsjemm/">What's Jemm ?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/requirements/">Requirements</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/download/">Download</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/sourcecode/">Source Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/theauthor/">Author</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/bugs/">Found a Bug ?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/donations/">Buy me a Coffee</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/jellyfinproject/">The Jellyfin Project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../login/">Login Process</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Main Window</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/">Description</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../topmainmenu/">The Top Menu</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../librarylist/">Library List</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../librarymetadata/">Library Metadata Sheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../librarycontent/">Library Content Sheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../footerStatusBar/">Footer StatusBar</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Massive Changes</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">How Apply Massive Changes</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#this-feature-is-built-around-two-key-functions">This feature is built around two key functions:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#export-csv-metadata">📤 Export CSV Metadata</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#import-csv-metadata">📥 Import CSV Metadata</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../exportfeature/">Export Feature</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../importfeature/">Import Feature</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Reports</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../whyReports/">Why Reports ?</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Types of Reports</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reportInventory/">Inventory</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reportGenres/">Genres</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reportPeople/">People</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reportStudios/">Studios</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reportTags/">Tags</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reportYear/">Year</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Others</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../waitwindows.md">Message Wait Dialogs</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">JEMM - User Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Features</li>
+          <li class="breadcrumb-item">Massive Changes</li>
+      <li class="breadcrumb-item active">How Apply Massive Changes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bulk-metadata-management-with-csv-exportimport">📦 Bulk Metadata Management with CSV Export/Import</h1>
+<p>Managing metadata across multiple libraries can be time-consuming—especially when you need to apply consistent changes or audit large collections. That’s why JEMM offers a powerful feature for massive metadata editing across many libraries at once.</p>
+<h2 id="this-feature-is-built-around-two-key-functions">This feature is built around two key functions:</h2>
+<h3 id="export-csv-metadata">📤 Export CSV Metadata</h3>
+<p>With just a click, you can export all existing metadata from your Jellyfin libraries into a structured CSV file. This file includes detailed information about each item—titles, genres, release years, cast, artwork links, and more.</p>
+<h4 id="why-is-this-useful">Why is this useful?</h4>
+<p>You get a complete snapshot of your media metadata. It’s easy to review and organize metadata records in tools like Microsoft Excel, Notepad++, Visual Studio Code, or Sublime Text</p>
+<p>Perfect for backups, audits, or preparing bulk edits</p>
+<h3 id="import-csv-metadata">📥 Import CSV Metadata</h3>
+<p>Once you've made your changes in the CSV file, you can re-import it into JEMM using the Import CSV Metadata function. JEMM will read your updated metadata and apply it across all relevant libraries and items—automatically and efficiently.</p>
+<h4 id="this-means">This means:</h4>
+<p>No need to edit items one by one or library by library throught "Library Metadata" and "Library Content" sheets.  You can apply consistent metadata rules across multiple libraries using just one CSV file</p>
+<p>This feature is ideal for advanced users who prefer working in text editors or spreadsheets like Microsoft Excel, Notepad++, Visual Studio Code, or Sublime Text. It gives you full flexibility to review and edit metadata in bulk—outside the JEMM interface.</p>
+<p><strong>💡 Smart editing tip:</strong> You don’t need to modify the entire CSV file. If you only want to update a few items, simply preserve only the rows you’ve changed. JEMM will detect and apply updates based on the content of the imported file—making it a fast and efficient way to push targeted changes without touching your whole library.</p>
+<p>🧠 Smart, Scalable, and Time-Saving</p>
+<p>Whether you're curating a massive movie archive or fine-tuning a music collection, this feature gives you the flexibility and control to manage metadata your way—fast, accurate, and scalable</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../footerStatusBar/" class="btn btn-neutral float-left" title="Footer StatusBar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exportfeature/" class="btn btn-neutral float-right" title="Export Feature">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../footerStatusBar/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../exportfeature/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
