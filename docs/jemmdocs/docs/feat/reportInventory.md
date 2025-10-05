@@ -1,6 +1,36 @@
-# 📘 Manual Under Construction #
+# 📦 Inventory Reports – Overview of Your Media Libraries #
 
-We're still working on this part of the manual to make it as helpful and complete as possible. 
-Thanks for your patience—and sorry for the inconvenience!
+The *Inventory Report* is a powerful tool in JEMM that provides a structured overview of your Jellyfin libraries. It’s designed to help users audit, analyze, and understand the contents of their media collections with precision and clarity.
 
-The Developer
+## There are two types of Inventory Reports available: ##
+
+### 🧾 Basic Inventory Report ###
+
+The Basic version offers a summarized view of your libraries, ideal for quick checks and general monitoring. It includes essential information such as:
+
+- *Library names*
+- *Production Year*
+- *Oficial Rate*
+- *Critic Rate*
+- *Total Library Content*
+- *Genres*
+- *Tags*
+
+This report is lightweight and fast—perfect for users who need a quick snapshot of their Jellyfin setup.
+
+### 🧾 Full Inventory Report ###
+
+The Full Inventory Report provides a comprehensive breakdown of each library, packed with detailed metadata insights. It includes:
+
+- *Library names*
+- *Content Item names*
+- *Type of Media*
+- *Source Path*
+- *Production Year*
+- *Oficial Rate*
+- *Critic Rate*
+- *Total Library Content*
+- *Genres*
+- *Tags*
+
+This report is ideal for power users managing large Jellyfin instances who need to track inconsistencies, identify missing data, or prepare for bulk updates.
