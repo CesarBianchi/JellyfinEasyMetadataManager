@@ -3,7 +3,7 @@
 
 Once a library is selected, the Library Metadata Sheet shows detailed information about that **library configuration and metadata settings**. This sheet is perfect for fine-tuning how your LIBRARY is presented and organized within Jellyfin.
 
-**Important to know:** This sheet does not display metadata details for **individual items within the library**. To view or edit metadata for specific media items — like movies, episodes, or albums—head over to the **Library Content** Grid. That’s where you’ll find all the detailed information for each item, including titles, genres, cast, artwork, and more.
+**Important to know:** This sheet does not display metadata details for **individual items within the library**. To view or edit metadata for specific media items — like *movies, episodes, or albums* - head over to the **Library Content** grid. That’s where you’ll find all the detailed information for each item, including titles, genres, cast, artwork, and more.
 
 ### Here you can view and edit for Library: ###
 - *Library Title*
@@ -21,7 +21,6 @@ Once a library is selected, the Library Metadata Sheet shows detailed informatio
 - *Tags*;
 
 Use the left buttons **+** and **-** to help you to add these specific items
-
 
 
 ## 💾 How to Save Your Changes to the Jellyfin Server ##

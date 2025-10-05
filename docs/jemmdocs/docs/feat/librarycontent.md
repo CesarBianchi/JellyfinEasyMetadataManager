@@ -1,6 +1,6 @@
 # 4. The "Library Content" Sheet #
 
-The Library Content Sheet is where you dive into the actual items within the selected library. It displays a list of media entries—movies, episodes, albums, etc.—along with key metadata fields such as:
+The Library Content Sheet is where you dive into the actual items within the selected library. It displays a list of media entries — *movies, episodes, albums, etc.* — along with key metadata fields such as:
 
     Title
 
