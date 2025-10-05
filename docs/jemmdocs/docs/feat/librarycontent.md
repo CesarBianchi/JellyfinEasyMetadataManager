@@ -37,4 +37,4 @@ After you've finished editing the metadata for your Library Content (Items), it'
 This ensures that everything you've customized — titles, descriptions and more — is safely stored and reflected in Jellyfin.
 
 
-![Here's an example of JEMM Library Content](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/LibraryContent.png?raw=true)
+![Here's an example of JEMM Library Content](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/LibraryContent.png?raw=true)

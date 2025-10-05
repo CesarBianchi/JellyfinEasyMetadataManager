@@ -12,4 +12,4 @@ At the bottom of the window, the Foot Status Bar keeps you informed. It displays
 It’s a subtle but powerful tool to ensure everything is running smoothly behind the scenes.
 🧠 Smart, Simple, and Powerful
 
-![Here's an example of Foot Status Bar](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/FooterStatusBar.png?raw=true)
+![Here's an example of Foot Status Bar](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/FooterStatusBar.png?raw=true)

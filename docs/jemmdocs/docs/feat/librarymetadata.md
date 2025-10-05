@@ -47,4 +47,4 @@ This is ideal for users who want to streamline their workflow and ensure that me
 
 It’s a smart way to keep your Jellyfin libraries clean, unified, and beautifully organized—with just one click.
 
-![Here's an example of Library Metadata Sheet](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/LibraryMetadata.png?raw=true)
+![Here's an example of Library Metadata Sheet](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/LibraryMetadata.png?raw=true)
