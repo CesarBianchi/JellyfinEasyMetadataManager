@@ -22,6 +22,7 @@ nav:
    - Buy me a Coffee: about/donations.md
    - The Jellyfin Project: about/jellyfinproject.md
  - Features:
+   - Login Process: feat/login.md
    - Main Menu: feat/mainmenu.md
    - Footer StatusBar: feat/footerStatusBar.md
    - Library Metadata: feat/librarymetadata.md
