@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Cesar Bianchi" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Studios - JEMM - User Manual</title>
+    <title>How Apply Massive Changes - JEMM - User Manual</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Studios";
-        var mkdocs_page_input_path = "feat/reportStudios.md";
+        var mkdocs_page_name = "How Apply Massive Changes";
+        var mkdocs_page_input_path = "feat/howmassivechanges.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -86,9 +86,19 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Massive Changes</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../howmassivechanges/">How Apply Massive Changes</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Massive Changes</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">How Apply Massive Changes</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#this-feature-is-built-around-two-key-functions">This feature is built around two key functions:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#export-csv-metadata">📤 Export CSV Metadata</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#import-csv-metadata">📥 Import CSV Metadata</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../exportfeature/">Export Feature</a>
                 </li>
@@ -96,21 +106,19 @@
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" >Reports</a>
-    <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" >Reports</a>
+    <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../whyReports/">Why Reports ?</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" >Types of Reports</a>
-    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Types of Reports</a>
+    <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../reportInventory/">Inventory</a>
                 </li>
                 <li class="toctree-l3"><a class="reference internal" href="../reportGenres/">Genres</a>
                 </li>
                 <li class="toctree-l3"><a class="reference internal" href="../reportPeople/">People</a>
                 </li>
-                <li class="toctree-l3 current"><a class="reference internal current" href="#">Studios</a>
-    <ul class="current">
-    </ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reportStudios/">Studios</a>
                 </li>
                 <li class="toctree-l3"><a class="reference internal" href="../reportTags/">Tags</a>
                 </li>
@@ -142,9 +150,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Features</li>
-          <li class="breadcrumb-item">Reports</li>
-          <li class="breadcrumb-item">Types of Reports</li>
-      <li class="breadcrumb-item active">Studios</li>
+          <li class="breadcrumb-item">Massive Changes</li>
+      <li class="breadcrumb-item active">How Apply Massive Changes</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -153,16 +160,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="manual-under-construction">📘 Manual Under Construction</h1>
-<p>We're still working on this part of the manual to make it as helpful and complete as possible. 
-Thanks for your patience—and sorry for the inconvenience!</p>
-<p>The Developer</p>
+                <h1 id="bulk-metadata-management-with-csv-exportimport">📦 Bulk Metadata Management with CSV Export/Import</h1>
+<p>Managing metadata across multiple libraries can be time-consuming—especially when you need to apply consistent changes or audit large collections. That’s why JEMM offers a powerful feature for massive metadata editing across many libraries at once.</p>
+<h2 id="this-feature-is-built-around-two-key-functions">This feature is built around two key functions:</h2>
+<h3 id="export-csv-metadata">📤 Export CSV Metadata</h3>
+<p>With just a click, you can export all existing metadata from your Jellyfin libraries into a structured CSV file. This file includes detailed information about each item—titles, genres, release years, cast, artwork links, and more.</p>
+<h4 id="why-is-this-useful">Why is this useful?</h4>
+<p>You get a complete snapshot of your media metadata. It’s easy to review and organize metadata records in tools like Microsoft Excel, Notepad++, Visual Studio Code, or Sublime Text</p>
+<p>Perfect for backups, audits, or preparing bulk edits</p>
+<h3 id="import-csv-metadata">📥 Import CSV Metadata</h3>
+<p>Once you've made your changes in the CSV file, you can re-import it into JEMM using the Import CSV Metadata function. JEMM will read your updated metadata and apply it across all relevant libraries and items—automatically and efficiently.</p>
+<h4 id="this-means">This means:</h4>
+<p>No need to edit items one by one or library by library throught "Library Metadata" and "Library Content" sheets.  You can apply consistent metadata rules across multiple libraries using just one CSV file</p>
+<p>This feature is ideal for advanced users who prefer working in text editors or spreadsheets like Microsoft Excel, Notepad++, Visual Studio Code, or Sublime Text. It gives you full flexibility to review and edit metadata in bulk—outside the JEMM interface.</p>
+<p><strong>💡 Smart editing tip:</strong> You don’t need to modify the entire CSV file. If you only want to update a few items, simply preserve only the rows you’ve changed. JEMM will detect and apply updates based on the content of the imported file—making it a fast and efficient way to push targeted changes without touching your whole library.</p>
+<p>🧠 Smart, Scalable, and Time-Saving</p>
+<p>Whether you're curating a massive movie archive or fine-tuning a music collection, this feature gives you the flexibility and control to manage metadata your way—fast, accurate, and scalable</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../reportPeople/" class="btn btn-neutral float-left" title="People"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../reportTags/" class="btn btn-neutral float-right" title="Tags">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../footerStatusBar/" class="btn btn-neutral float-left" title="Footer StatusBar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../exportfeature/" class="btn btn-neutral float-right" title="Export Feature">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -185,10 +204,10 @@ Thanks for your patience—and sorry for the inconvenience!</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../reportPeople/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../footerStatusBar/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../reportTags/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../exportfeature/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
