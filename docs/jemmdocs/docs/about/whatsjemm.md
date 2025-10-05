@@ -1,6 +1,11 @@
 # What's Jellyfin Easy Metadata Manager ?
 
-Jellyfin Easy Metadata Manager (Also called as "JEMM") is a free and open-source tool created to help heavy users of Jellyfin Project to manage their instances. The main purpose of JEMM is to make it easier to fill in the metadata fields of library items and folders. 
+
+Jellyfin Easy Metadata Manager (JEMM) is a free and open-source tool designed to assist advanced users of the [Jellyfin Project](https://jellyfin.org/) in managing their media server instances more efficiently.
+
+The primary goal of JEMM is to simplify the process of editing and completing metadata fields for library items and folders—making your media collection more organized, searchable, and visually appealing.
+
+With JEMM, you can easily replicate the same metadata fields defined in a folder to the child-items, export and import metada from CSV files, print some reports about your media-inventory and others nice things! You can make just a little metadata update or make big changes massivelly!
 
 ## What's Jellyfin Metadata ?
 Jellyfin metadata refers to the descriptive information associated with your media library items—such as movies, TV shows, music, and folders. This data helps Jellyfin organize, display, and enhance your media collection with rich details and visuals.
