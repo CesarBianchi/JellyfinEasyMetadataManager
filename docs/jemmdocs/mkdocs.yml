@@ -30,12 +30,19 @@ nav:
      - Library Metadata Sheet: feat/librarymetadata.md
      - Library Content Sheet: feat/librarycontent.md
      - Footer StatusBar: feat/footerStatusBar.md
-   - Export Feature: feat/exportfeature.md
-   - Import Feature: feat/importfeature.md
-   - Reports: 
-     - Inventory: feat/reportInventory.md
-     - Genres: feat/reportGenres.md
-     - People: feat/reportPeople.md
-     - Studios: feat/reportStudios.md
-     - Tags: feat/reportTags.md
-     - Year: feat/reportYear.md
+   - Massive Changes:
+     - How Apply Massive Changes: feat/howmassivechanges.md
+     - Export Feature: feat/exportfeature.md
+     - Import Feature: feat/importfeature.md
+   - Reports:
+     - Why Reports ?: feat/whyReports.md
+     - Types of Reports:
+       - Inventory: feat/reportInventory.md
+       - Genres: feat/reportGenres.md
+       - People: feat/reportPeople.md
+       - Studios: feat/reportStudios.md
+       - Tags: feat/reportTags.md
+       - Year: feat/reportYear.md
+   - Others: 
+     - Message Wait Dialogs: feat/waitwindows.md
+     
