@@ -36,4 +36,15 @@ After you've finished editing the metadata for your Library, it's time to save t
 This ensures that everything you've customized — titles, descriptions and more — is safely stored and reflected in Jellyfin.
 
 
+## 🔁 Apply Metadata to Library and Its Items ##
+
+To help users save time and ensure consistency, JEMM offers an extended save option called **"Apply for Library and Content"**.
+
+### When you press this button: ###
+ - JEMM not only updates the metadata for the selected Library, but also automatically applies the same metadata settings to all its child items—such as *movies, episodes, albums, or books* within the selected library.
+
+This is ideal for users who want to streamline their workflow and ensure that metadata like language, artwork preferences, or source settings are consistently applied across the entire collection.
+
+It’s a smart way to keep your Jellyfin libraries clean, unified, and beautifully organized—with just one click.
+
 ![Here's an example of Library Metadata Sheet](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/LibraryMetadata.png?raw=true)
