@@ -8,3 +8,5 @@ The Top Menu in JEMM is your gateway to essential features and tools that make m
 - Import & Export Tools
 - Reports
 - Shortcuts to Source Code, Donate Page and Users Manual
+
+![Here's an example of JEMM Main Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/v1.2.3/docs/jemmdocs/docs/images/MainMenu.png?raw=true)

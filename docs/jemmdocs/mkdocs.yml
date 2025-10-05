@@ -26,10 +26,9 @@ nav:
    - Main Menu: feat/mainmenu.md
    - The Top Menu: feat/topmainmenu.md
    - Library List: feat/librarylist.md
-   - Library Metadata: feat/librarymetadata.md
-   - Library Content: feat/librarycontent.md
+   - Library Metadata Sheet: feat/librarymetadata.md
+   - Library Content Sheet: feat/librarycontent.md
    - Footer StatusBar: feat/footerStatusBar.md
-
    - Export Feature: feat/exportfeature.md
    - Import Feature: feat/importfeature.md
    - Reports: 
