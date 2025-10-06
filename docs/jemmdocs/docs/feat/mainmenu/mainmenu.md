@@ -7,10 +7,10 @@ Once connected, JEMM fetches and displays all available libraries from your Jell
 The Main Window is thoughtfully **divided into five key sections**, each designed to help you manage your media with ease:
 
 ## The five sections of JEMM Main Menu ##
-- [The Top Main Menu](/feat/topmainmenu/)
-- [Libraries List](/feat/librarylist)
-- [Library Metadata](/feat/librarymetadata)
-- [Library Content](/feat/librarycontent)
-- [Footer Status Bar](/feat/footerStatusBar)
+- [The Top Main Menu](/feat/mainmenu/topmainmenu)
+- [Libraries List](/feat/mainmenu/librarylist)
+- [Library Metadata](/feat/mainmenu/librarymetadata)
+- [Library Content](/feat/mainmenu/librarycontent)
+- [Footer Status Bar](/feat/mainmenu/footerStatusBar)
 
 ![Here's an example of JEMM Main Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/MainWindow.png?raw=true)
