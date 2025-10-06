@@ -1,4 +1,4 @@
-site_name: JEMM - User Manual
+site_name: JEMM - Users Manual
 site_description: Welcome to the Jellyfin Easy Metadata Manager Users Manual
 site_author: Cesar Bianchi
 
@@ -24,25 +24,25 @@ nav:
  - Features:
    - Login Process: feat/login.md
    - Main Window:
-     - Description: feat/mainmenu.md
-     - The Top Menu: feat/topmainmenu.md
-     - Library List: feat/librarylist.md
-     - Library Metadata Sheet: feat/librarymetadata.md
-     - Library Content Sheet: feat/librarycontent.md
-     - Footer StatusBar: feat/footerStatusBar.md
+     - Description: feat/mainmenu/mainmenu.md
+     - The Top Menu: feat/mainmenu/topmainmenu.md
+     - Library List: feat/mainmenu/librarylist.md
+     - Library Metadata Sheet: feat/mainmenu/librarymetadata.md
+     - Library Content Sheet: feat/mainmenu/librarycontent.md
+     - Footer StatusBar: feat/mainmenu/footerStatusBar.md
    - Massive Changes:
      - How Apply Massive Changes: feat/howmassivechanges.md
      - Export Feature: feat/exportfeature.md
      - Import Feature: feat/importfeature.md
    - Reports:
-     - Why Reports ?: feat/whyReports.md
+     - Why Reports ?: feat/reports/whyReports.md
      - Types of Reports:
-       - Inventory: feat/reportInventory.md
-       - Genres: feat/reportGenres.md
-       - People: feat/reportPeople.md
-       - Studios: feat/reportStudios.md
-       - Tags: feat/reportTags.md
-       - Year: feat/reportYear.md
+       - Inventory: feat/reports/reportInventory.md
+       - Genres: feat/reports/reportGenres.md
+       - People: feat/reports/reportPeople.md
+       - Studios: feat/reports/reportStudios.md
+       - Tags: feat/reports/reportTags.md
+       - Year: feat/reports/reportYear.md
    - Others: 
      - Message Wait Dialogs: feat/waitwindows.md
      
