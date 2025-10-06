@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Cesar Bianchi" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Login Process - JEMM - Users Manual</title>
+    <title>Login Process - JEMM - User Manual</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> JEMM - Users Manual
+          <a href="../.." class="icon icon-home"> JEMM - User Manual
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -49,7 +49,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">About</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../about/whatsjemm/">What's Jemm ?</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/whatsjemm/">Introduction</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../about/requirements/">Requirements</a>
                   </li>
@@ -71,54 +71,48 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Login Process</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#how-to-connect-jemm-with-your-jellyfin-instance">How to connect JEMM with your Jellyfin Instance ?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-jellyfin-instance-url">1 - Jellyfin Instance URL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-valid-jellyfin-api-key">2 - Valid Jellyfin API Key</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Main Window</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/mainmenu/">Description</a>
+                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/">Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/topmainmenu/">The Top Menu</a>
+                <li class="toctree-l2"><a class="reference internal" href="../topmainmenu/">The Top Menu</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/librarylist/">Library List</a>
+                <li class="toctree-l2"><a class="reference internal" href="../librarylist/">Library List</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/librarymetadata/">Library Metadata Sheet</a>
+                <li class="toctree-l2"><a class="reference internal" href="../librarymetadata/">Library Metadata Sheet</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/librarycontent/">Library Content Sheet</a>
+                <li class="toctree-l2"><a class="reference internal" href="../librarycontent/">Library Content Sheet</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../mainmenu/footerStatusBar/">Footer StatusBar</a>
+                <li class="toctree-l2"><a class="reference internal" href="../footerStatusBar/">Footer StatusBar</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Massive Changes</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../howmassivechanges/">How Apply Massive Changes</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../exportfeature/">Export Feature</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../importfeature/">Import Feature</a>
-                </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../exportfeature/">Export Feature</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../importfeature/">Import Feature</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Reports</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../reports/whyReports/">Why Reports ?</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reportInventory/">Inventory</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" >Types of Reports</a>
-    <ul>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportInventory/">Inventory</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reportGenres/">Genres</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportGenres/">Genres</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reportPeople/">People</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportPeople/">People</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reportStudios/">Studios</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportStudios/">Studios</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reportTags/">Tags</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportTags/">Tags</a>
-                </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reports/reportYear/">Year</a>
-                </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../reportYear/">Year</a>
                 </li>
     </ul>
                   </li>
@@ -136,7 +130,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">JEMM - Users Manual</a>
+          <a href="../..">JEMM - User Manual</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -156,11 +150,11 @@
                 <h1 id="logging-into-jemm">🔐 Logging into JEMM</h1>
 <h2 id="how-to-connect-jemm-with-your-jellyfin-instance">How to connect JEMM with your Jellyfin Instance ?</h2>
 <p>To start using JEMM – Jellyfin Easy Metadata Manager, you’ll need to connect it to your Jellyfin Instance. It’s quick and easy! Here’s what you’ll need:</p>
-<p><strong>1 - Jellyfin Instance URL</strong> </p>
+<h3 id="1-jellyfin-instance-url">1 - Jellyfin Instance URL</h3>
 <p>Enter the full address of your Jellyfin server, including the port number.
     If you're using HTTP, the default port is usually 8096 <em>Example: http://192.168.0.100:8096</em> 
     If you're using HTTPS, the default port is typically 8920 <em>Example: https://yourdomain.com:8920</em></p>
-<p><strong>2 - Valid Jellyfin API Key</strong>. </p>
+<h3 id="2-valid-jellyfin-api-key">2 - Valid Jellyfin API Key</h3>
 <p>You can generate your API Key from the Administration Panel in Jellyfin. Just go to Dashboard &gt; API Keys, create a new one, and paste it into JEMM. Check also our help page about <a href="/about/requirements/#jellyfin-api-key">How to Generate a Jellyfin API Key</a></p>
 <p>Once you’ve entered both, press "Login" button. JEMM will securely connect to your Jellyfin server and unlock all its metadata management features.</p>
 <p><img alt="Here's an example of JEMM Login Window" src="https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/LoginForm.png?raw=true" /></p>
@@ -169,7 +163,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../../about/jellyfinproject/" class="btn btn-neutral float-left" title="The Jellyfin Project"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../mainmenu/mainmenu/" class="btn btn-neutral float-right" title="Description">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mainmenu/" class="btn btn-neutral float-right" title="Introduction">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -195,7 +189,7 @@
       <span><a href="../../about/jellyfinproject/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../mainmenu/mainmenu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../mainmenu/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

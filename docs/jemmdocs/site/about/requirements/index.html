@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Cesar Bianchi" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Requirements - JEMM - Users Manual</title>
+    <title>Requirements - JEMM - User Manual</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> JEMM - Users Manual
+          <a href="../.." class="icon icon-home"> JEMM - User Manual
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -49,25 +49,21 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">About</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../whatsjemm/">What's Jemm ?</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../whatsjemm/">Introduction</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Requirements</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#java-version">Java Version</a>
+    <li class="toctree-l2"><a class="reference internal" href="#java-version">🖥️ Java Version</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#operational-system">Operational System</a>
+    <li class="toctree-l2"><a class="reference internal" href="#operational-system">🖥️ Operational System</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#jellyfin-api-key">Jellyfin API Key</a>
+    <li class="toctree-l2"><a class="reference internal" href="#jellyfin-api-key">🔑 Jellyfin API Key</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#how-to-generate-a-jellyfin-api-key">How to Generate a Jellyfin API Key</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#are-you-a-developer">Are you a Developer ?</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#how-to-report-a-bug">🐞 How to Report a Bug</a>
-    </li>
-        </ul>
     </li>
     </ul>
                   </li>
@@ -90,49 +86,37 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Main Window</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/mainmenu/">Description</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/">Introduction</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/topmainmenu/">The Top Menu</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/topmainmenu/">The Top Menu</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarylist/">Library List</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/librarylist/">Library List</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarymetadata/">Library Metadata Sheet</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/librarymetadata/">Library Metadata Sheet</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarycontent/">Library Content Sheet</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/librarycontent/">Library Content Sheet</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/footerStatusBar/">Footer StatusBar</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/footerStatusBar/">Footer StatusBar</a>
                 </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" >Massive Changes</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/howmassivechanges/">How Apply Massive Changes</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/exportfeature/">Export Feature</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/importfeature/">Import Feature</a>
-                </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../feat/exportfeature/">Export Feature</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../feat/importfeature/">Import Feature</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Reports</a>
     <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../feat/reports/whyReports/">Why Reports ?</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportInventory/">Inventory</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" >Types of Reports</a>
-    <ul>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportInventory/">Inventory</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportGenres/">Genres</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportGenres/">Genres</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportPeople/">People</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportPeople/">People</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportStudios/">Studios</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportStudios/">Studios</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportTags/">Tags</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportTags/">Tags</a>
-                </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportYear/">Year</a>
-                </li>
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reportYear/">Year</a>
                 </li>
     </ul>
                   </li>
@@ -150,7 +134,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">JEMM - Users Manual</a>
+          <a href="../..">JEMM - User Manual</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -168,28 +152,17 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="getting-started-with-jemm-minimal-requirements">Getting Started with JEMM: Minimal Requirements</h1>
-<h2 id="java-version">Java Version</h2>
+<h2 id="java-version">🖥️ Java Version</h2>
 <p>To run JEMM, your machine must have <strong>Java version 11 or later installed</strong>.</p>
 <p>If Java is not already installed, follow these steps to download and install it:</p>
-<ol>
-<li>
-<p>Visit the <a href="https://www.oracle.com/java/technologies/downloads/">Official Java website</a></p>
-</li>
-<li>
-<p>Download the Java SE Development Kit (JDK) 
-    Choose the version that matches your operating system (Windows, macOS, or Linux) and download the installer for Java 11 or later.</p>
-</li>
-<li>
-<p>Run the installer 
-    Open the downloaded file and follow the on-screen instructions to complete the installation.</p>
-</li>
-<li>
-<p>Verify the installation
-    After installation, open a terminal or command prompt and type: <strong>java -version</strong></p>
-</li>
-</ol>
-<h2 id="operational-system">Operational System</h2>
-<p>🖥️ Operating System Requirements</p>
+<p><strong>1. Visit the <a href="https://www.oracle.com/java/technologies/downloads/">Official Java website</a></strong></p>
+<p><strong>2. Download the Java SE Development Kit (JDK)</strong>
+     - Choose the version that matches your operating system (Windows, macOS, or Linux) and download the installer for Java 11 or later.</p>
+<p><strong>3. Run the installer</strong>
+     - Open the downloaded file and follow the on-screen instructions to complete the installation.</p>
+<p><strong>4. Verify the installation</strong>
+     After installation, open a terminal or command prompt and type: <strong>java -version</strong></p>
+<h2 id="operational-system">🖥️ Operational System</h2>
 <p>JEMM is compatible with any operating system that supports Java version 11 or later. This includes, but is not limited to:</p>
 <ul>
 <li>Windows (Windows 10, Windows 11, and newer versions)</li>
@@ -198,8 +171,8 @@
 <li>Other Unix-based systems with Java support</li>
 </ul>
 <p>To ensure compatibility, verify that your operating system can run Java applications and that Java version 11 or later is properly installed. For installation instructions, check "Java Version" options in this page.</p>
-<h2 id="jellyfin-api-key">Jellyfin API Key</h2>
-<p>🔑 A Jellyfin API Key is a secure token that allows external applications —like JEMM— to communicate with your Jellyfin media server. It grants access to specific features and data without requiring your username and password, helping maintain security while enabling integration.</p>
+<h2 id="jellyfin-api-key">🔑 Jellyfin API Key</h2>
+<p>A Jellyfin API Key is a secure token that allows external applications —like JEMM— to communicate with your Jellyfin media server. It grants access to specific features and data without requiring your username and password, helping maintain security while enabling integration.</p>
 <h3 id="how-to-generate-a-jellyfin-api-key">How to Generate a Jellyfin API Key</h3>
 <p>To create a new API Key in Jellyfin, follow these steps:</p>
 <ol>
@@ -227,21 +200,11 @@
 <h2 id="are-you-a-developer">Are you a Developer ?</h2>
 <p>👨‍💻 JEMM was developed using NetBeans 11 and is fully open-source. The complete source code is available on <a href="https://github.com/CesarBianchi/JellyfinEasyMetadataManager">GitHub</a></p>
 <p>Developers are welcome to explore, contribute, or fork the project. If you encounter any bugs or unexpected behavior, please report them through the GitHub Issues page.</p>
-<h3 id="how-to-report-a-bug">🐞 How to Report a Bug</h3>
-<p>When submitting a bug report, include as much relevant information as possible to help with diagnosis and resolution:</p>
-<ul>
-<li>✅ JEMM version you are using</li>
-<li>✅ Jellyfin Instance Server version connected to JEMM</li>
-<li>✅ Operating system and environment details</li>
-<li>✅ Error logs or stack traces</li>
-<li>✅ Screenshots or screen recordings (if applicable)</li>
-<li>✅ Steps to reproduce the issue</li>
-</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../whatsjemm/" class="btn btn-neutral float-left" title="What's Jemm ?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../whatsjemm/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../download/" class="btn btn-neutral float-right" title="Download">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
