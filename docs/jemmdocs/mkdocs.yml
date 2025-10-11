@@ -13,7 +13,7 @@ theme:
 
 nav:
  - About:
-   - What's Jemm ?: about/whatsjemm.md
+   - Introduction: about/whatsjemm.md
    - Requirements: about/requirements.md
    - Download: about/download.md
    - Source Code: about/sourcecode.md
@@ -35,7 +35,7 @@ nav:
      - Export Feature: feat/exportfeature.md
      - Import Feature: feat/importfeature.md
    - Reports:
-     - Why Reports ?: feat/reports/whyReports.md
+     - Introduction: feat/reports/whyReports.md
      - Types of Reports:
        - Inventory: feat/reports/reportInventory.md
        - Genres: feat/reports/reportGenres.md
