@@ -1,281 +1,162 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JemmInstancePeopleFull" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57bc915e-3ee1-42a1-aaa0-24a713cb125c">
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="JemmInstancePeopleFull" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57bc915e-3ee1-42a1-aaa0-24a713cb125c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
 	<parameter name="INSTANCE_URL" class="java.lang.String"/>
 	<parameter name="JEMM_VERSION" class="java.lang.String"/>
 	<parameter name="TOTAL_FOLDERITEMS" class="java.lang.String"/>
 	<parameter name="TOTAL_CONTENT" class="java.lang.String"/>
 	<parameter name="SUBREPORT_JASPER_FILE" class="java.lang.String"/>
-	<queryString>
-		<![CDATA[]]>
-	</queryString>
+	<query language="sql"><![CDATA[]]></query>
 	<field name="locationType" class="java.lang.String">
-		<fieldDescription><![CDATA[locationType]]></fieldDescription>
+		<description><![CDATA[locationType]]></description>
 	</field>
 	<field name="communityRating" class="java.lang.Integer">
-		<fieldDescription><![CDATA[communityRating]]></fieldDescription>
+		<description><![CDATA[communityRating]]></description>
 	</field>
 	<field name="productionYear" class="java.lang.Integer">
-		<fieldDescription><![CDATA[productionYear]]></fieldDescription>
+		<description><![CDATA[productionYear]]></description>
 	</field>
 	<field name="peopleMetadata" class="com.lariflix.jemm.dtos.JellyfinItemMetadata">
-		<fieldDescription><![CDATA[peopleMetadata]]></fieldDescription>
+		<description><![CDATA[peopleMetadata]]></description>
 	</field>
 	<field name="type" class="java.lang.String">
-		<fieldDescription><![CDATA[type]]></fieldDescription>
+		<description><![CDATA[type]]></description>
 	</field>
 	<field name="peopleEpisodes" class="java.util.ArrayList">
-		<fieldDescription><![CDATA[peopleEpisodes]]></fieldDescription>
+		<description><![CDATA[peopleEpisodes]]></description>
 	</field>
 	<field name="serverId" class="java.lang.String">
-		<fieldDescription><![CDATA[serverId]]></fieldDescription>
+		<description><![CDATA[serverId]]></description>
 	</field>
 	<field name="officialRating" class="java.lang.String">
-		<fieldDescription><![CDATA[officialRating]]></fieldDescription>
+		<description><![CDATA[officialRating]]></description>
 	</field>
 	<field name="premiereDate" class="java.util.Date">
-		<fieldDescription><![CDATA[premiereDate]]></fieldDescription>
+		<description><![CDATA[premiereDate]]></description>
 	</field>
 	<field name="name" class="java.lang.String">
-		<fieldDescription><![CDATA[name]]></fieldDescription>
+		<description><![CDATA[name]]></description>
 	</field>
 	<field name="criticRating" class="java.lang.Integer">
-		<fieldDescription><![CDATA[criticRating]]></fieldDescription>
+		<description><![CDATA[criticRating]]></description>
 	</field>
 	<field name="id" class="java.lang.String">
-		<fieldDescription><![CDATA[id]]></fieldDescription>
+		<description><![CDATA[id]]></description>
 	</field>
 	<field name="channelId" class="java.lang.Object">
-		<fieldDescription><![CDATA[channelId]]></fieldDescription>
+		<description><![CDATA[channelId]]></description>
 	</field>
 	<field name="peopleMetadata.childcount" class="java.lang.String">
-		<fieldDescription><![CDATA[peopleMetadata.childcount]]></fieldDescription>
+		<description><![CDATA[peopleMetadata.childcount]]></description>
 	</field>
 	<field name="peopleMetadata.path" class="java.lang.String">
-		<fieldDescription><![CDATA[peopleMetadata.path]]></fieldDescription>
+		<description><![CDATA[peopleMetadata.path]]></description>
 	</field>
 	<field name="peoplePlace" class="java.lang.String">
-		<fieldDescription><![CDATA[peoplePlace]]></fieldDescription>
+		<description><![CDATA[peoplePlace]]></description>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<pageHeader>
-		<band height="68" splitType="Stretch">
-			<frame>
-				<reportElement mode="Transparent" x="0" y="0" width="800" height="49" backcolor="#B386E3" uuid="39dc88fc-85dc-4af2-a0d8-82ec6cec99af"/>
-				<staticText>
-					<reportElement x="40" y="11" width="290" height="20" forecolor="#030000" uuid="694aca1b-3562-439d-8306-0d3b06ce3285"/>
-					<textElement>
-						<font size="16" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Jellyfin People Full Report]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="572" y="0" width="228" height="15" forecolor="#191EA8" uuid="350294c6-424b-4d4e-b6e2-48fcddeeb3fc">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Right" verticalAlignment="Top">
-						<font size="10" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Jellyfin Easy Metadata Manager]]></text>
-				</staticText>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="612" y="36" width="188" height="13" forecolor="#757575" uuid="ebcfae1b-dd33-4628-a743-88efebce103e"/>
-					<textElement textAlignment="Right" verticalAlignment="Bottom">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="40" y="31" width="178" height="18" uuid="5f4fba70-e6c6-4f55-b610-983c942d7357"/>
-					<textElement textAlignment="Left">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$P{INSTANCE_URL}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="700" y="16" width="100" height="14" uuid="29c7a579-5950-4e24-84bc-cdf8a6706fe8"/>
-					<textElement textAlignment="Right">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$P{JEMM_VERSION}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<rectangle>
-				<reportElement mode="Opaque" x="0" y="60" width="800" height="4" forecolor="#595656" backcolor="#C7C7C7" uuid="514eb603-96e5-4115-910d-7ff1a99544e3"/>
-				<graphicElement>
-					<pen lineWidth="0.0" lineColor="#595656"/>
-				</graphicElement>
-			</rectangle>
-		</band>
+	<background splitType="Stretch"/>
+	<pageHeader height="68" splitType="Stretch">
+		<element kind="frame" uuid="39dc88fc-85dc-4af2-a0d8-82ec6cec99af" mode="Transparent" x="0" y="0" width="800" height="49" backcolor="#B386E3">
+			<element kind="staticText" uuid="694aca1b-3562-439d-8306-0d3b06ce3285" x="40" y="11" width="290" height="20" forecolor="#030000" fontSize="16.0" bold="true">
+				<text><![CDATA[Jellyfin People Full Report]]></text>
+			</element>
+			<element kind="staticText" uuid="350294c6-424b-4d4e-b6e2-48fcddeeb3fc" x="572" y="0" width="228" height="15" forecolor="#191EA8" fontSize="10.0" bold="true" hTextAlign="Right" vTextAlign="Top">
+				<text><![CDATA[Jellyfin Easy Metadata Manager]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="ebcfae1b-dd33-4628-a743-88efebce103e" x="612" y="36" width="188" height="13" forecolor="#757575" fontSize="8.0" pattern="EEEEE dd MMMMM yyyy" hTextAlign="Right" vTextAlign="Bottom">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+			<element kind="textField" uuid="5f4fba70-e6c6-4f55-b610-983c942d7357" x="40" y="31" width="178" height="18" fontSize="8.0" hTextAlign="Left">
+				<expression><![CDATA[$P{INSTANCE_URL}]]></expression>
+			</element>
+			<element kind="textField" uuid="29c7a579-5950-4e24-84bc-cdf8a6706fe8" x="700" y="16" width="100" height="14" fontSize="8.0" hTextAlign="Right">
+				<expression><![CDATA[$P{JEMM_VERSION}]]></expression>
+			</element>
+		</element>
+		<element kind="rectangle" uuid="514eb603-96e5-4115-910d-7ff1a99544e3" mode="Opaque" x="0" y="60" width="800" height="4" forecolor="#595656" backcolor="#C7C7C7">
+			<pen lineWidth="0.0" lineColor="#595656"/>
+		</element>
 	</pageHeader>
-	<columnHeader>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="150" height="10" uuid="d460df50-0470-45ff-8d5b-e3756352d146">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca7be63b-6ab1-461b-bf67-abeec7d3438f"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Name]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="150" y="0" width="70" height="10" uuid="c811fb83-7a9e-4a9d-9dd5-bc81b454c0ce">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d530d75-52b3-420c-9654-3675db54e034"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Birthday]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="220" y="0" width="70" height="10" uuid="64af34cb-616f-49c8-a1db-e40c8bf4740c">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ada7e631-738e-4272-828d-1077f6d763a4"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Official Rating]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="290" y="0" width="71" height="10" uuid="013d9e46-4804-4bd6-801e-6be7cfc39635">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Critic Rating]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="361" y="0" width="71" height="10" uuid="36f27ff8-1b27-4cb0-b068-1a4b248c392a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Media Items]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="432" y="0" width="128" height="10" uuid="ed8586f1-6b1d-42df-9f01-d4e9aaafb04c">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Origin]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="560" y="0" width="240" height="10" uuid="c0a254a5-dd19-491d-b2aa-0f361ef2211a">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Path]]></text>
-			</staticText>
-		</band>
+	<columnHeader height="20" splitType="Stretch">
+		<element kind="staticText" uuid="d460df50-0470-45ff-8d5b-e3756352d146" x="0" y="0" width="150" height="10" fontSize="8.0" bold="true">
+			<text><![CDATA[Name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca7be63b-6ab1-461b-bf67-abeec7d3438f"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="staticText" uuid="c811fb83-7a9e-4a9d-9dd5-bc81b454c0ce" x="150" y="0" width="70" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Birthday]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d530d75-52b3-420c-9654-3675db54e034"/>
+		</element>
+		<element kind="staticText" uuid="64af34cb-616f-49c8-a1db-e40c8bf4740c" x="220" y="0" width="70" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Official Rating]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ada7e631-738e-4272-828d-1077f6d763a4"/>
+		</element>
+		<element kind="staticText" uuid="013d9e46-4804-4bd6-801e-6be7cfc39635" x="290" y="0" width="71" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Critic Rating]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+		</element>
+		<element kind="staticText" uuid="36f27ff8-1b27-4cb0-b068-1a4b248c392a" x="361" y="0" width="71" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Media Items]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+		</element>
+		<element kind="staticText" uuid="ed8586f1-6b1d-42df-9f01-d4e9aaafb04c" x="432" y="0" width="128" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Origin]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+		</element>
+		<element kind="staticText" uuid="c0a254a5-dd19-491d-b2aa-0f361ef2211a" x="560" y="0" width="240" height="10" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Path]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+		</element>
 	</columnHeader>
 	<detail>
 		<band height="30" splitType="Stretch">
-			<line>
-				<reportElement x="1" y="10" width="800" height="1" forecolor="#C4C4C4" uuid="29b60398-2b8b-44f6-9a99-c0ed9e308b2f"/>
-			</line>
-			<textField>
-				<reportElement x="0" y="0" width="150" height="10" uuid="8e6c9944-a821-423c-97d0-645b84e98a24">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16d5ce71-cfb6-4be8-ad33-ef2183a0a3c7"/>
-				</reportElement>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="150" y="0" width="70" height="10" uuid="9c927ba0-5638-483b-a524-e92000c02eb0">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2428c052-8fa4-405c-b1e9-e3a330bee96b"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{premiereDate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="220" y="0" width="70" height="10" uuid="0661792f-c620-4ada-9ddd-d52bf62c0437">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="96ecd4a1-b919-49fa-aee8-5eebe824fe7b"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{officialRating}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="290" y="0" width="71" height="10" uuid="b0c4589a-7d84-49c6-acb5-6b6667b17580">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2e01841-3c96-4af7-87ac-85139428e10e"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{criticRating}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="361" y="0" width="71" height="10" uuid="8cddedd8-6296-4419-8e7d-e8343c35973d">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="30f1697b-e862-42c4-aa1f-93cdc8118b10"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{peopleMetadata.childcount}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="432" y="0" width="128" height="10" uuid="a8730205-7eb0-4fec-9560-58bb306b1119">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a196a31-75a8-4d16-8af2-f6e45d0f8352"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{peoplePlace}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="560" y="0" width="240" height="10" uuid="6aa2c3f4-6ca7-4323-965d-86e7110ba193">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="64902aff-777c-410c-8322-24631940dc5f"/>
-				</reportElement>
-				<textElement textAlignment="Left">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{peopleMetadata.path}]]></textFieldExpression>
-			</textField>
-			<subreport>
-				<reportElement x="10" y="13" width="772" height="15" uuid="41e783f7-7bc9-4795-b52f-3d87f97869e8"/>
+			<element kind="line" uuid="29b60398-2b8b-44f6-9a99-c0ed9e308b2f" x="1" y="10" width="800" height="1" forecolor="#C4C4C4"/>
+			<element kind="textField" uuid="8e6c9944-a821-423c-97d0-645b84e98a24" x="0" y="0" width="150" height="10" fontSize="8.0">
+				<expression><![CDATA[$F{name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16d5ce71-cfb6-4be8-ad33-ef2183a0a3c7"/>
+			</element>
+			<element kind="textField" uuid="9c927ba0-5638-483b-a524-e92000c02eb0" x="150" y="0" width="70" height="10" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{premiereDate}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2428c052-8fa4-405c-b1e9-e3a330bee96b"/>
+			</element>
+			<element kind="textField" uuid="0661792f-c620-4ada-9ddd-d52bf62c0437" x="220" y="0" width="70" height="10" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{officialRating}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="96ecd4a1-b919-49fa-aee8-5eebe824fe7b"/>
+			</element>
+			<element kind="textField" uuid="b0c4589a-7d84-49c6-acb5-6b6667b17580" x="290" y="0" width="71" height="10" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{criticRating}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d2e01841-3c96-4af7-87ac-85139428e10e"/>
+			</element>
+			<element kind="textField" uuid="8cddedd8-6296-4419-8e7d-e8343c35973d" x="361" y="0" width="71" height="10" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{peopleMetadata.childcount}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="30f1697b-e862-42c4-aa1f-93cdc8118b10"/>
+			</element>
+			<element kind="textField" uuid="a8730205-7eb0-4fec-9560-58bb306b1119" x="432" y="0" width="128" height="10" fontSize="8.0" hTextAlign="Center">
+				<expression><![CDATA[$F{peoplePlace}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a196a31-75a8-4d16-8af2-f6e45d0f8352"/>
+			</element>
+			<element kind="textField" uuid="6aa2c3f4-6ca7-4323-965d-86e7110ba193" x="560" y="0" width="240" height="10" fontSize="8.0" hTextAlign="Left">
+				<expression><![CDATA[$F{peopleMetadata.path}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="64902aff-777c-410c-8322-24631940dc5f"/>
+			</element>
+			<element kind="subreport" uuid="41e783f7-7bc9-4795-b52f-3d87f97869e8" x="10" y="13" width="772" height="15">
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{peopleEpisodes})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_JASPER_FILE}]]></subreportExpression>
-			</subreport>
+				<expression><![CDATA[$P{SUBREPORT_JASPER_FILE}]]></expression>
+			</element>
 		</band>
 	</detail>
-	<summary>
-		<band height="22" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="139" height="12" uuid="0ba3a38d-9dbb-43c8-b111-aaf654146f0d">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Genres subtotal]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="-2" y="12" width="140" height="10" uuid="5ced4f4b-5ef9-4fbc-9979-b9b1b6e39f57">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{TOTAL_FOLDERITEMS}]]></textFieldExpression>
-			</textField>
-		</band>
+	<summary height="22" splitType="Stretch">
+		<element kind="staticText" uuid="0ba3a38d-9dbb-43c8-b111-aaf654146f0d" x="0" y="0" width="139" height="12" fontSize="8.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Genres subtotal]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd3a836f-5ba5-42ac-b7cd-a20a76a6d6c1"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</element>
+		<element kind="textField" uuid="5ced4f4b-5ef9-4fbc-9979-b9b1b6e39f57" x="-2" y="12" width="140" height="10" fontSize="8.0" hTextAlign="Center">
+			<expression><![CDATA[$P{TOTAL_FOLDERITEMS}]]></expression>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
 	</summary>
 </jasperReport>
