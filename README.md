@@ -20,10 +20,10 @@ JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use
 2. In the left Navigation menu, scroll down to Advanced and click on Api Keys. 
 3. Now click on the + button next to API Keys.
 
-## To get Help
+## To get help
 
 Looking for detailed guidance on how to use JEMM?
-Check out the [JEMM User Manual](https://cesarbianchi.github.io/JellyfinEasyMetadataManager/jemmdocs/site/) for step-by-step instructions, feature explanations, and best practices to get the most out of your Jellyfin Easy Metadata Management.
+Check out the [JEMM User Manual](https://cesarbianchi.github.io/JellyfinEasyMetadataManager/) for step-by-step instructions, feature explanations, and best practices to get the most out of your Jellyfin Easy Metadata Management.
 
 Ideal for both beginners and advanced users!
 
