@@ -12,4 +12,4 @@ Every operation in JEMM — whether login process, generating reports, exporting
 
 To keep the experience smooth and transparent, JEMM displays a friendly wait window during processing. This lets you know the system is working and helps prevent interruptions while your request is being handled.
 
-![Here's an example of JEMM Message Wait Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/waitWindow.png?raw=true)
+![Here's an example of JEMM Message Wait Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/waitWindow.png?raw=true)

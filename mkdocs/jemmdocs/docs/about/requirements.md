@@ -13,7 +13,7 @@ If Java is not already installed, follow these steps to download and install it:
 
 4. **Verify the installation**: After installation, open a terminal or command prompt and type: **java -version**
 
-![Here's an example of Java Console Version](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/javaversion.png?raw=true)
+![Here's an example of Java Console Version](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/javaversion.png?raw=true)
 
 
 ## Operational System

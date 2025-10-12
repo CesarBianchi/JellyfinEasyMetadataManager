@@ -18,7 +18,7 @@ The Basic version offers a summarized view of your libraries, ideal for quick ch
 - *Genres*
 - *Tags*
 
-![Here's an example of JEMM Report Inventory Basic](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/ReportInventoryBasic.png?raw=true)
+![Here's an example of JEMM Report Inventory Basic](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/ReportInventoryBasic.png?raw=true)
 
 This report is lightweight and fast—perfect for users who need a quick snapshot of their Jellyfin setup.
 
@@ -38,6 +38,6 @@ The Full Inventory Report provides a comprehensive breakdown of each library, pa
 - *Genres*
 - *Tags*
 
-![Here's an example of JEMM Report Inventory Full](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/ReportInventoryFull.png?raw=true)
+![Here's an example of JEMM Report Inventory Full](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/ReportInventoryFull.png?raw=true)
 
 This report is ideal for power users managing large Jellyfin instances who need to track inconsistencies, identify missing data, or prepare for bulk updates.
