@@ -14,7 +14,7 @@ The Basic version provides a clean list of all registered genres found across yo
 - Identifying duplicates or inconsistencies
 - Planning metadata cleanup or standardization
 
-![Here's an example of JEMM Report Genre Basic](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/ReportGenresBasic.png?raw=true)
+![Here's an example of JEMM Report Genre Basic](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/ReportGenresBasic.png?raw=true)
 
 This version is lightweight and perfect for quick genre audits.
 
@@ -26,6 +26,6 @@ The Full version goes deeper by aggregating all media items by genre. You’ll s
 - Item-level details like title, release year, and library source
 - A clear view of genre distribution across your entire collection
 
-![Here's an example of JEMM Report Genre Full](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/ReportGenresFull.png?raw=true)
+![Here's an example of JEMM Report Genre Full](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/ReportGenresFull.png?raw=true)
 
 This report is especially useful for heavy users managing large libraries who want to analyze genre trends, spot underrepresented categories, or prepare for bulk metadata updates.

@@ -14,7 +14,7 @@ With JEMM, you can easily replicate the same metadata fields defined in a folder
 ## What's Jellyfin ?##
 Jellyfin is a free, open-source media server that lets you collect, manage, and stream your personal media—movies, TV shows, music, and more—from your own server to any device, without ads or tracking.
 
-![Here's an example of Jellyfin](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/Jellyfin.png?raw=true)
+![Here's an example of Jellyfin](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/Jellyfin.png?raw=true)
 
 ## What's Jellyfin Metadata ?##
 Jellyfin metadata refers to the descriptive information associated with your media library items—such as movies, TV shows, music, and folders. This data helps Jellyfin organize, display, and enhance your media collection with rich details and visuals.

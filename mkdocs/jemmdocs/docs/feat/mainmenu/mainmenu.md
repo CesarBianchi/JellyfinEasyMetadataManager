@@ -13,4 +13,4 @@ The Main Window is thoughtfully **divided into five key sections**, each designe
 - [Library Content](/feat/mainmenu/librarycontent)
 - [Footer Status Bar](/feat/mainmenu/footerStatusBar)
 
-![Here's an example of JEMM Main Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/MainWindow.png?raw=true)
+![Here's an example of JEMM Main Window](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/mkdocs/jemmdocs/docs/images/MainWindow.png?raw=true)
