@@ -17,10 +17,6 @@
  */
 package com.lariflix.jemm.utils;
 
-/**
- *
- * @author cesarbianchi
- */
 public class JellyfinResponseStandard {
     public boolean isSuccess = false;
     public String responseMessage = new String();
