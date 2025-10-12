@@ -44,5 +44,6 @@ nav:
        - Tags: feat/reports/reportTags.md
        - Year: feat/reports/reportYear.md
    - Others: 
-     - Message Wait Dialogs: feat/waitwindows.md
-     
+     - Message Wait Dialogs: others/waitwindows.md
+     - Jemm Forum: others/jemmforum.md
+     - Jellyfin Forum: others/jellyforum.md

@@ -1,21 +1,19 @@
 # Getting Started with JEMM: Minimal Requirements
 
 ## Java Version
-To run JEMM, your machine must have **Java version 11 or later installed**.
+To run JEMM, your machine must have **Java runtime version 11 or later installed**.
 
 If Java is not already installed, follow these steps to download and install it:
 
-1. Visit the [Official Java website](https://www.oracle.com/java/technologies/downloads/)
+1. **Visit the [Official Java website](https://www.oracle.com/java/technologies/downloads/)**
 
-2. Download the Java SE Development Kit (JDK) 
-    Choose the version that matches your operating system (Windows, macOS, or Linux) and download the installer for Java 11 or later.
+2. **Download the Java SE**: Choose the version that matches your operating system (Windows, macOS, or Linux) and download the installer.
 
-3. Run the installer 
-    Open the downloaded file and follow the on-screen instructions to complete the installation.
+3. **Run the installer**: Open the downloaded file and follow the on-screen instructions to complete the installation.
 
-4. Verify the installation
-    After installation, open a terminal or command prompt and type: **java -version**
+4. **Verify the installation**: After installation, open a terminal or command prompt and type: **java -version**
 
+![Here's an example of Java Console Version](https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/javaversion.png?raw=true)
 
 
 ## Operational System
@@ -30,6 +28,7 @@ JEMM is compatible with any operating system that supports Java version 11 or la
 
 To ensure compatibility, verify that your operating system can run Java applications and that Java version 11 or later is properly installed. For installation instructions, check "Java Version" options in this page.
 
+**Important to know:** JEMM is a desktop application built with Java AWT, designed to run on standard desktop environments. Due to its graphical interface and Java-based architecture, **it is not compatible with NAS operating systems as a native app and cannot run directly on headless or server-only environments without a desktop interface.**
 
 ## Jellyfin API Key
 🔑 A Jellyfin API Key is a secure token that allows external applications —like JEMM— to communicate with your Jellyfin media server. It grants access to specific features and data without requiring your username and password, helping maintain security while enabling integration.
