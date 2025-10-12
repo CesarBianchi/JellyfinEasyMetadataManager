@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Cesar Bianchi" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Requirements - JEMM - Users Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Requirements";
+        var mkdocs_page_input_path = "about/requirements.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ABC123"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-ABC123");
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> JEMM - Users Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../whatsjemm/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Requirements</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#java-version">Java Version</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operational-system">Operational System</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#jellyfin-api-key">Jellyfin API Key</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-generate-a-jellyfin-api-key">How to Generate a Jellyfin API Key</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#are-you-a-developer">Are you a Developer ?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-report-a-bug">🐞 How to Report a Bug</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../download/">Download</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sourcecode/">Source Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../theauthor/">Author</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bugs/">Found a Bug ?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../donations/">Buy me a Coffee</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jellyfinproject/">The Jellyfin Project</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../feat/login/">Login Process</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Main Window</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/mainmenu/">Description</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/topmainmenu/">The Top Menu</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarylist/">Library List</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarymetadata/">Library Metadata Sheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/librarycontent/">Library Content Sheet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/mainmenu/footerStatusBar/">Footer StatusBar</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Massive Changes</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/howmassivechanges/">How Apply Massive Changes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/exportfeature/">Export Feature</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/importfeature/">Import Feature</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Reports</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../feat/reports/whyReports/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Types of Reports</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportInventory/">Inventory</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportGenres/">Genres</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportPeople/">People</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportStudios/">Studios</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportTags/">Tags</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../feat/reports/reportYear/">Year</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Others</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../others/waitwindows/">Message Wait Dialogs</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../others/jemmforum/">Jemm Forum</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../others/jellyforum/">Jellyfin Forum</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">JEMM - Users Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Requirements</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="getting-started-with-jemm-minimal-requirements">Getting Started with JEMM: Minimal Requirements</h1>
+<h2 id="java-version">Java Version</h2>
+<p>To run JEMM, your machine must have <strong>Java runtime version 11 or later installed</strong>.</p>
+<p>If Java is not already installed, follow these steps to download and install it:</p>
+<ol>
+<li>
+<p><strong>Visit the <a href="https://www.oracle.com/java/technologies/downloads/">Official Java website</a></strong></p>
+</li>
+<li>
+<p><strong>Download the Java SE</strong>: Choose the version that matches your operating system (Windows, macOS, or Linux) and download the installer.</p>
+</li>
+<li>
+<p><strong>Run the installer</strong>: Open the downloaded file and follow the on-screen instructions to complete the installation.</p>
+</li>
+<li>
+<p><strong>Verify the installation</strong>: After installation, open a terminal or command prompt and type: <strong>java -version</strong></p>
+</li>
+</ol>
+<p><img alt="Here's an example of Java Console Version" src="https://github.com/CesarBianchi/JellyfinEasyMetadataManager/blob/main/docs/jemmdocs/docs/images/javaversion.png?raw=true" /></p>
+<h2 id="operational-system">Operational System</h2>
+<p>🖥️ Operating System Requirements</p>
+<p>JEMM is compatible with any operating system that supports Java version 11 or later. This includes, but is not limited to:</p>
+<ul>
+<li>Windows (Windows 10, Windows 11, and newer versions)</li>
+<li>macOS (macOS 10.14 Mojave and later)</li>
+<li>Linux (Ubuntu, Fedora, Debian, CentOS, and other major distributions)</li>
+<li>Other Unix-based systems with Java support</li>
+</ul>
+<p>To ensure compatibility, verify that your operating system can run Java applications and that Java version 11 or later is properly installed. For installation instructions, check "Java Version" options in this page.</p>
+<p><strong>Important to know:</strong> JEMM is a desktop application built with Java AWT, designed to run on standard desktop environments. Due to its graphical interface and Java-based architecture, <strong>it is not compatible with NAS operating systems as a native app and cannot run directly on headless or server-only environments without a desktop interface.</strong></p>
+<h2 id="jellyfin-api-key">Jellyfin API Key</h2>
+<p>🔑 A Jellyfin API Key is a secure token that allows external applications —like JEMM— to communicate with your Jellyfin media server. It grants access to specific features and data without requiring your username and password, helping maintain security while enabling integration.</p>
+<h3 id="how-to-generate-a-jellyfin-api-key">How to Generate a Jellyfin API Key</h3>
+<p>To create a new API Key in Jellyfin, follow these steps:</p>
+<ol>
+<li>
+<p>Log in to your Jellyfin Server, open your Jellyfin web interface and sign in with an administrator account.</p>
+</li>
+<li>
+<p>Access the Dashboard Click on your profile icon in the top-right corner and select Dashboard.</p>
+</li>
+<li>
+<p>Navigate to API Keys In the left-hand menu, go to Advanced &gt; API Keys.</p>
+</li>
+<li>
+<p>Create a New Key Click the + Add API Key button.</p>
+<p>Optionally, give your key a name (e.g., “JEMM Integration”)</p>
+<p>Set expiration date or permissions if needed</p>
+</li>
+<li>
+<p>Copy the Key Once generated, copy the API Key and store it securely. ⚠️ You won’t be able to view it again after closing the dialog.</p>
+</li>
+<li>
+<p>Use the Key in JEMM Paste the API Key into the appropriate field in JEMM’s configuration or settings panel to enable Jellyfin integration.</p>
+</li>
+</ol>
+<h2 id="are-you-a-developer">Are you a Developer ?</h2>
+<p>👨‍💻 JEMM was developed using NetBeans 11 and is fully open-source. The complete source code is available on <a href="https://github.com/CesarBianchi/JellyfinEasyMetadataManager">GitHub</a></p>
+<p>Developers are welcome to explore, contribute, or fork the project. If you encounter any bugs or unexpected behavior, please report them through the GitHub Issues page.</p>
+<h3 id="how-to-report-a-bug">🐞 How to Report a Bug</h3>
+<p>When submitting a bug report, include as much relevant information as possible to help with diagnosis and resolution:</p>
+<ul>
+<li>✅ JEMM version you are using</li>
+<li>✅ Jellyfin Instance Server version connected to JEMM</li>
+<li>✅ Operating system and environment details</li>
+<li>✅ Error logs or stack traces</li>
+<li>✅ Screenshots or screen recordings (if applicable)</li>
+<li>✅ Steps to reproduce the issue</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../whatsjemm/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../download/" class="btn btn-neutral float-right" title="Download">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../whatsjemm/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../download/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
