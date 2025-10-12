@@ -1957,7 +1957,7 @@ public class MainWindow extends javax.swing.JFrame {
             } catch (URISyntaxException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jMenuItem22ActionPerformed
     
     /**
