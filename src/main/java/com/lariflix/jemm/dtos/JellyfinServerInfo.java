@@ -19,10 +19,6 @@ package com.lariflix.jemm.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- *
- * @author cesarbianchi
- */
 public class JellyfinServerInfo {
     
     @JsonProperty("OperatingSystemDisplayName") 

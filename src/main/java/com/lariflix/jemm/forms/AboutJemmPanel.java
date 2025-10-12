@@ -320,7 +320,6 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel17MouseClicked
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;

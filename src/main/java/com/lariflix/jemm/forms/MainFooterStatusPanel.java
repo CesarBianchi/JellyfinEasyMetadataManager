@@ -17,15 +17,8 @@
  */
 package com.lariflix.jemm.forms;
 
-/**
- *
- * @author cesarbianchi
- */
 public class MainFooterStatusPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MainFooterStatusBar
-     */
     public MainFooterStatusPanel() {
         initComponents();
     }

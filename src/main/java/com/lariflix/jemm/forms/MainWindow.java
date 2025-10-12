@@ -1951,7 +1951,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
-                Desktop.getDesktop().browse(new URI("https://cesarbianchi.github.io/JellyfinEasyMetadataManager/jemmdocs/site/"));              
+                Desktop.getDesktop().browse(new URI("https://cesarbianchi.github.io/JellyfinEasyMetadataManager/"));              
             } catch (IOException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex); 
             } catch (URISyntaxException ex) {
