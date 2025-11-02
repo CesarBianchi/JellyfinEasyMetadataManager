@@ -6,24 +6,42 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
+    <name>JEMM - Jellyfin Easy Metadata Manager</name>
     <description>Jellyfin Easy Metadata Manager (Also called as "JEMM") is a free and open-source tool created to help heavy users of Jellyfin Project to manage their instances. The main purpose of JEMM is to make it easier to fill in the metadata fields of library items and folders. </description>
-
     <inceptionYear>2023</inceptionYear>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>        
+    </properties>
+    
+    <licenses>
+        <license>
+          <name>GNU GENERAL PUBLIC LICENSE, Version 2.0</name>
+          <url>https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</url>
+          <distribution>repo</distribution>
+        </license>    
+    </licenses>
 
     <developers>
         <developer>
             <id>cesar_bianchi</id>
             <name>Cesar Bianchi</name>
             <email>cesar_bianchi@hotmail.com</email>
+            <url>https://github.com/CesarBianchi</url>
             <organization>MySelf</organization>
             <organizationUrl>https://www.linkedin.com/in/cesar-bianchi-9b90571b/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>-3</timezone>
         </developer>
     </developers>
     
-    <name>JEMM - Jellyfin Easy Metadata Manager</name>
-    
     <build>
-        
 	<finalName>jemm_runnable</finalName>
         <plugins>
             <plugin>
@@ -115,7 +133,7 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>7.0.3</version>
+            <version>6.21.2</version>
         </dependency>
         
         <dependency>
@@ -128,29 +146,22 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.18.0</version> <!-- exemplo -->
+            <version>2.18.0</version>
         </dependency>
         
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.18.0</version> <!-- deve ser igual à do databind -->
+            <version>2.18.0</version>
             <type>jar</type>
         </dependency>
         
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.18.0</version> <!-- deve ser igual à do databind -->
+            <version>2.18.0</version>
         </dependency>
 
     </dependencies>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <exec.mainClass>com.lariflix.jemm.Jemm</exec.mainClass>        
-    </properties>
-    
+
 </project>
