@@ -48,7 +48,8 @@
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/AddStudioPanel.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/AddStudioWindow.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/AddTagWindow.java
-/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/BackdropGeneratorPanel.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/BackdropGenWizardPanel.java
+/Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/BackdropGeneratorWindow.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/DonationPanel.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/DonationWin.java
 /Users/cesarbianchi/eclipse-workspace/JellyfinEasyMetadataManager/src/main/java/com/lariflix/jemm/forms/LoginWindow.java

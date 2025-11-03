@@ -224,6 +224,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1305,6 +1306,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem19);
 
+        jMenuItem23.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem23.setText("Backdrop Generator");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem23);
+
         jMenuBar1.add(jMenu10);
 
         jMenu2.setText("Reports");
@@ -1959,6 +1969,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        BackdropGeneratorWindow backdropWindow = new BackdropGeneratorWindow();
+        backdropWindow.showWindow();
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -2070,6 +2085,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
