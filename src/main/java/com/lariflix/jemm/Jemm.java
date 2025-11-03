@@ -4,6 +4,8 @@ import com.lariflix.jemm.dtos.JellyfinCredentials;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.forms.LoginWindow;
 import com.lariflix.jemm.utils.JellyfinLookAndFell;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Main class of the application.
@@ -31,7 +33,7 @@ public class Jemm {
      * @since 1.0
      
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         boolean isDebug = false;
                 
         //If URL and apiToken was sent by parameters on application load
@@ -61,7 +63,7 @@ public class Jemm {
         lookAndFeel.setLookAndFeelFlatDarkPurpleIJTheme();
         //lookAndFeel.setLookAndFeelFlatFlatNordTheme();
         
-        
+        //Show the login window
         LoginWindow loginFrame = new LoginWindow(instanceData);
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);

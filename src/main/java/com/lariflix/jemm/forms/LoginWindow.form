@@ -16,6 +16,7 @@
   </SyntheticProperties>
   <Events>
     <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="formComponentShown"/>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -122,7 +123,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/jellyfinIconTransparency_small.png"/>
+              <Image iconType="3" name="/images/JEMM_Logo_20251102_Small_03.png"/>
             </Property>
           </Properties>
         </Component>
