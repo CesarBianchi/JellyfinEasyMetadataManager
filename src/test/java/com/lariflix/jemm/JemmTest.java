@@ -3,13 +3,14 @@ package com.lariflix.jemm;
 import com.lariflix.jemm.Jemm;
 import com.lariflix.jemm.dtos.JellyfinCredentials;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import java.net.MalformedURLException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JemmTest {
 
     @Test
-    public void testMain() {
+    public void testMain() throws MalformedURLException {
         String[] args = {"http://testurl.com", "testToken"};
         Jemm.main(args);
 

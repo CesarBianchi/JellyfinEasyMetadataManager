@@ -59,7 +59,7 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_03.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

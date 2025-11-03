@@ -5,10 +5,14 @@ import com.lariflix.jemm.dtos.JellyfinConnectionResult;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.utils.JemmVersion;
 import java.awt.Desktop;
+import java.awt.Image;
+import java.awt.Taskbar;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -100,6 +104,11 @@ public class LoginWindow extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -114,7 +123,7 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel1.setText("Welcome to Jellyfin Easy Metadata Manager - ");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_03.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -317,6 +326,23 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        //Set the Application Icon
+        String sImageFileName = "/images/JEMM_Logo_20251102_Small_03.png";
+        URL urlImageFileName = getClass().getResource(sImageFileName);
+
+        if (urlImageFileName == null)
+            System.out.println( "urlImageFileName: " + urlImageFileName + " Not Found." );
+        else {
+            ImageIcon oImageIcon = new ImageIcon(getClass().getResource(sImageFileName));
+            setIconImage(oImageIcon.getImage());
+            Taskbar.getTaskbar().setIconImage(oImageIcon.getImage());
+            
+        }  
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

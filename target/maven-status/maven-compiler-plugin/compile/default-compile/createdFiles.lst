@@ -29,6 +29,7 @@ com/lariflix/jemm/forms/MainWindow$68.class
 com/lariflix/jemm/forms/MainWindow$61.class
 com/lariflix/jemm/forms/AddStudioPanel$6.class
 com/lariflix/jemm/forms/MainWindow$55.class
+com/lariflix/jemm/forms/LoginWindow$8.class
 com/lariflix/jemm/forms/DonationPanel.class
 com/lariflix/jemm/forms/MainWindow$21.class
 com/lariflix/jemm/forms/AddGenreWindow.class
@@ -52,7 +53,6 @@ com/lariflix/jemm/forms/DonationPanel$1.class
 com/lariflix/jemm/reports/JellyfinReportPeople$1.class
 com/lariflix/jemm/forms/MainWindow$10.class
 com/lariflix/jemm/forms/MainWindow$6.class
-com/lariflix/jemm/forms/WaitingWindow$2.class
 com/lariflix/jemm/forms/MainWindow$56.class
 com/lariflix/jemm/forms/MainWindow$40.class
 com/lariflix/jemm/forms/AddPeopleWindow.class
@@ -102,6 +102,7 @@ com/lariflix/jemm/dtos/JellyfinItem.class
 com/lariflix/jemm/forms/AddPeoplePanel$10.class
 com/lariflix/jemm/forms/MainWindow$7.class
 com/lariflix/jemm/core/LoadGenres.class
+com/lariflix/jemm/forms/BackdropGeneratorPanel.class
 com/lariflix/jemm/reports/JellyfinReportPeopleItem.class
 com/lariflix/jemm/forms/AddGenrePanel$2.class
 com/lariflix/jemm/reports/JellyfinReportTags$1.class
@@ -125,7 +126,6 @@ com/lariflix/jemm/forms/AddStudioPanel$4.class
 com/lariflix/jemm/utils/JellyfinParameters.class
 com/lariflix/jemm/dtos/JellyfinUsers.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItem.class
-com/lariflix/jemm/forms/WaitingWindow$1.class
 com/lariflix/jemm/forms/DonationPanel$2.class
 com/lariflix/jemm/forms/MainWindow$11.class
 com/lariflix/jemm/dtos/JellyfinCadGenresItem.class
@@ -180,7 +180,6 @@ com/lariflix/jemm/forms/MainWindow$26.class
 com/lariflix/jemm/utils/JellyfinUtilFunctions.class
 com/lariflix/jemm/dtos/JellyfinProviderIds.class
 com/lariflix/jemm/csv/JellyfinCsvStructure.class
-com/lariflix/jemm/forms/WaitingWindow.class
 com/lariflix/jemm/reports/JellyfinReportGenresItem.class
 com/lariflix/jemm/forms/AddStudioPanel$8.class
 com/lariflix/jemm/forms/LoginWindow$1.class
@@ -194,7 +193,6 @@ com/lariflix/jemm/forms/MainWindow$18.class
 com/lariflix/jemm/forms/AboutJemmPanel$7.class
 com/lariflix/jemm/forms/MainWindow$48.class
 com/lariflix/jemm/forms/AddGenrePanel$8.class
-com/lariflix/jemm/forms/WaitingPanel.class
 com/lariflix/jemm/forms/AddPeoplePanel$8.class
 com/lariflix/jemm/Jemm.class
 com/lariflix/jemm/reports/JellyfinReportGenres$1.class

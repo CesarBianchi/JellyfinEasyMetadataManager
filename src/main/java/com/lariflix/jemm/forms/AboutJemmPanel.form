@@ -168,7 +168,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/jellyfinIconTransparency_small.png"/>
+              <Image iconType="3" name="/images/JEMM_Logo_20251102_Small_03.png"/>
             </Property>
           </Properties>
         </Component>
