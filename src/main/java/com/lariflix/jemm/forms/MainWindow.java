@@ -1971,8 +1971,15 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        BackdropGeneratorWindow backdropWindow = new BackdropGeneratorWindow();
-        backdropWindow.showWindow();
+        BackdropGeneratorWizard backdropWizard = new BackdropGeneratorWizard();
+        
+        backdropWizard.setSize(685,327);
+        backdropWizard.setResizable(false);
+        backdropWizard.pack();
+        backdropWizard.setLocationRelativeTo(null);     
+        backdropWizard.jPanel1 = new BackdropWizardPanel_01();
+        backdropWizard.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem23ActionPerformed
     
     /**
