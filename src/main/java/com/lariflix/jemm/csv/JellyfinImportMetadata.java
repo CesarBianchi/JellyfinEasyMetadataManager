@@ -1036,18 +1036,19 @@ public class JellyfinImportMetadata {
                 // 2.1 - Request Folder Metadata
                 folderMetadadta = connectAPI.getFolderMetadata(cParentID);
 
-                // 2.2 - Add folder metadata atributes to main instance object
-                instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
+                if (folderMetadadta != null) {
+                    // 2.2 - Add folder metadata atributes to main instance object
+                    instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
 
-                // 2.3 - Request Folder Content Items
-                JellyfinItems folderItems = new JellyfinItems();
-                folderItems = connectAPI.getItems(cParentID);
+                    // 2.3 - Request Folder Content Items
+                    JellyfinItems folderItems = new JellyfinItems();
+                    folderItems = connectAPI.getItems(cParentID);
 
-                // 2.4 - Add Folder Content Item to main instance object
-                instanceData.getFolders().getItems().get(nIndex).setFolderContent(folderItems);
-
-                if (folderItems != null) {
-                    updateSuccess = true;
+                    if (folderItems != null) {
+                        // 2.4 - Add Folder Content Item to main instance object
+                        instanceData.getFolders().getItems().get(nIndex).setFolderContent(folderItems);
+                        updateSuccess = true;
+                    }
                 }
 
             } catch (IOException | ParseException ex) {
@@ -1097,10 +1098,11 @@ public class JellyfinImportMetadata {
                 // 2.1 - Request Folder Metadata
                 folderMetadadta = connectAPI.getFolderMetadata(itemID);
 
-                // 2.2 - Add folder metadata atributes to main instance object
-                instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
-
-                lSuccess = true;
+                if (folderMetadadta != null) {
+                    // 2.2 - Add folder metadata atributes to main instance object
+                    instanceData.getFolders().getItems().get(nIndex).setMetadata(folderMetadadta);
+                    lSuccess = true;
+                }
 
             } catch (IOException | ParseException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -1235,6 +1237,10 @@ public class JellyfinImportMetadata {
             if (instanceData.getFolders().getItems().get(nI).getId().equals(itemID)) {
 
                 folderUpdated = instanceData.getFolders().getItems().get(nI);
+
+                if (folderUpdated.getMetadata() == null) {
+                    throw new IllegalStateException("Folder metadata is null for ID: " + itemID);
+                }
 
                 folderUpdated.setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
                 folderUpdated.getMetadata().setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
