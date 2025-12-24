@@ -1134,6 +1134,10 @@ public class JellyfinImportMetadata {
 
             if (instanceData.getFolders().getItems().get(nI).getId().equals(parentID)) {
 
+                if (instanceData.getFolders().getItems().get(nI).getFolderContent() == null) {
+                    throw new IllegalStateException("Folder content is null for parent ID: " + parentID);
+                }
+
                 for (int nJ = 0; nJ < instanceData.getFolders().getItems().get(nI).getFolderContent().getItems()
                         .size(); nJ++) {
                     item = instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().get(nJ);
