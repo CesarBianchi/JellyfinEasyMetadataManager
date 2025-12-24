@@ -99,8 +99,10 @@ public class TransformDateFormat {
 
         String dateReturn = new String();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        dateReturn = sdf.format(dt);
+        if (dt != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            dateReturn = sdf.format(dt);
+        }
 
         return dateReturn;
     }
