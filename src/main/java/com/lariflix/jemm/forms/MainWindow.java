@@ -256,6 +256,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JEMM - Jellyfin Easy Metadata Manager");
+        setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1971,14 +1972,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        BackdropGeneratorWizard backdropWizard = new BackdropGeneratorWizard();
+        //this.setVisible(false);
+        BackdropGeneratorWizard backdropWizard = new BackdropGeneratorWizard();        
+        backdropWizard.show();
         
-        backdropWizard.setSize(685,327);
-        backdropWizard.setResizable(false);
-        backdropWizard.pack();
-        backdropWizard.setLocationRelativeTo(null);     
-        backdropWizard.jPanel1 = new BackdropWizardPanel_01();
-        backdropWizard.setVisible(true);
+        //this.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem23ActionPerformed
     
