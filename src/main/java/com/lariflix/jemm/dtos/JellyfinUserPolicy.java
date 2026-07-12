@@ -17,10 +17,22 @@ public class JellyfinUserPolicy {
     public boolean isAdministrator;
     @JsonProperty("IsHidden") 
     public boolean isHidden;
+    
+    @JsonProperty("EnableCollectionManagement") 
+    public boolean EnableCollectionManagement;
+    @JsonProperty("EnableSubtitleManagement") 
+    public boolean EnableSubtitleManagement;
+    @JsonProperty("EnableLyricManagement") 
+    public boolean EnableLyricManagement;
+    
     @JsonProperty("IsDisabled") 
     public boolean isDisabled;
     @JsonProperty("BlockedTags") 
     public ArrayList<Object> blockedTags;
+    
+    @JsonProperty("AllowedTags") 
+    public ArrayList<Object> AllowedTags;
+    
     @JsonProperty("EnableUserPreferenceAccess") 
     public boolean enableUserPreferenceAccess;
     @JsonProperty("AccessSchedules") 
@@ -931,7 +943,38 @@ public class JellyfinUserPolicy {
     public void setSyncPlayAccess(String syncPlayAccess) {
         this.syncPlayAccess = syncPlayAccess;
     }
+
+    public boolean isEnableCollectionManagement() {
+        return EnableCollectionManagement;
+    }
+
+    public void setEnableCollectionManagement(boolean EnableCollectionManagement) {
+        this.EnableCollectionManagement = EnableCollectionManagement;
+    }
+
+    public boolean isEnableSubtitleManagement() {
+        return EnableSubtitleManagement;
+    }
+
+    public void setEnableSubtitleManagement(boolean EnableSubtitleManagement) {
+        this.EnableSubtitleManagement = EnableSubtitleManagement;
+    }
+
+    public boolean isEnableLyricManagement() {
+        return EnableLyricManagement;
+    }
+
+    public void setEnableLyricManagement(boolean EnableLyricManagement) {
+        this.EnableLyricManagement = EnableLyricManagement;
+    }
     
+    public ArrayList<Object> getAllowedTags() {
+        return AllowedTags;
+    }
+
+    public void setAllowedTags(ArrayList<Object> AllowedTags) {
+        this.AllowedTags = AllowedTags;
+    }
     
     
 }
