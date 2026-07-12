@@ -14,6 +14,7 @@ import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
 import com.lariflix.jemm.utils.JellyfinParameters;
+import com.lariflix.jemm.utils.JellyfinRatingList;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
@@ -43,6 +44,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -341,9 +343,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel10.setText("Overview:");
 
-        jLabel11.setText("Custom Rating:");
+        jLabel11.setText("Parental Rating:");
 
-        jLabel12.setText("Official Rating:");
+        jLabel12.setText("Custom Rating:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -644,10 +646,6 @@ public class MainWindow extends javax.swing.JFrame {
                 jCheckBox2KeyPressed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BR-L", "BR-10", "BR-12", "BR-14", "BR-16", "BR-18" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BR-L", "BR-10", "BR-12", "BR-14", "BR-16", "BR-18" }));
 
         jButton22.setText("Refresh Libraries");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
@@ -1647,6 +1645,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try {
+            //this.loadRatingCombos();
             this.loadFolders();
             this.prepareFooter();
             
@@ -3982,6 +3981,16 @@ public class MainWindow extends javax.swing.JFrame {
 
        this.setCursor(Cursor.getDefaultCursor());
         
+    }
+
+    private void loadRatingCombos() {
+        String[] ratings = new JellyfinRatingList().getItems();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(ratings);
+        
+        jComboBox1.setModel(model);
+        jComboBox2.setModel(model);
+        jComboBox2.setSelectedItem("BR-L");
+        jComboBox2.setSelectedItem("BR-L");
     }
     
 }

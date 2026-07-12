@@ -713,12 +713,12 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Custom Rating:"/>
+                        <Property name="text" type="java.lang.String" value="Parental Rating:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Official Rating:"/>
+                        <Property name="text" type="java.lang.String" value="Custom Rating:"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -1072,35 +1072,11 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBox1">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="6">
-                            <StringItem index="0" value="BR-L"/>
-                            <StringItem index="1" value="BR-10"/>
-                            <StringItem index="2" value="BR-12"/>
-                            <StringItem index="3" value="BR-14"/>
-                            <StringItem index="4" value="BR-16"/>
-                            <StringItem index="5" value="BR-18"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBox2">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="6">
-                            <StringItem index="0" value="BR-L"/>
-                            <StringItem index="1" value="BR-10"/>
-                            <StringItem index="2" value="BR-12"/>
-                            <StringItem index="3" value="BR-14"/>
-                            <StringItem index="4" value="BR-16"/>
-                            <StringItem index="5" value="BR-18"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
