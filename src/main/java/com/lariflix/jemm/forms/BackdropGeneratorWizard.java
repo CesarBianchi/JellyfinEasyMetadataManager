@@ -20,6 +20,7 @@ package com.lariflix.jemm.forms;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -83,7 +84,11 @@ public class BackdropGeneratorWizard {
 
     private void nextButtonPressed() {
         frame.dispose();
-        this.paintStep02();
+        
+        //WORKING IN PROGRESS - TO DO!
+        //this.paintStep02();
+        
+        this.paintWIP();
     }
 
     private void paintStep02() {
@@ -91,7 +96,7 @@ public class BackdropGeneratorWizard {
         //Create the Main JFrame
         frame = new JFrame("Backdrop Image Generator");
         mainPanel = new JPanel();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
         frame.setSize(400, 400);
         
@@ -118,4 +123,27 @@ public class BackdropGeneratorWizard {
         frame.setLocationRelativeTo(null); 
         frame.setVisible(true);
     }
+    
+    private void paintWIP() {
+        
+        //Create the Main JFrame
+        frame = new JFrame("Under development");
+        mainPanel = new JPanel();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setSize(400, 400);
+        
+         // Create the Main Botton JPanel
+        mainPanel.setLayout(new BorderLayout()); 
+        
+        JLabel label = new JLabel("Feature under development... wait for the next versions!");        
+        mainPanel.add(label, BorderLayout.CENTER);
+        
+        // Add the parent JPanel to the JFrame
+        frame.add(mainPanel);   
+        frame.pack(); // Adjusts frame size to fit its contents
+        frame.setLocationRelativeTo(null); 
+        frame.setVisible(true);
+    }
+    
 }
