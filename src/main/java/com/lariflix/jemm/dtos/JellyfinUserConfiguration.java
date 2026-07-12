@@ -41,7 +41,8 @@ public class JellyfinUserConfiguration {
     public boolean rememberSubtitleSelections;
     @JsonProperty("EnableNextEpisodeAutoPlay") 
     public boolean enableNextEpisodeAutoPlay;
-
+    @JsonProperty("CastReceiverId") 
+    public String CastReceiverId;
     /**
      * Default constructor for JellyfinUserConfiguration.
      *
@@ -379,6 +380,14 @@ public class JellyfinUserConfiguration {
      */
     public void setAudioLanguagePreference(String AudioLanguagePreference) {
         this.AudioLanguagePreference = AudioLanguagePreference;
+    }
+
+    public String getCastReceiverId() {
+        return CastReceiverId;
+    }
+
+    public void setCastReceiverId(String CastReceiverId) {
+        this.CastReceiverId = CastReceiverId;
     }
     
     
