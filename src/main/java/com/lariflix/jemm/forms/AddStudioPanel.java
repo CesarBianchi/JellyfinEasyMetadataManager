@@ -311,7 +311,7 @@ public class AddStudioPanel extends javax.swing.JPanel {
                 win.dispose();
             }
         } else {
-            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"));
+            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"));
             JOptionPane.showMessageDialog(this,"One or more mandatory fields are empty","Pay Attention!! ",JOptionPane.WARNING_MESSAGE,icon);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
