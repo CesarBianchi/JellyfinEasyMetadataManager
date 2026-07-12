@@ -301,7 +301,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 cMsg = cMsg.concat("Reason detail: ").concat(tryConnection.getMessage());
                 cMsg = cMsg.concat("\n");
 
-                ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"));
+                ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"));
                 JOptionPane.showMessageDialog(this, cMsg, "JEMM - No valid connection", JOptionPane.ERROR_MESSAGE,icon );
             }
         } catch (MalformedURLException ex) {
