@@ -2178,7 +2178,6 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         waitDiag.setLocationRelativeTo(this);
 
-        
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
@@ -3777,7 +3776,9 @@ public class MainWindow extends javax.swing.JFrame {
         //Reload Folders and Itens button        
         try {
             modelList = new DefaultListModel<>();
+            jList2.setModel(modelList);
             this.loadFolders();
+            jList2.setModel(modelList);
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
