@@ -96,9 +96,14 @@ public class JellyfinRatingList {
         return ratings;
     }
    
+    private void reloadRatings(){
+        this.ratings = new ArrayList<>();
+        this.loadRatings();
+    }
     
     public String[] getItems() {    
-        String[] items = this.ratings.toArray(new String[0]);
+        this.reloadRatings();
+        String[] items = this.ratings.toArray(new String[ratings.size()]);
         return items;
     }
     

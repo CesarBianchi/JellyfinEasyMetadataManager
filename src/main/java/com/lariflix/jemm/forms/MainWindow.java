@@ -343,9 +343,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel10.setText("Overview:");
 
-        jLabel11.setText("Parental Rating:");
+        jLabel11.setText("Custom Rating:");
 
-        jLabel12.setText("Custom Rating:");
+        jLabel12.setText("Parental Rating:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -698,14 +698,14 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(17, 17, 17)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -1645,7 +1645,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try {
-            //this.loadRatingCombos();
+            this.loadRatingCombos();
             this.loadFolders();
             this.prepareFooter();
             
@@ -1797,7 +1797,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
         JLabel label = new JLabel("Downloading data and generating destination file... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
@@ -1897,7 +1897,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                     JLabel labelIco = new JLabel();
                     labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                    labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+                    labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
                     JLabel label = new JLabel("Reading file and updating metadata... ", JLabel.CENTER);
 
                     JProgressBar bar = new JProgressBar();
@@ -2181,7 +2181,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
         JLabel label = new JLabel("Loading Folders and SubFolders...", JLabel.CENTER);
         
         JProgressBar bar = new JProgressBar();
@@ -2305,7 +2305,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
             JLabel label = new JLabel("Loading folder items and metadata...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -2377,6 +2377,11 @@ public class MainWindow extends javax.swing.JFrame {
         jTextField8.setText(this.toBrazilianDate(folderMetadata.getPremiereDate()));
         
         jTextArea1.setText(folderMetadata.getOverview());
+        
+        jComboBox1.setSelectedItem(folderMetadata.getCustomRating());
+        jComboBox2.setSelectedItem(folderMetadata.getOfficialRating());
+        
+        
     }
 
     /**
@@ -3197,7 +3202,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
             JLabel label = new JLabel("Saving Folder changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -3257,7 +3262,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
             JLabel label = new JLabel("Saving Itens and Metadata changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -3331,8 +3336,6 @@ public class MainWindow extends javax.swing.JFrame {
         forcedSortNameOldValue = "";
 
         //2.1 - Set the content of jFields
-        //instanceData
-
         this.setAlljFields(folderMetadata);
 
         //2.1 - Set the content of People Grid/
@@ -3753,7 +3756,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         if (!lret){                        
-            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"));
+            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"));
             JOptionPane.showMessageDialog(null, mandatoryFieldsMsg,"Pay Attention!!",JOptionPane.WARNING_MESSAGE,icon);
         }
         
@@ -3947,7 +3950,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/jellyfinIconTransparency_small.png"))); // NOI18N
+        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
         JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
@@ -3987,10 +3990,10 @@ public class MainWindow extends javax.swing.JFrame {
         String[] ratings = new JellyfinRatingList().getItems();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(ratings);
         
-        jComboBox1.setModel(model);
-        jComboBox2.setModel(model);
-        jComboBox2.setSelectedItem("BR-L");
-        jComboBox2.setSelectedItem("BR-L");
+        jComboBox1.setModel(new DefaultComboBoxModel<>(ratings));
+        jComboBox2.setModel(new DefaultComboBoxModel<>(ratings));
+        //jComboBox1.setSelectedItem("BR-L");
+        //jComboBox2.setSelectedItem("BR-L");
     }
     
 }
