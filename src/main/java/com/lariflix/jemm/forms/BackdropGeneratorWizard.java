@@ -136,7 +136,7 @@ public class BackdropGeneratorWizard {
          // Create the Main Botton JPanel
         mainPanel.setLayout(new BorderLayout()); 
         
-        JLabel label = new JLabel("Feature under development... wait for the next versions!");        
+        JLabel label = new JLabel("\n \n \n    Feature under development... wait for the next versions!    \n \n \n");        
         mainPanel.add(label, BorderLayout.CENTER);
         
         // Add the parent JPanel to the JFrame
