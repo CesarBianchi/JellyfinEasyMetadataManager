@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.apache.commons.io.FileUtils;
 
@@ -111,6 +113,44 @@ public class JellyfinUtilFunctions {
         String resourceReportPath = "/reports/jasperfiles";
         
         return resourceReportPath;                
+    }
+    
+    public String getOficialJemmLogoPath(){
+        String officialLogoPath = "/images/JEMM_Logo_20251102_Small_04.png";
+        return officialLogoPath;
+    } 
+    
+    public ImageIcon getOficialJemmIcon(){
+        ImageIcon officialIcon = new javax.swing.ImageIcon(getClass().getResource( this.getOficialJemmLogoPath() ));
+        
+        return officialIcon;
+    }
+    
+    public void showMessage(String title, String message){
+        this.showMessage(title, message, null);
+    }
+    
+    public void showMessage(String title, String message, Integer typeOfMessage){
+        
+        int typeMsg = JOptionPane.INFORMATION_MESSAGE;
+        
+        if (typeOfMessage != null){
+            typeMsg = typeOfMessage;
+        }
+        
+        if (!message.isEmpty()){
+            String cMsg = message.trim();
+            String cTitle = new String();
+            ImageIcon customIcon = this.getOficialJemmIcon();
+            
+            if (title.isEmpty()){
+                cTitle = "JEMM - Jellyfin Easy Metadata Manager";
+            } else {
+                cTitle = title.trim();
+            }
+                
+            JOptionPane.showMessageDialog(null, cMsg, cTitle,typeMsg,customIcon);
+        }
     }
     
 }

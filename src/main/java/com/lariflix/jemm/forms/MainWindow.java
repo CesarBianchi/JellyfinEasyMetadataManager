@@ -1542,6 +1542,10 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             if (this.checkAllMandatoryFieldsIsOk()){
                 this.saveFolder();
+                
+                //Show confirmation Dialog
+                String cMsg = "The library item '".concat(jTextField2.getText().trim()).concat("' was succesfully updated.");    
+                new JellyfinUtilFunctions().showMessage("Library succesfully updated", cMsg);
             }    
         } catch (java.text.ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -1553,6 +1557,11 @@ public class MainWindow extends javax.swing.JFrame {
             if (this.checkAllMandatoryFieldsIsOk()){
                 this.saveFolder();
                 this.saveContent(true);
+                
+                //Show confirmation Dialog
+                String cMsg = "The library item '".concat(jTextField2.getText().trim()).concat("' and all their content was succesfully updated.");                
+                new JellyfinUtilFunctions().showMessage("Library succesfully updated", cMsg);
+
             }
         } catch (java.text.ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -1797,7 +1806,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+        labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
         JLabel label = new JLabel("Downloading data and generating destination file... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
@@ -1839,8 +1848,7 @@ public class MainWindow extends javax.swing.JFrame {
             msgType = JOptionPane.ERROR_MESSAGE;
             cTitle = "Export Metadata failed!";
         }
-        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
-        
+        new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
         
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
@@ -1897,7 +1905,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                     JLabel labelIco = new JLabel();
                     labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                    labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+                    labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
                     JLabel label = new JLabel("Reading file and updating metadata... ", JLabel.CENTER);
 
                     JProgressBar bar = new JProgressBar();
@@ -1948,7 +1956,7 @@ public class MainWindow extends javax.swing.JFrame {
             msgType = JOptionPane.ERROR_MESSAGE;
             cTitle = "Import Metadata failed!";
         }
-        JOptionPane.showMessageDialog(this, cMsg, cTitle, msgType);
+        new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
         
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
@@ -2180,7 +2188,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+        labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
         JLabel label = new JLabel("Loading Folders and SubFolders...", JLabel.CENTER);
         
         JProgressBar bar = new JProgressBar();
@@ -2304,7 +2312,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+            labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
             JLabel label = new JLabel("Loading folder items and metadata...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -3201,7 +3209,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+            labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
             JLabel label = new JLabel("Saving Folder changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -3261,7 +3269,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+            labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
             JLabel label = new JLabel("Saving Itens and Metadata changes...", JLabel.CENTER);
 
             JProgressBar bar = new JProgressBar();
@@ -3755,8 +3763,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         if (!lret){                        
-            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"));
-            JOptionPane.showMessageDialog(null, mandatoryFieldsMsg,"Pay Attention!!",JOptionPane.WARNING_MESSAGE,icon);
+            new JellyfinUtilFunctions().showMessage("Pay Attention!!", mandatoryFieldsMsg,JOptionPane.WARNING_MESSAGE);
         }
         
         return lret;
@@ -3779,6 +3786,12 @@ public class MainWindow extends javax.swing.JFrame {
             jList2.setModel(modelList);
             this.loadFolders();
             jList2.setModel(modelList);
+            this.selectFirstFolder();
+            
+            //Show confirmation Dialog
+            String cMsg = "All library items were succesfully reloaded";                
+            new JellyfinUtilFunctions().showMessage("Library reloaded", cMsg);
+            
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
@@ -3812,10 +3825,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
             if (found){
-                javax.swing.JOptionPane.showMessageDialog(rootPane,"Found the item: ".concat(foundItemName), "Item Found!", JOptionPane.INFORMATION_MESSAGE);
+                new JellyfinUtilFunctions().showMessage("Item Found!", "Found the item: ".concat(foundItemName));                
                 jList2.setSelectedIndex(foundIndex);
             } else {
-                javax.swing.JOptionPane.showMessageDialog(rootPane,"There's no folders with the name: ".concat(itemName), "No items found!", JOptionPane.ERROR_MESSAGE);
+                new JellyfinUtilFunctions().showMessage("No items found!", "There's no folders with the name: ".concat(itemName),JOptionPane.ERROR_MESSAGE);
+                
             }
             
         }
@@ -3852,7 +3866,7 @@ public class MainWindow extends javax.swing.JFrame {
                 break;
             } else {
                 String cMsg = "The destination file needs to be CSV format";
-                javax.swing.JOptionPane.showMessageDialog(rootPane,cMsg, "Invalid extension or format", JOptionPane.ERROR_MESSAGE);
+                new JellyfinUtilFunctions().showMessage("Invalid extension or format", cMsg, JOptionPane.ERROR_MESSAGE);
             }
         }
             
@@ -3890,7 +3904,7 @@ public class MainWindow extends javax.swing.JFrame {
                 break;
             } else {
                 String cMsg = "The origin file needs to be CSV format";
-                javax.swing.JOptionPane.showMessageDialog(rootPane,cMsg, "Invalid extension or format", JOptionPane.ERROR_MESSAGE);
+                new JellyfinUtilFunctions().showMessage("Invalid extension or format", cMsg, JOptionPane.ERROR_MESSAGE);
             }
         }
             
@@ -3951,7 +3965,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/JEMM_Logo_20251102_Small_04.png"))); // NOI18N
+        labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
         JLabel label = new JLabel("Downloading data and painting report... ", JLabel.CENTER);
 
         JProgressBar bar = new JProgressBar();
