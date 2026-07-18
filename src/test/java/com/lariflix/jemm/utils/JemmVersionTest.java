@@ -1,6 +1,5 @@
 package com.lariflix.jemm.utils;
 
-import com.lariflix.jemm.utils.JemmVersion;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
