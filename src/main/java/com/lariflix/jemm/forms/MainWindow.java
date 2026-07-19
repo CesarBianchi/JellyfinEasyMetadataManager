@@ -3780,8 +3780,6 @@ public class MainWindow extends javax.swing.JFrame {
      *
      * This method clears the current list of folder items, then reloads them by calling the loadFolders method. If an error occurs while loading the folders, it is logged and the method exits.
      *
-     * @throws IOException If an I/O error occurs. This can happen if there's a problem with the network connection, the server, or the local machine.
-     * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
      * @since 1.1
      * @author Cesar Bianchi
      */

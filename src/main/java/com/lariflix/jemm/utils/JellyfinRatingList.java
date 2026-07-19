@@ -1,35 +1,60 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
 package com.lariflix.jemm.utils;
 
 import java.util.ArrayList;
 
+
 /**
+ * Utility class that provides a predefined list of Jellyfin content ratings.
  *
- * @author cesarbianchi
+ * <p>This class maintains an internal list of rating strings commonly used by
+ * Jellyfin. It exposes methods to load, reload, and retrieve those ratings as
+ * either a live list or a string array suitable for UI components such as
+ * combo boxes or dropdowns.
+ *
+ * <p>Example usage:
+ * <pre>
+ * JellyfinRatingList r = new JellyfinRatingList();
+ * r.JellyfinRatingList(); // populate (note: this is not a constructor)
+ * String[] items = r.getItems();
+ * </pre>
+ *
+ * <p>Notes:
+ * - The method named {@code JellyfinRatingList()} is not a Java constructor;
+ *   it is a regular method that populates the list when invoked.
+ * - The class is not thread-safe: concurrent modification of the returned
+ *   list from multiple threads may produce undefined behavior.
+ *
+ * @author Cesar Bianchi
+ * @since 1.0
  */
 public class JellyfinRatingList {
     private ArrayList<String> ratings = new ArrayList<>();
     
+
+    /**
+     * Populates the internal list with the default ratings.
+     *
+     * <p>Note: this method is named like a constructor but is declared with a
+     * return type and therefore is not a true Java constructor. Callers can
+     * invoke this method to explicitly populate the internal list, or use the
+     * other accessors which ensure the list is populated when needed.
+     *
+     * @since 1.0
+     */
     public void JellyfinRatingList(){
         this.loadRatings();
     }
     
+   
+    /**
+     * Populates the internal ratings list with a predefined set of Jellyfin
+     * content rating labels.
+     *
+     * <p>This method appends to the existing list; callers who want a fresh
+     * set should call {@link #reloadRatings()} first.
+     *
+     * @since 1.0
+     */
     public void loadRatings() {
         
         ratings.add("");
@@ -92,15 +117,38 @@ public class JellyfinRatingList {
         ratings.add("Banned");
     }
 
+    /**
+     * Returns the live internal ratings list.
+     *
+     * <p>Warning: the returned list is the internal backing list and
+     * modifications to it will affect this object's state.
+     *
+     * @return the live {@link ArrayList} of rating strings (may be empty)
+     * @since 1.0
+     */
     public ArrayList<String> getRatings() {
         return ratings;
     }
    
+    /**
+     * Clears the current ratings and reloads the default set.
+     *
+     * @since 1.0
+     */
     private void reloadRatings(){
         this.ratings = new ArrayList<>();
         this.loadRatings();
     }
     
+    /**
+     * Returns the ratings as a string array.
+     *
+     * <p>This method ensures the internal list is freshly loaded before
+     * converting it to an array suitable for UI components such as dropdowns.
+     *
+     * @return an array containing the current rating labels; never {@code null}
+     * @since 1.0
+     */
     public String[] getItems() {    
         this.reloadRatings();
         String[] items = this.ratings.toArray(new String[ratings.size()]);

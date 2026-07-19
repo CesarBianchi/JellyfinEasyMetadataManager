@@ -40,7 +40,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * Constructs a new AddStudioPanel.
      * This constructor initializes the components of the panel.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -410,7 +409,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * Retrieves the instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * 
      * @return The instance of ConnectJellyfinAPI used by the AddStudioPanel.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -421,7 +419,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
     /**
      * Retrieves the instance of ConnectJellyfinAPI used by the AddStudioPanel.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -436,7 +433,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      * Each row in the table represents a studio and contains the id and name of the studio.
      * After adding the existing studios to the table, it resizes the table width columns.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -507,7 +503,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      *
      * @return A JTextField object representing the jTextField1 of this AddStudioPanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JTextField getjTextField1() {
         return jTextField1;
@@ -518,7 +513,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      *
      * @param jTextField1 A JTextField object that should be used as the new jTextField1 for this AddStudioPanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
@@ -529,7 +523,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      *
      * @return A JTextField object representing the jTextField2 of this AddStudioPanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JTextField getjTextField2() {
         return jTextField2;
@@ -540,7 +533,6 @@ public class AddStudioPanel extends javax.swing.JPanel {
      *
      * @param jTextField2 A JTextField object that should be used as the new jTextField2 for this AddStudioPanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjTextField2(JTextField jTextField2) {
         this.jTextField2 = jTextField2;

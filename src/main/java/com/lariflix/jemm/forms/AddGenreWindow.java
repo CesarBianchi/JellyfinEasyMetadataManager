@@ -25,7 +25,6 @@ public class AddGenreWindow {
      * If the dialog has not been initialized yet, it creates a new JDialog with the title "JEMM - Add Genre", sets its size, adds the panel to it, packs it, and centers it on the screen.
      * 
      * @param connData The instance of ConnectJellyfinAPI to be used.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -51,7 +50,6 @@ public class AddGenreWindow {
      * After the user has defined a new genre, it creates a new JellyfinGenreItem, sets its id and name based on the text in the text fields, and returns it.
      * 
      * @return The new genre defined by the user.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -74,7 +72,6 @@ public class AddGenreWindow {
      * After the test has defined a new genre, it creates a new JellyfinGenreItem, sets its id and name based on the text in the text fields, and returns it.
      * 
      * @return The new genre defined by the user.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */

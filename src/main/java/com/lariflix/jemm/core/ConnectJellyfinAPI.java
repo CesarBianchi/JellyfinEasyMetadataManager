@@ -43,7 +43,6 @@ public class ConnectJellyfinAPI {
      * Constructor for the ConnectJellyfinAPI class.
      *
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public ConnectJellyfinAPI() {
     }
@@ -53,7 +52,6 @@ public class ConnectJellyfinAPI {
      *
      * @return The base URL for the Jellyfin API.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getcBaseURL() {
         return cBaseURL;
@@ -64,7 +62,6 @@ public class ConnectJellyfinAPI {
      *
      * @param cBaseURL The new base URL for the Jellyfin API.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setcBaseURL(String cBaseURL) {
         this.cBaseURL = cBaseURL;
@@ -75,7 +72,6 @@ public class ConnectJellyfinAPI {
      *
      * @return The token for the Jellyfin API.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getcTokenApi() {
         return cTokenApi;
@@ -86,7 +82,6 @@ public class ConnectJellyfinAPI {
      *
      * @param cTokenApi The new token for the Jellyfin API.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setcTokenApi(String cTokenApi) {
         this.cTokenApi = cTokenApi;
@@ -100,7 +95,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinUsers getUsers() throws IOException, MalformedURLException, ParseException{
         
@@ -120,7 +114,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinFolders getFolders(JellyfinParameters typeOfFolders) throws IOException, MalformedURLException, ParseException{
         
@@ -147,7 +140,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid. This can happen if the base URL or the constructed URL for the API request is not a valid URL.
      * @throws ParseException If there is an error parsing the server's response. This can happen if the server's response does not match the expected format.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinFolderMetadata getFolderMetadata(String cFolderID) throws IOException, MalformedURLException, ParseException{
         
@@ -167,7 +159,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinItems getItems(String cParentID) throws IOException, MalformedURLException, ParseException{
         
@@ -208,7 +199,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinCadPeopleItems getPeople() throws IOException, MalformedURLException, ParseException{
         
@@ -227,7 +217,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinCadGenresItems getGenres() throws IOException, MalformedURLException, ParseException{
         
@@ -246,7 +235,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinCadStudioItems getStudios() throws IOException, MalformedURLException, ParseException{
         
@@ -265,7 +253,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.2.0
-     * @author Cesar Bianchi
      */
     public JellyfinServerInfo getServerInfo() throws IOException, MalformedURLException, ParseException{
         
@@ -285,7 +272,6 @@ public class ConnectJellyfinAPI {
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinUser getAdminUser() throws IOException, MalformedURLException, ParseException{
         JellyfinUser admUsr = new JellyfinUser();
@@ -314,13 +300,11 @@ public class ConnectJellyfinAPI {
      * @param cFolderID The ID of the folder containing the item to be updated.
      * @param cItemID The ID of the item to be updated.
      * @param instanceDetails The details of the Jellyfin instance.
-     * @param nOPC The operation code for the update.
      * @return The response code from the server.
      * @throws IOException If an I/O error occurs.
      * @throws MalformedURLException If the provided URL is not valid.
      * @throws ParseException If there is an error parsing the server's response.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public int postUpdate(String cFolderID, String cItemID, JellyfinInstanceDetails instanceDetails, JellyfinParameters jemmParameters) throws IOException, MalformedURLException, ParseException{
         

@@ -57,7 +57,6 @@ public class SaveFolder {
      * @param inst The Jellyfin instance details.
      * @param cFolderID The ID of the folder.
      * @param IDItem The ID of the item.
-     * @param nOpc The option number.
      * @param jellyfinURL The URL of the Jellyfin server.
      * @param apiToken The API token for accessing the Jellyfin server.
      * @since 1.0
@@ -321,9 +320,7 @@ public class SaveFolder {
     /**
      * Sets the option number.
      *
-     * @param nOpc The option number.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setnOpc(JellyfinParameters jemmParam) {
         this.jemmParameters = jemmParam;

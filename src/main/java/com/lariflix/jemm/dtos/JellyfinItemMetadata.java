@@ -252,7 +252,7 @@ public class JellyfinItemMetadata {
     /**
      * Sets the date the item was created.
      *
-     * @param dateCreated The new creation date of the item.
+     * @param cDate The new creation date of the item.
      * @since 1.0
      * @author Cesar Bianchi
      */
@@ -444,7 +444,7 @@ public class JellyfinItemMetadata {
     /**
      * Sets the premiere date of the item.
      *
-     * @param premiereDate The new premiere date of the item.
+     * @param cDate The new premiere date of the item.
      * @since 1.2.0
      * @author Cesar Bianchi
      */
@@ -483,7 +483,7 @@ public class JellyfinItemMetadata {
     /**
      * Sets the critic rating of the item.
      *
-     * @param criticRating The new critic rating of the item.
+     * @param rating The new critic rating of the item.
      * @since 1.0
      * @author Cesar Bianchi
      */
@@ -648,7 +648,7 @@ public class JellyfinItemMetadata {
     /**
      * Sets the community rating of the item.
      *
-     * @param communityRating The new community rating of the item.
+     * @param rating The new community rating of the item.
      * @since 1.2.0
      * @author Cesar Bianchi
      */
@@ -747,7 +747,7 @@ public class JellyfinItemMetadata {
     /**
      * Sets the production year of the item.
      *
-     * @param productionYear The new production year of the item.
+     * @param prdYear The new production year of the item.
      * @since 1.2.0
      * @author Cesar Bianchi
      */

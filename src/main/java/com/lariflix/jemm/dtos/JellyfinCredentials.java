@@ -13,7 +13,6 @@ public class JellyfinCredentials {
 
     /**
      * Default constructor for JellyfinCredentials.
-     * @author Cesar Bianchi
      */
     public JellyfinCredentials() {
     }
@@ -23,7 +22,6 @@ public class JellyfinCredentials {
      *
      * @param cURL   the base URL of the Jellyfin server
      * @param cToken the API token for authentication
-     * @author Cesar Bianchi
      */
     public JellyfinCredentials(String cURL, String cToken) {
         this.setBaseURL(cURL);
@@ -34,7 +32,6 @@ public class JellyfinCredentials {
      * Retrieves the base URL of the Jellyfin server.
      *
      * @return the base URL
-     * @author Cesar Bianchi
      */
     public String getBaseURL() {
         return baseURL;
@@ -44,7 +41,6 @@ public class JellyfinCredentials {
      * Sets the base URL of the Jellyfin server.
      *
      * @param baseURL the base URL to set
-     * @author Cesar Bianchi
      */
     public void setBaseURL(String baseURL) {
         this.baseURL = baseURL;
@@ -54,7 +50,6 @@ public class JellyfinCredentials {
      * Retrieves the API token for authentication.
      *
      * @return the API token
-     * @author Cesar Bianchi
      */
     public String getTokenAPI() {
         return tokenAPI;
@@ -64,7 +59,6 @@ public class JellyfinCredentials {
      * Sets the API token for authentication.
      *
      * @param tokenAPI the API token to set
-     * @author Cesar Bianchi
      */
     public void setTokenAPI(String tokenAPI) {
         this.tokenAPI = tokenAPI;

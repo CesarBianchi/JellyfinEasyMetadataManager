@@ -39,7 +39,6 @@ public class JellyfinCadPeopleItem {
      * This constructor is used when creating a new instance of this class without setting any initial values.
      * 
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JellyfinCadPeopleItem() {
     }
@@ -49,7 +48,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the name of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getName() {
         return name;
@@ -60,7 +58,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param name the name to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setName(String name) {
         this.name = name;
@@ -71,7 +68,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the server ID of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getServerId() {
         return serverId;
@@ -82,7 +78,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param serverId the server ID to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setServerId(String serverId) {
         this.serverId = serverId;
@@ -93,7 +88,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the ID of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getId() {
         return id;
@@ -104,7 +98,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param id the ID to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setId(String id) {
         this.id = id;
@@ -115,7 +108,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the premiere date of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public Date getPremiereDate() {
         return premiereDate;
@@ -126,7 +118,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param premiereDate the premiere date to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setPremiereDate(Date premiereDate) {
         this.premiereDate = premiereDate;
@@ -137,7 +128,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the critic rating of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public int getCriticRating() {
         return criticRating;
@@ -148,7 +138,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param criticRating the critic rating to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setCriticRating(int criticRating) {
         this.criticRating = criticRating;
@@ -159,7 +148,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the official rating of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getOfficialRating() {
         return officialRating;
@@ -170,7 +158,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param officialRating the official rating to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setOfficialRating(String officialRating) {
         this.officialRating = officialRating;
@@ -181,7 +168,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the channel ID of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public Object getChannelId() {
         return channelId;
@@ -192,7 +178,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param channelId the channel ID to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setChannelId(Object channelId) {
         this.channelId = channelId;
@@ -203,7 +188,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the community rating of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public int getCommunityRating() {
         return communityRating;
@@ -214,7 +198,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param communityRating the community rating to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setCommunityRating(int communityRating) {
         this.communityRating = communityRating;
@@ -225,7 +208,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the production year of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public int getProductionYear() {
         return productionYear;
@@ -236,7 +218,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param productionYear the production year to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setProductionYear(int productionYear) {
         this.productionYear = productionYear;
@@ -247,7 +228,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the type of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getType() {
         return type;
@@ -258,7 +238,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param type the type to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setType(String type) {
         this.type = type;
@@ -269,7 +248,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @return the location type of the JellyfinCadPeopleItem
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public String getLocationType() {
         return locationType;
@@ -280,7 +258,6 @@ public class JellyfinCadPeopleItem {
      * 
      * @param locationType the location type to set
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setLocationType(String locationType) {
         this.locationType = locationType;

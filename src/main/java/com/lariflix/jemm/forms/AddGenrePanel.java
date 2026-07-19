@@ -38,7 +38,6 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * Default constructor for the AddGenrePanel class.
      * This constructor initializes the components of the panel.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -409,7 +408,6 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * This method is used to get the instance of ConnectJellyfinAPI that contains the data loaded from the Jellyfin server.
      * 
      * @return The instance of ConnectJellyfinAPI used by the AddGenrePanel.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -421,7 +419,6 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * Sets the instance of ConnectJellyfinAPI used by the AddGenrePanel and loads the existing genres.
      * 
      * @param connData The instance of ConnectJellyfinAPI to be used.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -436,7 +433,6 @@ public class AddGenrePanel extends javax.swing.JPanel {
      * If an error occurs during the request, it is logged and the method continues with the next genre.
      * After all genres have been added, the method resizes the width of the columns in the table based on the content of the cells.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */

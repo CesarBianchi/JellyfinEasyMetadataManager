@@ -41,10 +41,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws UnsupportedLookAndFeelException If the look and feel is not supported.
-     * @throws ClassNotFoundException If the look and feel class could not be found.
-     * @throws InstantiationException If the look and feel class could not be instantiated.
-     * @throws IllegalAccessException If the look and feel class or its nullary constructor is not accessible.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -86,10 +82,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws UnsupportedLookAndFeelException If the look and feel is not supported.
-     * @throws ClassNotFoundException If the look and feel class could not be found.
-     * @throws InstantiationException If the look and feel class could not be instantiated.
-     * @throws IllegalAccessException If the look and feel class or its nullary constructor is not accessible.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -109,10 +101,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws UnsupportedLookAndFeelException If the look and feel is not supported.
-     * @throws ClassNotFoundException If the look and feel class could not be found.
-     * @throws InstantiationException If the look and feel class could not be instantiated.
-     * @throws IllegalAccessException If the look and feel class or its nullary constructor is not accessible.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -132,10 +120,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws UnsupportedLookAndFeelException If the look and feel is not supported.
-     * @throws ClassNotFoundException If the look and feel class could not be found.
-     * @throws InstantiationException If the look and feel class could not be instantiated.
-     * @throws IllegalAccessException If the look and feel class or its nullary constructor is not accessible.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -156,10 +140,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws UnsupportedLookAndFeelException If the look and feel is not supported.
-     * @throws ClassNotFoundException If the look and feel class could not be found.
-     * @throws InstantiationException If the look and feel class could not be instantiated.
-     * @throws IllegalAccessException If the look and feel class or its nullary constructor is not accessible.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -180,7 +160,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws Exception If there is a problem with setting the look and feel.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -202,7 +181,6 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws Exception If there is a problem with setting the look and feel.
      * @since January/2021
      * @author Cesar Bianchi
      */
@@ -225,9 +203,7 @@ public class JellyfinLookAndFell {
      *
      * This method does not return a value.
      *
-     * @throws Exception If there is a problem with setting the look and feel.
      * @since January/2021
-     * @author Cesar Bianchi
      */
     public static void setLookAndFeelFlatFlatNordTheme() {
         try {

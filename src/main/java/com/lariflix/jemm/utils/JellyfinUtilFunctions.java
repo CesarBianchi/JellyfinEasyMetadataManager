@@ -60,7 +60,6 @@ public class JellyfinUtilFunctions {
      * @param destName The name of the file to be saved. This should include the path to the location where the file should be saved.
      * @return A boolean value indicating whether the file was successfully extracted and saved. Returns true if the operation was successful, and false otherwise.
      *
-     * @throws IOException If there is an error reading the file from the JAR file or writing the file to the specified location.
      * @since 1.1
      * @author Cesar Bianchi
      */
