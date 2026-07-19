@@ -65,6 +65,7 @@ public class Jemm {
         //Show the login window
         LoginWindow loginFrame = new LoginWindow(instanceData);
         loginFrame.setLocationRelativeTo(null);
+        loginFrame.setTitle("Jellyfin Easy Metadata Manager");
         loginFrame.setVisible(true);
     }
 

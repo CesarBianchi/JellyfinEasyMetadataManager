@@ -287,6 +287,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.setInstanceData(instanceData);
                 mainWindow.preDefineFooter();
+                mainWindow.setTitle("Jellyfin Easy Metadata Manager");
                 mainWindow.setVisible(true);
 
             } else {

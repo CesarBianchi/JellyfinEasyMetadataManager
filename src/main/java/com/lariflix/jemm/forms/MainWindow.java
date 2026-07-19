@@ -1190,7 +1190,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel4.setText("Connected on:");
+        jLabel4.setText("🟢 Connected on:");
 
         jLabel5.setText("https://www.google.com.br");
 
@@ -1794,7 +1794,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         JellyfinExportMetadata exportCSV = new JellyfinExportMetadata(cDestinationPath,instanceData);
-        
+
         // Create a new waiting dialog
         JDialog waitDiag = new JDialog(this, "Exporting data...", true);
         waitDiag.setLayout(new BorderLayout());
@@ -1816,7 +1816,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(label, BorderLayout.CENTER);
         waitDiag.add(bar, BorderLayout.SOUTH);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
+
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {      
@@ -1831,8 +1831,8 @@ public class MainWindow extends javax.swing.JFrame {
         };
         worker.execute();
         waitDiag.setVisible(true);
-            
-        
+
+
         //Build the process Result Message to show to user
         this.setCursor(Cursor.getDefaultCursor());
         JellyfinResponseStandard processResult = exportCSV.getProcessFinalResult();
@@ -1840,7 +1840,7 @@ public class MainWindow extends javax.swing.JFrame {
         String cMsg = processResult.getResponseMessage();
         String cTitle = new String();
         int msgType = 0;
-        
+
         if (processResult.isSuccess()){
             msgType = JOptionPane.INFORMATION_MESSAGE;
             cTitle = "Export Metadata is done!";
@@ -1848,8 +1848,10 @@ public class MainWindow extends javax.swing.JFrame {
             msgType = JOptionPane.ERROR_MESSAGE;
             cTitle = "Export Metadata failed!";
         }
-        new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
-        
+        if (!cDestinationPath.trim().isEmpty()){
+            new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
+        }
+
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
@@ -1957,7 +1959,10 @@ public class MainWindow extends javax.swing.JFrame {
             cTitle = "Import Metadata failed!";
             
         }
-        new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
+        
+        if (!cOriginPath.isEmpty()){
+            new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
+        }
         
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
@@ -3921,7 +3926,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @author CesarBianchi
      */
     public void preDefineFooter() {
-        jLabel4.setText("Wait... Establishing connection with: ".concat(instanceData.getCredentials().getBaseURL()));
+        jLabel4.setText("🔴 Wait... Establishing connection with: ".concat(instanceData.getCredentials().getBaseURL()));
         jLabel5.setText("");
         jLabel14.setText("");
         jLabel13.setText("");        
@@ -3940,7 +3945,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @author CesarBianchi
      */
     public void prepareFooter() {
-        jLabel4.setText("Connected On:");
+        jLabel4.setText("🟢 Connected on:");
         jLabel5.setText(instanceData.getCredentials().getBaseURL());
         jLabel14.setText("Instance Name:");
         jLabel13.setText(instanceData.getServerInfo().getServerName());
