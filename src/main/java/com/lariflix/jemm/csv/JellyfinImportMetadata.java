@@ -1149,53 +1149,43 @@ public class JellyfinImportMetadata {
 
                         item.setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
                         item.getItemMetadata().setName(fieldsInLine.get(getDefaultIndexNumber("Name")));
-
-                        item.getItemMetadata()
-                                .setOriginalTitle(fieldsInLine.get(getDefaultIndexNumber("OriginalTitle")));
+                        item.getItemMetadata().setOriginalTitle(fieldsInLine.get(getDefaultIndexNumber("OriginalTitle")));
                         item.getItemMetadata().setSortName(fieldsInLine.get(getDefaultIndexNumber("SortName")));
-                        item.getItemMetadata()
-                                .setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
-
+                        item.getItemMetadata().setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
                         item.mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
-                        item.getItemMetadata()
-                                .mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
-
+                        item.getItemMetadata().mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
                         item.mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
-                        item.getItemMetadata()
-                                .mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
-
-                        item.mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
-                        item.getItemMetadata()
-                                .mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
-
+                        item.getItemMetadata().mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                        item.mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));                        
+                        item.getItemMetadata().mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
                         item.setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
-                        item.getItemMetadata()
-                                .setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
-
+                        item.getItemMetadata().setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
                         item.mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
-                        item.getItemMetadata()
-                                .mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
-
+                        item.getItemMetadata().mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                         item.getItemMetadata().mySetDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
 
-                        ArrayList<String> lGenres = new ArrayList();
-                        lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), " ,");
+                        ArrayList<String> lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), ", ");
+                        ArrayList<JellyfinGenreItem> genres = new ArrayList();        
+                        
+                        for (int nK = 0; nK < lGenres.size(); nK++){
+                            JellyfinGenreItem genreItem = new JellyfinGenreItem();
+                            genreItem.setName(lGenres.get(nK));
+                            genres.add(genreItem);
+                        }
+                        
                         item.getItemMetadata().setGenres(lGenres);
-
-                        item.getItemMetadata().setPreferredMetadataLanguage(
-                                fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
-                        item.getItemMetadata().setPreferredMetadataCountryCode(
-                                fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
+                        
+                        item.getItemMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
+                        item.getItemMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
 
                         // TO DO TO DO
                         // item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
 
                         ArrayList<String> lTags = new ArrayList();
-                        lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), " ,");
+                        lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), ", ");
                         item.getItemMetadata().setTags(lTags);
 
-                        item.getItemMetadata()
-                                .setOverview(fieldsInLine.get(getDefaultIndexNumber("Overview")).replace(" || ", "\n"));
+                        item.getItemMetadata().setOverview(fieldsInLine.get(getDefaultIndexNumber("Overview")).replace(" || ", "\n"));
 
                         // 2nd: Finally, update the item on Jellyfin Instance. (Make API Call)
                         try {
