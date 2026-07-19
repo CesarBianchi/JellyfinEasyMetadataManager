@@ -6,6 +6,7 @@ import com.lariflix.jemm.core.LoadItemMetadata;
 import com.lariflix.jemm.core.LoadItems;
 import com.lariflix.jemm.dtos.JellyfinFolder;
 import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
+import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
@@ -205,6 +207,8 @@ public class JellyfinImportMetadata {
     public JellyfinResponseStandard startPreCheck() {
         boolean lSuccess = false;
         JellyfinResponseStandard processStatus = new JellyfinResponseStandard();
+        processStatus.setResponseCode("CSV_IMP_ERROR_01");
+        processStatus.setResponseMessage("Invalid CSV Structure");
 
         if (!this.getcOriginPath().isEmpty()) {
 
@@ -240,6 +244,7 @@ public class JellyfinImportMetadata {
             processStatus.setResponseCode("CSV_IMP_011");
             processStatus.setResponseMessage("Origin file not found");
         }
+        this.setProcessFinalResult(processStatus);
         return processStatus;
     }
 
@@ -309,7 +314,8 @@ public class JellyfinImportMetadata {
             processResult.setResponseMessage(
                     "The file had more fields/columns than expected. Probably you added new fields in your CSV. Please, make sure you are using a CSV Exported File as a sample, with the same fields/columns and structure.");
         }
-
+            
+        this.setProcessFinalResult(processResult);
         return processResult;
     }
 
@@ -436,13 +442,14 @@ public class JellyfinImportMetadata {
         }
 
         ArrayList<String> items = new ArrayList<>();
+        
+        // Usando split com limite negativo para preservar tokens vazios
+        String[] tokens = cContent.split(delimiter, -1);
 
-        String[] elements = cContent.split(delimiter);
-
-        for (int nI = 0; nI < elements.length; nI++) {
-            items.add(elements[nI]);
+        for (int i = 0; i < tokens.length; i++) {
+            items.add(tokens[i]);
         }
-
+        
         return items;
     }
 
@@ -1239,41 +1246,40 @@ public class JellyfinImportMetadata {
                 // folderUpdated.getMetadata().setOriginalTitle(fieldsInLine.get(getDefaultIndexNumber("OriginalTitle")));
 
                 folderUpdated.getMetadata().setSortName(fieldsInLine.get(getDefaultIndexNumber("SortName")));
-                folderUpdated.getMetadata()
-                        .setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
+                folderUpdated.getMetadata().setForcedSortName(fieldsInLine.get(getDefaultIndexNumber("ForcedSortName")));
                 folderUpdated.mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
-                folderUpdated.getMetadata()
-                        .mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
+                folderUpdated.getMetadata().mySetProductionYear(fieldsInLine.get(getDefaultIndexNumber("ProductionYear")));
                 folderUpdated.mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
-                folderUpdated.getMetadata()
-                        .mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
+                folderUpdated.getMetadata().mySetCommunityRating(fieldsInLine.get(getDefaultIndexNumber("CommunityRating")));
                 folderUpdated.mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
 
                 // TO DO TO DO
                 // folderUpdated.getMetadata().mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
 
                 folderUpdated.setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
-                folderUpdated.getMetadata()
-                        .setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
+                folderUpdated.getMetadata().setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
                 folderUpdated.mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                 folderUpdated.getMetadata().mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                 folderUpdated.getMetadata().mySetDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
 
-                ArrayList<String> lGenres = new ArrayList();
-                lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), " ,");
-                // TO DO TO DO
-                // folderUpdated.getMetadata().setGenreItems(lGenres);
+                ArrayList<String> lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), ", ");
+                ArrayList<JellyfinGenreItem> genres = new ArrayList();
+                
+                for (int nK = 0; nK < lGenres.size(); nK++){
+                    JellyfinGenreItem genreItem = new JellyfinGenreItem();
+                    genreItem.setName(lGenres.get(nK));
+                    genres.add(genreItem);
+                }
+                folderUpdated.getMetadata().setGenreItems(genres);
 
-                folderUpdated.getMetadata().setPreferredMetadataLanguage(
-                        fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
-                folderUpdated.getMetadata().setPreferredMetadataCountryCode(
-                        fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
+                folderUpdated.getMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
+                folderUpdated.getMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
 
                 // TO DO TO DO
                 // item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
 
                 ArrayList<String> lTags = new ArrayList();
-                lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), " ,");
+                lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), ", ");
                 folderUpdated.getMetadata().setTags(lTags);
 
                 folderUpdated.getMetadata()
