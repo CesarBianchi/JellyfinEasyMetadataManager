@@ -1955,6 +1955,7 @@ public class MainWindow extends javax.swing.JFrame {
         } else {
             msgType = JOptionPane.ERROR_MESSAGE;
             cTitle = "Import Metadata failed!";
+            
         }
         new JellyfinUtilFunctions().showMessage(cTitle, cMsg,msgType);
         
