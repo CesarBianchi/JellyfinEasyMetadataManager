@@ -73,13 +73,15 @@ public class TransformDateFormat {
         }
 
         // Convert From String to Date.
-        String convertedDate = dt.substring(6, 10).concat("-").concat(dt.substring(3, 5)).concat("-")
-                .concat(dt.substring(0, 2));
+        String convertedDate = dt.substring(6, 10).concat("-").concat(dt.substring(3, 5)).concat("-").concat(dt.substring(0, 2));
         LocalDate date = LocalDate.parse(convertedDate);
 
         // Convert From Date to Datetime
         Date dateReturn = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
+        int teste = dateReturn.getTimezoneOffset();
+        
+        dateReturn = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant().plusSeconds(teste*60));
+                
         return dateReturn;
     }
 

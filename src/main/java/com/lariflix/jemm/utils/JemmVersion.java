@@ -25,7 +25,7 @@ public class JemmVersion {
      
      */
     public String getVersion() {
-        this.setVersion("v1.3.2");
+        this.setVersion("v1.3.3");
         return version;
     }
 

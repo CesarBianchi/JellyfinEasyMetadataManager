@@ -11,6 +11,7 @@ import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.JellyfinItemMetadata;
 import com.lariflix.jemm.dtos.JellyfinItems;
+import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.forms.MainWindow;
 import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
@@ -244,7 +245,9 @@ public class JellyfinImportMetadata {
             processStatus.setResponseCode("CSV_IMP_011");
             processStatus.setResponseMessage("Origin file not found");
         }
+        
         this.setProcessFinalResult(processStatus);
+        
         return processStatus;
     }
 
@@ -555,7 +558,7 @@ public class JellyfinImportMetadata {
                 lChanged = this.compareValues(oldValue, newValue, "OfficialRating", lineNumber, lChanged);
 
                 // PremiereDate
-                oldValue = transformDate.getSimpleDateFromFull(instanceItem.getPremiereDate());
+                oldValue = transformDate.getSimpleDateFromFull(instanceItem.getItemMetadata().getPremiereDate());
                 newValue = fieldsinLine.get(getDefaultIndexNumber("PremiereDate"));
                 lChanged = this.compareValues(oldValue, newValue, "PremiereDate", lineNumber, lChanged);
 
@@ -849,8 +852,7 @@ public class JellyfinImportMetadata {
             if (!csvUtils.checkJellyfinVersionMD5(JemmVersion, JemmVersionRunning)) {
                 processResult.setIsSuccess(false);
                 processResult.setResponseCode("CSV_IMP_007");
-                processResult.setResponseMessage(
-                        "The version of JEMM used to generate this file is different from the version running. Please make sure you are using a file exported from the same version to import.");
+                processResult.setResponseMessage("The version of JEMM used to generate this file is different from the version running. Please make sure you are using a file exported from the same version to import.");
                 break;
             }
 
@@ -859,8 +861,7 @@ public class JellyfinImportMetadata {
             if (!ServerID.equals(ServerIDRunning)) {
                 processResult.setIsSuccess(false);
                 processResult.setResponseCode("CSV_IMP_008");
-                processResult.setResponseMessage(
-                        "The ServerID registered in this file is different from the ServerID where JEMM is connected. Probably, this file was generated from a different Jellyfin Instance. Please make sure you are using a file exported from the same server/instance to import.");
+                processResult.setResponseMessage("The ServerID registered in this file is different from the ServerID where JEMM is connected. Probably, this file was generated from a different Jellyfin Instance. Please make sure you are using a file exported from the same server/instance to import.");
                 break;
             }
         }
@@ -928,8 +929,7 @@ public class JellyfinImportMetadata {
                             this.updateItemInMainObj(itemID, ParentID, fieldsinLine);
                         } else {
                             itemSuccess = false;
-                            errorReport.append("- Failed to refresh parent folder ID: ").append(ParentID)
-                                    .append(" for item: ").append(itemID).append("\n");
+                            errorReport.append("- Failed to refresh parent folder ID: ").append(ParentID).append(" for item: ").append(itemID).append("\n");
                         }
                     }
 
@@ -1160,27 +1160,34 @@ public class JellyfinImportMetadata {
                         item.getItemMetadata().mySetCriticRating(fieldsInLine.get(getDefaultIndexNumber("CriticRating")));
                         item.setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
                         item.getItemMetadata().setOfficialRating(fieldsInLine.get(getDefaultIndexNumber("OfficialRating")));
+                        
                         item.mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                         item.getItemMetadata().mySetPremiereDate(fieldsInLine.get(getDefaultIndexNumber("PremiereDate")));
                         item.getItemMetadata().mySetDateCreated(fieldsInLine.get(getDefaultIndexNumber("DateCreated")));
 
                         ArrayList<String> lGenres = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Genres")), ", ");
-                        ArrayList<JellyfinGenreItem> genres = new ArrayList();        
-                        
+                        ArrayList<JellyfinGenreItem> genres = new ArrayList();
                         for (int nK = 0; nK < lGenres.size(); nK++){
                             JellyfinGenreItem genreItem = new JellyfinGenreItem();
                             genreItem.setName(lGenres.get(nK));
                             genres.add(genreItem);
                         }
-                        
                         item.getItemMetadata().setGenres(lGenres);
+                        item.getItemMetadata().setGenreItems(genres);
                         
                         item.getItemMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
                         item.getItemMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
+                       
+                        ArrayList<JellyfinStudioItem> Studios = new ArrayList();
+                        ArrayList<String> lStudios = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Studios")), ", ");
+                        for (int nK = 0; nK < lStudios.size(); nK++){
+                            JellyfinStudioItem studioItem = new JellyfinStudioItem();
+                            studioItem.setName(lStudios.get(nK));
+                            Studios.add(studioItem);
+                        }
+                        item.getItemMetadata().setStudios(Studios);
 
-                        // TO DO TO DO
-                        // item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
-
+                        
                         ArrayList<String> lTags = new ArrayList();
                         lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), ", ");
                         item.getItemMetadata().setTags(lTags);
@@ -1265,9 +1272,15 @@ public class JellyfinImportMetadata {
                 folderUpdated.getMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
                 folderUpdated.getMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
 
-                // TO DO TO DO
-                // item.getItemMetadata().setStudios(fieldsInLine.get(getDefaultIndexNumber("Studios")));
-
+                ArrayList<JellyfinStudioItem> Studios = new ArrayList();
+                ArrayList<String> lStudios = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Studios")), ", ");
+                for (int nK = 0; nK < lStudios.size(); nK++){
+                    JellyfinStudioItem studioItem = new JellyfinStudioItem();
+                    studioItem.setName(lStudios.get(nK));
+                    Studios.add(studioItem);
+                }
+                folderUpdated.getMetadata().setStudios(Studios);
+                
                 ArrayList<String> lTags = new ArrayList();
                 lTags = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Tags")), ", ");
                 folderUpdated.getMetadata().setTags(lTags);

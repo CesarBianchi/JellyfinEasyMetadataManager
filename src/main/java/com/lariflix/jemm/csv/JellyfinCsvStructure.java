@@ -429,7 +429,7 @@ public class JellyfinCsvStructure {
         for (int nI = 0; nI < Studios.size(); nI++) {
             this.Studios = this.Studios.concat(Studios.get(nI).getName());
             if ((Studios.size() - 1) != nI) {
-                this.Studios = this.removeInvalidChars(this.Studios.concat(""));
+                this.Studios = this.removeInvalidChars(this.Studios.concat(", "));
             }
         }
     }
