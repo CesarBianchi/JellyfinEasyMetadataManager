@@ -18,13 +18,28 @@
 package com.lariflix.jemm.forms;
 
 /**
+ * Panel shown as the first step of the Backdrop Image generator wizard.
  *
- * @author cesarbianchi
+ * <p>This Swing panel provides an introduction and guidance for generating
+ * backdrop images for a Jellyfin instance. It is intended to be embedded in
+ * a wizard dialog and contains only static instructional labels and branding.
+ *
+ * <p>Usage: this panel is typically instantiated and displayed by
+ * {@link BackdropGeneratorWizard} as the initial wizard step.
+ *
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see BackdropGeneratorWizard
  */
 public class BackdropWizardPanel_01 extends javax.swing.JPanel {
 
     /**
-     * Creates new form BackdropGeneratorPanel
+     * Creates a new instance of the panel and initializes Swing components.
+     *
+     * <p>The UI is constructed by the NetBeans Form Editor; this constructor
+     * delegates component creation to {@link #initComponents()}.
+     *
+     * @since 1.0
      */
     public BackdropWizardPanel_01() {
         initComponents();

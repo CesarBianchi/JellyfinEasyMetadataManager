@@ -9,7 +9,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CheckJellyfinConnectionTest {
-/*
+
+	public void CheckJellyfinConnectionTest() {
+		
+	}
+	/*
     @Test
     public void testTryConnection() throws Exception {
         // Create a mock HttpURLConnection

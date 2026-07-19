@@ -22,7 +22,6 @@ public class JellyfinConnectionResult {
      * Gets the message associated with the connection result.
      * 
      * @return The message.
-     * @author Cesar Bianchi
      */
     public String getMessage() {
         return message;
@@ -32,7 +31,6 @@ public class JellyfinConnectionResult {
      * Sets the message associated with the connection result.
      * 
      * @param message The message to set.
-     * @author Cesar Bianchi
      */
     public void setMessage(String message) {
         this.message = message;
@@ -42,7 +40,6 @@ public class JellyfinConnectionResult {
      * Gets the response code of the connection attempt.
      * 
      * @return The response code.
-     * @author Cesar Bianchi
      */
     public int getResponseCode() {
         return responseCode;
@@ -52,7 +49,6 @@ public class JellyfinConnectionResult {
      * Sets the response code of the connection attempt.
      * 
      * @param responseCode The response code to set.
-     * @author Cesar Bianchi
      */
     public void setResponseCode(int responseCode) {
         this.responseCode = responseCode;
@@ -62,7 +58,6 @@ public class JellyfinConnectionResult {
      * Checks if the connection attempt was successful.
      * 
      * @return True if connected, false otherwise.
-     * @author Cesar Bianchi
      */
     public boolean isIsConnected() {
         return isConnected;
@@ -72,7 +67,6 @@ public class JellyfinConnectionResult {
      * Sets the connection status.
      * 
      * @param isConnected The connection status to set.
-     * @author Cesar Bianchi
      */
     public void setIsConnected(boolean isConnected) {
         this.isConnected = isConnected;

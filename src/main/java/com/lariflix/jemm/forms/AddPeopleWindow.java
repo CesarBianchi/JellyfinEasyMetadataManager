@@ -26,7 +26,6 @@ public class AddPeopleWindow {
      * If the dialog has not been initialized yet, it creates a new JDialog with the title "JEMM - Add People", sets its size, adds the panel to it, packs it, and centers it on the screen.
      * 
      * @param lData The instance of ConnectJellyfinAPI to be used.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -52,7 +51,6 @@ public class AddPeopleWindow {
      * After the user has defined a new person, it creates a new JellyfinPeopleItem, sets its id, name, type, and role based on the text in the text fields and the selected item in the combo box, and returns it.
      * 
      * @return The new person defined by the user.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -76,7 +74,6 @@ public class AddPeopleWindow {
      * 
      * @return the JDialog object representing the dialog associated with this AddPeopleWindow object
      * @see JDialog
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -89,7 +86,6 @@ public class AddPeopleWindow {
      * 
      * @param dialog the JDialog object representing the dialog associated with this AddPeopleWindow object
      * @see JDialog
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -101,7 +97,6 @@ public class AddPeopleWindow {
      * Retrieves the instance of AddPeoplePanel used by the AddPeopleWindow.
      * 
      * @return The instance of AddPeoplePanel used by the AddPeopleWindow.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -113,7 +108,6 @@ public class AddPeopleWindow {
      * Sets the instance of AddPeoplePanel used by the AddPeopleWindow.
      * 
      * @param panel The instance of AddPeoplePanel to be used by the AddPeopleWindow.
-     * @author Cesar Bianchi
      * @see AddPeoplePanel
      * @see ConnectJellyfinAPI
      * @see JellyfinPeopleItem

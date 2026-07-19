@@ -38,7 +38,6 @@ public class DonationWin {
      * Default constructor for the DonationWin class.
      * 
      * @since 1.0
-     * @author CesarBianchi
      */
     public DonationWin() {
     }
@@ -50,7 +49,6 @@ public class DonationWin {
      * If the dialog is already created, it simply makes it visible.
      * 
      * @since 1.0
-     * @author CesarBianchi
      */
     public void show() {
         DonationPanel panel = new DonationPanel();

@@ -27,7 +27,6 @@ public class AddStudioWindow {
      * If the dialog has not been created yet, it creates a new dialog with the title "JEMM - Add Studio", sets its size to 1050x600, adds the panel to the dialog, packs the dialog, and centers the dialog on the screen.
      * 
      * @param lData The instance of ConnectJellyfinAPI to be used.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -52,7 +51,6 @@ public class AddStudioWindow {
      * This method makes the dialog visible, retrieves the id and name of the new studio from the text fields, and creates a new JellyfinStudioItem with the retrieved id and name.
      * 
      * @return The new JellyfinStudioItem defined by the user.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */

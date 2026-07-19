@@ -22,7 +22,6 @@ public class AboutJemmPanel extends javax.swing.JPanel {
      * This constructor initializes the components of the AboutJemmPanel and sets the text of jLabel17 to the current version of Jemm.
      *
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public AboutJemmPanel() {        
         initComponents();

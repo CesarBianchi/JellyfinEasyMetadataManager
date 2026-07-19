@@ -176,7 +176,7 @@ public class JellyfinItem {
     /**
      * Sets the premiere date.
      *
-     * @param premiereDate A String containing the new premiere date.
+     * @param cDate A String containing the new premiere date.
      * @author Cesar Bianchi
      * @since 1.0
      */
@@ -215,7 +215,7 @@ public class JellyfinItem {
     /**
      * Sets the critic rating.
      *
-     * @param criticRating An String containing the new critic rating.
+     * @param rating An String containing the new critic rating.
      * @author Cesar Bianchi
      * @since 1.0
      */
@@ -270,7 +270,7 @@ public class JellyfinItem {
     /**
      * Sets the community rating.
      *
-     * @param communityRating An integer containing the new community rating.
+     * @param rating An integer containing the new community rating.
      * @author Cesar Bianchi
      * @since 1.2.0
      */
@@ -325,7 +325,7 @@ public class JellyfinItem {
     /**
      * Sets the production year.
      *
-     * @param productionYear An String containing the new production year.
+     * @param prdYear An String containing the new production year.
      * @author Cesar Bianchi
      * @since 1.2.0
      */
@@ -479,7 +479,7 @@ public class JellyfinItem {
     /**
      * Sets the ParentID metadata.
      *
-     * @param ParentId A JellyfinItemMetadata ParentId String .
+     * @param PrtId A JellyfinItemMetadata ParentId String .
      * @author Cesar Bianchi
      * @since 1.2.0
      */

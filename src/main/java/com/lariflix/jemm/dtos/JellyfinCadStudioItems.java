@@ -30,7 +30,6 @@ public class JellyfinCadStudioItems {
      * Retrieves the list of JellyfinCadStudioItem objects.
      * 
      * @return The list of JellyfinCadStudioItem objects.
-     * @author Cesar Bianchi
      * @since 1.0
      * 
      */
@@ -42,7 +41,6 @@ public class JellyfinCadStudioItems {
      * Sets the list of JellyfinCadStudioItem objects.
      * 
      * @param items The list of JellyfinCadStudioItem objects.
-     * @author Cesar Bianchi
      * @since 1.0
      */
     public void setItems(ArrayList<JellyfinCadStudioItem> items) {
@@ -53,7 +51,6 @@ public class JellyfinCadStudioItems {
      * Retrieves the total record count.
      * 
      * @return The total record count.
-     * @author Cesar Bianchi
      * @since 1.0
      */
     public int getTotalRecordCount() {
@@ -64,7 +61,6 @@ public class JellyfinCadStudioItems {
      * Sets the total record count.
      * 
      * @param totalRecordCount The total record count.
-     * @author Cesar Bianchi
      * @since 1.0
      */
     public void setTotalRecordCount(int totalRecordCount) {
@@ -75,7 +71,6 @@ public class JellyfinCadStudioItems {
      * Retrieves the start index.
      * 
      * @return The start index.
-     * @author Cesar Bianchi
      * @since 1.0
      */
     public int getStartIndex() {
@@ -86,7 +81,6 @@ public class JellyfinCadStudioItems {
      * Sets the start index.
      * 
      * @param startIndex The start index.
-     * @author Cesar Bianchi
      * @since 1.0
      */
     public void setStartIndex(int startIndex) {

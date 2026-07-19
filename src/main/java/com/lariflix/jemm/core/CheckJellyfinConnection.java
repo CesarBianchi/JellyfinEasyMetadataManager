@@ -37,10 +37,13 @@ import java.util.logging.Logger;
 public class CheckJellyfinConnection {
 
     /**
-     * Constructor for the CheckJellyfinConnection class.
+     * Initializes any resources required by this utility.
+     *
+     * Note: this method is named similarly to a constructor but is declared
+     * with a return type and therefore is not a true Java constructor. It can
+     * be invoked to perform explicit initialization if needed.
      *
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void CheckJellyfinConnection() {
         
@@ -49,12 +52,31 @@ public class CheckJellyfinConnection {
     /**
      * Tries to establish a connection to the Jellyfin server.
      *
-     * @param cURL The URL of the Jellyfin server.
+     * <p>This method performs a synchronous HTTP GET against the server's
+     * {@code Users} endpoint using the provided API key. It performs network I/O
+     * and may block the calling thread; callers should invoke it from a
+     * background thread if used in a GUI application.
+     *
+     * @param cURL The base URL of the Jellyfin server (must include protocol
+     *             and trailing slash as appropriate).
      * @param cApiKey The API key for the Jellyfin server.
-     * @return A JellyfinConnectionResult object containing the result of the connection attempt.
+     * @return A {@link JellyfinConnectionResult} containing:
+     *         <ul>
+     *           <li>{@code responseCode} — the HTTP response code (0 if not attempted)</li>
+     *           <li>{@code isConnected} — {@code true} when the server responded with 200</li>
+     *           <li>{@code message} — the HTTP response message or an explanatory text</li>
+     *         </ul>
      * @throws MalformedURLException If the provided URL is not valid.
      * @since 1.0
-     * @author Cesar Bianchi
+     * @see JellyfinConnectionResult
+     * <p>Example:
+     * <pre>
+     * CheckJellyfinConnection checker = new CheckJellyfinConnection();
+     * JellyfinConnectionResult result = checker.tryConnection("https://my.server/", "APIKEY");
+     * if (result.getIsConnected()) {
+     *     // proceed
+     * }
+     * </pre>
      */
     public JellyfinConnectionResult tryConnection(String cURL, String cApiKey) throws MalformedURLException {
         
@@ -101,7 +123,7 @@ public class CheckJellyfinConnection {
                     message = message.concat("\n");
                     message = message.concat("Tip: If you are using a HTTPS connection (SSL), ");
                     message = message.concat("\n");
-                    message = message.concat("make sure you have the correct SSL certificate installed on your S.O.");
+                    message = message.concat("make sure you have the correct SSL certificate installed on your OS.");
                 }
                  
                 connResult.setIsConnected(false);

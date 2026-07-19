@@ -41,7 +41,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * Constructs a new AddPeoplePanel.
      * This constructor initializes the components of the panel.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -441,7 +440,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * Retrieves the instance of ConnectJellyfinAPI used by the AddPeoplePanel.
      * 
      * @return The instance of ConnectJellyfinAPI used by the AddPeoplePanel.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -453,7 +451,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * Sets the instance of ConnectJellyfinAPI to be used by the AddPeoplePanel and loads the existing people.
      * 
      * @param lData The instance of ConnectJellyfinAPI to be used.
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -468,7 +465,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * Each row in the table represents a person and contains the id and name of the person.
      * After adding the existing people to the table, it resizes the table width columns.
      * 
-     * @author Cesar Bianchi
      * @since 1.0
      
      */
@@ -538,7 +534,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      *
      * @return A JComboBox object representing the jComboBox1 of this AddPeoplePanel. This JComboBox is typically used for user input in a GUI, and contains String objects.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JComboBox<String> getjComboBox1() {
         return jComboBox1;
@@ -549,7 +544,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      *
      * @param jComboBox1 A JComboBox object that should be used as the new jComboBox1 for this AddPeoplePanel. This JComboBox is typically used for user input in a GUI, and should contain String objects.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjComboBox1(JComboBox<String> jComboBox1) {
         this.jComboBox1 = jComboBox1;
@@ -560,7 +554,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      *
      * @return A JTextField object representing the jTextField1 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JTextField getjTextField1() {
         return jTextField1;
@@ -568,10 +561,8 @@ public class AddPeoplePanel extends javax.swing.JPanel {
 
     /**
      * Retrieves the jTextField2 property of this AddPeoplePanel.
-     *
-     * @return A JTextField object representing the jTextField2 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
+     * @param jTextField1 The text to be set on jTextField11
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
@@ -582,7 +573,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      *
      * @return A JTextField object representing the jTextField2 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JTextField getjTextField2() {
         return jTextField2;
@@ -591,9 +581,7 @@ public class AddPeoplePanel extends javax.swing.JPanel {
     /**
      * Retrieves the jTextField3 property of this AddPeoplePanel.
      *
-     * @return A JTextField object representing the jTextField3 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjTextField2(JTextField jTextField2) {
         this.jTextField2 = jTextField2;
@@ -604,7 +592,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      *
      * @return A JTextField object representing the jTextField3 of this AddPeoplePanel. This JTextField is typically used for user input in a GUI.
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public JTextField getjTextField3() {
         return jTextField3;
@@ -616,7 +603,6 @@ public class AddPeoplePanel extends javax.swing.JPanel {
      * This method creates a new AboutJemmPanel and displays it in a modal JDialog. If the dialog has already been created, this method does nothing.
      *
      * @since 1.0
-     * @author Cesar Bianchi
      */
     public void setjTextField3(JTextField jTextField3) {
         this.jTextField3 = jTextField3;

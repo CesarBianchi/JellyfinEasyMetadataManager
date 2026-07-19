@@ -1,19 +1,6 @@
 /*
  * Copyright (C) 2025 cesarbianchi
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package com.lariflix.jemm.forms;
 
@@ -24,8 +11,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
+ * Simple wizard that guides the user through backdrop image generation.
  *
- * @author cesarbianchi
+ * <p>This class constructs a small Swing-based wizard window composed of a
+ * dynamic content panel and a footer panel containing navigation buttons.
+ * It currently implements the first step and a placeholder "work in
+ * progress" view for subsequent steps.
+ *
+ * <p>Example usage:
+ * <pre>
+ * BackdropGeneratorWizard wiz = new BackdropGeneratorWizard();
+ * wiz.show();
+ * </pre>
+ *
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see BackdropWizardPanel_01
+ * @see BackdropWizardPanel_Footer
  */
 public class BackdropGeneratorWizard {
 
@@ -37,10 +39,18 @@ public class BackdropGeneratorWizard {
     JButton buttonNext = new JButton("Next");
     JButton buttonCancel = new JButton("Cancel");
     
+    /**
+     * Constructs the wizard and prepares the first step UI.
+     *
+     * @since 1.0
+     */
     public BackdropGeneratorWizard() {
         this.paintStep01();
     }
     
+    /**
+     * Shows the wizard window.
+     */
     public void show(){
         // Make the frame visible
         frame.pack(); // Adjusts frame size to fit its contents
@@ -48,6 +58,9 @@ public class BackdropGeneratorWizard {
         frame.setVisible(true);       
     }
 
+    /**
+     * Prepares and paints the first step of the wizard.
+     */
     public void paintStep01(){
         //Define the actions for Cancel and Next Button
         buttonCancel.addActionListener(e -> cancelButtonPressed());
@@ -78,10 +91,17 @@ public class BackdropGeneratorWizard {
         frame.add(mainPanel);   
     }
     
+    /**
+     * Handler for the Cancel button; closes the wizard.
+     */
     private void cancelButtonPressed() {
         frame.dispose();
     }
 
+    /**
+     * Handler for the Next button; currently closes this window and shows a
+     * work-in-progress view for the next steps.
+     */
     private void nextButtonPressed() {
         frame.dispose();
         
@@ -91,6 +111,10 @@ public class BackdropGeneratorWizard {
         this.paintWIP();
     }
 
+    /**
+     * Paints the second step of the wizard. Currently unused; reserved for
+     * future implementation.
+     */
     private void paintStep02() {
         
         //Create the Main JFrame
@@ -124,6 +148,9 @@ public class BackdropGeneratorWizard {
         frame.setVisible(true);
     }
     
+    /**
+     * Shows a placeholder "work in progress" dialog for unimplemented steps.
+     */
     private void paintWIP() {
         
         //Create the Main JFrame

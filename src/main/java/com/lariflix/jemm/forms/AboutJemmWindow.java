@@ -21,7 +21,6 @@ public class AboutJemmWindow {
      * This constructor initializes the AboutJemmWindow. Additional setup should be done as needed.
      *
      * @since 1.1
-     * @author Cesar Bianchi
      */
     public AboutJemmWindow() {
     }
@@ -32,7 +31,6 @@ public class AboutJemmWindow {
      * This method creates a new AboutJemmPanel and displays it in a modal JDialog. If the dialog has already been created, this method does nothing.
      *
      * @since 1.0
-     * @author Cesar Bianchi
     */
     public void show(){
         AboutJemmPanel panel = new AboutJemmPanel();
