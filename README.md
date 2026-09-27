@@ -32,6 +32,8 @@ If you are a developer and want to contribute to this project (Bug Fixes, New Fe
 
 If you want pay me a coffee or help me to pay some costs (certificates and others things), please consider [make some donation to me](https://www.paypal.com/donate/?hosted_button_id=SUBJ5D8KVC6ZN)
 
+If you find this useful, please give the project a star!
+
 ## About Jellyfin Project
 Jellyfin is the volunteer-built media solution that puts you in control of your media. 
 Stream to any device from your own server, with no strings attached. Your media, your server, your way.
