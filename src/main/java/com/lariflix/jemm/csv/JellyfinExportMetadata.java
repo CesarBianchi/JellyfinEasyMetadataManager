@@ -369,6 +369,11 @@ public class JellyfinExportMetadata {
                 line.setGenres(items.get(nI).getItemMetadata().getGenres());
                 line.setPreferredMetadataLanguage(items.get(nI).getItemMetadata().getPreferredMetadataLanguage());
                 line.setPreferredMetadataCountryCode(items.get(nI).getItemMetadata().getPreferredMetadataCountryCode());
+                
+                line.setProviderID_imdb(items.get(nI).getItemMetadata().getProviderIds().getImdb());
+                line.setProviderID_tmdb(items.get(nI).getItemMetadata().getProviderIds().getTmdb());
+                line.setProviderID_tmdbCollection(items.get(nI).getItemMetadata().getProviderIds().getTmdbCollection());
+                
                 line.setStudios(items.get(nI).getItemMetadata().getStudios());
                 line.setTags(items.get(nI).getTags());            
                 line.setLocationType(items.get(nI).getLocationType());
@@ -401,7 +406,12 @@ public class JellyfinExportMetadata {
                     line.setDateCreated(transformDate.getSimpleDateFromFull(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getDateCreated()));                
                     line.setGenres(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getGenres());                
                     line.setPreferredMetadataLanguage(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataLanguage());
-                    line.setPreferredMetadataCountryCode(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataCountryCode());
+                    line.setPreferredMetadataCountryCode(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getPreferredMetadataCountryCode());                    
+
+                    line.setProviderID_imdb(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getProviderIds().getImdb());
+                    line.setProviderID_tmdb(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getProviderIds().getTmdb());
+                    line.setProviderID_tmdbCollection(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getProviderIds().getTmdbCollection());
+                    
                     line.setStudios(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getStudios());
                     line.setTags(items.get(nI).getSubItems().get(nJ).getSubItemMetadata().getTags());
                     line.setLocationType(items.get(nI).getSubItems().get(nJ).getLocationType());
@@ -476,7 +486,12 @@ public class JellyfinExportMetadata {
                 lineToBeAdded = lineToBeAdded.concat(newLine.getDateCreated()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getGenres()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getPreferredMetadataLanguage()).concat(delimiter);
-                lineToBeAdded = lineToBeAdded.concat(newLine.getPreferredMetadataCountryCode()).concat(delimiter);                
+                lineToBeAdded = lineToBeAdded.concat(newLine.getPreferredMetadataCountryCode()).concat(delimiter);
+                
+                lineToBeAdded = lineToBeAdded.concat(newLine.getProviderID_imdb()).concat(delimiter);
+                lineToBeAdded = lineToBeAdded.concat(newLine.getProviderID_tmdb()).concat(delimiter);
+                lineToBeAdded = lineToBeAdded.concat(newLine.getProviderID_tmdbCollection()).concat(delimiter);
+                                
                 lineToBeAdded = lineToBeAdded.concat(newLine.getStudios()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getTags()).concat(delimiter);
                 lineToBeAdded = lineToBeAdded.concat(newLine.getLocationType()).concat(delimiter);

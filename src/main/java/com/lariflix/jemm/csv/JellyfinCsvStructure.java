@@ -33,6 +33,9 @@ public class JellyfinCsvStructure {
     public String Genres = new String();
     public String PreferredMetadataLanguage = new String();
     public String PreferredMetadataCountryCode = new String();
+    public String providerID_imdb = new String();
+    public String providerID_tmdb = new String();
+    public String providerID_tmdbCollection = new String();    
     public String Studios = new String();
     public String Tags = new String();
     public String LocationType = new String();
@@ -644,6 +647,32 @@ public class JellyfinCsvStructure {
         this.ServerID = serverID;
     }
 
+    public String getProviderID_imdb() {
+        return providerID_imdb;
+    }
+
+    public void setProviderID_imdb(String providerID_imdb) {
+        this.providerID_imdb = providerID_imdb;
+    }
+
+    public String getProviderID_tmdb() {
+        return providerID_tmdb;
+    }
+
+    public void setProviderID_tmdb(String providerID_tmdb) {
+        this.providerID_tmdb = providerID_tmdb;
+    }
+
+    public String getProviderID_tmdbCollection() {
+        return providerID_tmdbCollection;
+    }
+
+    public void setProviderID_tmdbCollection(String providerID_tmdbCollection) {
+        this.providerID_tmdbCollection = providerID_tmdbCollection;
+    }
+
+    
+    
     /**
      * Gets the Overview.
      * @since 1.2.0
@@ -653,7 +682,7 @@ public class JellyfinCsvStructure {
     public String getOverview() {
         return Overview;
     }
-
+    
     /**
      * Sets the Overview.
      * @since 1.2.0
