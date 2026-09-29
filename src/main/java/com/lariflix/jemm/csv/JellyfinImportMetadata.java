@@ -1178,6 +1178,10 @@ public class JellyfinImportMetadata {
                         item.getItemMetadata().setPreferredMetadataLanguage(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataLanguage")));
                         item.getItemMetadata().setPreferredMetadataCountryCode(fieldsInLine.get(getDefaultIndexNumber("PreferredMetadataCountryCode")));
                        
+                        /****************************************************************************/
+                        /*ProviderIDs are not intentionally changed in Jellyfin to ensure integrity.*/
+                        /****************************************************************************/
+                        
                         ArrayList<JellyfinStudioItem> Studios = new ArrayList();
                         ArrayList<String> lStudios = this.myTokenizer(fieldsInLine.get(getDefaultIndexNumber("Studios")), ", ");
                         for (int nK = 0; nK < lStudios.size(); nK++){

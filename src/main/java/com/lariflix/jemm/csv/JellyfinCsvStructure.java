@@ -652,7 +652,11 @@ public class JellyfinCsvStructure {
     }
 
     public void setProviderID_imdb(String providerID_imdb) {
-        this.providerID_imdb = providerID_imdb;
+        if (providerID_imdb == null) {
+            this.providerID_imdb = "";
+        } else {
+            this.providerID_imdb = providerID_imdb;
+        }
     }
 
     public String getProviderID_tmdb() {
@@ -660,7 +664,11 @@ public class JellyfinCsvStructure {
     }
 
     public void setProviderID_tmdb(String providerID_tmdb) {
-        this.providerID_tmdb = providerID_tmdb;
+        if (providerID_tmdb == null){
+            this.providerID_tmdb = "";
+        } else {
+            this.providerID_tmdb = providerID_tmdb;
+        }
     }
 
     public String getProviderID_tmdbCollection() {
@@ -668,7 +676,11 @@ public class JellyfinCsvStructure {
     }
 
     public void setProviderID_tmdbCollection(String providerID_tmdbCollection) {
-        this.providerID_tmdbCollection = providerID_tmdbCollection;
+        if (providerID_tmdbCollection == null){
+            this.providerID_tmdbCollection = "";
+        } else {
+            this.providerID_tmdbCollection = providerID_tmdbCollection;
+        }
     }
 
     
