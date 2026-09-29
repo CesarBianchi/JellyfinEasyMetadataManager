@@ -72,6 +72,10 @@ public class JellyfinItemMetadata {
     public String aspectRatio;
     @JsonProperty("ProductionYear") 
     public int productionYear;
+    
+    @JsonProperty("ProviderIds")
+    public JellyfinProviderIds providerIds;
+    
     @JsonProperty("IsHD") 
     public boolean isHD;
     @JsonProperty("IsFolder") 
@@ -1105,6 +1109,13 @@ public class JellyfinItemMetadata {
         this.productionlocations = productionlocations;
     }
 
+    public JellyfinProviderIds getProviderIds() {
+        return providerIds;
+    }
 
+    public void setProviderIds(JellyfinProviderIds providerIds) {
+        this.providerIds = providerIds;
+    }
+    
     
 }
