@@ -9,11 +9,11 @@ With JEMM, you can easily replicate the same metadata fields defined in a librar
 
 ## To download a runnable file
 If you are not a developer or do not want to download the complete source-code and build it locally, you can do directly download the runnable file [jemm_runnable-jar-with-dependencies.jar](target/jemm_runnable-jar-with-dependencies.jar) (available at: root/target/jemm_runnable-jar-with-dependencies.jar). 
-**Java version 11 is required on your machine and you will need able an Api Key - through the "Administration options" in your Jellyfin instance.**
+**Java version 18 is required on your machine and you will need able an Api Key - through the "Administration options" in your Jellyfin instance.**
 
 ## To build locally
 If you are a developer, you can do download the project directly using your preferred git client. 
-JEMM was built using Apache NetBeans IDE 19 and Java version 11, but you can use your preferred IDE.
+JEMM was built using Apache NetBeans IDE 19 and Java version 18, but you can use your preferred IDE.
 
 ## To create an Api Key in your Jellyfin Instance
 1. Once in Jellyfin, navigate to the Jellyfin Dashboard by clicking the "hamburger" icon in the top left corner and click on Admin > Dashboard. 
