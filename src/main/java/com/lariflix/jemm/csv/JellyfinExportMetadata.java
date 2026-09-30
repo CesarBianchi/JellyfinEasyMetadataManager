@@ -145,7 +145,9 @@ public class JellyfinExportMetadata {
                                     processResult.setResponseCode("CSV_EXP_001");
                                     processResult.setResponseMessage("The export file was successfully generated on ".concat(cDestinationPath));
                                 } else {
-                                    
+                                    processResult.setIsSuccess(false);
+                                    processResult.setResponseCode("CSV_EXP_000");
+                                    processResult.setResponseMessage("The export file was created with errors or blank on ".concat(cDestinationPath));
                                 }
                             }
                         } else {

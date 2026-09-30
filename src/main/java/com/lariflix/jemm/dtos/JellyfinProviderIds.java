@@ -61,6 +61,7 @@ public class JellyfinProviderIds {
      * @author Cesar Bianchi
      */
     public JellyfinProviderIds() {
+        this.loadDefaultValues();
     }
 
     /**
@@ -82,6 +83,9 @@ public class JellyfinProviderIds {
      * @author Cesar Bianchi
      */
     public void setImdb(String imdb) {
+        if (imdb == null){
+            imdb = "";
+        }
         this.imdb = imdb;
     }
 
@@ -104,6 +108,9 @@ public class JellyfinProviderIds {
      * @author Cesar Bianchi
      */
     public void setTmdb(String tmdb) {
+        if (tmdb == null){
+            tmdb = "";                   
+        }
         this.tmdb = tmdb;
     }
 
@@ -126,6 +133,9 @@ public class JellyfinProviderIds {
      * @author Cesar Bianchi
      */
     public void setTmdbCollection(String tmdbCollection) {
+        if (tmdbCollection == null){
+            tmdbCollection = "";
+        }
         this.tmdbCollection = tmdbCollection;
     }
 
@@ -134,6 +144,9 @@ public class JellyfinProviderIds {
     }
 
     public void setTvdb(String tvdb) {
+        if (tvdb == null){
+            tvdb = "";
+        }
         this.tvdb = tvdb;
     }
 
@@ -142,6 +155,9 @@ public class JellyfinProviderIds {
     }
 
     public void setTvRage(String tvRage) {
+        if (tvRage == null){
+            tvRage = "";
+        }
         this.tvRage = tvRage;
     }
 
@@ -150,6 +166,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMusicBrainzArtist(String musicBrainzArtist) {
+        if (musicBrainzArtist == null){
+            musicBrainzArtist = "";
+        }
         this.musicBrainzArtist = musicBrainzArtist;
     }
 
@@ -158,6 +177,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMusicBrainzAlbum(String musicBrainzAlbum) {
+        if (musicBrainzAlbum == null){
+            musicBrainzAlbum = "";
+        }
         this.musicBrainzAlbum = musicBrainzAlbum;
     }
 
@@ -166,6 +188,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMusicBrainzReleaseGroup(String musicBrainzReleaseGroup) {
+        if (musicBrainzReleaseGroup == null){
+            musicBrainzReleaseGroup = "";
+        }
         this.musicBrainzReleaseGroup = musicBrainzReleaseGroup;
     }
 
@@ -174,6 +199,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMusicBrainzTrack(String musicBrainzTrack) {
+        if (musicBrainzTrack == null){
+            musicBrainzTrack = "";
+        }
         this.musicBrainzTrack = musicBrainzTrack;
     }
 
@@ -182,6 +210,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMusicBrainzReleaseTrack(String musicBrainzReleaseTrack) {
+        if (musicBrainzReleaseTrack == null){
+            musicBrainzReleaseTrack = "";
+        }
         this.musicBrainzReleaseTrack = musicBrainzReleaseTrack;
     }
 
@@ -190,6 +221,9 @@ public class JellyfinProviderIds {
     }
 
     public void setAniDB(String aniDB) {
+        if (aniDB == null){
+            aniDB = "";
+        }
         this.aniDB = aniDB;
     }
 
@@ -198,6 +232,9 @@ public class JellyfinProviderIds {
     }
 
     public void setAniList(String aniList) {
+        if (aniList == null){
+            aniList = "";
+        }
         this.aniList = aniList;
     }
 
@@ -206,6 +243,9 @@ public class JellyfinProviderIds {
     }
 
     public void setMyAnimeList(String myAnimeList) {
+        if (myAnimeList == null){ 
+            myAnimeList = "";
+        }
         this.myAnimeList = myAnimeList;
     }
 
@@ -214,6 +254,9 @@ public class JellyfinProviderIds {
     }
 
     public void setGoogleBooks(String googleBooks) {
+        if (googleBooks == null){
+            googleBooks = "";
+        }
         this.googleBooks = googleBooks;
     }
 
@@ -222,6 +265,9 @@ public class JellyfinProviderIds {
     }
 
     public void setIsbn(String isbn) {
+        if (isbn == null){
+            isbn = "";
+        }
         this.isbn = isbn;
     }
 
@@ -230,6 +276,9 @@ public class JellyfinProviderIds {
     }
 
     public void setOpenLibrary(String openLibrary) {
+        if (openLibrary == null){
+            openLibrary = "";
+        }
         this.openLibrary = openLibrary;
     }
 
@@ -238,6 +287,9 @@ public class JellyfinProviderIds {
     }
 
     public void setZap2It(String zap2It) {
+        if (zap2It == null){
+            zap2It = "";
+        }
         this.zap2It = zap2It;
     }
 
@@ -246,6 +298,9 @@ public class JellyfinProviderIds {
     }
 
     public void setAudioDbArtist(String audioDbArtist) {
+        if (audioDbArtist == null){
+            audioDbArtist = "";
+        }
         this.audioDbArtist = audioDbArtist;
     }
 
@@ -254,7 +309,32 @@ public class JellyfinProviderIds {
     }
 
     public void setAudioDbAlbum(String audioDbAlbum) {
+        if (audioDbAlbum == null){
+            audioDbAlbum = "";
+        }
         this.audioDbAlbum = audioDbAlbum;
+    }
+
+    private void loadDefaultValues() {
+        this.setAniDB("");
+        this.setAniList("");
+        this.setAudioDbAlbum("");
+        this.setAudioDbArtist("");
+        this.setGoogleBooks("");
+        this.setImdb("");
+        this.setIsbn("");
+        this.setMusicBrainzAlbum("");
+        this.setMusicBrainzArtist("");
+        this.setMusicBrainzReleaseGroup("");
+        this.setMusicBrainzReleaseTrack("");
+        this.setMusicBrainzTrack("");
+        this.setMyAnimeList("");
+        this.setOpenLibrary("");
+        this.setTmdb("");
+        this.setTmdbCollection("");
+        this.setTvRage("");
+        this.setTvdb("");
+        this.setZap2It("");
     }
     
     
