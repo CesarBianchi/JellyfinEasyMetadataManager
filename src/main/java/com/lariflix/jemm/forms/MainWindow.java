@@ -814,20 +814,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview"
+                "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview", "IMDb id", "TMDB id"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, false, true
+                false, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2315,7 +2315,6 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             waitDiag.setLocationRelativeTo(this);
 
-
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
@@ -2545,7 +2544,9 @@ public class MainWindow extends javax.swing.JFrame {
                                 item.getItemMetadata().getCustomRating(),
                                 item.getItemMetadata().getProductionYear(),
                                 item.getItemMetadata().getPath(),
-                                item.getItemMetadata().getOverview()};
+                                item.getItemMetadata().getOverview(),
+                                item.getItemMetadata().getProviderIds().getImdb(),
+                                item.getItemMetadata().getProviderIds().getTmdb()};
             model.addRow(row);
         }
         jTable5.setModel(model);
