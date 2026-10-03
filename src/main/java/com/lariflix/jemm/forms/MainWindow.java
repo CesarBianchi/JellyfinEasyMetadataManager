@@ -18,6 +18,7 @@ import com.lariflix.jemm.utils.JellyfinRatingList;
 import com.lariflix.jemm.utils.JellyfinReportTypes;
 import com.lariflix.jemm.utils.JellyfinResponseStandard;
 import com.lariflix.jemm.utils.JellyfinUtilFunctions;
+import com.lariflix.jemm.utils.JemmPlayContent;
 import com.lariflix.jemm.utils.JemmVersion;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.awt.BorderLayout;
@@ -41,6 +42,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import org.json.simple.parser.ParseException;
 import java.awt.Desktop;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -814,20 +816,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview", "IMDb id", "TMDB id"
+                "", "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview", "IMDb id", "TMDB id", "Media Type"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false
+                false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1665,6 +1667,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
         this.setContentChilds();
+        
+        this.playLineContent(evt);
+        
     }//GEN-LAST:event_jTable5MouseClicked
 
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
@@ -2523,14 +2528,24 @@ public class MainWindow extends javax.swing.JFrame {
     private void setAllFolderContent(JellyfinItems folderItems) throws java.text.ParseException {
         JellyfinItem item = new JellyfinItem();
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+        int iconColumnWidth = 30;
+        String cIconURL = new String();
         
         //Clean Grid before load again
         model = new JellyfinUtilFunctions().eraseModel(model);
         
         for (int nI = 0; nI < folderItems.getItems().size(); nI++){
             item = folderItems.getItems().get(nI);
+             
+            if (item.getItemMetadata().getMediaType().toUpperCase().trim().equals("VIDEO") ||
+                item.getItemMetadata().getMediaType().toUpperCase().trim().equals("AUDIO") ){
+                cIconURL = "/images/button-play-icon-21061.png";
+            } else {
+                cIconURL = "/images/button-play-icon-21061_PB.png";
+            }
             
-            Object[] row = { item.getId(),
+            Object[] row = { new javax.swing.ImageIcon(getClass().getResource(cIconURL)),
+                                item.getId(),
                                 item.getItemMetadata().getName(), 
                                 item.getItemMetadata().getSortName(),
                                 item.getItemMetadata().getOriginalTitle(),
@@ -2546,9 +2561,14 @@ public class MainWindow extends javax.swing.JFrame {
                                 item.getItemMetadata().getPath(),
                                 item.getItemMetadata().getOverview(),
                                 item.getItemMetadata().getProviderIds().getImdb(),
-                                item.getItemMetadata().getProviderIds().getTmdb()};
+                                item.getItemMetadata().getProviderIds().getTmdb(),
+                                item.getItemMetadata().getMediaType()};
             model.addRow(row);
         }
+        jTable5.getColumnModel().getColumn(0).setCellRenderer(jTable5.getDefaultRenderer(ImageIcon.class));
+        jTable5.getColumnModel().getColumn(0).setWidth(iconColumnWidth);
+        jTable5.getColumnModel().getColumn(0).setMinWidth(iconColumnWidth);
+        jTable5.getColumnModel().getColumn(0).setMaxWidth(iconColumnWidth);
         jTable5.setModel(model);
         
         //Resize table width columns
@@ -3980,8 +4000,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.add(label, BorderLayout.CENTER);
         waitDiag.add(bar, BorderLayout.SOUTH);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        
-        
+            
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {      
@@ -4014,6 +4033,22 @@ public class MainWindow extends javax.swing.JFrame {
         jComboBox2.setModel(new DefaultComboBoxModel<>(ratings));
         //jComboBox1.setSelectedItem("BR-L");
         //jComboBox2.setSelectedItem("BR-L");
+    }
+
+    private void playLineContent(MouseEvent evt) {
+        int lineClicked = jTable5.rowAtPoint(evt.getPoint());
+        int columnClicked = jTable5.columnAtPoint(evt.getPoint());
+        
+        // Only play content if the clicked column is "Play Icon Column"
+        if (columnClicked == 0) {
+            String itemID = (String) jTable5.getValueAt(lineClicked, 1);
+            String itemType = (String) jTable5.getValueAt(lineClicked, 18);
+            String instanceURL = instanceData.getCredentials().getBaseURL();
+            String apiKey = instanceData.getCredentials().getTokenAPI();
+            
+            JemmPlayContent toPlay = new JemmPlayContent(itemID,itemType,instanceURL,apiKey);
+           
+        }
     }
     
 }

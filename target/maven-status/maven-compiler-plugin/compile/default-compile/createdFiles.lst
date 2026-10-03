@@ -127,6 +127,7 @@ com/lariflix/jemm/forms/AddStudioPanel.class
 com/lariflix/jemm/forms/AddStudioPanel$4.class
 com/lariflix/jemm/utils/JellyfinParameters.class
 com/lariflix/jemm/dtos/JellyfinUsers.class
+com/lariflix/jemm/utils/JemmAleatoryName.class
 com/lariflix/jemm/dtos/JellyfinCadPeopleItem.class
 com/lariflix/jemm/forms/DonationPanel$2.class
 com/lariflix/jemm/forms/MainWindow$11.class
@@ -187,6 +188,7 @@ com/lariflix/jemm/csv/JellyfinCsvStructure.class
 com/lariflix/jemm/reports/JellyfinReportGenresItem.class
 com/lariflix/jemm/forms/AddStudioPanel$8.class
 com/lariflix/jemm/forms/LoginWindow$1.class
+com/lariflix/jemm/utils/JemmPlayContent.class
 com/lariflix/jemm/core/LoadFolders.class
 com/lariflix/jemm/core/LoadStudios.class
 com/lariflix/jemm/forms/MainWindow$1.class
