@@ -4110,10 +4110,7 @@ public class MainWindow extends javax.swing.JFrame {
             String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));            
             String cNFOFIle = this.loadNFOFileDialog();
             
-            //Ask to user to confirm NFO load file
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog (null, "Do you want load NFO file: ".concat(cNFOFIle),"Are you sure ?",dialogButton);
-            if(dialogResult == JOptionPane.YES_OPTION){
+            if(!cNFOFIle.isEmpty()){
                 ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
                 try {
                     NFOStructureDiag.loadTree(cNFOFIle);
@@ -4133,7 +4130,7 @@ public class MainWindow extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
 
         // Filtro para arquivos .nfo
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos NFO (*.nfo)", "nfo");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("NFO Files (*.nfo)", "nfo");
         fileChooser.setFileFilter(filter);
 
         int fileChooseDiag = fileChooser.showOpenDialog(null);

@@ -42,7 +42,10 @@ public class Movie {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<String> genre;
     
-    public String tag;
+    @JacksonXmlProperty(localName = "tag")
+    @JacksonXmlElementWrapper(useWrapping = false)    
+    public List<String> tag;
+    
     public String country;
     public Set set;
     
@@ -52,7 +55,11 @@ public class Movie {
     
     public String credits;
     public String director;
-    public Actor actor;
+
+    @JacksonXmlProperty(localName = "actor")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    public List<Actor> actor;
+    
     public Thumb thumb;
     public Fanart fanart;
 
@@ -131,11 +138,11 @@ public class Movie {
         this.genre = genre;
     }
     
-    public String getTag() {
+    public List<String> getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(List<String> tag) {
         this.tag = tag;
     }
 
@@ -179,11 +186,11 @@ public class Movie {
         this.director = director;
     }
 
-    public Actor getActor() {
+    public List<Actor> getActor() {
         return actor;
     }
 
-    public void setActor(Actor actor) {
+    public void setActor(List<Actor> actor) {
         this.actor = actor;
     }
 

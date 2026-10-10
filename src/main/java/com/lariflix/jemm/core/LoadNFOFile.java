@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
 
 /**
  *
@@ -47,18 +46,6 @@ public class LoadNFOFile {
         this.loadNFOType();
     }
     
-    public void loadXMLFile() throws IOException{
-        //1* Identify the type of media into NFO File
-        this.loadNFOType();                
-        if (!this.getNFOType().isEmpty()){            
-            if (this.getNFOType().equals("MOVIE")){                               
-                this.NFOObject.setMovie(this.loadNFOForMovie());
-            }
-        } else {
-            System.out.println("No NFO File defined to load.");
-        }
-    }
-
     public String getNfoFilePath() {
         return nfoFilePath;
     }
@@ -87,6 +74,18 @@ public class LoadNFOFile {
 
     public String getNFOType() {
         return NFOType;
+    }
+
+    public void loadXMLFile() throws IOException{
+        //1* Identify the type of media into NFO File
+        this.loadNFOType();                
+        if (!this.getNFOType().isEmpty()){            
+            if (this.getNFOType().equals("MOVIE")){                               
+                this.NFOObject.setMovie(this.loadNFOForMovie());
+            }
+        } else {
+            System.out.println("No NFO File defined to load.");
+        }
     }
     
     private void loadNFOType() {
@@ -119,11 +118,67 @@ public class LoadNFOFile {
     }
 
     public DefaultMutableTreeNode getTree() {
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(NFOObject);
         
-        //TO DO TO DO TO DO
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode("File: " + this.nfoFilePath);
+        
+        if (this.getNFOType().equals("MOVIE")){
+            DefaultMutableTreeNode movieNode  = this.loadMovieTree();
+            node.add(movieNode);
+            
+        } else if (this.getNFOType().equals("AUDIO")){
+            //TO DO TO DO
+        }   
         
         return node;
+    }
+    
+    private DefaultMutableTreeNode loadMovieTree(){
+        DefaultMutableTreeNode movieNode = new DefaultMutableTreeNode("Movie");
+        movieNode.add(new DefaultMutableTreeNode("Title: " + this.NFOObject.getMovie().getTitle()));
+        movieNode.add(new DefaultMutableTreeNode("Original Title: " + this.NFOObject.getMovie().getOriginaltitle()));
+        movieNode.add(new DefaultMutableTreeNode("Overview: " + this.NFOObject.getMovie().getPlot()));
+        movieNode.add(new DefaultMutableTreeNode("Premiere Date: " + this.NFOObject.getMovie().getPremiered().toString()));
+        movieNode.add(new DefaultMutableTreeNode("Studio: " + this.NFOObject.getMovie().getStudio()));
+        movieNode.add(new DefaultMutableTreeNode("Country: " + this.NFOObject.getMovie().getCountry()));
+        movieNode.add(new DefaultMutableTreeNode("Credits: " + this.NFOObject.getMovie().getCredits()));
+        
+        //Ratings
+        DefaultMutableTreeNode movieRatings = new DefaultMutableTreeNode("Ratings");
+        for (int nI = 0; nI < this.NFOObject.getMovie().getRatings().size(); nI++ ){
+            DefaultMutableTreeNode rating = new DefaultMutableTreeNode("Rating");
+
+            rating.add(new DefaultMutableTreeNode("Value: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getValue() ));
+            rating.add(new DefaultMutableTreeNode("Votes: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getVotes() ));
+            movieRatings.add(rating);
+        }
+        movieNode.add(movieRatings);
+                
+        //Genres
+        DefaultMutableTreeNode movieGenres = new DefaultMutableTreeNode("Genres");
+        for (int nI = 0; nI < this.NFOObject.getMovie().getGenre().size(); nI++ ){            
+            movieGenres.add(new DefaultMutableTreeNode("Genre: " + this.NFOObject.getMovie().getGenre().get(nI) ));            
+        }
+        movieNode.add(movieGenres);
+        
+        //Tags
+        DefaultMutableTreeNode movieTags = new DefaultMutableTreeNode("Tags");
+        for (int nI = 0; nI < this.NFOObject.getMovie().getTag().size(); nI++ ){            
+            movieTags.add(new DefaultMutableTreeNode("Tag: " + this.NFOObject.getMovie().getTag().get(nI) ));            
+        }
+        movieNode.add(movieTags);
+        
+        //Actors
+        DefaultMutableTreeNode movieStaff = new DefaultMutableTreeNode("Staff");
+        for (int nI = 0; nI < this.NFOObject.getMovie().getActor().size(); nI++ ){            
+            DefaultMutableTreeNode people = new DefaultMutableTreeNode("People");
+            
+            people.add(new DefaultMutableTreeNode("Name: " + this.NFOObject.getMovie().getActor().get(nI).getName() ));
+            people.add(new DefaultMutableTreeNode("Role: " + this.NFOObject.getMovie().getActor().get(nI).getRole() ));
+            movieStaff.add(people);
+        }
+        movieNode.add(movieStaff);
+        
+        return movieNode;
     }
     
 }

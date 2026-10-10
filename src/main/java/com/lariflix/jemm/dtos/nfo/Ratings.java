@@ -50,4 +50,9 @@ public class Ratings {
     public void addRating(Rating rating){
         this.rating.add(rating);
     }
+    
+    public int size(){
+        int lenght = this.rating.size();
+        return lenght;
+    }
 }

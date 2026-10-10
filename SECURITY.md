@@ -6,8 +6,8 @@ Which versions are eligible for receiving such patches depends on the CVSS v3.0 
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.3.6   | :white_check_mark: |
-| 1.3.4   | :white_check_mark: |
+| 1.3.5   | :white_check_mark: |
+| 1.3.4   | :x:                |
 | < 1.3.3 | :x:                |
 
 ## Reporting a Vulnerability
