@@ -10,6 +10,7 @@ com/lariflix/jemm/forms/LoginWindow$2.class
 com/lariflix/jemm/forms/AddGenrePanel$3.class
 com/lariflix/jemm/dtos/JellyfinFolder.class
 com/lariflix/jemm/utils/JemmVersion.class
+com/lariflix/jemm/dtos/nfo/Uniqueid.class
 com/lariflix/jemm/forms/MainWindow$34.class
 com/lariflix/jemm/forms/MainWindow$14.class
 com/lariflix/jemm/forms/MainWindow$62.class
@@ -19,6 +20,7 @@ com/lariflix/jemm/forms/MainWindow$42.class
 com/lariflix/jemm/forms/LoginWindow$7.class
 com/lariflix/jemm/forms/MainWindow$2.class
 com/lariflix/jemm/forms/AddPeoplePanel$7.class
+com/lariflix/jemm/forms/ShowNFOStructure.class
 com/lariflix/jemm/forms/MainWindow$22.class
 com/lariflix/jemm/reports/JellyfinReportPeople.class
 com/lariflix/jemm/forms/AboutJemmPanel$6.class
@@ -72,9 +74,11 @@ com/lariflix/jemm/forms/AddPeoplePanel$3.class
 com/lariflix/jemm/utils/JellyfinRatingList.class
 com/lariflix/jemm/forms/MainWindow$43.class
 com/lariflix/jemm/forms/MainWindow$63.class
+com/lariflix/jemm/forms/ShowNFOStructure$1.class
 com/lariflix/jemm/dtos/JellyfinItems.class
 com/lariflix/jemm/reports/JellyfinReportTagsStructure.class
 com/lariflix/jemm/forms/AddStudioPanel$2.class
+com/lariflix/jemm/dtos/nfo/Rating.class
 com/lariflix/jemm/forms/MainWindow$29.class
 com/lariflix/jemm/forms/AddStudioPanel$5.class
 com/lariflix/jemm/dtos/JellyfinInstanceDetails.class
@@ -90,6 +94,7 @@ com/lariflix/jemm/forms/AddGenrePanel$1.class
 com/lariflix/jemm/forms/MainWindow$8.class
 com/lariflix/jemm/core/LoadServerInfo.class
 com/lariflix/jemm/reports/JellyfinReportGenres.class
+com/lariflix/jemm/forms/ShowNFOStructure$2.class
 com/lariflix/jemm/forms/MainWindow$35.class
 com/lariflix/jemm/reports/JellyfinReportTagsItem.class
 com/lariflix/jemm/forms/MainWindow$41.class
@@ -110,6 +115,7 @@ com/lariflix/jemm/forms/AddGenrePanel$2.class
 com/lariflix/jemm/reports/JellyfinReportTags$1.class
 com/lariflix/jemm/forms/AboutJemmPanel$1.class
 com/lariflix/jemm/dtos/JellyfinUserConfiguration.class
+com/lariflix/jemm/dtos/nfo/Thumb.class
 com/lariflix/jemm/forms/AddPeoplePanel$2.class
 com/lariflix/jemm/forms/MainWindow$12.class
 com/lariflix/jemm/forms/MainWindow$64.class
@@ -137,7 +143,10 @@ com/lariflix/jemm/forms/MainWindow$17.class
 com/lariflix/jemm/forms/MainWindow$5.class
 com/lariflix/jemm/forms/MainFooterStatusPanel.class
 com/lariflix/jemm/forms/BackdropWizardPanel_01.class
+com/lariflix/jemm/core/LoadNFOFile.class
 com/lariflix/jemm/forms/MainWindow$57.class
+com/lariflix/jemm/dtos/nfo/JemmNFO.class
+com/lariflix/jemm/dtos/nfo/Fanart.class
 com/lariflix/jemm/dtos/JellyfinStudioItem.class
 com/lariflix/jemm/forms/AddPeoplePanel$4.class
 com/lariflix/jemm/dtos/JellyfinItemUpdate.class
@@ -145,6 +154,7 @@ com/lariflix/jemm/forms/MainWindow$45.class
 com/lariflix/jemm/forms/LoginWindow$4.class
 com/lariflix/jemm/forms/AddGenrePanel$10.class
 com/lariflix/jemm/forms/AboutJemmPanel$3.class
+com/lariflix/jemm/dtos/nfo/Actor.class
 com/lariflix/jemm/forms/MainWindow$71.class
 com/lariflix/jemm/forms/MainWindow$31.class
 com/lariflix/jemm/forms/MainWindow$4.class
@@ -164,12 +174,14 @@ com/lariflix/jemm/reports/JellyfinReportStudiosStructure.class
 com/lariflix/jemm/dtos/JellyfinCadStudioItems.class
 com/lariflix/jemm/dtos/JellyfinFolders.class
 com/lariflix/jemm/forms/MainWindow$32.class
+com/lariflix/jemm/dtos/nfo/Ratings.class
 com/lariflix/jemm/core/CheckJellyfinConnection.class
 com/lariflix/jemm/dtos/JellyfinConnectionResult.class
 com/lariflix/jemm/forms/AboutJemmPanel$5.class
 com/lariflix/jemm/forms/AddPeoplePanel$9.class
 com/lariflix/jemm/forms/MainWindow$3.class
 com/lariflix/jemm/forms/AddPeoplePanel$6.class
+com/lariflix/jemm/dtos/nfo/Set.class
 com/lariflix/jemm/dtos/JellyfinUserPolicy.class
 com/lariflix/jemm/forms/MainWindow$50.class
 com/lariflix/jemm/forms/MainWindow$46.class
@@ -214,3 +226,4 @@ com/lariflix/jemm/reports/JellyfinReportStudios.class
 com/lariflix/jemm/forms/BackdropGeneratorWizard.class
 com/lariflix/jemm/forms/AddGenrePanel$9.class
 com/lariflix/jemm/forms/MainWindow.class
+com/lariflix/jemm/dtos/nfo/Movie.class

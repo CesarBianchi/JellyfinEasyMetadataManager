@@ -1184,8 +1184,9 @@
                     <Component class="javax.swing.JTable" name="jTable5">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="19" rowCount="4">
-                            <Column editable="false" title="" type="java.lang.Object"/>
+                          <Table columnCount="20" rowCount="4">
+                            <Column editable="false" title="Play" type="java.lang.Object"/>
+                            <Column editable="false" title="NFO" type="java.lang.Object"/>
                             <Column editable="false" title="ID" type="java.lang.String"/>
                             <Column editable="true" title="Name" type="java.lang.String"/>
                             <Column editable="true" title="Original Title" type="java.lang.String"/>

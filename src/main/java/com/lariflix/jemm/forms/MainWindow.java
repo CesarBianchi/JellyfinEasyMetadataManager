@@ -11,6 +11,7 @@ import com.lariflix.jemm.dtos.JellyfinFolder;
 import com.lariflix.jemm.dtos.JellyfinFolderMetadata;
 import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
+import com.lariflix.jemm.dtos.JellyfinProviderIds;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
 import com.lariflix.jemm.utils.JellyfinParameters;
@@ -816,20 +817,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "", "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview", "IMDb id", "TMDB id", "Media Type"
+                "Play", "NFO", "ID", "Name", "Original Title", "Sort Name", "Created Date", "Premiere Date", "Preferred Metadata Language", "Preferred Metadata Country Code", "Critic Rating", "Community Rating", "Official Rating", "Custom Rating", "Production Year", "Path", "Overview", "IMDb id", "TMDB id", "Media Type"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false, false
+                false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1669,6 +1670,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.setContentChilds();
         
         this.playLineContent(evt);
+        this.loadNFO(evt);
         
     }//GEN-LAST:event_jTable5MouseClicked
 
@@ -2530,9 +2532,12 @@ public class MainWindow extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         int iconColumnWidth = 30;
         String cIconURL = new String();
-        
+        String cIconNFO = new String();
+                
         //Clean Grid before load again
         model = new JellyfinUtilFunctions().eraseModel(model);
+        
+        cIconNFO = "/images/load_nfo_003.png";
         
         for (int nI = 0; nI < folderItems.getItems().size(); nI++){
             item = folderItems.getItems().get(nI);
@@ -2545,6 +2550,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
             
             Object[] row = { new javax.swing.ImageIcon(getClass().getResource(cIconURL)),
+                                new javax.swing.ImageIcon(getClass().getResource(cIconNFO)),
                                 item.getId(),
                                 item.getItemMetadata().getName(), 
                                 item.getItemMetadata().getSortName(),
@@ -2565,10 +2571,19 @@ public class MainWindow extends javax.swing.JFrame {
                                 item.getItemMetadata().getMediaType()};
             model.addRow(row);
         }
+        
+        //Play Icon
         jTable5.getColumnModel().getColumn(0).setCellRenderer(jTable5.getDefaultRenderer(ImageIcon.class));
         jTable5.getColumnModel().getColumn(0).setWidth(iconColumnWidth);
         jTable5.getColumnModel().getColumn(0).setMinWidth(iconColumnWidth);
         jTable5.getColumnModel().getColumn(0).setMaxWidth(iconColumnWidth);
+        
+        //Load from NFO
+        jTable5.getColumnModel().getColumn(1).setCellRenderer(jTable5.getDefaultRenderer(ImageIcon.class));
+        jTable5.getColumnModel().getColumn(1).setWidth(iconColumnWidth);
+        jTable5.getColumnModel().getColumn(1).setMinWidth(iconColumnWidth);
+        jTable5.getColumnModel().getColumn(1).setMaxWidth(iconColumnWidth);
+        
         jTable5.setModel(model);
         
         //Resize table width columns
@@ -2887,8 +2902,8 @@ public class MainWindow extends javax.swing.JFrame {
             if (nRow >= 0){ 
                 //Get the People name and Item Name
                 cPeople = jTable6.getModel().getValueAt(nRow,1).toString();
-                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),0).toString();
-                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),1).toString();
+                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("ID")).toString();
+                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("NAME")).toString();
 
                 if (JOptionPane.showConfirmDialog(null, "Are you sure remove ".concat(cPeople).concat(" from ").concat(cItemName).concat(" ?"), "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -2988,8 +3003,8 @@ public class MainWindow extends javax.swing.JFrame {
             if (nRow >= 0){ 
                 //Get the Genre name and Item Name
                 cGenre = jTable7.getModel().getValueAt(nRow,1).toString();
-                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),0).toString();
-                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),1).toString();
+                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("ID")).toString();
+                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("NAME")).toString();
 
                 if (JOptionPane.showConfirmDialog(null, "Are you sure remove ".concat(cGenre).concat(" from ").concat(cItemName).concat(" ?"), "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -3087,8 +3102,8 @@ public class MainWindow extends javax.swing.JFrame {
             if (nRow >= 0){ 
                 //Get the Studio name and Item Name
                 cStudio = jTable8.getModel().getValueAt(nRow,1).toString();
-                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),0).toString();
-                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),1).toString();
+                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("ID")).toString();
+                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("NAME")).toString();
 
                 if (JOptionPane.showConfirmDialog(null, "Are you sure remove ".concat(cStudio).concat(" from ").concat(cItemName).concat(" ?"), "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -3189,8 +3204,8 @@ public class MainWindow extends javax.swing.JFrame {
             if (nRow >= 0){ 
                 //Get the Studio name and Item Name
                 cTagName = jTable9.getModel().getValueAt(nRow,0).toString();
-                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),0).toString();
-                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),1).toString();
+                cItemID = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("ID")).toString();
+                cItemName = jTable5.getModel().getValueAt(jTable5.getSelectedRow(),this.getLibContColumnID("NAME")).toString();
 
                 if (JOptionPane.showConfirmDialog(null, "Are you sure remove ".concat(cTagName).concat(" from ").concat(cItemName).concat(" ?"), "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -3510,7 +3525,7 @@ public class MainWindow extends javax.swing.JFrame {
         for (int nI = 0;nI < nSize; nI++){
             
             String cID1 = instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().getId();
-            String cID2 = jTable5.getModel().getValueAt(nI, 0).toString();
+            String cID2 = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("ID")).toString();
             
             if (cID1.equals(cID2)){
                 
@@ -3519,56 +3534,66 @@ public class MainWindow extends javax.swing.JFrame {
                 }
                 
                 //Name
-                String cName = jTable5.getModel().getValueAt(nI, 1).toString();
+                String cName = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("NAME")).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setName(cName);
 
                 //Original Title
-                String cOriginalTitle = jTable5.getModel().getValueAt(nI, 2).toString();
+                String cOriginalTitle = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("ORIGINAL NAME")).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setOriginalTitle(cOriginalTitle);
 
                 //Sort Name
-                String cSortName = jTable5.getModel().getValueAt(nI, 3).toString();
+                String cSortName = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("SORT NAME")).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setSortName(cSortName);
 
-                //Sort Name
-                Date createdDate = transforDate.getFullDateFromSimple(jTable5.getModel().getValueAt(nI, 4).toString());
+                //Created Date
+                Date createdDate = transforDate.getFullDateFromSimple(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("CREATED DATE")).toString());
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setDateCreated(createdDate);
 
                 //Premiere Date
-                Date premiereDate = transforDate.getFullDateFromSimple(jTable5.getModel().getValueAt(nI, 5 ).toString());
+                Date premiereDate = transforDate.getFullDateFromSimple(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("PREMIERE DATE") ).toString());
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setPremiereDate(premiereDate);
 
                 //Preferred Metadata Language
-                String preferedMetadataLang = jTable5.getModel().getValueAt(nI, 6 ).toString();
+                String preferedMetadataLang = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Preferred Metadata Language") ).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setPreferredMetadataLanguage(preferedMetadataLang);
 
                 //Preferred Metadata Country Code
-                String preferedMetadataCC = jTable5.getModel().getValueAt(nI, 7 ).toString();
+                String preferedMetadataCC = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Preferred Metadata Country Code") ).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setPreferredMetadataCountryCode(preferedMetadataCC);
                 
                 //Critic Rating
-                int criticRating = Integer.parseInt(jTable5.getModel().getValueAt(nI, 8 ).toString());
+                int criticRating = Integer.parseInt(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Critic Rating")  ).toString());
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setCriticRating(criticRating);
                 
                 //Community Rating
-                int communityRating = Integer.parseInt(jTable5.getModel().getValueAt(nI, 9 ).toString());
+                int communityRating = Integer.parseInt(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Community Rating")  ).toString());
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setCommunityRating(communityRating);
                 
                 //Oficial Rating
-                String oficialRating = jTable5.getModel().getValueAt(nI, 10 ).toString();
+                String oficialRating = jTable5.getModel().getValueAt(nI,  this.getLibContColumnID("Oficial Rating") ).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setOfficialRating(oficialRating);
                 
                 //Custom Rating
-                String customRating = jTable5.getModel().getValueAt(nI, 11 ).toString();
+                String customRating = jTable5.getModel().getValueAt(nI,  this.getLibContColumnID("Custom Rating") ).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setCustomRating(customRating);
                 
                 //Production Year
-                int productionYear = Integer.parseInt(jTable5.getModel().getValueAt(nI, 12 ).toString());
+                int productionYear = Integer.parseInt(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Production Year")  ).toString());
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setProductionYear(productionYear);
                 
                 //Overview 
-                String overview = jTable5.getModel().getValueAt(nI, 14 ).toString();
+                String overview = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Overview")  ).toString();
                 instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setOverview(overview);
+                
+                //IMDb id 
+                JellyfinProviderIds providerID = new JellyfinProviderIds();                
+                providerID.setImdb(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("IMDb id")  ).toString());
+                providerID.setTmdb(jTable5.getModel().getValueAt(nI, this.getLibContColumnID("TMDB id")  ).toString());                
+                instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setProviderIds(providerID);
+                
+                //Media Type
+                String mediaType = jTable5.getModel().getValueAt(nI, this.getLibContColumnID("Media Type")  ).toString();
+                instanceData.getFolders().getItems().get(nIndex).getFolderContent().getItems().get(nI).getItemMetadata().setMediaType(mediaType);
                 
                 //1 - Add People
                 //1.1 - Clean existing People
@@ -4035,20 +4060,90 @@ public class MainWindow extends javax.swing.JFrame {
         //jComboBox2.setSelectedItem("BR-L");
     }
 
+    private int getLibContColumnID(String columnName){
+        int nIndex = 0;
+        String colName = new String();
+        
+        if (!columnName.isEmpty()){
+            
+            colName = columnName.trim().toUpperCase();
+            for (int nI = 0; nI < jTable5.getModel().getColumnCount(); nI++){
+                if (colName.equals(jTable5.getColumnName(nI).trim().toUpperCase())){
+                    nIndex = nI;
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Looking for a column with no name. Returning zero");
+        }
+        
+        return nIndex;
+    }
+    
     private void playLineContent(MouseEvent evt) {
         int lineClicked = jTable5.rowAtPoint(evt.getPoint());
         int columnClicked = jTable5.columnAtPoint(evt.getPoint());
+        int columPlayIndex = this.getLibContColumnID("Play");
+        
         
         // Only play content if the clicked column is "Play Icon Column"
-        if (columnClicked == 0) {
-            String itemID = (String) jTable5.getValueAt(lineClicked, 1);
-            String itemType = (String) jTable5.getValueAt(lineClicked, 18);
+        if (columnClicked == columPlayIndex){
+            String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));
+            String itemType = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("MEDIA TYPE"));
             String instanceURL = instanceData.getCredentials().getBaseURL();
             String apiKey = instanceData.getCredentials().getTokenAPI();
             
             JemmPlayContent toPlay = new JemmPlayContent(itemID,itemType,instanceURL,apiKey);
            
         }
+    }
+
+    private void loadNFO(MouseEvent evt) {
+        int lineClicked = jTable5.rowAtPoint(evt.getPoint());
+        int columnClicked = jTable5.columnAtPoint(evt.getPoint());
+        int columLoadNFOIndex = this.getLibContColumnID("NFO");
+        
+        // Only open Load File Dialog if clicked column is "NFO Load File"
+        if (columnClicked == columLoadNFOIndex ){
+           
+            //Show to user a dialog to select NFO File
+            String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));            
+            String cNFOFIle = this.loadNFOFileDialog();
+            
+            //Ask to user to confirm NFO load file
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog (null, "Do you want load NFO file: ".concat(cNFOFIle),"Are you sure ?",dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
+                try {
+                    NFOStructureDiag.loadTree(cNFOFIle);
+                } catch (IOException ex) {
+                    System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
+                NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
+                NFOStructureDiag.setVisible(true);
+            }
+            
+           
+        }
+    }
+
+    private String loadNFOFileDialog() {
+        String cNFOPath = new String();
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Filtro para arquivos .nfo
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos NFO (*.nfo)", "nfo");
+        fileChooser.setFileFilter(filter);
+
+        int fileChooseDiag = fileChooser.showOpenDialog(null);
+
+        if (fileChooseDiag == JFileChooser.APPROVE_OPTION) {
+            File fileNFOChosen = fileChooser.getSelectedFile();
+            cNFOPath = fileNFOChosen.getAbsolutePath();
+        }
+        
+        return cNFOPath;
     }
     
 }
