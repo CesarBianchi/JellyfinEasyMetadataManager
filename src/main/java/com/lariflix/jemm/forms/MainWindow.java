@@ -2537,16 +2537,24 @@ public class MainWindow extends javax.swing.JFrame {
         //Clean Grid before load again
         model = new JellyfinUtilFunctions().eraseModel(model);
         
-        cIconNFO = "/images/load_nfo_003.png";
+        
         
         for (int nI = 0; nI < folderItems.getItems().size(); nI++){
             item = folderItems.getItems().get(nI);
              
+            //Define Play Button Icon in according of media type
             if (item.getItemMetadata().getMediaType().toUpperCase().trim().equals("VIDEO") ||
                 item.getItemMetadata().getMediaType().toUpperCase().trim().equals("AUDIO") ){
                 cIconURL = "/images/button-play-icon-21061.png";
             } else {
                 cIconURL = "/images/button-play-icon-21061_PB.png";
+            }
+            
+            //Define Load NFO Button Icon in according of media type
+            if (item.getItemMetadata().getMediaType().toUpperCase().trim().equals("VIDEO") ){
+                cIconNFO = "/images/load_nfo_003.png";
+            } else {
+                cIconNFO = "/images/load_nfo_003_PB.png";
             }
             
             Object[] row = { new javax.swing.ImageIcon(getClass().getResource(cIconURL)),
@@ -4102,27 +4110,35 @@ public class MainWindow extends javax.swing.JFrame {
         int lineClicked = jTable5.rowAtPoint(evt.getPoint());
         int columnClicked = jTable5.columnAtPoint(evt.getPoint());
         int columLoadNFOIndex = this.getLibContColumnID("NFO");
+        String itemType = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("MEDIA TYPE"));
         
-        // Only open Load File Dialog if clicked column is "NFO Load File"
-        if (columnClicked == columLoadNFOIndex ){
-           
-            //Show to user a dialog to select NFO File
-            String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));            
-            String cNFOFIle = this.loadNFOFileDialog();
+        //Only open Load File Dialog if Media Type is "Movie"        
+        if (itemType.trim().toUpperCase().equals("VIDEO")){
             
-            if(!cNFOFIle.isEmpty()){
-                ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
-                try {
-                    NFOStructureDiag.loadTree(cNFOFIle);
-                } catch (IOException ex) {
-                    System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            // Only open Load File Dialog if clicked column is "NFO Load File"
+            if (columnClicked == columLoadNFOIndex ){
+
+                //Show to user a dialog to select NFO File
+                String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));            
+                String cNFOFIle = this.loadNFOFileDialog();
+
+                if(!cNFOFIle.isEmpty()){
+                    ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
+                    try {
+                        NFOStructureDiag.loadTree(cNFOFIle);
+                    } catch (IOException ex) {
+                        System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                    }
+                    NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
+                    NFOStructureDiag.setVisible(true);
                 }
-                NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
-                NFOStructureDiag.setVisible(true);
+
+
             }
-            
-           
+        } else {
+            System.out.println("Is not a Movie File. NFO Load Files is not available for items non-movie yet.");
         }
+    
     }
 
     private String loadNFOFileDialog() {
