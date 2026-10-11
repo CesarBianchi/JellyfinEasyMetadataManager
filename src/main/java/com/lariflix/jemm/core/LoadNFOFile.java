@@ -124,7 +124,11 @@ public class LoadNFOFile {
         try {
             xmlMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
             xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
-            movie = xmlMapper.readValue(NFOFile, Movie.class);            
+            movie = xmlMapper.readValue(NFOFile, Movie.class);
+            
+            //Cut spaces in most commom string attributes
+            movie = this.trimSpaces(movie);
+            
         } catch (IOException ex) {
             System.getLogger(ShowNFOStructure.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -156,21 +160,52 @@ public class LoadNFOFile {
         movieNode.add(new DefaultMutableTreeNode("Title: " + this.NFOObject.getMovie().getTitle()));
         movieNode.add(new DefaultMutableTreeNode("Original Title: " + this.NFOObject.getMovie().getOriginaltitle()));
         movieNode.add(new DefaultMutableTreeNode("Overview: " + this.NFOObject.getMovie().getPlot()));
+        movieNode.add(new DefaultMutableTreeNode("Year: " + this.NFOObject.getMovie().getYear()));
         movieNode.add(new DefaultMutableTreeNode("Premiere Date: " + this.NFOObject.getMovie().getPremieredSimple()));
         movieNode.add(new DefaultMutableTreeNode("Studio: " + this.NFOObject.getMovie().getStudio()));
         movieNode.add(new DefaultMutableTreeNode("Country: " + this.NFOObject.getMovie().getCountry()));
         movieNode.add(new DefaultMutableTreeNode("Credits: " + this.NFOObject.getMovie().getCredits()));
         
-        //Ratings
-        DefaultMutableTreeNode movieRatings = new DefaultMutableTreeNode("Ratings");
-        for (int nI = 0; nI < this.NFOObject.getMovie().getRatings().size(); nI++ ){
-            DefaultMutableTreeNode rating = new DefaultMutableTreeNode("Rating");
-
-            rating.add(new DefaultMutableTreeNode("Value: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getValue() ));
-            rating.add(new DefaultMutableTreeNode("Votes: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getVotes() ));
-            movieRatings.add(rating);
+        //Provider ID: IMDB
+        if (this.NFOObject.getMovie().getImdbid() != null ){
+            movieNode.add(new DefaultMutableTreeNode("IMDB Id: " + this.NFOObject.getMovie().getImdbid()));    
+        } else {
+            if (this.NFOObject.getMovie().getUniqueid() != null){
+                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
+                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("IMDB")){
+                        movieNode.add(new DefaultMutableTreeNode("IMDB Id: " + this.NFOObject.getMovie().getUniqueid().get(nK).getValue() ));
+                        break;
+                    }
+                }
+            }
         }
-        movieNode.add(movieRatings);
+        
+        //Provider ID: TMDB
+        if (this.NFOObject.getMovie().getImdbid() != null){
+            movieNode.add(new DefaultMutableTreeNode("TMDB Id: " + this.NFOObject.getMovie().getTmdbid()));    
+        } else {
+            if (this.NFOObject.getMovie().getUniqueid() != null){
+                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
+                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("TMDB")){
+                        movieNode.add(new DefaultMutableTreeNode("TMDB Id: " + this.NFOObject.getMovie().getUniqueid().get(nK).getValue() ));
+                        break;
+                    }
+                }
+            }
+        }
+        
+        //Ratings
+        if (this.NFOObject.getMovie().getRatings() != null){
+            DefaultMutableTreeNode movieRatings = new DefaultMutableTreeNode("Ratings");
+            for (int nI = 0; nI < this.NFOObject.getMovie().getRatings().size(); nI++ ){
+                DefaultMutableTreeNode rating = new DefaultMutableTreeNode("Rating");
+
+                rating.add(new DefaultMutableTreeNode("Value: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getValue() ));
+                rating.add(new DefaultMutableTreeNode("Votes: " + this.NFOObject.getMovie().getRatings().getRating().get(nI).getVotes() ));
+                movieRatings.add(rating);
+            }
+            movieNode.add(movieRatings);
+        }
                 
         //Genres
         DefaultMutableTreeNode movieGenres = new DefaultMutableTreeNode("Genres");
@@ -215,59 +250,172 @@ public class LoadNFOFile {
         JemmNFODiffs diff = new JemmNFODiffs();
         
         //Name
-        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
-            diff = new JemmNFODiffs("Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getTitle() != null){
+            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
+                diff = new JemmNFODiffs("Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() );
+                this.addDifference(diff);
+            }
         }
         
         //Original Title
-        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
-            diff = new JemmNFODiffs( "Original Title", itemObj.getItemMetadata().getOriginalTitle(), this.NFOObject.getMovie().getTitle() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getTitle() != null){
+            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
+                diff = new JemmNFODiffs( "Original Title", itemObj.getItemMetadata().getOriginalTitle(), this.NFOObject.getMovie().getTitle() );
+                this.addDifference(diff);
+            }
         }
         
         //Sort Name
-        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getSortName())){
-            diff = new JemmNFODiffs( "Sort Name", itemObj.getItemMetadata().getSortName(), this.NFOObject.getMovie().getTitle() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getTitle() != null){
+            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getSortName())){
+                diff = new JemmNFODiffs( "Sort Name", itemObj.getItemMetadata().getSortName(), this.NFOObject.getMovie().getTitle() );
+                this.addDifference(diff);
+            }
         }
         
         //Created Date
-        String simpleDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getDateCreated());
-        if (!this.NFOObject.getMovie().getPremieredSimple().equals(simpleDate)){
-            diff = new JemmNFODiffs( "Created Date", simpleDate, this.NFOObject.getMovie().getPremieredSimple() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getPremieredSimple() != null){
+            String simpleDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getDateCreated());
+            if (!this.NFOObject.getMovie().getPremieredSimple().equals(simpleDate)){
+                diff = new JemmNFODiffs( "Created Date", simpleDate, this.NFOObject.getMovie().getPremieredSimple() );
+                this.addDifference(diff);
+            }
         }
         
         //Premiere Date
-        String sDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getPremiereDate());
-        if (!this.NFOObject.getMovie().getPremieredSimple().equals(sDate)){
-            diff = new JemmNFODiffs( "Premiere Date", sDate, this.NFOObject.getMovie().getPremieredSimple() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getPremieredSimple() != null){
+            String sDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getPremiereDate());
+            if (!this.NFOObject.getMovie().getPremieredSimple().equals(sDate)){
+                diff = new JemmNFODiffs( "Premiere Date", sDate, this.NFOObject.getMovie().getPremieredSimple() );
+                this.addDifference(diff);
+            }
         }
         
         //Critic Rating
-        if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
-            if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCriticRating() ))){
-                diff = new JemmNFODiffs( "Critic Rating", Integer.toString(itemObj.getItemMetadata().getCriticRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
-                this.addDifference(diff);
+        if (this.NFOObject.getMovie().getRatings() != null){
+            if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
+                if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCriticRating() ))){
+                    diff = new JemmNFODiffs( "Critic Rating", Integer.toString(itemObj.getItemMetadata().getCriticRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
+                    this.addDifference(diff);
+                }
             }
         }
         
         //Community Rating
-        if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
-            if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCommunityRating() ))){
-                diff = new JemmNFODiffs( "Community Rating", Integer.toString(itemObj.getItemMetadata().getCommunityRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
-                this.addDifference(diff);
+        if (this.NFOObject.getMovie().getRatings() != null){
+            if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
+                if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCommunityRating() ))){
+                    diff = new JemmNFODiffs( "Community Rating", Integer.toString(itemObj.getItemMetadata().getCommunityRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
+                    this.addDifference(diff);
+                }
             }
         }
         
         //Overview        
-        if (!this.NFOObject.getMovie().getPlot().equals(itemObj.getItemMetadata().getOverview() )){
-            diff = new JemmNFODiffs( "Overview", itemObj.getItemMetadata().getOverview(), this.NFOObject.getMovie().getPlot() );
-            this.addDifference(diff);
+        if (this.NFOObject.getMovie().getPlot() != null){
+            if (!this.NFOObject.getMovie().getPlot().equals(itemObj.getItemMetadata().getOverview() )){
+                diff = new JemmNFODiffs( "Overview", itemObj.getItemMetadata().getOverview(), this.NFOObject.getMovie().getPlot() );
+                this.addDifference(diff);
+            }
         }
         
+        //Year        
+        if (this.NFOObject.getMovie().getYear() != null){
+            if (!this.NFOObject.getMovie().getYear().equals(Integer.toString(itemObj.getItemMetadata().getProductionYear() ))){
+                diff = new JemmNFODiffs( "Year", Integer.toString(itemObj.getItemMetadata().getProductionYear()), this.NFOObject.getMovie().getYear() );
+                this.addDifference(diff);
+            }
+        }
+        
+        //Provider ID: IMDB
+        if (this.NFOObject.getMovie().getImdbid() != null){
+            if (!this.NFOObject.getMovie().getImdbid().equals( itemObj.getItemMetadata().getProviderIds().getImdb() )){                
+                diff = new JemmNFODiffs( "Imdb ID", itemObj.getItemMetadata().getProviderIds().getImdb() , this.NFOObject.getMovie().getImdbid() );
+                this.addDifference(diff);
+            }            
+        } else {
+            if (this.NFOObject.getMovie().getUniqueid() != null){
+                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
+                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("IMDB")){                        
+                        if (!this.NFOObject.getMovie().getUniqueid().get(nK).getValue().equals( itemObj.getItemMetadata().getProviderIds().getImdb() )){                                            
+                            diff = new JemmNFODiffs( "Imdb ID", itemObj.getItemMetadata().getProviderIds().getImdb() , this.NFOObject.getMovie().getUniqueid().get(nK).getValue() );
+                            this.addDifference(diff);
+                        }                        
+                        break;
+                    }
+                }
+            }
+        }
+        
+        //Provider ID: TMDB
+        if (this.NFOObject.getMovie().getTmdbid() != null){
+            
+            if (!this.NFOObject.getMovie().getTmdbid().equals( itemObj.getItemMetadata().getProviderIds().getTmdb() )){                
+                diff = new JemmNFODiffs( "Tmdb ID", itemObj.getItemMetadata().getProviderIds().getTmdb() , this.NFOObject.getMovie().getTmdbid() );
+                this.addDifference(diff);
+            }            
+        } else {
+            if (this.NFOObject.getMovie().getUniqueid() != null){
+                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
+                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("TMDB")){                        
+                        if (!this.NFOObject.getMovie().getUniqueid().get(nK).getValue().equals( itemObj.getItemMetadata().getProviderIds().getTmdb() )){                            
+                            diff = new JemmNFODiffs( "TMDB ID", itemObj.getItemMetadata().getProviderIds().getTmdb() , this.NFOObject.getMovie().getUniqueid().get(nK).getValue() );
+                            this.addDifference(diff);
+                        }                        
+                        break;
+                    }
+                }
+            }
+        }
+        
+    }
+
+    private Movie trimSpaces(Movie mov) {
+        Movie movie = mov;
+        
+        if (movie.getCountry() != null)
+            movie.setCountry(movie.getCountry().trim());
+
+        if (movie.getCredits() != null)
+            movie.setCredits(movie.getCredits().trim());
+
+        if (movie.getDirector() != null)
+            movie.setDirector(movie.getDirector().trim());
+
+        if (movie.getOriginaltitle() != null)
+            movie.setOriginaltitle(movie.getOriginaltitle().trim());
+
+        if (movie.getStudio() != null)
+            movie.setStudio(movie.getStudio().trim());
+
+        if (movie.getTagline() != null)
+            movie.setTagline(movie.getTagline().trim());
+
+        if (movie.getTitle() != null)
+            movie.setTitle(movie.getTitle().trim());
+
+        if (movie.getYear() != null)
+            movie.setYear(movie.getYear().trim());
+
+        if (movie.getPlot() != null)
+            movie.setPlot(movie.getPlot().trim());
+
+        if (movie.getImdbid() != null)
+            movie.setImdbid(movie.getImdbid().trim());
+
+        if (movie.getTmdbid() != null)
+            movie.setTmdbid(movie.getTmdbid().trim());
+
+        for (int nI = 0; nI < movie.getGenre().size(); nI++){
+            if (movie.getGenre().get(nI) != null)
+                movie.getGenre().set(nI, movie.getGenre().get(nI).trim());
+        }
+        for (int nI = 0; nI < movie.getTag().size(); nI++){
+            if (movie.getTag().get(nI) != null)
+                movie.getTag().set(nI, movie.getTag().get(nI).trim());
+        }
+        
+        return movie;
     }
 
     

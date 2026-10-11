@@ -30,14 +30,15 @@ import java.util.List;
  */
 @JacksonXmlRootElement(localName = "movie")
 public class Movie { 
-    public String title;
-    public String originaltitle;
-    public String plot;
-    public String tagline;
-    public Ratings ratings;
-    public String mpaa;
-    public Date premiered;
-    public String studio;
+    private String title;
+    private String originaltitle;
+    private String plot;
+    private String tagline;
+    private Ratings ratings;
+    private String mpaa;
+    private String year;
+    private Date premiered;
+    private String studio;
     
     @JacksonXmlProperty(localName = "genre")
     @JacksonXmlElementWrapper(useWrapping = false)
@@ -45,24 +46,27 @@ public class Movie {
     
     @JacksonXmlProperty(localName = "tag")
     @JacksonXmlElementWrapper(useWrapping = false)    
-    public List<String> tag;
+    private List<String> tag;
     
-    public String country;
-    public Set set;
+    private String country;
+    private Set set;
     
     @JacksonXmlProperty(localName = "uniqueid")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Uniqueid> uniqueid;
     
-    public String credits;
-    public String director;
+    private String imdbid;
+    private String tmdbid;
+    
+    private String credits;
+    private String director;
 
     @JacksonXmlProperty(localName = "actor")
     @JacksonXmlElementWrapper(useWrapping = false)
-    public List<Actor> actor;
+    private List<Actor> actor;
     
-    public Thumb thumb;
-    public Fanart fanart;
+    private Thumb thumb;
+    private Fanart fanart;
 
     public Movie() {
     }
@@ -217,7 +221,28 @@ public class Movie {
     public void setFanart(Fanart fanart) {
         this.fanart = fanart;
     }
-    
+    public String getYear() {
+        return year;
+    }
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getImdbid() {
+        return imdbid;
+    }
+
+    public void setImdbid(String imdbid) {
+        this.imdbid = imdbid;
+    }
+
+    public String getTmdbid() {
+        return tmdbid;
+    }
+
+    public void setTmdbid(String tmdbid) {
+        this.tmdbid = tmdbid;
+    }
     
 }
 
