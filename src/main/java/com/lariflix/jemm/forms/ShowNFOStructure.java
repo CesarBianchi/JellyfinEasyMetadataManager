@@ -19,9 +19,13 @@ package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.LoadNFOFile;
 import com.lariflix.jemm.dtos.JellyfinItem;
+import com.lariflix.jemm.dtos.nfo.JemmNFODiffs;
+import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import java.awt.Component;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultTreeModel;
@@ -234,19 +238,31 @@ public class ShowNFOStructure extends javax.swing.JFrame {
     }
 
     public void loadTree(String cNFOFile, String itemID, JellyfinItem itemObj) throws IOException{
+        //Load NFO File
         LoadNFOFile loadTree = new LoadNFOFile();
         loadTree.setNfoFilePath(cNFOFile);
         loadTree.loadXMLFile();
-        loadTree.loadDifferences(itemID,itemObj,jTable1.getModel() );
-        jTable1.setModel(loadTree.getModel());
-        
-        this.resizeTableWidthColumns(jTable1);
-        
+
+        //Load Tree with NFO content
         TreeModel model = new DefaultTreeModel(loadTree.getTree());
         jTree1.setModel(model);        
         for (int i = 0; i < jTree1.getRowCount(); i++) {
             jTree1.expandRow(i);
         }
+                
+        //Load Differences Grid
+        loadTree.loadDifferences(itemID,itemObj);
+        ArrayList<JemmNFODiffs> differences = loadTree.getDifferences();        
+        DefaultTableModel modelGrid = (DefaultTableModel) jTable1.getModel();
+        modelGrid = new JellyfinUtilFunctions().eraseModel(modelGrid);        
+        for (int nI = 0; nI < differences.size(); nI++){
+            Object[] row = { differences.get(nI).getProperty(), differences.get(nI).getAsis(), differences.get(nI).getTobe() };
+            modelGrid.addRow(row);
+        }
+        jTable1.setModel(modelGrid);
+        this.resizeTableWidthColumns(jTable1);
+        
+        
     }
     
     private void resizeTableWidthColumns(JTable table) {

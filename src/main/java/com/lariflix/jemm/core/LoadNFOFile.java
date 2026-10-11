@@ -19,18 +19,17 @@ package com.lariflix.jemm.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.nfo.JemmNFO;
+import com.lariflix.jemm.dtos.nfo.JemmNFODiffs;
 import com.lariflix.jemm.dtos.nfo.Movie;
 import com.lariflix.jemm.forms.ShowNFOStructure;
-import com.lariflix.jemm.utils.JellyfinUtilFunctions;
+import com.lariflix.jemm.utils.TransformDateFormat;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -41,7 +40,9 @@ public class LoadNFOFile {
     private String nfoFilePath = new String();
     private String NFOType = new String();    
     private JemmNFO NFOObject = new JemmNFO();
-    private DefaultTableModel modelDifs = null;
+    private ArrayList<JemmNFODiffs> differences = new ArrayList();
+    
+    
     public LoadNFOFile() {
     
     }
@@ -57,6 +58,18 @@ public class LoadNFOFile {
 
     public void setNfoFilePath(String nfoFilePath) {
         this.nfoFilePath = nfoFilePath;
+    }
+    
+    public ArrayList<JemmNFODiffs> getDifferences() {
+        return differences;
+    }
+
+    public void setDifferences(ArrayList<JemmNFODiffs> differences) {
+        this.differences = differences;
+    }
+
+    public void addDifference(JemmNFODiffs difference){
+        this.differences.add(difference);
     }
     
     private void setNFOType() throws IOException {
@@ -138,11 +151,12 @@ public class LoadNFOFile {
     }
     
     private DefaultMutableTreeNode loadMovieTree(){
+        
         DefaultMutableTreeNode movieNode = new DefaultMutableTreeNode("Movie");
         movieNode.add(new DefaultMutableTreeNode("Title: " + this.NFOObject.getMovie().getTitle()));
         movieNode.add(new DefaultMutableTreeNode("Original Title: " + this.NFOObject.getMovie().getOriginaltitle()));
         movieNode.add(new DefaultMutableTreeNode("Overview: " + this.NFOObject.getMovie().getPlot()));
-        movieNode.add(new DefaultMutableTreeNode("Premiere Date: " + this.NFOObject.getMovie().getPremiered().toString()));
+        movieNode.add(new DefaultMutableTreeNode("Premiere Date: " + this.NFOObject.getMovie().getPremieredSimple()));
         movieNode.add(new DefaultMutableTreeNode("Studio: " + this.NFOObject.getMovie().getStudio()));
         movieNode.add(new DefaultMutableTreeNode("Country: " + this.NFOObject.getMovie().getCountry()));
         movieNode.add(new DefaultMutableTreeNode("Credits: " + this.NFOObject.getMovie().getCredits()));
@@ -186,10 +200,10 @@ public class LoadNFOFile {
         return movieNode;
     }
 
-    public void loadDifferences(String itemID, JellyfinItem itemObj,TableModel paramModel) {
+    public void loadDifferences(String itemID, JellyfinItem itemObj) {
         
         if (this.getNFOType().equals("MOVIE")){
-            this.loadMovieDifferences(itemID,itemObj,paramModel);
+            this.loadMovieDifferences(itemID,itemObj);
             
         } else if (this.getNFOType().equals("AUDIO")){
             //TO DO TO DO
@@ -197,26 +211,65 @@ public class LoadNFOFile {
         
     }
 
-    private void loadMovieDifferences(String itemID, JellyfinItem itemObj,TableModel paramModel) {
-        
-        //Clean Grid before load again
-        this.modelDifs = (DefaultTableModel) paramModel;
-        this.modelDifs = new JellyfinUtilFunctions().eraseModel(this.modelDifs);
+    private void loadMovieDifferences(String itemID, JellyfinItem itemObj) {
+        JemmNFODiffs diff = new JemmNFODiffs();
         
         //Name
         if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
-            Object[] row = { "Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() };
-            this.modelDifs.addRow(row);
+            diff = new JemmNFODiffs("Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
         }
         
         //Original Title
         if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
-            Object[] row = { "Original Title", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() };
-            this.modelDifs.addRow(row);
+            diff = new JemmNFODiffs( "Original Title", itemObj.getItemMetadata().getOriginalTitle(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
         }
+        
+        //Sort Name
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getSortName())){
+            diff = new JemmNFODiffs( "Sort Name", itemObj.getItemMetadata().getSortName(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
+        }
+        
+        //Created Date
+        String simpleDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getDateCreated());
+        if (!this.NFOObject.getMovie().getPremieredSimple().equals(simpleDate)){
+            diff = new JemmNFODiffs( "Created Date", simpleDate, this.NFOObject.getMovie().getPremieredSimple() );
+            this.addDifference(diff);
+        }
+        
+        //Premiere Date
+        String sDate = new TransformDateFormat().getSimpleDateFromFull(itemObj.getItemMetadata().getPremiereDate());
+        if (!this.NFOObject.getMovie().getPremieredSimple().equals(sDate)){
+            diff = new JemmNFODiffs( "Premiere Date", sDate, this.NFOObject.getMovie().getPremieredSimple() );
+            this.addDifference(diff);
+        }
+        
+        //Critic Rating
+        if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
+            if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCriticRating() ))){
+                diff = new JemmNFODiffs( "Critic Rating", Integer.toString(itemObj.getItemMetadata().getCriticRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
+                this.addDifference(diff);
+            }
+        }
+        
+        //Community Rating
+        if (this.NFOObject.getMovie().getRatings().getRating().size() > 0){
+            if (!this.NFOObject.getMovie().getRatings().getRating().get(0).getValue().equals(Integer.toString(itemObj.getItemMetadata().getCommunityRating() ))){
+                diff = new JemmNFODiffs( "Community Rating", Integer.toString(itemObj.getItemMetadata().getCommunityRating()), this.NFOObject.getMovie().getRatings().getRating().get(0).getValue() );
+                this.addDifference(diff);
+            }
+        }
+        
+        //Overview        
+        if (!this.NFOObject.getMovie().getPlot().equals(itemObj.getItemMetadata().getOverview() )){
+            diff = new JemmNFODiffs( "Overview", itemObj.getItemMetadata().getOverview(), this.NFOObject.getMovie().getPlot() );
+            this.addDifference(diff);
+        }
+        
     }
 
-    public TableModel getModel() {
-        return this.modelDifs;
-    }
+    
+
 }

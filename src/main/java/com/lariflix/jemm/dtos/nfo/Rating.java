@@ -36,7 +36,7 @@ public class Rating {
     @JacksonXmlProperty(localName = "default", isAttribute = true)
     private Boolean defaultValue;
 
-    private Double value;
+    private String value;
     private Integer votes;
     
     
@@ -68,11 +68,11 @@ public class Rating {
         this.defaultValue = defaultValue;
     }
 
-    public Double getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

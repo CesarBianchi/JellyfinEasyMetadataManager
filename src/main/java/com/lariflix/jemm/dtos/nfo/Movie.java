@@ -20,6 +20,7 @@ package com.lariflix.jemm.dtos.nfo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.lariflix.jemm.utils.TransformDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -116,6 +117,13 @@ public class Movie {
 
     public Date getPremiered() {
         return premiered;
+    }
+    
+    public String getPremieredSimple(){
+        TransformDateFormat transforDate = new TransformDateFormat();
+        Date fullFormat = this.getPremiered();
+        String simpleFormat = transforDate.getSimpleDateFromFull(fullFormat);
+        return simpleFormat;
     }
 
     public void setPremiered(Date premiered) {
