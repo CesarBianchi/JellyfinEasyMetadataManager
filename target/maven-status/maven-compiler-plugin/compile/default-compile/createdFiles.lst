@@ -116,6 +116,7 @@ com/lariflix/jemm/reports/JellyfinReportTags$1.class
 com/lariflix/jemm/forms/AboutJemmPanel$1.class
 com/lariflix/jemm/dtos/JellyfinUserConfiguration.class
 com/lariflix/jemm/dtos/nfo/Thumb.class
+com/lariflix/jemm/forms/ShowNFOStructure$3.class
 com/lariflix/jemm/forms/AddPeoplePanel$2.class
 com/lariflix/jemm/forms/MainWindow$12.class
 com/lariflix/jemm/forms/MainWindow$64.class

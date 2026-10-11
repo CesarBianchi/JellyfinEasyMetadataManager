@@ -19,13 +19,18 @@ package com.lariflix.jemm.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
+import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.nfo.JemmNFO;
 import com.lariflix.jemm.dtos.nfo.Movie;
 import com.lariflix.jemm.forms.ShowNFOStructure;
+import com.lariflix.jemm.utils.JellyfinUtilFunctions;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -34,9 +39,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class LoadNFOFile {
     private String nfoFilePath = new String();
-    private String NFOType = new String();
+    private String NFOType = new String();    
     private JemmNFO NFOObject = new JemmNFO();
-    
+    private DefaultTableModel modelDifs = null;
     public LoadNFOFile() {
     
     }
@@ -127,7 +132,7 @@ public class LoadNFOFile {
             
         } else if (this.getNFOType().equals("AUDIO")){
             //TO DO TO DO
-        }   
+        }
         
         return node;
     }
@@ -180,5 +185,38 @@ public class LoadNFOFile {
         
         return movieNode;
     }
-    
+
+    public void loadDifferences(String itemID, JellyfinItem itemObj,TableModel paramModel) {
+        
+        if (this.getNFOType().equals("MOVIE")){
+            this.loadMovieDifferences(itemID,itemObj,paramModel);
+            
+        } else if (this.getNFOType().equals("AUDIO")){
+            //TO DO TO DO
+        }
+        
+    }
+
+    private void loadMovieDifferences(String itemID, JellyfinItem itemObj,TableModel paramModel) {
+        
+        //Clean Grid before load again
+        this.modelDifs = (DefaultTableModel) paramModel;
+        this.modelDifs = new JellyfinUtilFunctions().eraseModel(this.modelDifs);
+        
+        //Name
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
+            Object[] row = { "Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() };
+            this.modelDifs.addRow(row);
+        }
+        
+        //Original Title
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
+            Object[] row = { "Original Title", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() };
+            this.modelDifs.addRow(row);
+        }
+    }
+
+    public TableModel getModel() {
+        return this.modelDifs;
+    }
 }

@@ -4111,6 +4111,7 @@ public class MainWindow extends javax.swing.JFrame {
         int columnClicked = jTable5.columnAtPoint(evt.getPoint());
         int columLoadNFOIndex = this.getLibContColumnID("NFO");
         String itemType = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("MEDIA TYPE"));
+        JellyfinItem itemObj = new JellyfinItem();
         
         //Only open Load File Dialog if Media Type is "Movie"        
         if (itemType.trim().toUpperCase().equals("VIDEO")){
@@ -4123,9 +4124,29 @@ public class MainWindow extends javax.swing.JFrame {
                 String cNFOFIle = this.loadNFOFileDialog();
 
                 if(!cNFOFIle.isEmpty()){
+                    
+                    //Get the folder items object related the chosen by user
+                    int nFolderIndex = jList2.getSelectedIndex();        
+                    if (nFolderIndex >= 0 ) {            
+                        String cFolderId = instanceData.getFolders().getItems().get(nFolderIndex).getId();
+                        JellyfinFolderMetadata folderMetadata = new JellyfinFolderMetadata();
+                        JellyfinItems folderItems = new JellyfinItems();
+                        for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
+                            if (cFolderId.equals(instanceData.getFolders().getItems().get(nI).getId())){
+                                folderMetadata = instanceData.getFolders().getItems().get(nI).getMetadata();
+                                folderItems = instanceData.getFolders().getItems().get(nI).getFolderContent();
+                                for (int nK = 0; nK < folderItems.getItems().size(); nK++){
+                                    if (folderItems.getItems().get(nK).getId().equals(itemID)){
+                                        itemObj = folderItems.getItems().get(nK);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                                        
                     ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
                     try {
-                        NFOStructureDiag.loadTree(cNFOFIle);
+                        NFOStructureDiag.loadTree(cNFOFIle,itemID,itemObj);
                     } catch (IOException ex) {
                         System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                     }

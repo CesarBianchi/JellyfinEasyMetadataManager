@@ -18,7 +18,12 @@
 package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.LoadNFOFile;
+import com.lariflix.jemm.dtos.JellyfinItem;
+import java.awt.Component;
 import java.io.IOException;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
@@ -53,8 +58,8 @@ public class ShowNFOStructure extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Import metadata from NFO file");
@@ -122,8 +127,33 @@ public class ShowNFOStructure extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Differences to Apply"));
 
-        jTextPane1.setText("Mussum Ipsum, cacilds vidis litro abertis. \nPellentesque nec nulla ligula. \nDonec gravida turpis a vulputate ultricies. \nNullam volutpat risus nec leo commodo, ut interdum diam laoreet. \nSed non consequat odio. \nNão sou faixa preta cumpadi, sou preto inteiris, inteiris. \nAdmodum accumsan disputationi eu sit. \nVide electram sadipscing et per.");
-        jScrollPane2.setViewportView(jTextPane1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Property", "Current Value", "NFO File Value"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -131,15 +161,15 @@ public class ShowNFOStructure extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,17 +233,39 @@ public class ShowNFOStructure extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new ShowNFOStructure().setVisible(true));
     }
 
-    public void loadTree(String cNFOFile) throws IOException{
+    public void loadTree(String cNFOFile, String itemID, JellyfinItem itemObj) throws IOException{
         LoadNFOFile loadTree = new LoadNFOFile();
         loadTree.setNfoFilePath(cNFOFile);
         loadTree.loadXMLFile();
+        loadTree.loadDifferences(itemID,itemObj,jTable1.getModel() );
+        jTable1.setModel(loadTree.getModel());
+        
+        this.resizeTableWidthColumns(jTable1);
         
         TreeModel model = new DefaultTreeModel(loadTree.getTree());
-        jTree1.setModel(model);
-        
+        jTree1.setModel(model);        
         for (int i = 0; i < jTree1.getRowCount(); i++) {
             jTree1.expandRow(i);
         }
+    }
+    
+    private void resizeTableWidthColumns(JTable table) {
+        //Resize Table Columns (Width)
+        final TableColumnModel columnModel = table.getColumnModel();
+        for (int column = 0; column < table.getColumnCount(); column++) {
+            int width = 15; // Min width
+            for (int row = 0; row < table.getRowCount(); row++) {
+                TableCellRenderer renderer = table.getCellRenderer(row, column);
+                Component comp = table.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width +5 , width);
+            }
+            
+            if(width < 100)
+                width=100;
+        
+            columnModel.getColumn(column).setPreferredWidth(width);
+        }
+        table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,12 +275,10 @@ public class ShowNFOStructure extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
-
-    
 
     
 }
