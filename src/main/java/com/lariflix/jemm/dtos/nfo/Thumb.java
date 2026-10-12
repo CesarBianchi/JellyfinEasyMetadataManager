@@ -1,51 +1,77 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.dtos.nfo;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
+ * Represents a thumbnail metadata entry within an NFO document.
+ * <p>
+ * This DTO stores thumbnail attributes such as the aspect ratio and the text
+ * associated with the thumbnail representation used by Jellyfin.
+ * </p>
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmNFO
  */
 @JacksonXmlRootElement(localName = "thumb")
-public class Thumb { 
+public class Thumb {
+    /** Aspect ratio associated with the thumbnail. */
     public String aspect;
+
+    /** Descriptive text associated with the thumbnail element. */
     public String text;
 
+    /**
+     * Creates a new empty thumbnail definition.
+     *
+     * @since 1.0
+     * @see JemmNFO
+     */
     public Thumb() {
     }
 
+    /**
+     * Returns the thumbnail aspect ratio.
+     *
+     * @return the aspect ratio, or {@code null} if not set
+     * @since 1.0
+     * @see #setAspect(String)
+     */
     public String getAspect() {
         return aspect;
     }
 
+    /**
+     * Sets the thumbnail aspect ratio.
+     *
+     * @param aspect the aspect ratio to store
+     * @since 1.0
+     * @see #getAspect()
+     */
     public void setAspect(String aspect) {
         this.aspect = aspect;
     }
 
+    /**
+     * Returns the thumbnail descriptive text.
+     *
+     * @return the thumbnail text, or {@code null} if not set
+     * @since 1.0
+     * @see #setText(String)
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * Sets the thumbnail descriptive text.
+     *
+     * @param text the thumbnail text to store
+     * @since 1.0
+     * @see #getText()
+     */
     public void setText(String text) {
         this.text = text;
     }
-    
-    
 }

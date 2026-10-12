@@ -1522,26 +1522,69 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles the action when the library ID field is triggered.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #setFieldsValues()
+     */
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /**
+     * Handles the creation date field action.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #setFieldsValues()
+     */
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    /**
+     * Handles the premiere date field action.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #setFieldsValues()
+     */
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
+    /**
+     * Handles the path field action.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #setFieldsValues()
+     */
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
+    /**
+     * Exits the application.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #jMenuItem5ActionPerformed(java.awt.event.ActionEvent)
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Saves the library metadata updates for the selected folder.
+     *
+     * @param evt the action event that triggered the method
+     * @throws java.text.ParseException if the date fields cannot be parsed
+     * @since 1.0
+     * @see #saveFolder()
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if (this.checkAllMandatoryFieldsIsOk()){
@@ -1556,6 +1599,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Saves the library metadata and content updates for the selected folder.
+     *
+     * @param evt the action event that triggered the method
+     * @throws java.text.ParseException if the date fields cannot be parsed
+     * @since 1.0
+     * @see #saveFolder()
+     * @see #saveContent(boolean)
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             if (this.checkAllMandatoryFieldsIsOk()){
@@ -1572,75 +1624,202 @@ public class MainWindow extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Handles the sort name field action.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #sortNameSameOfTitle()
+     */
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    /**
+     * Refreshes the form fields when a folder is selected.
+     *
+     * @param evt the selection event that triggered the refresh
+     * @since 1.0
+     * @see #setFieldsValues()
+     */
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
         this.setFieldsValues();
     }//GEN-LAST:event_jList2ValueChanged
 
+    /**
+     * Adds a person entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addPeople(int)
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.addPeople(from_folder_tab);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Removes a person entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delPeople(int)
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.delPeople(from_folder_tab);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    /**
+     * Removes a genre entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delGenre(int)
+     */
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.delGenre(from_folder_tab);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    /**
+     * Adds a genre entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addGenre(int)
+     */
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.addGenre(from_folder_tab);
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    /**
+     * Removes a tag entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delTag(int)
+     */
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         this.delTag(from_folder_tab);
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    /**
+     * Adds a tag entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addTag(int)
+     */
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.addTag(from_folder_tab);
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    /**
+     * Removes a studio entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delStudio(int)
+     */
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.delStudio(from_folder_tab);
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    /**
+     * Adds a studio entry for the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addStudio(int)
+     */
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         this.addStudio(from_folder_tab);
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    /**
+     * Removes a person entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delPeople(int)
+     */
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         this.delPeople(from_content_tab);
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    /**
+     * Removes a genre entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delGenre(int)
+     */
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
          this.delGenre(from_content_tab);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    /**
+     * Adds a genre entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addGenre(int)
+     */
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         this.addGenre(from_content_tab);
     }//GEN-LAST:event_jButton15ActionPerformed
 
+    /**
+     * Removes a studio entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delStudio(int)
+     */
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         this.delStudio(from_content_tab);
     }//GEN-LAST:event_jButton16ActionPerformed
 
+    /**
+     * Adds a studio entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addStudio(int)
+     */
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         this.addStudio(from_content_tab);
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    /**
+     * Removes a tag entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #delTag(int)
+     */
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.delTag(from_content_tab);
     }//GEN-LAST:event_jButton18ActionPerformed
 
+    /**
+     * Adds a tag entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addTag(int)
+     */
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         this.addTag(from_content_tab);
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    /**
+     * Applies the content changes for the selected item.
+     *
+     * @param evt the action event that triggered the method
+     * @throws java.text.ParseException if the date fields cannot be parsed
+     * @since 1.0
+     * @see #saveContent(boolean)
+     */
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         try {
             if (this.checkAllMandatoryFieldsIsOk()){
@@ -1651,10 +1830,25 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    /**
+     * Exits the application.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #jButton1ActionPerformed(java.awt.event.ActionEvent)
+     */
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton21ActionPerformed
 
+    /**
+     * Initializes the form when the window opens.
+     *
+     * @param evt the window event that triggered the initialization
+     * @since 1.0
+     * @see #loadFolders()
+     * @see #prepareFooter()
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try {
@@ -1667,6 +1861,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * Handles content table selection for preview and metadata loading.
+     *
+     * @param evt the mouse event that triggered the method
+     * @since 1.0
+     * @see #setContentChilds()
+     * @see #loadNFO(java.awt.event.MouseEvent)
+     */
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
         this.setContentChilds();
         
@@ -1675,38 +1877,96 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTable5MouseClicked
 
+    /**
+     * Updates the sort name when the checkbox is clicked.
+     *
+     * @param evt the mouse event that triggered the method
+     * @since 1.0
+     * @see #sortNameSameOfTitle()
+     */
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
         this.sortNameSameOfTitle();
     }//GEN-LAST:event_jCheckBox1MouseClicked
 
+    /**
+     * Updates the sort name when the keyboard triggers the checkbox.
+     *
+     * @param evt the key event that triggered the method
+     * @since 1.0
+     * @see #sortNameSameOfTitle()
+     */
     private void jCheckBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckBox1KeyPressed
         this.sortNameSameOfTitle();
     }//GEN-LAST:event_jCheckBox1KeyPressed
 
+    /**
+     * Updates the forced name when the checkbox is clicked.
+     *
+     * @param evt the mouse event that triggered the method
+     * @since 1.0
+     * @see #forcedNameSameOfTitle()
+     */
     private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
         this.forcedNameSameOfTitle();
     }//GEN-LAST:event_jCheckBox2MouseClicked
 
+    /**
+     * Updates the forced name when the keyboard triggers the checkbox.
+     *
+     * @param evt the key event that triggered the method
+     * @since 1.0
+     * @see #forcedNameSameOfTitle()
+     */
     private void jCheckBox2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckBox2KeyPressed
         this.forcedNameSameOfTitle();
     }//GEN-LAST:event_jCheckBox2KeyPressed
 
+    /**
+     * Adds a person entry for the selected content item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #addPeople(int)
+     */
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         this.addPeople(from_content_tab);
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    /**
+     * Runs the full inventory report for the current instance.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     * @see JellyfinReportEngine
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
         this.runReport(JellyfinReportTypes.INVENTORY_FULL,instanceData);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    /**
+     * Runs the basic inventory report for the current instance.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     * @see JellyfinReportEngine
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
         this.runReport(JellyfinReportTypes.INVENTORY_BASIC,instanceData);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    /**
+     * Exits the application after confirming the user choice.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JOptionPane
+     */
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog (null, "Would you like exit JEMM?","Are you sure ?",dialogButton);
@@ -1716,6 +1976,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    /**
+     * Runs the basic genres report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         
         // Genres Basic Report Menu Item  
@@ -1723,31 +1990,73 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    /**
+     * Runs the full genres report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // Genres Full Report Menu Item
         this.runReport(JellyfinReportTypes.GENRES_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    /**
+     * Runs the basic people report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // People Basic Report Menu Item
         this.runReport(JellyfinReportTypes.PEOPLE_BASIC,instanceData);   
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    /**
+     * Runs the full people report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // People Full Report Menu Item
         this.runReport(JellyfinReportTypes.PEOPLE_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    /**
+     * Runs the basic tags report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // Tags Basic Report Menu Item
         this.runReport(JellyfinReportTypes.TAGS_BASIC,instanceData);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    /**
+     * Runs the full tags report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // Tags FULL Report Menu Item
         this.runReport(JellyfinReportTypes.TAGS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    /**
+     * Opens the project source code page in the default browser.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see Desktop
+     */
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
@@ -1760,42 +2069,105 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    /**
+     * Reloads the folder items for the current instance.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #reloadFolderItems()
+     */
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         this.reloadFolderItems();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    /**
+     * Runs the basic studios report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // Studios Basic Report Menu Item
         this.runReport(JellyfinReportTypes.STUDIOS_BASIC,instanceData);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    /**
+     * Runs the full studios report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // Studios Full Report Menu Item
         this.runReport(JellyfinReportTypes.STUDIOS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    /**
+     * Runs the full years report.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinReportTypes
+     */
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // Years Full Report Menu Item
         this.runReport(JellyfinReportTypes.YEARS_FULL,instanceData);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    /**
+     * Reloads the folder items for the active view.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #reloadFolderItems()
+     */
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.reloadFolderItems();
     }//GEN-LAST:event_jButton22ActionPerformed
 
+    /**
+     * Searches the selected folder item.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #searchFolderItem()
+     */
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         this.searchFolderItem();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    /**
+     * Searches the selected folder item from the toolbar action.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see #searchFolderItem()
+     */
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         this.searchFolderItem();
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    /**
+     * Opens the about dialog for the application.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see AboutJemmWindow
+     */
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         AboutJemmWindow aboutWindow = new AboutJemmWindow();
         aboutWindow.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    /**
+     * Exports metadata for the current instance using the selected destination.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinExportMetadata
+     */
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         //Export Button        
         String cDestinationPath = this.showSaveFileDialog();
@@ -1863,6 +2235,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    /**
+     * Imports metadata from the selected CSV file and previews the result before applying it.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see JellyfinImportMetadata
+     * @see JellyfinResponseStandard
+     */
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // Import button 
         boolean lSuccess = false;
@@ -1976,12 +2356,26 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
+    /**
+     * Opens the donation window for the project.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see DonationWin
+     */
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         DonationWin donate = new DonationWin();
         donate.show();
         
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    /**
+     * Opens the project documentation website in the default browser.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see Desktop
+     */
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
@@ -1994,6 +2388,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    /**
+     * Opens the backdrop generator wizard.
+     *
+     * @param evt the action event that triggered the method
+     * @since 1.0
+     * @see BackdropGeneratorWizard
+     */
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         //this.setVisible(false);
         BackdropGeneratorWizard backdropWizard = new BackdropGeneratorWizard();        

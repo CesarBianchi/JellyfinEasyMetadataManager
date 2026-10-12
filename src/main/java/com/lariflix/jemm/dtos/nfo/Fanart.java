@@ -1,42 +1,51 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
 package com.lariflix.jemm.dtos.nfo;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
+ * Represents a fanart entry inside an NFO metadata document.
+ * <p>
+ * This DTO is used to serialize and deserialize the fanart image reference
+ * associated with a media item in Jellyfin's NFO structure.
+ * </p>
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmNFO
  */
 @JacksonXmlRootElement(localName = "fanart")
-public class Fanart { 
+public class Fanart {
+    /** URL or path to the fanart image associated with the media item. */
     public String thumb;
 
+    /**
+     * Creates a new empty fanart definition.
+     *
+     * @since 1.0
+     * @see JemmNFO
+     */
     public Fanart() {
     }
 
+    /**
+     * Returns the fanart image URL or path.
+     *
+     * @return the fanart thumbnail path or URL, or {@code null} if it was not set
+     * @since 1.0
+     * @see #setThumb(String)
+     */
     public String getThumb() {
         return thumb;
     }
 
+    /**
+     * Sets the fanart image URL or path.
+     *
+     * @param thumb the fanart thumbnail path or URL to store
+     * @since 1.0
+     * @see #getThumb()
+     */
     public void setThumb(String thumb) {
         this.thumb = thumb;
     }
-    
-    
 }

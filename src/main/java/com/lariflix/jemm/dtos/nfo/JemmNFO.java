@@ -1,40 +1,50 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.dtos.nfo;
 
 /**
+ * Root DTO representing a Jellyfin NFO metadata document.
+ * <p>
+ * This class acts as the top-level container for a movie metadata structure,
+ * exposing the main {@link Movie} object used during serialization and
+ * deserialization of NFO content.
+ * </p>
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see Movie
  */
 public class JemmNFO {
+    /** The movie metadata represented by this NFO document. */
     Movie movie = new Movie();
 
+    /**
+     * Creates a new empty NFO document container.
+     *
+     * @since 1.0
+     * @see Movie
+     */
     public JemmNFO() {
     }
 
+    /**
+     * Returns the movie metadata associated with this NFO document.
+     *
+     * @return the movie metadata, or {@code null} if not configured
+     * @since 1.0
+     * @see #setMovie(Movie)
+     */
     public Movie getMovie() {
         return movie;
     }
 
+    /**
+     * Sets the movie metadata associated with this NFO document.
+     *
+     * @param movie the movie metadata to store
+     * @since 1.0
+     * @see #getMovie()
+     */
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
-    
-    
-    
 }

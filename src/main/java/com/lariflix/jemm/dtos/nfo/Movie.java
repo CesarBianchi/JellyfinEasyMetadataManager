@@ -1,20 +1,4 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.dtos.nfo;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
@@ -26,8 +10,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Represents a movie metadata object serialized in the Jellyfin NFO format.
+ * This DTO groups the fields used to describe a media item such as the title,
+ * plot, premiere date, ratings, genres, tags, actors, and identifiers used by
+ * Jellyfin and the import/export process.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmNFO
+ * @see Ratings
+ * @see Uniqueid
  */
 @JacksonXmlRootElement(localName = "movie")
 public class Movie { 
@@ -69,6 +61,13 @@ public class Movie {
     private Thumb thumb;
     private Fanart fanart;
 
+    /**
+     * Creates a new empty movie metadata instance and initializes the default
+     * field values.
+     *
+     * @since 1.0
+     * @see #initialize()
+     */
     public Movie() {
         this.initialize();
     }

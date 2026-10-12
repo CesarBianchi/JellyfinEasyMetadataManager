@@ -1,20 +1,4 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.core.LoadNFOFile;
@@ -33,17 +17,33 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
 /**
+ * Displays the NFO metadata tree and difference grid for comparing imported
+ * metadata against the current Jellyfin item data.
+ * <p>
+ * This Swing form helps users review the data extracted from an NFO file, see
+ * which fields differ from the connected Jellyfin record, and decide whether to
+ * apply the imported values.
+ * </p>
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmNFO
  */
 public class ShowNFOStructure extends javax.swing.JFrame {
-    
+    /** Logger used for error reporting in the Swing form. */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShowNFOStructure.class.getName());
+
+    /** NFO metadata object currently loaded for preview and comparison. */
     private JemmNFO NFOObject = new JemmNFO();
+
+    /** Indicates whether the imported NFO values should replace the target values. */
     private boolean replaceWithNFO = false;
     
     /**
-     * Creates new form jemmShowNFOFile
+     * Creates a new instance of the NFO comparison form.
+     *
+     * @since 1.0
+     * @see JemmNFO
      */
     public ShowNFOStructure() {
         initComponents();
@@ -234,7 +234,11 @@ public class ShowNFOStructure extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Launches the NFO import comparison window.
+     *
+     * @param args command-line arguments, if any
+     * @since 1.0
+     * @see ShowNFOStructure
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -258,6 +262,17 @@ public class ShowNFOStructure extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new ShowNFOStructure().setVisible(true));
     }
 
+    /**
+     * Loads the NFO content, builds the tree view, and populates the diff grid
+     * for the specified Jellyfin item.
+     *
+     * @param cNFOFile path to the NFO file to be imported
+     * @param itemID identifier of the Jellyfin item being compared
+     * @param itemObj current Jellyfin item data used to calculate differences
+     * @throws IOException if the NFO file cannot be read or parsed
+     * @since 1.0
+     * @see LoadNFOFile
+     */
     public void loadTree(String cNFOFile, String itemID, JellyfinItem itemObj) throws IOException{
         //Load NFO File
         LoadNFOFile loadTree = new LoadNFOFile();

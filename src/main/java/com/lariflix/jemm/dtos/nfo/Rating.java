@@ -1,88 +1,156 @@
-/*
- * Copyright (C) 2026 cesarbianchi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+
 package com.lariflix.jemm.dtos.nfo;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-
 /**
+ * Represents a rating element inside an NFO metadata document.
+ * <p>
+ * This DTO stores the rating metadata used by Jellyfin, including the rating
+ * name, maximum value, default indicator, current value, and vote count.
+ * </p>
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmNFO
  */
 @JacksonXmlRootElement(localName = "rating")
-public class Rating { 
+public class Rating {
+    /** Name of the rating source, such as the platform or rating system. */
     @JacksonXmlProperty(isAttribute = true)
     private String name;
 
+    /** Maximum allowed value for the rating scale. */
     @JacksonXmlProperty(isAttribute = true)
     private Integer max;
 
+    /** Indicates whether this rating is the default value for the media item. */
     @JacksonXmlProperty(localName = "default", isAttribute = true)
     private Boolean defaultValue;
 
+    /** Current rating value assigned to the media item. */
     private String value;
-    private Integer votes;
-    
-    
 
-    public Rating(){
+    /** Number of votes attributed to the rating. */
+    private Integer votes;
+
+    /**
+     * Creates an empty rating definition.
+     *
+     * @since 1.0
+     * @see JemmNFO
+     */
+    public Rating() {
     }
 
+    /**
+     * Returns the rating source name.
+     *
+     * @return the rating name, or {@code null} if not set
+     * @since 1.0
+     * @see #setName(String)
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the rating source name.
+     *
+     * @param name the rating name to store
+     * @since 1.0
+     * @see #getName()
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns the maximum value allowed by the rating scale.
+     *
+     * @return the maximum rating value, or {@code null} if not set
+     * @since 1.0
+     * @see #setMax(Integer)
+     */
     public Integer getMax() {
         return max;
     }
 
+    /**
+     * Sets the maximum value allowed by the rating scale.
+     *
+     * @param max the maximum rating value
+     * @since 1.0
+     * @see #getMax()
+     */
     public void setMax(Integer max) {
         this.max = max;
     }
 
+    /**
+     * Indicates whether this rating is the default one for the media item.
+     *
+     * @return {@code true} if this is the default rating, otherwise {@code false}
+     * @since 1.0
+     * @see #setDefaultValue(Boolean)
+     */
     public Boolean getDefaultValue() {
         return defaultValue;
     }
 
+    /**
+     * Sets whether this rating is the default rating for the media item.
+     *
+     * @param defaultValue {@code true} if this is the default rating
+     * @since 1.0
+     * @see #getDefaultValue()
+     */
     public void setDefaultValue(Boolean defaultValue) {
         this.defaultValue = defaultValue;
     }
 
+    /**
+     * Returns the current rating value.
+     *
+     * @return the rating value, or {@code null} if not set
+     * @since 1.0
+     * @see #setValue(String)
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Sets the current rating value.
+     *
+     * @param value the rating value to store
+     * @since 1.0
+     * @see #getValue()
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * Returns the number of votes for this rating.
+     *
+     * @return the vote count, or {@code null} if not set
+     * @since 1.0
+     * @see #setVotes(Integer)
+     */
     public Integer getVotes() {
         return votes;
     }
 
+    /**
+     * Sets the number of votes for this rating.
+     *
+     * @param votes the vote count to store
+     * @since 1.0
+     * @see #getVotes()
+     */
     public void setVotes(Integer votes) {
         this.votes = votes;
     }
-
-    
 }
