@@ -4415,6 +4415,15 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Generates the requested report for the supplied Jellyfin instance.
+     *
+     * @param jfReportTypes type of report to generate
+     * @param instanceData Jellyfin instance data used to build the report
+     * @since 1.0
+     * @see JellyfinReportEngine
+     * @see JellyfinReportTypes
+     */
     private void runReport(JellyfinReportTypes jfReportTypes, JellyfinInstanceDetails instanceData) {
         
         // Create a new waiting dialog
@@ -4463,6 +4472,12 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
 
+    /**
+     * Populates the rating combo boxes with the supported rating values.
+     *
+     * @since 1.0
+     * @see JellyfinRatingList
+     */
     private void loadRatingCombos() {
         String[] ratings = new JellyfinRatingList().getItems();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(ratings);
@@ -4473,6 +4488,15 @@ public class MainWindow extends javax.swing.JFrame {
         //jComboBox2.setSelectedItem("BR-L");
     }
 
+    /**
+     * Finds the index of a content table column by its name, ignoring case.
+     * Returns {@code 0} if the name is empty or no matching column is found.
+     *
+     * @param columnName name of the content table column
+     * @return index of the matching column, or {@code 0} if none is found
+     * @since 1.0
+     * @see #jTable5
+     */
     private int getLibContColumnID(String columnName){
         int nIndex = 0;
         String colName = new String();
@@ -4493,6 +4517,14 @@ public class MainWindow extends javax.swing.JFrame {
         return nIndex;
     }
     
+    /**
+     * Starts playback when the play-icon column of the content table is clicked.
+     *
+     * @param evt mouse event describing the table click
+     * @since 1.0
+     * @see JemmPlayContent
+     * @see #getLibContColumnID(String)
+     */
     private void playLineContent(MouseEvent evt) {
         int lineClicked = jTable5.rowAtPoint(evt.getPoint());
         int columnClicked = jTable5.columnAtPoint(evt.getPoint());
@@ -4511,6 +4543,15 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Opens the NFO import flow when the NFO column of a supported content item is clicked.
+     *
+     * @param evt mouse event describing the table click
+     * @since 1.0
+     * @see LoadNFOFile
+     * @see NFODialog
+     * @see #loadNFOFileDialog()
+     */
     private void loadNFO(MouseEvent evt) {
         int lineClicked = jTable5.rowAtPoint(evt.getPoint());
         int columnClicked = jTable5.columnAtPoint(evt.getPoint());
@@ -4561,13 +4602,57 @@ public class MainWindow extends javax.swing.JFrame {
                         try {
                             nfoDiag.loadTree(cNFOFIle, itemID, itemObj);
                             JemmNFO NFOObject = nfoDiag.getNFOObject();
-                            nfoDiag.setVisible(true);
+                            nfoDiag.myShow(true);
                             
                             if (nfoDiag.isProcessNFO()){
-                                //To do To Do
-                                String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
-                                this.updateItemOnMainObject(folderID,itemID,NFOObject);
-                                this.updateItemOnJellyfin(folderID,itemID,jemmParameters.JUST_ITEMS);
+        
+                                final JellyfinItem itemToUpd = itemObj;
+                                
+                                // Create a new waiting dialog
+                                JDialog waitDiag = new JDialog(this, "Please wait...", true);
+                                waitDiag.setLayout(new BorderLayout());
+                                waitDiag.setSize(600, 110);
+                                waitDiag.setResizable(false);
+                                waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                                waitDiag.setLocationRelativeTo(this);
+                                waitDiag.setUndecorated(true);
+
+                                JLabel labelIco = new JLabel();
+                                labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                                labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
+                                JLabel label = new JLabel("Updating items from NFO File...", JLabel.CENTER);
+
+                                JProgressBar bar = new JProgressBar();
+                                bar.setIndeterminate(true);
+
+                                waitDiag.add(labelIco,BorderLayout.NORTH);
+                                waitDiag.add(label, BorderLayout.CENTER);
+                                waitDiag.add(bar, BorderLayout.SOUTH);
+
+
+                                SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                                    @Override
+                                    protected Void doInBackground() throws Exception {      
+                                    
+                                        //To Do
+                                        String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();                                
+                                        boolean lUpdated = false;
+                                        lUpdated = NFOObject.PostUpdates(folderID,itemID,itemToUpd,jemmParameters.JUST_ITEMS,connectAPI,instanceData);
+                                        
+                                        return null;
+                                    }
+
+                                    @Override
+                                    protected void done() {
+                                        waitDiag.dispose();
+                                    }
+                                };
+                                worker.execute();
+                                waitDiag.setVisible(true);
+                                
+                                //Reload GUI
+                                this.setFieldsValues();
+                                
                             }
                             
                         } catch (IOException ex) {
@@ -4588,6 +4673,13 @@ public class MainWindow extends javax.swing.JFrame {
     
     }
 
+    /**
+     * Opens a file chooser for selecting an NFO file.
+     *
+     * @return absolute path of the selected NFO file, or an empty string if the dialog is cancelled
+     * @since 1.0
+     * @see JFileChooser
+     */
     private String loadNFOFileDialog() {
         String cNFOPath = new String();
         JFileChooser fileChooser = new JFileChooser();
@@ -4605,40 +4697,4 @@ public class MainWindow extends javax.swing.JFrame {
         
         return cNFOPath;
     }
-
-    private void updateItemOnMainObject(String folderID, String itemID, JemmNFO NFOObject) {
-        
-        if (!folderID.isEmpty()){
-            if (!itemID.isEmpty()){
-                for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
-                    if (instanceData.getFolders().getItems().get(nI).getId().equals(folderID)){
-                        for (int nK = 0; nK < instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().size(); nK++ ){
-                            if (instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().get(nK).getId().equals(itemID) ){
-                                
-                                JellyfinItem toBeItem = new JellyfinItem();
-                                toBeItem.setId(itemID);
-                                /*TO DO TO DO*/
-                                
-                                instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().set(nK, toBeItem);                                
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    private void updateItemOnJellyfin(String folderID, String itemID, JellyfinParameters jellyfinParameters) {
-        try {
-            connectAPI.postUpdate(folderID, itemID, instanceData, jemmParameters.JUST_ITEMS);
-        } catch (IOException ex) {
-            System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        } catch (ParseException ex) {
-            System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-    }
-
-    
-    
 }

@@ -9,10 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The AboutJemmPanel class provides a JPanel that displays information about the Jemm application.
- * This includes the version number, author, and other relevant details.
+ * Displays JEMM version information and links to project, license, and Jellyfin resources.
  *
  * @author Cesar Bianchi
+ * @since 1.0
+ * @see JemmVersion
+ * @see Desktop
  */
 public class AboutJemmPanel extends javax.swing.JPanel {
 
@@ -22,6 +24,7 @@ public class AboutJemmPanel extends javax.swing.JPanel {
      * This constructor initializes the components of the AboutJemmPanel and sets the text of jLabel17 to the current version of Jemm.
      *
      * @since 1.0
+    * @see JemmVersion
      */
     public AboutJemmPanel() {        
         initComponents();
@@ -276,6 +279,13 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Opens the license information page when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         //Open GPL 2.0 License page
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -289,6 +299,13 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    /**
+     * Opens the JEMM source code repository when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
 
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -303,6 +320,13 @@ public class AboutJemmPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    /**
+     * Opens the JEMM issue reporting page when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
@@ -315,6 +339,13 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    /**
+     * Opens the JEMM announcements page when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
@@ -327,6 +358,13 @@ public class AboutJemmPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabel13MouseClicked
 
+    /**
+     * Opens the official Jellyfin website when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
@@ -341,10 +379,23 @@ public class AboutJemmPanel extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_jLabel15MouseClicked
 
+    /**
+     * Handles clicks on the version label; no action is currently performed.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     */
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel17MouseClicked
 
+    /**
+     * Opens the JEMM user manual when its label is clicked.
+     *
+     * @param evt mouse event that triggered the handler
+     * @since 1.0
+     * @see Desktop#browse(URI)
+     */
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {

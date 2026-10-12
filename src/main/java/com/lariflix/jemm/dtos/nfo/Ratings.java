@@ -23,7 +23,7 @@ public class Ratings {
     /** List of rating entries contained in the ratings block. */
     @JacksonXmlProperty(localName = "rating")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<Rating> rating;
+    private ArrayList<Rating> ratings;
 
     /**
      * Creates an empty ratings collection.
@@ -42,7 +42,7 @@ public class Ratings {
      * @see #setRating(ArrayList)
      */
     public List<Rating> getRating() {
-        return rating;
+        return ratings;
     }
 
     /**
@@ -53,18 +53,26 @@ public class Ratings {
      * @see #getRating()
      */
     public void setRating(ArrayList<Rating> ratings) {
-        this.rating = ratings;
+        this.ratings = ratings;
     }
 
     /**
      * Adds a rating to the collection.
      *
-     * @param rating the rating to append
+     * @param ratingParam the rating to append
      * @since 1.0
      * @see #getRating()
      */
-    public void addRating(Rating rating) {
-        this.rating.add(rating);
+    public void addRating(Rating ratingParam) {
+
+        if (this.ratings == null){
+            ArrayList<Rating> ratingsLoc = new ArrayList();
+            ratingsLoc.add(ratingParam);
+            this.ratings = ratingsLoc;
+        } else {
+            this.ratings.add(ratingParam); 
+        }
+        
     }
 
     /**
@@ -75,7 +83,7 @@ public class Ratings {
      * @see #getRating()
      */
     public int size() {
-        int lenght = this.rating.size();
+        int lenght = this.ratings.size();
         return lenght;
     }
 }

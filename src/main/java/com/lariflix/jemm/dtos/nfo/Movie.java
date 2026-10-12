@@ -33,6 +33,10 @@ public class Movie {
     private Date premiered;
     private String studio;
     
+    @JacksonXmlProperty(localName = "rating")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private String rating;
+    
     @JacksonXmlProperty(localName = "genre")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<String> genre;
@@ -108,8 +112,11 @@ public class Movie {
         return ratings;
     }
 
-    public void setRatings(Ratings ratings) {
-        this.ratings = ratings;
+    public void setRatings(Ratings rats) {
+        this.ratings = rats;
+        
+        Rating newRate = this.ratings.getRating().get(0);
+        this.rating = newRate.getValue();        
     }
 
     public String getMpaa() {
@@ -281,6 +288,23 @@ public class Movie {
         this.addUniqueid(uniq);        
     }
 
+    public String getRating() {
+        return this.rating;
+    }
+
+    public void setRating(String ratingParam) {
+        this.rating = ratingParam;
+        
+        Rating rateLoc = new Rating();
+        rateLoc.setValue(this.rating);
+        rateLoc.setVotes(0);
+        
+        Ratings ratingsLoc = new Ratings();
+        ratingsLoc.addRating(rateLoc);
+        
+        this.ratings = ratingsLoc;
+    }
+
     private void initialize() {
         this.setTitle("");
         this.setOriginaltitle("");
@@ -293,7 +317,9 @@ public class Movie {
         this.setImdbid("");
         this.setTmdbid("");
         this.setCredits("");
-        this.setDirector("");        
+        this.setDirector("");
+        //this.setRating("");
+        
     }
     
 }

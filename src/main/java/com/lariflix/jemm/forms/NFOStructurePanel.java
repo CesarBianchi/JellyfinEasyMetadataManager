@@ -2,12 +2,33 @@ package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.dtos.nfo.JemmNFO;
 
+/**
+ * Displays the contents of an NFO file alongside the metadata differences
+ * that can be applied to a Jellyfin item.
+ * <p>
+ * This panel is hosted by {@link NFODialog}, which handles the import decision
+ * and provides the loaded NFO data to the rest of the application.
+ * </p>
+ *
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see NFODialog
+ * @see JemmNFO
+ */
 public class NFOStructurePanel extends javax.swing.JPanel {
 
+    /** The NFO metadata loaded for the item being reviewed. */
     public JemmNFO NFOObject = new JemmNFO();
     private boolean replaceWithNFO = false;
+
+    /** Whether the user confirmed importing the NFO data. */
     public boolean isImportNFO = false;
-    
+
+    /** Creates the panel and initializes its Swing components.
+     *
+     * @since 1.0
+     * @see NFODialog
+     */
     public NFOStructurePanel() {
         initComponents();
     }
@@ -211,17 +232,26 @@ public class NFOStructurePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    /** Button used by the dialog to cancel the import. */
     public javax.swing.JButton jButtonCancel;
+    /** Button used by the dialog to confirm and apply the import. */
     public javax.swing.JButton jButtonConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    /** Panel containing the NFO file tree. */
     public javax.swing.JPanel jPanel1;
+    /** Panel containing the import controls and confirmation notice. */
     public javax.swing.JPanel jPanel2;
+    /** Panel containing the metadata differences table. */
     public javax.swing.JPanel jPanel3;
+    /** Main panel containing all NFO review components. */
     public javax.swing.JPanel jPanelBase;
+    /** Scroll pane that hosts the NFO file tree. */
     public javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    /** Table displaying current values and corresponding NFO values. */
     public javax.swing.JTable jTable1;
+    /** Tree displaying the structure and contents of the NFO file. */
     public javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,13 +21,27 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
 /**
+ * Modal dialog for reviewing NFO metadata and deciding whether to import it
+ * into the selected Jellyfin item.
  *
- * @author cesarbianchi
+ * @author Cesar Bianchi
+ * @since 1.0
+ * @see NFOStructurePanel
+ * @see LoadNFOFile
+ * @see JemmNFO
  */
 public class NFODialog extends JDialog {
     private NFOStructurePanel NFODiag = new NFOStructurePanel();
     private javax.swing.JPanel jPanelMain = null;
 
+    /**
+     * Creates the modal NFO review dialog owned by the given frame.
+     *
+     * @param parent frame that owns this dialog and supplies its title
+     * @since 1.0
+     * @see NFOStructurePanel
+     * @see JFrame
+     */
     public NFODialog(JFrame parent) {
         super(parent, parent.getTitle(), true);
         jPanelMain = NFODiag.jPanelBase;
@@ -57,8 +71,15 @@ public class NFODialog extends JDialog {
         
     }
     
-    @Override
-    public void setVisible(boolean type){        
+    
+    /**
+     * Sets whether this dialog is visible.
+     *
+     * @param type {@code true} to show the dialog; {@code false} to hide it
+     * @since 1.0
+     * @see JDialog#setVisible(boolean)
+     */
+    public void myShow(boolean type){        
         this.setVisible(type);        
     }
     
@@ -101,6 +122,13 @@ public class NFODialog extends JDialog {
         NFODiag.NFOObject = loadTree.getNFOObject();
     }
     
+    /**
+     * Adjusts each table column's preferred width to fit its rendered cell contents.
+     *
+     * @param table table whose columns are resized
+     * @since 1.0
+     * @see JTable
+     */
     private void resizeTableWidthColumns(JTable table) {
         //Resize Table Columns (Width)
         final TableColumnModel columnModel = table.getColumnModel();
@@ -120,10 +148,25 @@ public class NFODialog extends JDialog {
         table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }
  
+    /**
+     * Returns the NFO metadata loaded for this dialog.
+     *
+     * @return the loaded NFO metadata, or the panel's default object if no file has been loaded
+     * @since 1.0
+     * @see JemmNFO
+     * @see #loadTree(String, String, JellyfinItem)
+     */
     public JemmNFO getNFOObject(){
         return NFODiag.NFOObject;
     }
     
+    /**
+     * Reports whether the user confirmed importing the NFO data.
+     *
+     * @return {@code true} if import was confirmed; otherwise {@code false}
+     * @since 1.0
+     * @see NFOStructurePanel#isImportNFO
+     */
     public boolean isProcessNFO(){
         return NFODiag.isImportNFO;
     }
