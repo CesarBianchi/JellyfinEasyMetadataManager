@@ -77,7 +77,7 @@ public class LoadNFOFile {
         String content = Files.readString(Path.of(cNFOFIle));
 
         if (content.contains("<movie>")) {
-            this.NFOType = "MOVIE";
+            this.NFOType = "VIDEO";
         } else if (content.contains("<tvshow>")) {
             this.NFOType = "TV SHOW";
         } else if (content.contains("<episodedetails>")) {
@@ -98,7 +98,7 @@ public class LoadNFOFile {
         //1* Identify the type of media into NFO File
         this.loadNFOType();                
         if (!this.getNFOType().isEmpty()){            
-            if (this.getNFOType().equals("MOVIE")){                               
+            if (this.getNFOType().equals("VIDEO")){                               
                 this.NFOObject.setMovie(this.loadNFOForMovie());
             }
         } else {
@@ -143,7 +143,7 @@ public class LoadNFOFile {
         
         DefaultMutableTreeNode node = new DefaultMutableTreeNode("File: " + this.nfoFilePath);
         
-        if (this.getNFOType().equals("MOVIE")){
+        if (this.getNFOType().equals("VIDEO")){
             DefaultMutableTreeNode movieNode  = this.loadMovieTree();
             node.add(movieNode);
             
@@ -165,34 +165,8 @@ public class LoadNFOFile {
         movieNode.add(new DefaultMutableTreeNode("Studio: " + this.NFOObject.getMovie().getStudio()));
         movieNode.add(new DefaultMutableTreeNode("Country: " + this.NFOObject.getMovie().getCountry()));
         movieNode.add(new DefaultMutableTreeNode("Credits: " + this.NFOObject.getMovie().getCredits()));
-        
-        //Provider ID: IMDB
-        if (this.NFOObject.getMovie().getImdbid() != null ){
-            movieNode.add(new DefaultMutableTreeNode("IMDB Id: " + this.NFOObject.getMovie().getImdbid()));    
-        } else {
-            if (this.NFOObject.getMovie().getUniqueid() != null){
-                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
-                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("IMDB")){
-                        movieNode.add(new DefaultMutableTreeNode("IMDB Id: " + this.NFOObject.getMovie().getUniqueid().get(nK).getValue() ));
-                        break;
-                    }
-                }
-            }
-        }
-        
-        //Provider ID: TMDB
-        if (this.NFOObject.getMovie().getImdbid() != null){
-            movieNode.add(new DefaultMutableTreeNode("TMDB Id: " + this.NFOObject.getMovie().getTmdbid()));    
-        } else {
-            if (this.NFOObject.getMovie().getUniqueid() != null){
-                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
-                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("TMDB")){
-                        movieNode.add(new DefaultMutableTreeNode("TMDB Id: " + this.NFOObject.getMovie().getUniqueid().get(nK).getValue() ));
-                        break;
-                    }
-                }
-            }
-        }
+        movieNode.add(new DefaultMutableTreeNode("IMDB Id: " + this.NFOObject.getMovie().getImdbid()));    
+        movieNode.add(new DefaultMutableTreeNode("TMDB Id: " + this.NFOObject.getMovie().getTmdbid()));    
         
         //Ratings
         if (this.NFOObject.getMovie().getRatings() != null){
@@ -208,36 +182,42 @@ public class LoadNFOFile {
         }
                 
         //Genres
-        DefaultMutableTreeNode movieGenres = new DefaultMutableTreeNode("Genres");
-        for (int nI = 0; nI < this.NFOObject.getMovie().getGenre().size(); nI++ ){            
-            movieGenres.add(new DefaultMutableTreeNode("Genre: " + this.NFOObject.getMovie().getGenre().get(nI) ));            
+        if (this.NFOObject.getMovie().getGenre() != null){
+            DefaultMutableTreeNode movieGenres = new DefaultMutableTreeNode("Genres");
+            for (int nI = 0; nI < this.NFOObject.getMovie().getGenre().size(); nI++ ){            
+                movieGenres.add(new DefaultMutableTreeNode("Genre: " + this.NFOObject.getMovie().getGenre().get(nI) ));            
+            }
+            movieNode.add(movieGenres);
         }
-        movieNode.add(movieGenres);
         
         //Tags
-        DefaultMutableTreeNode movieTags = new DefaultMutableTreeNode("Tags");
-        for (int nI = 0; nI < this.NFOObject.getMovie().getTag().size(); nI++ ){            
-            movieTags.add(new DefaultMutableTreeNode("Tag: " + this.NFOObject.getMovie().getTag().get(nI) ));            
+        if (this.NFOObject.getMovie().getTag() != null){
+            DefaultMutableTreeNode movieTags = new DefaultMutableTreeNode("Tags");
+            for (int nI = 0; nI < this.NFOObject.getMovie().getTag().size(); nI++ ){            
+                movieTags.add(new DefaultMutableTreeNode("Tag: " + this.NFOObject.getMovie().getTag().get(nI) ));            
+            }
+            movieNode.add(movieTags);
         }
-        movieNode.add(movieTags);
-        
-        //Actors
-        DefaultMutableTreeNode movieStaff = new DefaultMutableTreeNode("Staff");
-        for (int nI = 0; nI < this.NFOObject.getMovie().getActor().size(); nI++ ){            
-            DefaultMutableTreeNode people = new DefaultMutableTreeNode("People");
             
-            people.add(new DefaultMutableTreeNode("Name: " + this.NFOObject.getMovie().getActor().get(nI).getName() ));
-            people.add(new DefaultMutableTreeNode("Role: " + this.NFOObject.getMovie().getActor().get(nI).getRole() ));
-            movieStaff.add(people);
+        //Actors
+        if (this.NFOObject.getMovie().getActor() != null){
+            DefaultMutableTreeNode movieStaff = new DefaultMutableTreeNode("Staff");
+            for (int nI = 0; nI < this.NFOObject.getMovie().getActor().size(); nI++ ){            
+                DefaultMutableTreeNode people = new DefaultMutableTreeNode("Actor");
+
+                people.add(new DefaultMutableTreeNode("Name: " + this.NFOObject.getMovie().getActor().get(nI).getName() ));
+                people.add(new DefaultMutableTreeNode("Role: " + this.NFOObject.getMovie().getActor().get(nI).getRole() ));
+                movieStaff.add(people);
+            }
+            movieNode.add(movieStaff);
         }
-        movieNode.add(movieStaff);
         
         return movieNode;
     }
 
     public void loadDifferences(String itemID, JellyfinItem itemObj) {
         
-        if (this.getNFOType().equals("MOVIE")){
+        if (this.getNFOType().equals("VIDEO")){
             this.loadMovieDifferences(itemID,itemObj);
             
         } else if (this.getNFOType().equals("AUDIO")){
@@ -249,28 +229,24 @@ public class LoadNFOFile {
     private void loadMovieDifferences(String itemID, JellyfinItem itemObj) {
         JemmNFODiffs diff = new JemmNFODiffs();
         
-        //Name
-        if (this.NFOObject.getMovie().getTitle() != null){
-            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
-                diff = new JemmNFODiffs("Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() );
-                this.addDifference(diff);
-            }
+        //Name        
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getName())){
+            diff = new JemmNFODiffs("Name", itemObj.getItemMetadata().getName(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
         }
+        
         
         //Original Title
-        if (this.NFOObject.getMovie().getTitle() != null){
-            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
-                diff = new JemmNFODiffs( "Original Title", itemObj.getItemMetadata().getOriginalTitle(), this.NFOObject.getMovie().getTitle() );
-                this.addDifference(diff);
-            }
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getOriginalTitle())){
+            diff = new JemmNFODiffs( "Original Title", itemObj.getItemMetadata().getOriginalTitle(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
         }
         
+        
         //Sort Name
-        if (this.NFOObject.getMovie().getTitle() != null){
-            if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getSortName())){
-                diff = new JemmNFODiffs( "Sort Name", itemObj.getItemMetadata().getSortName(), this.NFOObject.getMovie().getTitle() );
-                this.addDifference(diff);
-            }
+        if (!this.NFOObject.getMovie().getTitle().equals(itemObj.getItemMetadata().getSortName())){
+            diff = new JemmNFODiffs( "Sort Name", itemObj.getItemMetadata().getSortName(), this.NFOObject.getMovie().getTitle() );
+            this.addDifference(diff);
         }
         
         //Created Date
@@ -311,63 +287,136 @@ public class LoadNFOFile {
             }
         }
         
-        //Overview        
-        if (this.NFOObject.getMovie().getPlot() != null){
-            if (!this.NFOObject.getMovie().getPlot().equals(itemObj.getItemMetadata().getOverview() )){
-                diff = new JemmNFODiffs( "Overview", itemObj.getItemMetadata().getOverview(), this.NFOObject.getMovie().getPlot() );
-                this.addDifference(diff);
-            }
+        //Overview                
+        if (!this.NFOObject.getMovie().getPlot().equals(itemObj.getItemMetadata().getOverview() )){
+            diff = new JemmNFODiffs( "Overview", itemObj.getItemMetadata().getOverview(), this.NFOObject.getMovie().getPlot() );
+            this.addDifference(diff);
         }
+        
         
         //Year        
-        if (this.NFOObject.getMovie().getYear() != null){
-            if (!this.NFOObject.getMovie().getYear().equals(Integer.toString(itemObj.getItemMetadata().getProductionYear() ))){
-                diff = new JemmNFODiffs( "Year", Integer.toString(itemObj.getItemMetadata().getProductionYear()), this.NFOObject.getMovie().getYear() );
-                this.addDifference(diff);
-            }
+        if (!this.NFOObject.getMovie().getYear().equals(Integer.toString(itemObj.getItemMetadata().getProductionYear() ))){
+            diff = new JemmNFODiffs( "Year", Integer.toString(itemObj.getItemMetadata().getProductionYear()), this.NFOObject.getMovie().getYear() );
+            this.addDifference(diff);
         }
         
-        //Provider ID: IMDB
-        if (this.NFOObject.getMovie().getImdbid() != null){
-            if (!this.NFOObject.getMovie().getImdbid().equals( itemObj.getItemMetadata().getProviderIds().getImdb() )){                
-                diff = new JemmNFODiffs( "Imdb ID", itemObj.getItemMetadata().getProviderIds().getImdb() , this.NFOObject.getMovie().getImdbid() );
-                this.addDifference(diff);
-            }            
-        } else {
-            if (this.NFOObject.getMovie().getUniqueid() != null){
-                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
-                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("IMDB")){                        
-                        if (!this.NFOObject.getMovie().getUniqueid().get(nK).getValue().equals( itemObj.getItemMetadata().getProviderIds().getImdb() )){                                            
-                            diff = new JemmNFODiffs( "Imdb ID", itemObj.getItemMetadata().getProviderIds().getImdb() , this.NFOObject.getMovie().getUniqueid().get(nK).getValue() );
-                            this.addDifference(diff);
-                        }                        
-                        break;
-                    }
-                }
-            }
+        //Provider ID: IMDB        
+        if (!this.NFOObject.getMovie().getImdbid().equals( itemObj.getItemMetadata().getProviderIds().getImdb() )){                
+            diff = new JemmNFODiffs( "Imdb ID", itemObj.getItemMetadata().getProviderIds().getImdb() , this.NFOObject.getMovie().getImdbid() );
+            this.addDifference(diff);
         }
         
         //Provider ID: TMDB
-        if (this.NFOObject.getMovie().getTmdbid() != null){
-            
-            if (!this.NFOObject.getMovie().getTmdbid().equals( itemObj.getItemMetadata().getProviderIds().getTmdb() )){                
-                diff = new JemmNFODiffs( "Tmdb ID", itemObj.getItemMetadata().getProviderIds().getTmdb() , this.NFOObject.getMovie().getTmdbid() );
-                this.addDifference(diff);
-            }            
-        } else {
-            if (this.NFOObject.getMovie().getUniqueid() != null){
-                for (int nK = 0; nK < this.NFOObject.getMovie().getUniqueid().size(); nK ++){
-                    if (this.NFOObject.getMovie().getUniqueid().get(nK).getType().toUpperCase().equals("TMDB")){                        
-                        if (!this.NFOObject.getMovie().getUniqueid().get(nK).getValue().equals( itemObj.getItemMetadata().getProviderIds().getTmdb() )){                            
-                            diff = new JemmNFODiffs( "TMDB ID", itemObj.getItemMetadata().getProviderIds().getTmdb() , this.NFOObject.getMovie().getUniqueid().get(nK).getValue() );
-                            this.addDifference(diff);
-                        }                        
+        if (!this.NFOObject.getMovie().getTmdbid().equals( itemObj.getItemMetadata().getProviderIds().getTmdb() )){                
+            diff = new JemmNFODiffs( "Tmdb ID", itemObj.getItemMetadata().getProviderIds().getTmdb() , this.NFOObject.getMovie().getTmdbid() );
+            this.addDifference(diff);
+        }
+        
+        //Actors
+        if (this.NFOObject.getMovie().getActor() != null){
+            String nfoActorName = new String();
+            String asIsActorName = new String();
+            int nCountUsed = 0;
+            boolean lFound = false;
+            for (int nI = 0; nI < this.NFOObject.getMovie().getActor().size(); nI++ ){
+                lFound = false;
+                nfoActorName = this.NFOObject.getMovie().getActor().get(nI).getName().trim();                        
+                
+                for (int nK = 0; nK < itemObj.getItemMetadata().getPeople().size(); nK++ ){
+                    asIsActorName = itemObj.getItemMetadata().getPeople().get(nK).getName().trim();
+                    
+                    if (nfoActorName.toUpperCase().equals(asIsActorName.toUpperCase())){
+                        lFound = true;
                         break;
                     }
+                }                
+                
+                if (!lFound){
+                    String cNameAsIs = new String();
+                    
+                    if (nCountUsed < itemObj.getItemMetadata().getPeople().size()){
+                        cNameAsIs = itemObj.getItemMetadata().getPeople().get(nCountUsed).getName().trim();
+                        nCountUsed++;
+                    } else {
+                        cNameAsIs = "";
+                    }
+                    
+                    diff = new JemmNFODiffs( "Actor", cNameAsIs , nfoActorName );
+                    this.addDifference(diff);
+                }
+            }
+        }    
+        
+        //Genres
+        if (this.NFOObject.getMovie().getGenre() != null){
+            String nfoGenreName = new String();
+            String asIsGenreName = new String();
+            int nCountUsed = 0;
+            boolean lFound = false;
+            for (int nI = 0; nI < this.NFOObject.getMovie().getGenre().size(); nI++ ){
+                lFound = false;
+                nfoGenreName = this.NFOObject.getMovie().getGenre().get(nI).trim();                        
+
+                for (int nK = 0; nK < itemObj.getItemMetadata().getGenreItems().size(); nK++ ){
+                    asIsGenreName = itemObj.getItemMetadata().getGenreItems().get(nK).getName().trim();
+
+                    if (nfoGenreName.toUpperCase().equals(asIsGenreName.toUpperCase())){
+                        lFound = true;
+                        break;
+                    }
+                }                
+
+                if (!lFound){
+                    String cNameAsIs = new String();
+
+                    if (nCountUsed < itemObj.getItemMetadata().getGenreItems().size()){
+                        cNameAsIs = itemObj.getItemMetadata().getGenreItems().get(nCountUsed).getName().trim();
+                        nCountUsed++;
+                    } else {
+                        cNameAsIs = "";
+                    }
+
+                    diff = new JemmNFODiffs( "Genre", cNameAsIs , nfoGenreName );
+                    this.addDifference(diff);
                 }
             }
         }
         
+        //Tags
+        if (this.NFOObject.getMovie().getTag() != null){
+            String nfoTagName = new String();
+            String asIsTagName = new String();
+            int nCountUsed = 0;
+            boolean lFound = false;
+            for (int nI = 0; nI < this.NFOObject.getMovie().getTag().size(); nI++ ){
+                lFound = false;
+                nfoTagName = this.NFOObject.getMovie().getTag().get(nI).trim();                        
+
+                for (int nK = 0; nK < itemObj.getItemMetadata().getTags().size(); nK++ ){
+                    
+                    asIsTagName = itemObj.getItemMetadata().getTags().get(nK).trim();
+
+                    if (nfoTagName.toUpperCase().equals(asIsTagName.toUpperCase())){
+                        lFound = true;
+                        break;
+                    }
+                }                
+
+                if (!lFound){
+                    String cNameAsIs = new String();
+
+                    if (nCountUsed < itemObj.getItemMetadata().getTags().size()){
+                        cNameAsIs = itemObj.getItemMetadata().getTags().get(nCountUsed).trim();
+                        nCountUsed++;
+                    } else {
+                        cNameAsIs = "";
+                    }
+
+                    diff = new JemmNFODiffs( "Tag", cNameAsIs , nfoTagName );
+                    this.addDifference(diff);
+                }
+            }
+        }
     }
 
     private Movie trimSpaces(Movie mov) {
@@ -417,7 +466,5 @@ public class LoadNFOFile {
         
         return movie;
     }
-
-    
 
 }

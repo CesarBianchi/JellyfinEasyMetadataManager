@@ -21,6 +21,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.lariflix.jemm.utils.TransformDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class Movie {
     private Fanart fanart;
 
     public Movie() {
+        this.initialize();
     }
 
     public String getTitle() {
@@ -178,8 +180,33 @@ public class Movie {
         return uniqueid;
     }
 
-    public void setUniqueid(List<Uniqueid> uniqueid) {
-        this.uniqueid = uniqueid;
+    public void setUniqueid(List<Uniqueid> uniq) {
+        this.uniqueid = uniq;
+        
+        for (int nI = 0; nI < uniq.size(); nI++){
+            if (uniq.get(nI).getType().trim().toUpperCase().equals("IMDB")){
+                if (this.getImdbid().isEmpty()){
+                    this.setImdbid(uniq.get(nI).getValue());
+                }
+            } else if (uniq.get(nI).getType().trim().toUpperCase().equals("TMDB")) {
+                if (this.getTmdbid().isEmpty()){
+                    this.setTmdbid(uniq.get(nI).getValue());
+                }
+            }
+        }
+        
+    }
+    
+    public void addUniqueid(Uniqueid uniq){
+        if (this.uniqueid == null){
+            ArrayList<Uniqueid> uniqList = new ArrayList();
+            uniqList.add(uniq);
+            this.uniqueid = uniqList;
+        } else {
+            this.uniqueid.add(uniq);    
+        }
+        
+        
     }
 
     public String getCredits() {
@@ -234,6 +261,12 @@ public class Movie {
 
     public void setImdbid(String imdbid) {
         this.imdbid = imdbid;
+        
+        Uniqueid uniq = new Uniqueid();
+        uniq.setType("imdb");
+        uniq.setDefault(true);
+        uniq.setValue(imdbid.trim());
+        this.addUniqueid(uniq);        
     }
 
     public String getTmdbid() {
@@ -241,7 +274,27 @@ public class Movie {
     }
 
     public void setTmdbid(String tmdbid) {
-        this.tmdbid = tmdbid;
+        this.tmdbid = tmdbid;        
+        Uniqueid uniq = new Uniqueid();
+        uniq.setType("tmdb");
+        uniq.setDefault(true);
+        uniq.setValue(tmdbid.trim());
+        this.addUniqueid(uniq);        
+    }
+
+    private void initialize() {
+        this.setTitle("");
+        this.setOriginaltitle("");
+        this.setPlot("");
+        this.setTagline("");
+        this.setMpaa("");
+        this.setYear("");
+        this.setStudio("");
+        this.setCountry("");
+        this.setImdbid("");
+        this.setTmdbid("");
+        this.setCredits("");
+        this.setDirector("");        
     }
     
 }

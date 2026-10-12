@@ -3,6 +3,7 @@ package com.lariflix.jemm.forms;
 
 import com.lariflix.jemm.dtos.JellyfinInstanceDetails;
 import com.lariflix.jemm.core.ConnectJellyfinAPI;
+import com.lariflix.jemm.core.LoadNFOFile;
 import com.lariflix.jemm.csv.JellyfinExportMetadata;
 import com.lariflix.jemm.csv.JellyfinImportMetadata;
 import com.lariflix.jemm.dtos.JellyfinItem;
@@ -1809,6 +1810,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.setResizable(false);
         waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         waitDiag.setLocationRelativeTo(this);
+        waitDiag.setUndecorated(true);        
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         JLabel labelIco = new JLabel();
@@ -1910,6 +1912,7 @@ public class MainWindow extends javax.swing.JFrame {
                     waitDiag.setResizable(false);
                     waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
                     waitDiag.setLocationRelativeTo(this);
+                    waitDiag.setUndecorated(true);
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
                     JLabel labelIco = new JLabel();
@@ -2198,7 +2201,8 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.setResizable(false);
         waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         waitDiag.setLocationRelativeTo(this);
-
+        waitDiag.setUndecorated(true);
+        
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIco.setIcon(new JellyfinUtilFunctions().getOficialJemmIcon()); // NOI18N
@@ -2321,6 +2325,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.setResizable(false);
             waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             waitDiag.setLocationRelativeTo(this);
+            waitDiag.setUndecorated(true);
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -3255,7 +3260,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.setResizable(false);
             waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             waitDiag.setLocationRelativeTo(this);
-
+            waitDiag.setUndecorated(true);
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -3315,7 +3320,7 @@ public class MainWindow extends javax.swing.JFrame {
             waitDiag.setResizable(false);
             waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             waitDiag.setLocationRelativeTo(this);
-
+            waitDiag.setUndecorated(true);
 
             JLabel labelIco = new JLabel();
             labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -4019,7 +4024,7 @@ public class MainWindow extends javax.swing.JFrame {
         waitDiag.setResizable(false);
         waitDiag.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         waitDiag.setLocationRelativeTo(this);
-
+        waitDiag.setUndecorated(true);
 
         JLabel labelIco = new JLabel();
         labelIco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -4125,33 +4130,46 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if(!cNFOFIle.isEmpty()){
                     
-                    //Get the folder items object related the chosen by user
-                    int nFolderIndex = jList2.getSelectedIndex();        
-                    if (nFolderIndex >= 0 ) {            
-                        String cFolderId = instanceData.getFolders().getItems().get(nFolderIndex).getId();
-                        JellyfinFolderMetadata folderMetadata = new JellyfinFolderMetadata();
-                        JellyfinItems folderItems = new JellyfinItems();
-                        for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
-                            if (cFolderId.equals(instanceData.getFolders().getItems().get(nI).getId())){
-                                folderMetadata = instanceData.getFolders().getItems().get(nI).getMetadata();
-                                folderItems = instanceData.getFolders().getItems().get(nI).getFolderContent();
-                                for (int nK = 0; nK < folderItems.getItems().size(); nK++){
-                                    if (folderItems.getItems().get(nK).getId().equals(itemID)){
-                                        itemObj = folderItems.getItems().get(nK);
+                    //Check if the NFO File is the same media type of selected line;
+                    LoadNFOFile nfoFIle = new LoadNFOFile(cNFOFIle);
+                    String cNFOFileType = nfoFIle.getNFOType().trim().toUpperCase();
+                    itemType = itemType.trim().toUpperCase();
+                    
+                    if (cNFOFileType.equals(itemType)){
+                    
+                        //Get the folder items object related the chosen by user
+                        int nFolderIndex = jList2.getSelectedIndex();        
+                        if (nFolderIndex >= 0 ) {            
+                            String cFolderId = instanceData.getFolders().getItems().get(nFolderIndex).getId();
+                            JellyfinFolderMetadata folderMetadata = new JellyfinFolderMetadata();
+                            JellyfinItems folderItems = new JellyfinItems();
+                            for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
+                                if (cFolderId.equals(instanceData.getFolders().getItems().get(nI).getId())){
+                                    folderMetadata = instanceData.getFolders().getItems().get(nI).getMetadata();
+                                    folderItems = instanceData.getFolders().getItems().get(nI).getFolderContent();
+                                    for (int nK = 0; nK < folderItems.getItems().size(); nK++){
+                                        if (folderItems.getItems().get(nK).getId().equals(itemID)){
+                                            itemObj = folderItems.getItems().get(nK);
+                                        }
                                     }
                                 }
                             }
                         }
+
+                        ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
+                        try {
+                            NFOStructureDiag.loadTree(cNFOFIle,itemID,itemObj);
+                        } catch (IOException ex) {
+                            System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                        }
+                        NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
+                        NFOStructureDiag.setVisible(true);
+
+                    } else {
+                        String cMsg = "The selected NFO file was made for a different media type than the chosen media/item.";
+                        String cTitle = "Type of media mismatch";
+                        new JellyfinUtilFunctions().showMessage(cTitle, cMsg, JOptionPane.ERROR_MESSAGE);
                     }
-                                        
-                    ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
-                    try {
-                        NFOStructureDiag.loadTree(cNFOFIle,itemID,itemObj);
-                    } catch (IOException ex) {
-                        System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-                    }
-                    NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
-                    NFOStructureDiag.setVisible(true);
                 }
 
 
