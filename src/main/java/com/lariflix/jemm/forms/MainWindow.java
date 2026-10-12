@@ -14,6 +14,7 @@ import com.lariflix.jemm.dtos.JellyfinGenreItem;
 import com.lariflix.jemm.dtos.JellyfinPeopleItem;
 import com.lariflix.jemm.dtos.JellyfinProviderIds;
 import com.lariflix.jemm.dtos.JellyfinStudioItem;
+import com.lariflix.jemm.dtos.nfo.JemmNFO;
 import com.lariflix.jemm.reports.JellyfinReportEngine;
 import com.lariflix.jemm.utils.JellyfinParameters;
 import com.lariflix.jemm.utils.JellyfinRatingList;
@@ -86,7 +87,6 @@ public class MainWindow extends javax.swing.JFrame {
     static String forcedSortNameOldValue = new String();
     public final int from_folder_tab = 1;
     public final int from_content_tab = 2;
-
     private JellyfinParameters jemmParameters;
     
     /**
@@ -794,11 +794,10 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -3747,7 +3746,7 @@ public class MainWindow extends javax.swing.JFrame {
                             String cFolderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
                             String cItemID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getFolderContent().getItems().get(nI).getId();
 
-                            connectAPI.postUpdate(cFolderID, cItemID, instanceData, jemmParameters.JUST_ITEMS);                
+                            connectAPI.postUpdate(cFolderID, cItemID, instanceData, jemmParameters.JUST_ITEMS);
                         }
 
                     } catch (IOException | ParseException ex) {
@@ -4528,7 +4527,8 @@ public class MainWindow extends javax.swing.JFrame {
                 //Show to user a dialog to select NFO File
                 String itemID = (String) jTable5.getValueAt(lineClicked, getLibContColumnID("ID"));            
                 String cNFOFIle = this.loadNFOFileDialog();
-
+                
+                
                 if(!cNFOFIle.isEmpty()){
                     
                     //Check if the NFO File is the same media type of selected line;
@@ -4556,15 +4556,23 @@ public class MainWindow extends javax.swing.JFrame {
                                 }
                             }
                         }
-
-                        ShowNFOStructure NFOStructureDiag = new ShowNFOStructure();
+                        
+                        NFODialog nfoDiag = new NFODialog(this);
                         try {
-                            NFOStructureDiag.loadTree(cNFOFIle,itemID,itemObj);
+                            nfoDiag.loadTree(cNFOFIle, itemID, itemObj);
+                            JemmNFO NFOObject = nfoDiag.getNFOObject();
+                            nfoDiag.setVisible(true);
+                            
+                            if (nfoDiag.isProcessNFO()){
+                                //To do To Do
+                                String folderID = instanceData.getFolders().getItems().get(jList2.getSelectedIndex()).getId();
+                                this.updateItemOnMainObject(folderID,itemID,NFOObject);
+                                this.updateItemOnJellyfin(folderID,itemID,jemmParameters.JUST_ITEMS);
+                            }
+                            
                         } catch (IOException ex) {
                             System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
                         }
-                        NFOStructureDiag.setLocationRelativeTo(null); // Center on screen
-                        NFOStructureDiag.setVisible(true);
 
                     } else {
                         String cMsg = "The selected NFO file was made for a different media type than the chosen media/item.";
@@ -4572,8 +4580,7 @@ public class MainWindow extends javax.swing.JFrame {
                         new JellyfinUtilFunctions().showMessage(cTitle, cMsg, JOptionPane.ERROR_MESSAGE);
                     }
                 }
-
-
+                                
             }
         } else {
             System.out.println("Is not a Movie File. NFO Load Files is not available for items non-movie yet.");
@@ -4598,5 +4605,40 @@ public class MainWindow extends javax.swing.JFrame {
         
         return cNFOPath;
     }
+
+    private void updateItemOnMainObject(String folderID, String itemID, JemmNFO NFOObject) {
+        
+        if (!folderID.isEmpty()){
+            if (!itemID.isEmpty()){
+                for (int nI = 0; nI < instanceData.getFolders().getItems().size(); nI++){
+                    if (instanceData.getFolders().getItems().get(nI).getId().equals(folderID)){
+                        for (int nK = 0; nK < instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().size(); nK++ ){
+                            if (instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().get(nK).getId().equals(itemID) ){
+                                
+                                JellyfinItem toBeItem = new JellyfinItem();
+                                toBeItem.setId(itemID);
+                                /*TO DO TO DO*/
+                                
+                                instanceData.getFolders().getItems().get(nI).getFolderContent().getItems().set(nK, toBeItem);                                
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private void updateItemOnJellyfin(String folderID, String itemID, JellyfinParameters jellyfinParameters) {
+        try {
+            connectAPI.postUpdate(folderID, itemID, instanceData, jemmParameters.JUST_ITEMS);
+        } catch (IOException ex) {
+            System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } catch (ParseException ex) {
+            System.getLogger(MainWindow.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+
+    
     
 }

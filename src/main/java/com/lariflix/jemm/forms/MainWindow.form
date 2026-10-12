@@ -622,12 +622,10 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jButton3" max="32767" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jButton2" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jButton1" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="jButton23" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButton22" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jButton2" alignment="1" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

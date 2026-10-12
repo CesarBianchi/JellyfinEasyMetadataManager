@@ -23,7 +23,6 @@ import com.lariflix.jemm.dtos.JellyfinItem;
 import com.lariflix.jemm.dtos.nfo.JemmNFO;
 import com.lariflix.jemm.dtos.nfo.JemmNFODiffs;
 import com.lariflix.jemm.dtos.nfo.Movie;
-import com.lariflix.jemm.forms.ShowNFOStructure;
 import com.lariflix.jemm.utils.TransformDateFormat;
 import java.io.File;
 import java.io.IOException;
@@ -111,7 +110,7 @@ public class LoadNFOFile {
             try {
                 this.setNFOType();
             } catch (IOException ex) {
-                System.getLogger(ShowNFOStructure.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                System.getLogger(LoadNFOFile.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
         }
     }    
@@ -130,7 +129,7 @@ public class LoadNFOFile {
             movie = this.trimSpaces(movie);
             
         } catch (IOException ex) {
-            System.getLogger(ShowNFOStructure.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(LoadNFOFile.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         return movie;
     }
